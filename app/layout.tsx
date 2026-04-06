@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Loader from "@/components/layout/Loader";
 import ClickEffect from "@/components/ui/ClickEffect";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -59,6 +60,7 @@ export default function RootLayout({
         <Loader />
         <Navbar />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
