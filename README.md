@@ -1,4 +1,4 @@
-# [Suhaib Shaik](https://github.com/RIxiV1) — Product Engineering Portfolio
+# [Shaik Suhaib](https://github.com/RIxiV1) —  Portfolio
 
 Developer specializing in High-Performance Web Applications and AI Systems. Based in India.
 
