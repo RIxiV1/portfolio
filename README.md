@@ -1,133 +1,103 @@
-# portfolio-suhaib
+# [Suhaib Shaik](https://github.com/RIxiV1) — Product Engineering Portfolio
 
-<div align="center">
+Software Engineer specializing in High-Performance Web Applications and AI Systems. Based in India.
 
-### Personal developer portfolio
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RIxiV1)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shaiksuhaib)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/suhaibX0)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shaiksuhaib360@gmail.com)
+[![Live Site](https://img.shields.io/badge/Live_Site-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-suhaib.vercel.app/)
 
-**Next.js · TypeScript · Tailwind CSS · Framer Motion**
-
-[Live Site](https://portfolio-suhaib.vercel.app/) · [Repository](https://github.com/RIxiV1/portfolio-suhaib)
-
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white)
-
-</div>
+![Portfolio Hero Section](public/hero-screenshot.png)
 
 ---
 
-A dark, minimal, fast portfolio—built to showcase my work, background, and writing in one place without extra noise.
+## Overview
 
-## Preview
+This repository contains the source code for a premium, high-density developer portfolio built with a **Deep-Tech Aurora** aesthetic. It is engineered for maximum performance, featuring modular architecture, glassmorphism, and scroll-driven interactivity.
 
-> Recommended: keep a preview image at `public/og.png` so it renders here and in social sharing.
+The project prioritizes semantic clarity and maintainability, with all personal and SEO metadata centralized in a single configuration layer.
 
-![Portfolio preview](public/og.png)
+---
 
-## Why
+## Technical Spectrum
 
-I wanted a portfolio that’s:
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router) |
+| **View Library** | React 19 |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS 4 (Aurora Design System) |
+| **Foundations** | CSS Variables + Utility-First Architecture |
+| **Motion** | Framer Motion (Optimized Intersection Reveals) |
+| **Icons** | Lucide React |
+
+---
+
+## Engineering Highlights
+
+### Modular Architecture
+The codebase follows a dashboard-inspired structure:
+- **Centralized Config**: `data/site.ts` acts as the single source of truth for all content.
+- **Unified Design System**: `globals.css` implements a bespoke design system with specialized `.card` and `.badge` utilities.
+- **Performance Optimized**: Leverages Next.js 16 features for server-side optimization and efficient client-side transitions.
+
+### Featured Projects
+- **InfoBlend**: AI-powered Chrome extension (Manifest V3) for real-time intelligence using on-device processing.
+- **SubSentry**: Financial tracking application designed to eliminate "subscription ghosting" with proactive alerting.
+- **Resume Agent**: LLM-driven filtering system built with n8n for structured applicant analysis.
+
+---
+
+## Project Structure
+
+A dark, minimal, fast portfolio—built to showcase work, background, and writing in one place without extra noise.
 
 - **Readable first** — content over decoration
 - **Easy to update** — most changes live in typed data files
 - **Fast** — minimal UI overhead, purposeful animations
 
-## Table of Contents
-
-- [Features](#features)
-- [Sections](#sections)
-- [Under the Hood](#under-the-hood)
-- [Quick Start](#quick-start)
-- [Customize](#customize)
-- [Deploy](#deploy)
-- [License](#license)
-- [Contact](#contact)
-
-## Features
-
-- **Single-page layout** with clearly separated sections
-- **Project modals** for deep dives without leaving the page
-- **Scroll reveals** powered by `IntersectionObserver`
-- **Reusable design utilities** (glass cards, badges)
-- **Centralized data/config** for easy updates
-
-## Sections
-
-### 🏠 Hero
-The landing view shows my name, a short tagline, and links to get in touch or jump straight to my work.
-
-### 🗂 Projects
-Projects are split into two groups:
-
-- **Featured** — full-width cards with screenshot, description, tags, and a direct GitHub link.
-- **Other** — compact grid with hover effects and a quick-view overlay.
-
-Clicking any card opens a modal with a larger image, full description, and links.
-
-### 👤 About
-A bento-style grid with bio, location, focus areas, and what I’m currently doing.
-
-### 🗓 Journey (Experience)
-A timeline of work/education/milestones. Each entry includes role, org, time period, description, and tags.
-
-### ⚙️ Toolkit
-A marquee of tools I use regularly (JS/TS, React/Next.js, Node, Tailwind, SQL, Git, etc.).
-
-### ✍️ Writing
-Cards linking to external posts/articles with title, excerpt, date, and read-time.
-
-### 📬 Contact
-A simple section with direct links (no contact form—just a straightforward way to reach out).
-
-## Under the Hood
-
-- **Centralized config** — `data/site.ts` holds personal info, social links, nav, and SEO metadata.
-- **Component data files** — `data/projects.ts`, `data/experience.ts`, `data/writing.ts` export typed arrays.
-- **Scroll animations** — `lib/useScrollReveal.ts` provides hooks built on `IntersectionObserver`.
-- **Aurora background** — `components/ui/AuroraBackground.tsx` uses layered animated gradients.
-- **Design utilities** — `globals.css` defines reusable patterns like `.card`, `.glass-card`, and `.badge`.
-- **App Router** — single-page layout composed in `app/page.tsx`.
-
-## Quick Start
-
-```bash
-git clone https://github.com/RIxiV1/portfolio-suhaib.git
-cd portfolio-suhaib
-npm install
-npm run dev
+```text
+.
+├── app/          # Next.js App Router (Layouts & Pages)
+├── components/   # Reusable UI Components (Layout, UI, Sections)
+├── data/         # Site Content & Configuration (Single Source of Truth)
+├── lib/          # Utility functions and shared logic (Scroll Reveals, etc.)
+├── public/       # Static Assets (Images, Screenshots)
+└── README.md     # Engineering Documentation
 ```
-
-Open http://localhost:3000
-
-## Customize
-
-To customise it for yourself:
-
-1. Update `data/site.ts` (name, intro, socials, SEO).
-2. Update `data/projects.ts`, `data/experience.ts`, `data/writing.ts`.
-3. Replace images in `public/` and update any references.
-
-## Deploy
-
-Deployed on **Vercel**:
-
-- Import the repo into Vercel
-- Choose the **Next.js** preset
-- Deploy
-
-## License
-
-If you want this to be reusable as a template, add a `LICENSE` (e.g., MIT) and update this section.
-If you don’t want reuse, keep “All rights reserved” (or keep the repo private).
-
-## Contact
-
-- Website: https://portfolio-suhaib.vercel.app/
-- GitHub: https://github.com/RIxiV1
-- LinkedIn: https://www.linkedin.com/in/shaiksuhaib
-- Email: shaiksuhaib360@gmail.com
 
 ---
 
-*Built to be readable. Designed to get out of the way.*
+## Local Development
+
+### Prerequisites
+- Node.js 18.x or higher
+- npm or yarn
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/RIxiV1/portfolio-suhaib.git
+cd portfolio-suhaib
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The application will be available at `http://localhost:3000`.
+
+---
+
+## Customize & Deploy
+
+1.  **Customize**: Update `data/site.ts`, `data/projects.ts`, `data/experience.ts`, and `data/writing.ts` to reflect your information.
+2.  **Deploy**: Import the repository into [Vercel](https://vercel.com/) and choose the **Next.js** preset for automatic deployment.
+
+---
+
+> [!NOTE]
+> Designed and built by Suhaib Shaik. Focused on the intersection of Product Engineering and AI Systems.
