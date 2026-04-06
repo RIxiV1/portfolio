@@ -2,7 +2,7 @@ import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 export const siteConfig = {
   name: 'Suhaib',
-  role: 'Software Engineer',
+  role: 'Developer',
   location: 'India',
   email: 'shaiksuhaib360@gmail.com',
   tagline: 'I build (and break) things for the web.',
@@ -23,9 +23,9 @@ export const siteConfig = {
   ],
 
   metadata: {
-    title: 'Suhaib — Software Engineer',
-    description: 'Software Engineer specializing in Product & AI Systems. Minimalist, high-performance architecture.',
-    keywords: ['developer', 'portfolio', 'React', 'Next.js', 'TypeScript', 'Python', 'AI', 'Software Engineer'],
+    title: 'Suhaib — Developer',
+    description: 'Developer specializing in Product & AI Systems. Minimalist, high-performance architecture.',
+    keywords: ['developer', 'portfolio', 'React', 'Next.js', 'TypeScript', 'Python', 'AI', 'Developer'],
     ogTitle: 'Suhaib — Developer Portfolio',
     ogDescription: 'Junior developer. I build (and break) things for the web.',
     twitterHandle: '@suhaibX0',
