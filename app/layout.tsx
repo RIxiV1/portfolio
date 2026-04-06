@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+// v1.0.1 - Terminology update to Developer
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
