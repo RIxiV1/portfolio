@@ -8,7 +8,6 @@
 
 [Live Site](https://portfolio-suhaib.vercel.app/) · [Repository](https://github.com/RIxiV1/portfolio-suhaib)
 
-<!-- Tech badges (optional) -->
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
@@ -18,11 +17,21 @@
 
 ---
 
-This is my personal portfolio site—built to showcase my work, background, and writing in one place without extra noise. The design leans dark and minimal: fast to load, easy to read, and focused on the content.
+A dark, minimal, fast portfolio—built to showcase my work, background, and writing in one place without extra noise.
 
 ## Preview
 
-> Add a screenshot/GIF here (recommended): `public/og.png` or a short screen capture.
+> Recommended: keep a preview image at `public/og.png` so it renders here and in social sharing.
+
+![Portfolio preview](public/og.png)
+
+## Why
+
+I wanted a portfolio that’s:
+
+- **Readable first** — content over decoration
+- **Easy to update** — most changes live in typed data files
+- **Fast** — minimal UI overhead, purposeful animations
 
 ## Table of Contents
 
@@ -46,52 +55,39 @@ This is my personal portfolio site—built to showcase my work, background, and 
 ## Sections
 
 ### 🏠 Hero
-
-The landing view shows my name, a short tagline, and links to get in touch or jump straight to my work. An “Available for work” badge pulses when I’m actively looking.
+The landing view shows my name, a short tagline, and links to get in touch or jump straight to my work.
 
 ### 🗂 Projects
-
 Projects are split into two groups:
 
-- **Featured** — full-width cards with a screenshot, description, tag list, and a direct GitHub link.
-- **Other** — a compact grid with hover effects and a quick-view overlay.
+- **Featured** — full-width cards with screenshot, description, tags, and a direct GitHub link.
+- **Other** — compact grid with hover effects and a quick-view overlay.
 
-Clicking any card opens a modal with a larger image, a full description, a live code snippet showing the architecture, and links to the repository.
+Clicking any card opens a modal with a larger image, full description, and links.
 
 ### 👤 About
-
-A bento-style grid with:
-
-- A bio card with a short personal description.
-- A location tile (India, remote-friendly).
-- An open-to-work indicator with a count of public projects.
-- A focus area list: full-stack, AI tooling, browser extensions.
-- A “Currently” card with what I’m up to right now.
+A bento-style grid with bio, location, focus areas, and what I’m currently doing.
 
 ### 🗓 Journey (Experience)
-
-A vertical timeline of work, education, and project milestones. Each entry includes a role, org, time period, description, and tags. Icons distinguish between employment, education, and personal projects.
+A timeline of work/education/milestones. Each entry includes role, org, time period, description, and tags.
 
 ### ⚙️ Toolkit
-
-An auto-scrolling marquee of the languages and tools I use regularly — JavaScript, TypeScript, Python, React, Next.js, Node.js, Tailwind, SQL, Git, and the Chrome Extension API. The scroll pauses on hover.
+A marquee of tools I use regularly (JS/TS, React/Next.js, Node, Tailwind, SQL, Git, etc.).
 
 ### ✍️ Writing
-
-Cards linking to external posts and articles. Each card shows the title, a short excerpt, the publication date, and a read-time estimate.
+Cards linking to external posts/articles with title, excerpt, date, and read-time.
 
 ### 📬 Contact
-
-A simple section with a direct email link and social links (GitHub, LinkedIn, Twitter/X). No contact form—just a straightforward way to reach out.
+A simple section with direct links (no contact form—just a straightforward way to reach out).
 
 ## Under the Hood
 
-- **Centralized config** — `data/site.ts` holds all personal info, social links, nav structure, and SEO metadata. Updating the portfolio usually means touching one file.
-- **Component data files** — `data/projects.ts`, `data/experience.ts`, and `data/writing.ts` each export typed arrays. Adding a new entry is as simple as adding an object to the array.
-- **Scroll animations** — `lib/useScrollReveal.ts` provides `useScrollReveal` and `useStaggerReveal` hooks built on `IntersectionObserver`.
-- **Aurora background** — rendered in `components/ui/AuroraBackground.tsx` using layered animated gradients, keeping the visual load lightweight.
-- **Glassmorphism design system** — `globals.css` defines `.card`, `.glass-card`, and `.badge` as reusable Tailwind utilities, keeping component code clean.
-- **App Router** — uses Next.js App Router with a single-page layout (`app/page.tsx`) that composes all section components.
+- **Centralized config** — `data/site.ts` holds personal info, social links, nav, and SEO metadata.
+- **Component data files** — `data/projects.ts`, `data/experience.ts`, `data/writing.ts` export typed arrays.
+- **Scroll animations** — `lib/useScrollReveal.ts` provides hooks built on `IntersectionObserver`.
+- **Aurora background** — `components/ui/AuroraBackground.tsx` uses layered animated gradients.
+- **Design utilities** — `globals.css` defines reusable patterns like `.card`, `.glass-card`, and `.badge`.
+- **App Router** — single-page layout composed in `app/page.tsx`.
 
 ## Quick Start
 
@@ -102,34 +98,35 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open http://localhost:3000
 
 ## Customize
 
 To customise it for yourself:
 
-1. Start with `data/site.ts` for personal details.
-2. Update `data/projects.ts`, `data/experience.ts`, and `data/writing.ts` with your own content.
-3. Replace any images in `public/` (and update any references).
+1. Update `data/site.ts` (name, intro, socials, SEO).
+2. Update `data/projects.ts`, `data/experience.ts`, `data/writing.ts`.
+3. Replace images in `public/` and update any references.
 
 ## Deploy
 
-This portfolio is deployed on **Vercel**. The simplest approach:
+Deployed on **Vercel**:
 
-- Import the repository into Vercel
-- Set the framework preset to **Next.js**
+- Import the repo into Vercel
+- Choose the **Next.js** preset
 - Deploy
 
 ## License
 
-Add a license if you plan to make this template reusable (e.g., MIT). If you don’t want reuse, consider keeping it private.
+If you want this to be reusable as a template, add a `LICENSE` (e.g., MIT) and update this section.
+If you don’t want reuse, keep “All rights reserved” (or keep the repo private).
 
 ## Contact
 
 - Website: https://portfolio-suhaib.vercel.app/
 - GitHub: https://github.com/RIxiV1
-- LinkedIn: (add link)
-- Email: (add email)
+- LinkedIn: https://www.linkedin.com/in/shaiksuhaib
+- Email: shaiksuhaib360@gmail.com
 
 ---
 
