@@ -100,4 +100,4 @@ The application will be available at `http://localhost:3000`.
 ---
 
 > [!NOTE]
-> Designed and built by Suhaib Shaik. Focused on the intersection of Product Engineering and AI Systems.
+> Designed and built by shaik suhaib.
