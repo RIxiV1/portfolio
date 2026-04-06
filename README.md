@@ -1,77 +1,68 @@
+# portfolio-suhaib
+
 <div align="center">
-
-# Suhaib Shaik — Product Engineering Portfolio
-
-**Software Engineer · AI Systems · India**
-
-[![GitHub](https://img.shields.io/badge/GitHub-RIxiV1-181717?style=flat-square&logo=github)](https://github.com/RIxiV1)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-shaiksuhaib-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/shaiksuhaib)
-[![Twitter](https://img.shields.io/badge/Twitter-suhaibX0-1DA1F2?style=flat-square&logo=twitter)](https://x.com/suhaibX0)
-[![Email](https://img.shields.io/badge/Email-shaiksuhaib360%40gmail.com-EA4335?style=flat-square&logo=gmail)](mailto:shaiksuhaib360@gmail.com)
-
+  <h3>Personal developer portfolio</h3>
+  <p>Next.js · TypeScript · Tailwind CSS · Framer Motion</p>
 </div>
 
 ---
 
-## 🚀 Overview
+This is my personal portfolio site. It's built to show my work, background, and writing in one place without extra noise. The design leans dark and minimal — fast to load, easy to read, and focused on the content.
 
-This is a premium, high-density developer portfolio built with a **Deep-Tech Aurora aesthetic**. It prioritizes clarity, hierarchy, and a professional "Product Engineering" feel, featuring animated backgrounds and glassmorphism.
+## Sections
 
-I designed this space to focus on clean typography, data-driven layouts, and a high-performance user experience. All site constants are centralized in `data/site.ts` for rapid maintenance.
+### 🏠 Hero
+The landing view shows my name, a short tagline, and links to get in touch or jump straight to my work. There's an "Available for work" badge that pulses when I'm actively looking.
 
----
+### 🗂 Projects
+Projects are split into two groups:
+- **Featured** — full-width cards with a screenshot, description, tag list, and a direct GitHub link.
+- **Other** — a compact grid with hover effects and a quick-view overlay.
 
-## ⚡ Tech Stack
+Clicking any card opens a modal with a larger image, a full description, a live code snippet showing the architecture, and links to the repository.
 
-| Layer | Tools |
-|---|---|
-| **Framework** | Next.js 16 (App Router) |
-| **Language** | TypeScript |
-| **Styling** | Tailwind CSS 4 (Aurora Design System) |
-| **Animations** | Framer Motion (Optimized Reveals) |
-| **Icons** | Lucide React |
-| **Fonts** | Inter · JetBrains Mono |
+### 👤 About
+A bento-style grid with:
+- A bio card with a short personal description.
+- A location tile (India, remote-friendly).
+- An open-to-work indicator with a count of public projects.
+- A focus area list: full-stack, AI tooling, browser extensions.
+- A "Currently" card with what I'm up to right now.
 
----
+### 🗓 Journey (Experience)
+A vertical timeline of work, education, and project milestones. Each entry has a role, org, time period, description, and tags. Icons distinguish between employment, education, and personal projects.
 
-## 🏗️ Architecture
+### ⚙️ Toolkit
+An auto-scrolling marquee of the languages and tools I use regularly — JavaScript, TypeScript, Python, React, Next.js, Node.js, Tailwind, SQL, Git, and the Chrome Extension API. The scroll is pure CSS with no JavaScript.
 
-The project follows a modular, dashboard-inspired structure:
+### ✍️ Writing
+Cards linking to external posts and articles. Each card shows the title, a short excerpt, the publication date, and a read-time estimate.
 
-- **Centralized Config**: `data/site.ts` manages all personal and SEO metadata.
-- **Unified Design System**: `globals.css` defines `.card` and `.badge` utilities for consistent dashboard styling.
-- **Scroll-Driven Interactive Panels**: Sections use optimized intersection-based reveals.
+### 📬 Contact
+A simple section with a direct email link and social links (GitHub, LinkedIn, Twitter/X). No contact form — just a straightforward way to reach out.
 
----
+## Under the Hood
 
-## 🛠 Getting Started
+- **Centralized config** — `data/site.ts` holds all personal info, social links, nav structure, and SEO metadata. Updating the portfolio means touching one file.
+- **Component data files** — `data/projects.ts`, `data/experience.ts`, and `data/writing.ts` each export typed arrays. Adding a new entry is as simple as adding an object to the array.
+- **Scroll animations** — `lib/useScrollReveal.ts` provides `useScrollReveal` and `useStaggerReveal` hooks built on `IntersectionObserver`. No heavy animation library is needed for the reveal logic.
+- **Aurora background** — rendered in `components/ui/AuroraBackground.tsx` using layered animated gradients, keeping the visual load lightweight.
+- **Glassmorphism design system** — `globals.css` defines `.card`, `.glass-card`, and `.badge` as reusable Tailwind utilities, keeping component code clean.
+- **App Router** — uses Next.js App Router with a single-page layout (`app/page.tsx`) that composes all section components.
+
+## Getting Started
 
 ```bash
-# Clone the repository
 git clone https://github.com/RIxiV1/portfolio-suhaib.git
 cd portfolio-suhaib
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it.
+Open [http://localhost:3000](http://localhost:3000).
+
+To customise it for yourself, start with `data/site.ts` for personal details, then update `data/projects.ts`, `data/experience.ts`, and `data/writing.ts` with your own content.
 
 ---
 
-## 🌟 Featured Projects
-
-- **InfoBlend** — Chrome extension (Manifest V3) for AI-powered in-page intelligence.
-- **SubSentry** — Subscription tracker that alerts you before renewals hit.
-- **Jarvis** — Voice-activated AI assistant built in Python + OpenAI.
-
----
-
-<div align="center">
-
-*Built with precision and curiosity.*
-
-</div>
+*Built to be readable. Designed to get out of the way.*
