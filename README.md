@@ -6,7 +6,7 @@ Developer specializing in High-Performance Web Applications and AI Systems. Base
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shaiksuhaib)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/suhaibX0)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shaiksuhaib360@gmail.com)
-[![Live Site](https://img.shields.io/badge/Live_Site-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-suhaib.vercel.app/)
+[![Live Site](https://img.shields.io/badge/Live_Site-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://[portfolio-suhaib.vercel.app/](https://portfolio-suhaib-yjpe.vercel.app/))
 
 ![Portfolio Hero Section](public/hero-screenshot.png)
 
