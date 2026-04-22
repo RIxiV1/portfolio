@@ -15,6 +15,8 @@ const techs = [
   { name: 'SQL', icon: '🗄️' },
   { name: 'Git', icon: '🔗' },
   { name: 'Chrome API', icon: '🌍' },
+  { name: 'Agentic AI', icon: '🤖' },
+  { name: 'MCP', icon: '🛠️' },
 ];
 
 export default function TechStack() {
