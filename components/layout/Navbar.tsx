@@ -45,7 +45,7 @@ export default function Navbar() {
           )}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group pl-1">
+          <a href="#" aria-label="Back to top" className="flex items-center gap-2.5 group pl-1">
             <div className="relative w-8 h-8 overflow-hidden rounded-xl border border-white/10 group-hover:border-white/30 transition-all duration-300">
               <Image
                 src="/logo-zen.png"
@@ -103,6 +103,8 @@ export default function Navbar() {
             </a>
 
             <button
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
               className="p-2.5 bg-white/5 border border-white/10 rounded-2xl md:hidden text-white hover:bg-white/10 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
             >

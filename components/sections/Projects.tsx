@@ -27,6 +27,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       >
         <button
           onClick={onClose}
+          aria-label="Close project details"
           className="absolute top-5 right-5 p-2 bg-white/5 hover:bg-white/10 rounded-full z-10 transition-colors"
         >
           <X className="w-5 h-5 text-white" />
@@ -72,6 +73,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${project.title} source on GitHub`}
                 className="px-5 py-3.5 bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl flex items-center justify-center transition-colors text-white"
               >
                 <Github className="w-5 h-5" />
@@ -179,6 +181,7 @@ function FeaturedCard({ project, onClick }: { project: Project; onClick: () => v
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
+                aria-label={`${project.title} source on GitHub`}
                 className="p-2.5 bg-white/5 border border-white/10 rounded-full text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all"
               >
                 <Github className="w-4 h-4" />
@@ -227,6 +230,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`${project.title} source on GitHub`}
             className="p-2 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-colors border border-white/10 block"
           >
             <Github className="w-3.5 h-3.5" />
