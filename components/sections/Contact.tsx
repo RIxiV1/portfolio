@@ -16,6 +16,7 @@ export default function Contact() {
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [honeypot, setHoneypot] = useState('');
   const headerRef = useScrollReveal();
   const leftRef = useScrollReveal();
   const rightRef = useScrollReveal();
@@ -50,7 +51,7 @@ export default function Contact() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, company: honeypot }),
       });
 
       if (res.ok) {
@@ -137,6 +138,22 @@ export default function Contact() {
             aria-describedby={errorMsg ? 'contact-error' : undefined}
             className="card p-8 flex flex-col gap-5"
           >
+            {/* Honeypot: hidden from humans, filled by bots. */}
+            <div
+              aria-hidden="true"
+              className="absolute left-[-9999px] top-[-9999px] w-0 h-0 overflow-hidden"
+            >
+              <label htmlFor="contact-company">Company</label>
+              <input
+                id="contact-company"
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
                 <label

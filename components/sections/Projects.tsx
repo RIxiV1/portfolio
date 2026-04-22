@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { projects, Project } from '@/data/projects';
@@ -10,8 +10,26 @@ import { useScrollReveal, useStaggerReveal } from '@/lib/useScrollReveal';
 /* ─── Modal ─── */
 
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [onClose]);
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -45,7 +63,9 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <h2 className="text-3xl font-bold mb-2 text-white">{project.title}</h2>
+            <h2 id="project-modal-title" className="text-3xl font-bold mb-2 text-white">
+              {project.title}
+            </h2>
             <p className="text-sm font-mono text-neutral-400 mb-5">{project.tagline}</p>
             <p className="text-neutral-300 leading-relaxed mb-6">{project.description}</p>
 
