@@ -23,7 +23,7 @@ export default function TechStack() {
   const headerRef = useScrollReveal();
 
   return (
-    <section className="py-24 md:py-32 border-y border-white/10 bg-[#020202] overflow-hidden">
+    <section className="py-24 md:py-32 border-y border-white/10 bg-[#020202] overflow-hidden cv-auto">
       <div className="container-narrow mb-12">
         <div ref={headerRef} className="reveal-up flex flex-col">
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3 block">

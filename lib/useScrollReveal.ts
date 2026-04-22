@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 
 type RevealOptions = {
   threshold?: number;
@@ -8,27 +8,26 @@ type RevealOptions = {
   once?: boolean;
 };
 
-const DEFAULT_OPTIONS: RevealOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -60px 0px',
-  once: true,
-};
+const DEFAULT_THRESHOLD = 0.15;
+const DEFAULT_ROOT_MARGIN = '0px 0px -60px 0px';
+const DEFAULT_ONCE = true;
 
 /**
- * Custom hook that adds a `data-visible` attribute to observed elements
- * when they enter the viewport. Works with CSS-only scroll animations,
- * eliminating the need for framer-motion's `whileInView`.
+ * Adds `data-visible` when the element enters the viewport. Depends on
+ * primitive option values so inline-object callers don't rebuild the
+ * observer on every render.
  */
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
-  options?: RevealOptions
+  options?: RevealOptions,
 ) {
   const ref = useRef<T>(null);
+  const threshold = options?.threshold ?? DEFAULT_THRESHOLD;
+  const rootMargin = options?.rootMargin ?? DEFAULT_ROOT_MARGIN;
+  const once = options?.once ?? DEFAULT_ONCE;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    const { threshold, rootMargin, once } = { ...DEFAULT_OPTIONS, ...options };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -39,56 +38,62 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
           el.removeAttribute('data-visible');
         }
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [options]);
+  }, [threshold, rootMargin, once]);
 
   return ref;
 }
 
 /**
- * Attaches scroll-reveal to multiple children inside a container.
- * Each child with `[data-reveal]` gets staggered `data-visible`.
+ * Staggers `data-visible` across children marked with `[data-reveal]`.
+ * Timers are tracked so unmount during the stagger window doesn't
+ * leave pending setTimeouts targeting detached DOM.
  */
 export function useStaggerReveal<T extends HTMLElement = HTMLDivElement>(
-  options?: RevealOptions & { staggerMs?: number }
+  options?: RevealOptions & { staggerMs?: number },
 ) {
   const ref = useRef<T>(null);
+  const threshold = options?.threshold ?? DEFAULT_THRESHOLD;
+  const rootMargin = options?.rootMargin ?? DEFAULT_ROOT_MARGIN;
+  const once = options?.once ?? DEFAULT_ONCE;
+  const staggerMs = options?.staggerMs ?? 80;
 
   useEffect(() => {
     const container = ref.current;
     if (!container) return;
 
-    const { threshold, rootMargin, once, staggerMs = 80 } = {
-      ...DEFAULT_OPTIONS,
-      ...options,
-    };
-
     const children = container.querySelectorAll<HTMLElement>('[data-reveal]');
     if (!children.length) return;
+
+    const timers: number[] = [];
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           children.forEach((child, i) => {
-            setTimeout(() => {
+            const id = window.setTimeout(() => {
               child.setAttribute('data-visible', 'true');
             }, i * staggerMs);
+            timers.push(id);
           });
           if (once) observer.unobserve(container);
         } else if (!once) {
           children.forEach((child) => child.removeAttribute('data-visible'));
         }
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
 
     observer.observe(container);
-    return () => observer.disconnect();
-  }, [options]);
+    return () => {
+      observer.disconnect();
+      timers.forEach((id) => clearTimeout(id));
+    };
+  }, [threshold, rootMargin, once, staggerMs]);
 
   return ref;
 }

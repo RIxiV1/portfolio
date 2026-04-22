@@ -290,7 +290,7 @@
   .animate-marquee {
     animation: marquee 40s linear infinite;
   }
-  
+
   .animate-marquee:hover {
     animation-play-state: paused;
   }
@@ -298,5 +298,11 @@
   @keyframes marquee {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-50%, 0, 0); }
+  }
+
+  /* Skip layout/paint for offscreen sections; pauses animations inside. */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
   }
 }

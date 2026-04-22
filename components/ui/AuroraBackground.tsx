@@ -11,17 +11,27 @@ export default function AuroraBackground() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!finePointer || reducedMotion) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const { clientX, clientY } = e;
-      const x = (clientX / window.innerWidth) * 2 - 1;
-      const y = (clientY / window.innerHeight) * 2 - 1;
+    let raf = 0;
+    let nextX = 0;
+    let nextY = 0;
 
-      containerRef.current.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+    const handleMouseMove = (e: MouseEvent) => {
+      nextX = (e.clientX / window.innerWidth) * 2 - 1;
+      nextY = (e.clientY / window.innerHeight) * 2 - 1;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        if (containerRef.current) {
+          containerRef.current.style.transform = `translate(${nextX * 10}px, ${nextY * 10}px)`;
+        }
+      });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
