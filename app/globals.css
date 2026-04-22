@@ -47,6 +47,27 @@
   :focus:not(:focus-visible) {
     outline: none;
   }
+
+  .skip-link {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -120%);
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: 0 0 0.75rem 0.75rem;
+    transition: transform 0.2s ease;
+  }
+
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    transform: translate(-50%, 0);
+    outline: none;
+  }
 }
 
 ::selection {
@@ -150,6 +171,30 @@
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Respect reduced-motion preference ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html { scroll-behavior: auto; }
+
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .animate-marquee { animation: none !important; }
 }
 
 /* ─── Utilities ─── */

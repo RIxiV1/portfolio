@@ -10,7 +10,7 @@ import AuroraBackground from '@/components/ui/AuroraBackground';
 
 export default function Page() {
   return (
-    <main className="relative flex flex-col min-h-screen bg-black text-white">
+    <main id="main" className="relative flex flex-col min-h-screen bg-black text-white">
       <AuroraBackground />
       <Hero />
       <About />

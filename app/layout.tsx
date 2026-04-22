@@ -57,6 +57,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrains.variable} antialiased bg-black text-white`}
       >
+        <a href="#main" className="skip-link">Skip to content</a>
         <ClickEffect />
         <Loader />
         <Navbar />

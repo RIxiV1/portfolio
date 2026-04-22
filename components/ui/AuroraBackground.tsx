@@ -7,7 +7,10 @@ export default function AuroraBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Simple parallax effect for the background on mouse move
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!finePointer || reducedMotion) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const { clientX, clientY } = e;
@@ -22,11 +25,14 @@ export default function AuroraBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-black">
+    <div
+      aria-hidden="true"
+      className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-black"
+    >
       {/* Background Grid - preserved from original */}
       <div className="absolute inset-0 grid-bg pointer-events-none" />
-      
-      <div 
+
+      <div
         ref={containerRef}
         className="absolute inset-0 opacity-40 transition-transform duration-1000 ease-out"
       >
@@ -41,11 +47,11 @@ export default function AuroraBackground() {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: 'linear',
           }}
           className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-emerald-500/20 blur-[120px]"
         />
-        
+
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
@@ -57,7 +63,7 @@ export default function AuroraBackground() {
           transition={{
             duration: 30,
             repeat: Infinity,
-            ease: "linear"
+            ease: 'linear',
           }}
           className="absolute top-[30%] -right-[20%] w-[60%] h-[60%] rounded-full bg-blue-500/20 blur-[150px]"
         />
@@ -72,7 +78,7 @@ export default function AuroraBackground() {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: 'linear',
           }}
           className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] rounded-full bg-purple-500/20 blur-[120px]"
         />
