@@ -79,5 +79,21 @@ export const projects: Project[] = [
   requirements: jobSpec.criteria,
   format: 'structured'
 });`
+  },
+  {
+    id: "stitch-ai",
+    title: "Stitch AI",
+    tagline: "Design-to-code automation.",
+    description: "An agentic AI system that transforms design screenshots and prompts into high-fidelity React components. Featuring real-time preview and multi-model orchestration.",
+    tags: ["React", "TypeScript", "LLMs", "Agentic AI"],
+    category: "AI",
+    thumbnail: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&w=800&q=80",
+    link: "https://github.com/RIxiV1",
+    color: "#ec4899",
+    codeSnippet: `const { components, status } = await stitch.generate({
+  source: 'screenshot',
+  target: 'react-tailwind',
+  quality: 'premium'
+});`
   }
 ];
