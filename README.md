@@ -96,6 +96,13 @@ The application will be available at `http://localhost:3000`.
 1.  **Customize**: Update `data/site.ts`, `data/projects.ts`, `data/experience.ts`, and `data/writing.ts` to reflect your information.
 2.  **Deploy**: Import the repository into [Vercel](https://vercel.com/) and choose the **Next.js** preset for automatic deployment.
 
+## Future Roadmap
+
+- [ ] **Dynamic Case Studies**: Interactive walkthroughs for key projects.
+- [ ] **Blog Integration**: Headless CMS integration for technical articles.
+- [ ] **Advanced Animation Layer**: Implementing Three.js/R3F for background interactions.
+- [ ] **Dark Mode V2**: Specialized high-contrast OLED modes.
+
 ---
 
 > [!NOTE]
