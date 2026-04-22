@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
 import { Menu, X, Mail } from 'lucide-react';
@@ -11,31 +11,24 @@ import { siteConfig } from '@/data/site';
 const navLinks = siteConfig.navLinks;
 
 export default function Navbar() {
-  const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    // Scrolled state for styling
-    setScrolled(latest > 20);
-    // Navbar always visible as requested
-    setVisible(true);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const next = latest > 20;
+    setScrolled((prev) => (prev === next ? prev : next));
   });
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0
-        }}
-        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="fixed top-0 left-0 w-full z-50 flex justify-center py-6 pointer-events-none"
-      >
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+      className="fixed top-0 left-0 w-full z-50 flex justify-center py-6 pointer-events-none"
+    >
         <div
           className={cn(
             "pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
@@ -149,6 +142,5 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </motion.header>
-    </AnimatePresence>
   );
 }

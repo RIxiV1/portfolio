@@ -1,10 +1,10 @@
 'use client';
 
-import { experience } from '@/data/experience';
-import { Briefcase, GraduationCap, FolderGit2 } from 'lucide-react';
+import { experience, type Experience } from '@/data/experience';
+import { Briefcase, GraduationCap, FolderGit2, type LucideIcon } from 'lucide-react';
 import { useScrollReveal, useStaggerReveal } from '@/lib/useScrollReveal';
 
-const icons = {
+const icons: Record<Experience['type'], LucideIcon> = {
   work: Briefcase,
   education: GraduationCap,
   project: FolderGit2,

@@ -32,7 +32,7 @@ export default function ClickEffect() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[100]">
+    <div className="fixed inset-0 pointer-events-none z-[90]">
       <AnimatePresence>
         {clicks.map((click) => (
           <div key={click.id} style={{ position: 'fixed', left: click.x, top: click.y }}>
