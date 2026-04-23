@@ -7,9 +7,21 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 3;
 const hits = new Map<string, number[]>();
+let lastSweep = 0;
+
+function sweep(now: number) {
+  if (now - lastSweep < WINDOW_MS) return;
+  lastSweep = now;
+  for (const [ip, times] of hits) {
+    const fresh = times.filter((t) => now - t < WINDOW_MS);
+    if (fresh.length === 0) hits.delete(ip);
+    else hits.set(ip, fresh);
+  }
+}
 
 function allow(ip: string) {
   const now = Date.now();
+  sweep(now);
   const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
   if (recent.length >= MAX_PER_WINDOW) return false;
   recent.push(now);

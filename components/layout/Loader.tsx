@@ -5,9 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/data/site';
 
 export default function Loader() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (sessionStorage.getItem('seenIntro') === '1') return;
+    setLoading(true);
+    sessionStorage.setItem('seenIntro', '1');
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
