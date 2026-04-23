@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Click {
@@ -11,8 +11,11 @@ interface Click {
 
 export default function ClickEffect() {
   const [clicks, setClicks] = useState<Click[]>([]);
+  const timersRef = useRef<Set<number>>(new Set());
 
   useEffect(() => {
+    const timers = timersRef.current;
+
     const handleClick = (e: MouseEvent) => {
       const newClick = {
         id: Date.now(),
@@ -20,15 +23,20 @@ export default function ClickEffect() {
         y: e.clientY,
       };
       setClicks((prev) => [...prev, newClick]);
-      
-      // Clear pulses after animation is complete
-      setTimeout(() => {
+
+      const id = window.setTimeout(() => {
+        timers.delete(id);
         setClicks((prev) => prev.filter((c) => c.id !== newClick.id));
       }, 1000);
+      timers.add(id);
     };
 
     window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
+    return () => {
+      window.removeEventListener('click', handleClick);
+      timers.forEach((id) => clearTimeout(id));
+      timers.clear();
+    };
   }, []);
 
   return (

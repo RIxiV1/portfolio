@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { projects, Project } from '@/data/projects';
@@ -10,21 +10,49 @@ import { useScrollReveal, useStaggerReveal } from '@/lib/useScrollReveal';
 /* ─── Modal ─── */
 
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
+    const trigger = document.activeElement as HTMLElement | null;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    closeBtnRef.current?.focus();
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const root = dialogRef.current;
+      if (!root) return;
+      const focusables = root.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', onKey);
+      trigger?.focus();
     };
   }, [onClose]);
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-modal-title"
@@ -44,6 +72,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         className="relative w-full max-w-5xl max-h-[88vh] overflow-y-auto glass-card"
       >
         <button
+          ref={closeBtnRef}
           onClick={onClose}
           aria-label="Close project details"
           className="absolute top-5 right-5 p-2 bg-white/5 hover:bg-white/10 rounded-full z-10 transition-colors"
