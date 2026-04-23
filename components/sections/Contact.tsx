@@ -57,12 +57,14 @@ export default function Contact() {
       if (res.ok) {
         setStatus('sent');
         setForm({ name: '', email: '', message: '' });
+        window.setTimeout(() => setStatus('idle'), 4000);
         return;
       }
 
       if (res.status === 503) {
         mailtoFallback();
         setStatus('sent');
+        window.setTimeout(() => setStatus('idle'), 4000);
         return;
       }
 
@@ -166,6 +168,7 @@ export default function Contact() {
                   id="contact-name"
                   type="text"
                   autoComplete="name"
+                  maxLength={80}
                   value={form.name}
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   placeholder="Your name"
@@ -186,6 +189,7 @@ export default function Contact() {
                   id="contact-email"
                   type="email"
                   autoComplete="email"
+                  maxLength={120}
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   placeholder="you@example.com"
@@ -206,6 +210,7 @@ export default function Contact() {
               <textarea
                 id="contact-message"
                 rows={5}
+                maxLength={4000}
                 value={form.message}
                 onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                 placeholder="Tell me about your project or idea..."

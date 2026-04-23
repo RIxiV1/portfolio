@@ -64,8 +64,12 @@ export default function Navbar() {
                   "relative px-4 py-1.5 text-sm font-medium transition-all duration-300",
                   hoveredLink === link.name ? "text-white" : "text-neutral-400 hover:text-neutral-200"
                 )}
-                onMouseEnter={() => setHoveredLink(link.name)}
-                onMouseLeave={() => setHoveredLink(null)}
+                onPointerEnter={(e) => {
+                  if (e.pointerType === 'mouse') setHoveredLink(link.name);
+                }}
+                onPointerLeave={(e) => {
+                  if (e.pointerType === 'mouse') setHoveredLink(null);
+                }}
               >
                 {/* Background Pill Indicator */}
                 {hoveredLink === link.name && (
