@@ -28,8 +28,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: siteConfig.metadata.title,
   description: siteConfig.metadata.description,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.ico",
   },
@@ -39,6 +43,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.metadata.ogTitle,
     description: siteConfig.metadata.ogDescription,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: "website",
   },
   twitter: {

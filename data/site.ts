@@ -5,6 +5,7 @@ export const siteConfig = {
   role: 'Developer',
   location: 'India',
   email: 'shaiksuhaib360@gmail.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://suhaib.dev',
   tagline: 'I build (and break) things for the web.',
   bio: "CS student & developer specializing in Product Engineering & AI Systems. Open to internships, full-time roles & freelance. Let's make something worth breaking.",
   

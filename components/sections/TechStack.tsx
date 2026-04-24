@@ -49,6 +49,7 @@ export default function TechStack() {
           {[...techs, ...techs].map((tech, i) => (
             <div
               key={`${tech.name}-${i}`}
+              aria-hidden={i >= techs.length ? 'true' : undefined}
               className="group flex items-center justify-center gap-3 px-8 py-5 glass-card min-w-[200px] transition-all duration-300"
             >
               <span className="text-2xl grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-300">
