@@ -47,10 +47,21 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: siteConfig.name,
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1024,
+        height: 1024,
+        alt: `${siteConfig.name} — ${siteConfig.role}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     creator: siteConfig.metadata.twitterHandle,
+    title: siteConfig.metadata.ogTitle,
+    description: siteConfig.metadata.ogDescription,
+    images: ["/og.png"],
   },
 };
 

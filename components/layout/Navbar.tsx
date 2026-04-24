@@ -41,7 +41,7 @@ export default function Navbar() {
         <a href="#hero" aria-label="Back to top" className="flex items-center gap-2.5 group pl-1">
           <div className="relative w-8 h-8 overflow-hidden rounded-xl border border-white/10 group-hover:border-white/30 transition-all duration-300">
             <Image
-              src="/logo-zen.png"
+              src="/logo.png"
               alt="Logo"
               fill
               priority
