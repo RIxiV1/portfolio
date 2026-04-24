@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Loader from "@/components/layout/Loader";
+import MotionProvider from "@/components/layout/MotionProvider";
 import ClickEffect from "@/components/ui/ClickEffect";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -64,10 +65,12 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrains.variable} antialiased bg-black text-white`}
       >
         <a href="#main" className="skip-link">Skip to content</a>
-        <ClickEffect />
-        <Loader />
-        <Navbar />
-        {children}
+        <MotionProvider>
+          <ClickEffect />
+          <Loader />
+          <Navbar />
+          {children}
+        </MotionProvider>
         <SpeedInsights />
       </body>
     </html>
