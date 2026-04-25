@@ -38,15 +38,25 @@ function getResend(): Resend | null {
 }
 
 export async function POST(req: Request) {
-  const origin = req.headers.get('origin') ?? '';
-  const host = req.headers.get('host') ?? '';
-  if (origin && host && !origin.endsWith(host)) {
+  const origin = req.headers.get('origin');
+  const host = req.headers.get('host');
+  const allowedOrigins = new Set(
+    [
+      host ? `https://${host}` : null,
+      host ? `http://${host}` : null,
+      siteConfig.url,
+    ].filter((v): v is string => v !== null),
+  );
+  if (!origin || !allowedOrigins.has(origin)) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
+  // x-real-ip is set by trusted proxies (Vercel/Cloudflare).
+  // Bare x-forwarded-for is client-spoofable, so it's the last resort.
   const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     req.headers.get('x-real-ip') ??
+    req.headers.get('cf-connecting-ip') ??
+    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown';
   if (!allow(ip)) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
@@ -91,13 +101,17 @@ export async function POST(req: Request) {
   const fromAddress = process.env.CONTACT_FROM_EMAIL ?? 'onboarding@resend.dev';
   const toAddress = process.env.CONTACT_TO_EMAIL ?? siteConfig.email;
 
+  // Strip control chars to defend against header-injection in any downstream relay.
+  const safeName = name.replace(/[\r\n\t]/g, '');
+  const safeEmail = email.replace(/[\r\n\t]/g, '');
+
   try {
     const { error } = await resend.emails.send({
       from: `Portfolio Contact <${fromAddress}>`,
       to: [toAddress],
-      replyTo: email,
-      subject: `Portfolio inquiry from ${name}`,
-      text: `From: ${name} <${email}>\n\n${message}`,
+      replyTo: safeEmail,
+      subject: `Portfolio inquiry from ${safeName}`,
+      text: `From: ${safeName} <${safeEmail}>\n\n${message}`,
     });
 
     if (error) {
