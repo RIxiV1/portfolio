@@ -9,14 +9,11 @@ import { FileText, GraduationCap, Briefcase } from "lucide-react"
 import { ContactForm } from "@/components/ui/contact-form"
 import { FadeUp } from "@/components/ui/fade-up"
 import { Spotlight } from "@/components/ui/spotlight"
-import dynamic from 'next/dynamic'
-
-// Lazy-load heavy or GPU-intensive components
-const EtheralShadow = dynamic(() => import("@/components/ui/etheral-shadow").then(mod => mod.EtheralShadow), { ssr: false })
-const SkillsMarquee = dynamic(() => import("@/components/ui/marquee").then(mod => mod.SkillsMarquee), { ssr: false })
-const DisplayCards = dynamic(() => import("@/components/ui/display-cards").then(mod => mod.DisplayCards), { ssr: false })
-const PulseBeamsDemo = dynamic(() => import("@/components/ui/pulse-beams").then(mod => mod.PulseBeamsDemo), { ssr: false })
-const AnimatedTabs = dynamic(() => import("@/components/ui/animated-tabs").then(mod => mod.AnimatedTabs), { ssr: false })
+import { EtheralShadow } from "@/components/ui/etheral-shadow"
+import { SkillsMarquee } from "@/components/ui/marquee"
+import { DisplayCards } from "@/components/ui/display-cards"
+import { PulseBeamsDemo } from "@/components/ui/pulse-beams"
+import { AnimatedTabs } from "@/components/ui/animated-tabs"
 
 export default function PortfolioPage() {
   return (
@@ -24,7 +21,7 @@ export default function PortfolioPage() {
       {/* Background Layer - Fixed and Persistent */}
       <div className="fixed inset-0 -z-50 bg-background transition-colors duration-500">
         <EtheralShadow 
-          animation={{ scale: 50, speed: 20 }} // Optmized for background performance
+          animation={{ scale: 50, speed: 20 }}
           noise={{ opacity: 0.2, scale: 1.0 }}
           sizing="fill"
           title=""
@@ -44,7 +41,7 @@ export default function PortfolioPage() {
       </div>
 
       {/* 1. HERO Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center">
+      <section id="home" className="relative min-h-svh flex items-center justify-center">
         <div className="text-center z-10 space-y-6">
           <div className="relative inline-block">
           <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-extrabold tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground/90 to-slate-400 drop-shadow-2xl cursor-default">
@@ -64,7 +61,7 @@ export default function PortfolioPage() {
         <section id="about" className="px-4 scroll-mt-32">
           <FadeUp>
             <Spotlight>
-              <div className="max-w-5xl mx-auto backdrop-blur-3xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative overflow-hidden group">
+              <div className="max-w-5xl mx-auto backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 opacity-50 dark:opacity-30" />
                 
                 <div className="relative z-10">
@@ -125,7 +122,7 @@ export default function PortfolioPage() {
               
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Education */}
-                <div className="backdrop-blur-3xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-8">
+                <div className="backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-8">
                   <div className="flex items-center gap-4 text-cyan-500">
                     <GraduationCap className="w-8 h-8" />
                     <h3 className="text-2xl font-bold text-foreground">Education</h3>
@@ -143,7 +140,7 @@ export default function PortfolioPage() {
                 </div>
 
                 {/* Experience / Projects Highlights */}
-                <div className="backdrop-blur-3xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-8">
+                <div className="backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-8">
                   <div className="flex items-center gap-4 text-violet-500">
                     <Briefcase className="w-8 h-8" />
                     <h3 className="text-2xl font-bold text-foreground">Experience</h3>
@@ -183,7 +180,7 @@ export default function PortfolioPage() {
         {/* 4. PROJECTS Section */}
         <section id="projects" className="px-4 scroll-mt-32">
           <FadeUp>
-            <div className="max-w-6xl mx-auto backdrop-blur-3xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative">
+            <div className="max-w-6xl mx-auto backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative">
               <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
                 <SpecialText inView>Featured Projects</SpecialText>
               </h2>
@@ -203,7 +200,7 @@ export default function PortfolioPage() {
         {/* 5. LEARNING PATH Section */}
         <section id="blog" className="px-4 scroll-mt-32">
           <FadeUp>
-            <div className="max-w-6xl mx-auto backdrop-blur-3xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl">
+            <div className="max-w-6xl mx-auto backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl">
               <h2 className="text-4xl font-bold text-center mb-16">
                 <SpecialText inView>Learning Path & Research</SpecialText>
               </h2>
@@ -271,7 +268,7 @@ export default function PortfolioPage() {
                 </h2>
                 
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
-                  <div className="backdrop-blur-3xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] shadow-2xl relative overflow-hidden group h-full flex items-center justify-center min-h-[400px]">
+                  <div className="backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] shadow-2xl relative overflow-hidden group h-full flex items-center justify-center min-h-[400px]">
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-transparent opacity-30" />
                     <PulseBeamsDemo />
                   </div>
@@ -303,7 +300,7 @@ export default function PortfolioPage() {
       </div>
 
       {/* Footer */}
-      <footer className="w-full relative py-12 backdrop-blur-3xl border-t border-foreground/10 bg-foreground/5 dark:bg-black/20 overflow-hidden">
+      <footer className="w-full relative py-12 backdrop-blur-xl border-t border-foreground/10 bg-foreground/5 dark:bg-black/20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent shadow-[0_0_15px_rgba(34,211,238,0.5)]" />
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase mb-4">
