@@ -39,10 +39,14 @@ A personal developer portfolio focused on **Agentic AI** and **Product Engineeri
 
 - **Cinematic motion design** — page transitions and scroll animations via Framer Motion
 - **Glassmorphism UI** — layered transparency and blur effects throughout
-- **Dark-first aesthetic** — deep, high-contrast visual language
+- **Dark-first aesthetic** — deep, high-contrast visual language with accent glows
+- **Responsive Layout** — optimized for all screen sizes from mobile to desktop
+- **Typography** — carefully curated modern fonts for maximum readability
+- **Micro-interactions** — subtle hover and click effects for a premium feel
 - **Fully typed** — 96%+ TypeScript coverage
 - **Accessible components** — built on Radix UI primitives
 - **Analytics-ready** — Vercel Analytics integrated out of the box
+
 
 ---
 
