@@ -1,11 +1,34 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 import { siteConfig } from '@/data/site';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 3;
+
+// Distributed limiter for production. Falls back to per-worker in-memory
+// for dev when Upstash env vars are missing.
+const upstashConfigured =
+  !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
+
+const ratelimit = upstashConfigured
+  ? new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(MAX_PER_WINDOW, '60 s'),
+      analytics: true,
+      prefix: 'contact',
+    })
+  : null;
+
+if (!ratelimit && process.env.NODE_ENV === 'production') {
+  console.warn(
+    '[contact] Upstash env missing — using per-worker in-memory limiter, which is not safe in multi-instance serverless. Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN.',
+  );
+}
+
 const hits = new Map<string, number[]>();
 let lastSweep = 0;
 
@@ -19,7 +42,7 @@ function sweep(now: number) {
   }
 }
 
-function allow(ip: string) {
+function allowMemory(ip: string) {
   const now = Date.now();
   sweep(now);
   const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
@@ -27,6 +50,14 @@ function allow(ip: string) {
   recent.push(now);
   hits.set(ip, recent);
   return true;
+}
+
+async function allow(ip: string): Promise<boolean> {
+  if (ratelimit) {
+    const { success } = await ratelimit.limit(ip);
+    return success;
+  }
+  return allowMemory(ip);
 }
 
 let _resend: Resend | null = null;
@@ -58,7 +89,7 @@ export async function POST(req: Request) {
     req.headers.get('cf-connecting-ip') ??
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown';
-  if (!allow(ip)) {
+  if (!(await allow(ip))) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
   }
 
