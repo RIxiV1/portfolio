@@ -46,6 +46,16 @@ A personal developer portfolio focused on **Agentic AI** and **Product Engineeri
 
 ---
 
+## 🧠 Core Principles
+
+1. **Agentic Interaction**: Designing UI that anticipates user needs and integrates seamlessly with AI agents.
+2. **Performance First**: Optimizing every frame for 60fps animations and near-instant load times.
+3. **Developer Experience**: Maintaining a clean, well-documented codebase for easy iteration.
+4. **Motion with Purpose**: Using Framer Motion not just for flair, but to guide the user's focus.
+
+
+---
+
 ## Project Structure
 
 ```
