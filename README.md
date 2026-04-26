@@ -2,6 +2,11 @@
 
 A personal developer portfolio focused on **Agentic AI** and **Product Engineering**, built with modern web technologies and smooth motion design.
 
+## 🚀 Latest Updates
+- **v1.2.0**: Integrated background paths and cinematic fade-up animations.
+- **v1.1.0**: Added glassmorphism components and dark mode refinements.
+
+
 > **Live Demo:** [your-deployed-url.vercel.app](https://your-deployed-url.vercel.app) ← _replace this_
 
 ![Portfolio Preview](./portfolio-preview.png)
