@@ -1,5 +1,11 @@
 # Shaik Mohammed Suhaib — Portfolio
 
+![GitHub License](https://img.shields.io/github/license/RIxiV1/portfolio-suhaib)
+![GitHub Stars](https://img.shields.io/github/stars/RIxiV1/portfolio-suhaib)
+![GitHub Forks](https://img.shields.io/github/forks/RIxiV1/portfolio-suhaib)
+![GitHub Issues](https://img.shields.io/github/issues/RIxiV1/portfolio-suhaib)
+
+
 A personal developer portfolio focused on **Agentic AI** and **Product Engineering**, built with modern web technologies and smooth motion design.
 
 ## 🚀 Latest Updates
