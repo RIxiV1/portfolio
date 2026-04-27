@@ -10,6 +10,7 @@ import { ContactForm } from "@/components/ui/contact-form"
 import { FadeUp } from "@/components/ui/fade-up"
 import { Spotlight } from "@/components/ui/spotlight"
 import { GlassCard } from "@/components/ui/glass-card"
+import { siteConfig } from "@/data/site"
 import { EtheralShadow } from "@/components/ui/etheral-shadow"
 import { SkillsMarquee } from "@/components/ui/marquee"
 import { DisplayCards } from "@/components/ui/display-cards"
@@ -78,10 +79,10 @@ export default function PortfolioPage() {
                         Currently exploring agentic AI, recommendation systems, and web-based AI tools — combining product thinking with engineering to turn ideas into functional, user-focused applications.
                       </p>
                       <div className="flex gap-6 pt-6">
-                        {["GitHub", "LinkedIn", "Twitter"].map((label) => (
+                        {siteConfig.socials.map(({ label, href }) => (
                           <a
                             key={label}
-                            href={label === "GitHub" ? "https://github.com/RIxiV1" : label === "LinkedIn" ? "https://www.linkedin.com/in/shaiksuhaib" : "https://x.com/suhaibX0"}
+                            href={href}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Visit my ${label} profile`}
@@ -206,29 +207,7 @@ export default function PortfolioPage() {
                 <SpecialText inView>Learning Path & Research</SpecialText>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Recommendation Systems: The Math Behind Discovery",
-                    description: "Currently researching the algorithms that power modern content discovery and personalization.",
-                    date: "In Progress",
-                    tag: "AI/ML",
-                    url: "https://medium.com/@shaiksuhaib360"
-                  },
-                  {
-                    title: "Network Theory: The Science of Connections",
-                    description: "Studying the invisible threads that bind our world through mathematical relationships.",
-                    date: "Drafting",
-                    tag: "Math",
-                    url: "https://medium.com/@shaiksuhaib360"
-                  },
-                  {
-                    title: "Chaos Theory & The Butterfly Effect",
-                    description: "Exploring why small changes can lead to dramatically different and unpredictable outcomes.",
-                    date: "Drafting",
-                    tag: "Science",
-                    url: "https://medium.com/@shaiksuhaib360"
-                  }
-                ].map((blog) => (
+                {siteConfig.learningPath.map((blog) => (
                 <a
                   key={blog.title}
                   href={blog.url}
