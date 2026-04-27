@@ -193,7 +193,7 @@ export function EtheralShadow({
                 <div
                     style={{
                         backgroundColor: resolvedColor,
-                        maskImage: `url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')`,
+                        maskImage: `url('/textures/mask.png')`,
                         maskSize: sizing === "stretch" ? "100% 100%" : "cover",
                         maskRepeat: "no-repeat",
                         maskPosition: "center",
@@ -227,7 +227,7 @@ export function EtheralShadow({
                     style={{
                         position: "absolute",
                         inset: 0,
-                        backgroundImage: `url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")`,
+                        backgroundImage: `url("/textures/noise.png")`,
                         backgroundSize: noise.scale * 200,
                         backgroundRepeat: "repeat",
                         opacity: theme === 'light' ? noise.opacity / 4 : noise.opacity / 2,
