@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useId, useEffect, CSSProperties, useState } from 'react';
+import { useRef, useId, useEffect, CSSProperties, useState } from 'react';
 import { animate, useMotionValue, AnimationPlaybackControls, useInView, useReducedMotion } from 'motion/react';
 import { useTheme } from "next-themes";
 import { cn } from '@/lib/utils';
