@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef, useId, useEffect, CSSProperties, useState } from 'react';
+import { useRef, useId, useEffect, CSSProperties } from 'react';
 import { animate, useMotionValue, AnimationPlaybackControls, useInView, useReducedMotion } from 'motion/react';
-import { useTheme } from "next-themes";
 import { cn } from '@/lib/utils';
 
 // Type definitions
@@ -69,18 +68,12 @@ export function EtheralShadow({
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { amount: 0.1 });
     const shouldReduceMotion = useReducedMotion();
-    
-    const { theme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+
     const id = useInstanceId();
     const animationEnabled = animation && animation.scale > 0;
     const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
     const hueRotateMotionValue = useMotionValue(180);
     const hueRotateAnimation = useRef<AnimationPlaybackControls | null>(null);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     // Pause animation when the tab is hidden — saves ~3-5% CPU on laptops.
     useEffect(() => {
@@ -129,8 +122,9 @@ export function EtheralShadow({
         }
     }, [animationEnabled, animationDuration, hueRotateMotionValue, isInView, shouldReduceMotion]);
 
-    // Dynamic color based on theme
-    const resolvedColor = color || (mounted && theme === 'light' ? 'rgba(34, 211, 238, 0.2)' : 'rgba(5, 5, 20, 0.95)');
+    // Theme-dependent color resolved via CSS variable defined in globals.css
+    // (--ethereal-shadow-color). No JS theme detection → no hydration flash.
+    const resolvedColor = color ?? 'var(--ethereal-shadow-color)';
 
     return (
         <div
@@ -230,7 +224,7 @@ export function EtheralShadow({
                         backgroundImage: `url("/textures/noise.png")`,
                         backgroundSize: noise.scale * 200,
                         backgroundRepeat: "repeat",
-                        opacity: theme === 'light' ? noise.opacity / 4 : noise.opacity / 2,
+                        opacity: `calc(var(--ethereal-noise-multiplier) * ${noise.opacity})`,
                         pointerEvents: "none",
                         transition: "opacity 1s ease-in-out"
                     }}

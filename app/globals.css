@@ -37,6 +37,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --ethereal-shadow-color: rgba(34, 211, 238, 0.2);
+  --ethereal-noise-multiplier: 0.25;
 }
 
 .dark {
@@ -72,6 +74,8 @@
   --sidebar-accent-foreground: oklch(0.98 0.005 250);
   --sidebar-border: oklch(0.25 0.03 250 / 0.5);
   --sidebar-ring: oklch(0.7 0.15 250 / 0.4);
+  --ethereal-shadow-color: rgba(5, 5, 20, 0.95);
+  --ethereal-noise-multiplier: 0.5;
 }
 
 @theme inline {
