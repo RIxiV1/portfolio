@@ -9,6 +9,7 @@ import { FileText, GraduationCap, Briefcase } from "lucide-react"
 import { ContactForm } from "@/components/ui/contact-form"
 import { FadeUp } from "@/components/ui/fade-up"
 import { Spotlight } from "@/components/ui/spotlight"
+import { GlassCard } from "@/components/ui/glass-card"
 import { EtheralShadow } from "@/components/ui/etheral-shadow"
 import { SkillsMarquee } from "@/components/ui/marquee"
 import { DisplayCards } from "@/components/ui/display-cards"
@@ -61,7 +62,7 @@ export default function PortfolioPage() {
         <section id="about" className="px-4 scroll-mt-32">
           <FadeUp>
             <Spotlight>
-              <div className="max-w-5xl mx-auto backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative overflow-hidden group">
+              <GlassCard className="max-w-5xl mx-auto p-12 md:p-16 shadow-2xl relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 opacity-50 dark:opacity-30" />
                 
                 <div className="relative z-10">
@@ -107,11 +108,11 @@ export default function PortfolioPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
             </Spotlight>
           </FadeUp>
         </section>
-        
+
         {/* 2.5 EDUCATION & EXPERIENCE Section */}
         <section id="experience" className="px-4 scroll-mt-32">
           <FadeUp>
@@ -122,7 +123,7 @@ export default function PortfolioPage() {
               
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Education */}
-                <div className="backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-8">
+                <GlassCard className="p-8 md:p-10 shadow-xl space-y-8">
                   <div className="flex items-center gap-4 text-cyan-500">
                     <GraduationCap className="w-8 h-8" />
                     <h3 className="text-2xl font-bold text-foreground">Education</h3>
@@ -137,10 +138,10 @@ export default function PortfolioPage() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </GlassCard>
 
                 {/* Experience / Projects Highlights */}
-                <div className="backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-8">
+                <GlassCard className="p-8 md:p-10 shadow-xl space-y-8">
                   <div className="flex items-center gap-4 text-violet-500">
                     <Briefcase className="w-8 h-8" />
                     <h3 className="text-2xl font-bold text-foreground">Experience</h3>
@@ -155,7 +156,7 @@ export default function PortfolioPage() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </GlassCard>
               </div>
             </div>
           </FadeUp>
@@ -180,7 +181,7 @@ export default function PortfolioPage() {
         {/* 4. PROJECTS Section */}
         <section id="projects" className="px-4 scroll-mt-32">
           <FadeUp>
-            <div className="max-w-6xl mx-auto backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative">
+            <GlassCard className="max-w-6xl mx-auto p-12 md:p-16 shadow-2xl relative">
               <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
                 <SpecialText inView>Featured Projects</SpecialText>
               </h2>
@@ -193,14 +194,14 @@ export default function PortfolioPage() {
                 <div className="absolute -inset-10 bg-cyan-500/5 blur-[100px] opacity-20 pointer-events-none" />
                 <AnimatedTabs />
               </div>
-            </div>
+            </GlassCard>
           </FadeUp>
         </section>
 
         {/* 5. LEARNING PATH Section */}
         <section id="blog" className="px-4 scroll-mt-32">
           <FadeUp>
-            <div className="max-w-6xl mx-auto backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] p-12 md:p-16 shadow-2xl">
+            <GlassCard className="max-w-6xl mx-auto p-12 md:p-16 shadow-2xl">
               <h2 className="text-4xl font-bold text-center mb-16">
                 <SpecialText inView>Learning Path & Research</SpecialText>
               </h2>
@@ -254,7 +255,7 @@ export default function PortfolioPage() {
                 </a>
               ))}
             </div>
-          </div>
+          </GlassCard>
         </FadeUp>
       </section>
 
@@ -268,10 +269,10 @@ export default function PortfolioPage() {
                 </h2>
                 
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
-                  <div className="backdrop-blur-xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] shadow-2xl relative overflow-hidden group h-full flex items-center justify-center min-h-[400px]">
+                  <GlassCard className="shadow-2xl relative overflow-hidden group h-full flex items-center justify-center min-h-[400px]">
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-transparent opacity-30" />
                     <PulseBeamsDemo />
-                  </div>
+                  </GlassCard>
                   <ContactForm />
                 </div>
               </div>
