@@ -280,7 +280,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* 7. RESUME Section */}
-        <section id="resume" className="flex flex-col items-center justify-center py-20 translate-y-[-50px]">
+        <section id="resume" className="flex flex-col items-center justify-center py-20 -mt-12">
           <div className="relative group">
             <div className="absolute -inset-4 bg-cyan-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <a
