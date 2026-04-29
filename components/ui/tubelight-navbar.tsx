@@ -80,9 +80,10 @@ function MagneticNavItem({
       )}
       {/* Active Cyan Dot Indicator */}
       {isActive && (
-        <motion.div 
+        <motion.div
           layoutId="active-dot"
           className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"
+          transition={{ type: "spring", stiffness: 350, damping: 30 }}
         />
       )}
       <span className="relative z-10 flex items-center gap-2">
@@ -97,24 +98,31 @@ export function NavBar() {
   const [activeTab, setActiveTab] = useState(navItems[0].name)
   const [isMobile, setIsMobile] = useState(false)
 
-  // Listen to active section on scroll
+  // Track active section via IntersectionObserver — fires once per genuine
+  // section threshold crossing, not on every scroll tick. The previous scroll
+  // listener could flip activeTab dozens of times per second on fast scroll,
+  // making the layoutId pill chase a moving target.
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map(item => document.querySelector(item.href) as HTMLElement)
-      const scrollPosition = window.scrollY + 200
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting)
+        if (visible.length === 0) return
+        const closestToTop = visible.reduce((acc, e) =>
+          e.boundingClientRect.top < acc.boundingClientRect.top ? e : acc,
+        )
+        const item = navItems.find((n) => n.href === `#${closestToTop.target.id}`)
+        if (item) setActiveTab(item.name)
+      },
+      // Trigger band: 200px from viewport top down to viewport mid.
+      // A section becomes "active" when its top enters this band.
+      { rootMargin: "-200px 0px -50% 0px", threshold: 0 },
+    )
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveTab(navItems[i].name)
-          break
-        }
-      }
-    }
-
-    handleScroll() // Initial check
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    navItems.forEach((item) => {
+      const el = document.querySelector(item.href)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
