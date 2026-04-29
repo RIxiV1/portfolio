@@ -39,17 +39,15 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a href="#hero" aria-label="Back to top" className="flex items-center gap-2.5 group pl-1">
-          <div className="relative w-8 h-8 overflow-hidden rounded-xl border border-white/10 group-hover:border-white/30 transition-all duration-300">
+          <div className="relative w-8 h-8 overflow-hidden rounded-xl">
             <Image
               src="/logo.png"
               alt="Logo"
               fill
               priority
               sizes="32px"
-              className="object-contain p-1.5 bg-black/40 group-hover:scale-110 transition-transform duration-500"
+              className="object-contain group-hover:scale-110 transition-transform duration-500"
             />
-            {/* Live indicator pulse */}
-            <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
           </div>
           <span className="hidden sm:block font-bold tracking-tight text-white/90 group-hover:text-white transition-colors">
             {siteConfig.name.toLowerCase()}
