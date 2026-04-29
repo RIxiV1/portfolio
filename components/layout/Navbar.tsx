@@ -5,7 +5,6 @@ import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-
 import Image from 'next/image';
 import { Menu, X, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import ScrollProgress from '@/components/ui/ScrollProgress';
 import { siteConfig } from '@/data/site';
 
 const navLinks = siteConfig.navLinks;
@@ -110,8 +109,6 @@ export default function Navbar() {
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-
-        <ScrollProgress />
       </div>
 
       {/* Mobile menu dropdown */}

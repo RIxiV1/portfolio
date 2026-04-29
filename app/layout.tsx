@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Loader from "@/components/layout/Loader";
 import MotionProvider from "@/components/layout/MotionProvider";
 import ClickEffect from "@/components/ui/ClickEffect";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
@@ -70,6 +71,7 @@ export default function RootLayout({
         <MotionProvider>
           <ClickEffect />
           <Loader />
+          <ScrollProgress />
           <Navbar />
           {children}
         </MotionProvider>
