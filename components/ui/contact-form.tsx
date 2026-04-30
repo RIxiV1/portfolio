@@ -12,29 +12,24 @@ export function ContactForm() {
     email: "",
     message: ""
   })
+  const [honeypot, setHoneypot] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("loading")
-    
+
     try {
-      const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
-      if (endpoint) {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-        if (!response.ok) throw new Error("Failed to submit");
-      } else {
-        // Fallback simulation if environment variable is not set
-        await new Promise(resolve => setTimeout(resolve, 1500))
-      }
-      
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, company: honeypot }),
+      })
+      if (!response.ok) throw new Error("Failed to submit")
+
       setStatus("success")
       setFormData({ name: "", email: "", message: "" })
       setTimeout(() => setStatus("idle"), 5000)
-    } catch (error) {
+    } catch {
       setStatus("error")
       setTimeout(() => setStatus("idle"), 3000)
     }
@@ -45,6 +40,20 @@ export function ContactForm() {
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 pointer-events-none" />
       
       <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+        {/* Honeypot — hidden from humans, filled by bots */}
+        <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] w-0 h-0 overflow-hidden">
+          <label htmlFor="company">Company</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
+        </div>
+
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -55,6 +64,8 @@ export function ContactForm() {
                 id="name"
                 type="text"
                 required
+                maxLength={80}
+                autoComplete="name"
                 value={formData.name}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                 placeholder="John Doe"
@@ -69,6 +80,8 @@ export function ContactForm() {
                 id="email"
                 type="email"
                 required
+                maxLength={120}
+                autoComplete="email"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 placeholder="john@example.com"
@@ -76,7 +89,7 @@ export function ContactForm() {
               />
             </div>
           </div>
-          
+
           <div className="space-y-2">
             <label htmlFor="message" className="text-xs font-mono uppercase tracking-widest text-muted-foreground ml-1">
               Message
@@ -84,6 +97,7 @@ export function ContactForm() {
             <textarea
               id="message"
               required
+              maxLength={4000}
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}

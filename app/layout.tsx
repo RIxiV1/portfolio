@@ -17,13 +17,6 @@ export const metadata: Metadata = {
     description: 'Personal portfolio of Shaik Mohammed Suhaib - Product Engineer focused on Agentic AI, recommendation systems, and building intelligent products.',
     url: 'https://shaiksuhaib.com',
     siteName: 'Shaik Mohammed Suhaib Portfolio',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -31,7 +24,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Shaik Mohammed Suhaib | Product Engineer & AI Systems',
     description: 'Personal portfolio of Shaik Mohammed Suhaib - Product Engineer focused on Agentic AI, recommendation systems, and building intelligent products.',
-    images: ['/og-image.png'],
     creator: '@suhaibX0',
   },
   icons: {

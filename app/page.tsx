@@ -1,6 +1,3 @@
-"use client"
-
-import { NavBar } from "@/components/ui/tubelight-navbar"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Cursor } from "@/components/ui/inverted-cursor"
 import { SpecialText } from "@/components/ui/special-text"
@@ -33,9 +30,6 @@ export default function PortfolioPage() {
 
       {/* Custom Cursor - Desktop Only */}
       <Cursor size={60} />
-
-      {/* Navigation */}
-      <NavBar />
 
       {/* Theme Toggle - Fixed Position */}
       <div className="fixed top-6 right-6 z-50">
