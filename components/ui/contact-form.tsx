@@ -2,22 +2,17 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react"
+import { ArrowUpRight, Check, AlertCircle, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  })
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [honeypot, setHoneypot] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("loading")
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -25,7 +20,6 @@ export function ContactForm() {
         body: JSON.stringify({ ...formData, company: honeypot }),
       })
       if (!response.ok) throw new Error("Failed to submit")
-
       setStatus("success")
       setFormData({ name: "", email: "", message: "" })
       setTimeout(() => setStatus("idle"), 5000)
@@ -35,135 +29,136 @@ export function ContactForm() {
     }
   }
 
+  const fieldClass =
+    "w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-cyan-400 transition-colors"
+  const labelClass =
+    "block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2"
+
   return (
-    <div className="w-full max-w-xl mx-auto backdrop-blur-3xl bg-white/5 dark:bg-foreground/5 border border-white/10 dark:border-foreground/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 pointer-events-none" />
-      
-      <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
-        {/* Honeypot — hidden from humans, filled by bots */}
-        <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] w-0 h-0 overflow-hidden">
-          <label htmlFor="company">Company</label>
+    <form onSubmit={handleSubmit} className="space-y-10">
+      {/* Honeypot — hidden from humans, filled by bots */}
+      <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="company">Company</label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
+
+      <div className="grid gap-8 md:grid-cols-2">
+        <div>
+          <label htmlFor="name" className={labelClass}>
+            Name
+          </label>
           <input
-            id="company"
-            name="company"
+            id="name"
             type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
+            required
+            maxLength={80}
+            autoComplete="name"
+            value={formData.name}
+            onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+            placeholder="Your name"
+            className={fieldClass}
           />
         </div>
-
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-xs font-mono uppercase tracking-widest text-muted-foreground ml-1">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                required
-                maxLength={80}
-                autoComplete="name"
-                value={formData.name}
-                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                placeholder="John Doe"
-                className="w-full bg-black/20 dark:bg-foreground/5 border border-white/10 dark:border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-xs font-mono uppercase tracking-widest text-muted-foreground ml-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                maxLength={120}
-                autoComplete="email"
-                value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                placeholder="john@example.com"
-                className="w-full bg-black/20 dark:bg-foreground/5 border border-white/10 dark:border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="message" className="text-xs font-mono uppercase tracking-widest text-muted-foreground ml-1">
-              Message
-            </label>
-            <textarea
-              id="message"
-              required
-              maxLength={4000}
-              rows={4}
-              value={formData.message}
-              onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              placeholder="How can I help you?"
-              className="w-full bg-black/20 dark:bg-foreground/5 border border-white/10 dark:border-foreground/10 rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all resize-none"
-            />
-          </div>
+        <div>
+          <label htmlFor="email" className={labelClass}>
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            required
+            maxLength={120}
+            autoComplete="email"
+            value={formData.email}
+            onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+            placeholder="you@example.com"
+            className={fieldClass}
+          />
         </div>
+      </div>
 
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className={cn(
-            "group relative w-full overflow-hidden rounded-xl bg-foreground text-background py-4 font-bold tracking-widest uppercase transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100",
-            status === "success" && "bg-green-500 text-white",
-            status === "error" && "bg-red-500 text-white"
+      <div>
+        <label htmlFor="message" className={labelClass}>
+          Message
+        </label>
+        <textarea
+          id="message"
+          required
+          maxLength={4000}
+          rows={4}
+          value={formData.message}
+          onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
+          placeholder="What's on your mind?"
+          className={cn(fieldClass, "resize-none")}
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className={cn(
+          "group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors disabled:opacity-50",
+          status === "success" && "text-cyan-400",
+          status === "error" && "text-red-400",
+          (status === "idle" || status === "loading") && "text-foreground hover:text-cyan-400"
+        )}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {status === "loading" ? (
+            <motion.span
+              key="l"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-2"
+            >
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              Sending
+            </motion.span>
+          ) : status === "success" ? (
+            <motion.span
+              key="s"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-2"
+            >
+              <Check className="h-3.5 w-3.5" />
+              Message sent
+            </motion.span>
+          ) : status === "error" ? (
+            <motion.span
+              key="e"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-2"
+            >
+              <AlertCircle className="h-3.5 w-3.5" />
+              Try again
+            </motion.span>
+          ) : (
+            <motion.span
+              key="i"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-2"
+            >
+              Send message
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </motion.span>
           )}
-        >
-          <div className="relative z-10 flex items-center justify-center gap-2">
-            <AnimatePresence mode="wait">
-              {status === "loading" ? (
-                <motion.div
-                  key="loading"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                >
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                </motion.div>
-              ) : status === "success" ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-2"
-                >
-                  <CheckCircle2 className="w-5 h-5" />
-                  Sent!
-                </motion.div>
-              ) : status === "error" ? (
-                <motion.div
-                  key="error"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-2"
-                >
-                  <AlertCircle className="w-5 h-5" />
-                  Error
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="idle"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex items-center gap-2"
-                >
-                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  Send Message
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none" />
-        </button>
-      </form>
-    </div>
+        </AnimatePresence>
+      </button>
+    </form>
   )
 }

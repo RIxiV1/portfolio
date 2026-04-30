@@ -65,7 +65,7 @@ export default async function OpengraphImage() {
               letterSpacing: '-0.01em',
             }}
           >
-            {siteConfig.tagline}
+            {siteConfig.focus}
           </div>
         </div>
 

@@ -45,8 +45,7 @@ export const metadata: Metadata = {
   },
 }
 
-import { InitialLoader } from '@/components/ui/initial-loader'
-import { NavBar } from '@/components/ui/tubelight-navbar'
+import { Nav } from '@/components/ui/nav'
 
 export default function RootLayout({
   children,
@@ -57,8 +56,9 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <InitialLoader />
-          <NavBar />
+          <div className="fixed inset-0 -z-50 bg-background" />
+          <div className="pointer-events-none fixed inset-0 -z-40 grid-bg" />
+          <Nav />
           {children}
         </ThemeProvider>
         <Analytics />

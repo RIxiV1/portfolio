@@ -1,290 +1,303 @@
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Cursor } from "@/components/ui/inverted-cursor"
-import { SpecialText } from "@/components/ui/special-text"
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button"
-import { FileText, GraduationCap, Briefcase } from "lucide-react"
-import { ContactForm } from "@/components/ui/contact-form"
-import { FadeUp } from "@/components/ui/fade-up"
-import { Spotlight } from "@/components/ui/spotlight"
-import { GlassCard } from "@/components/ui/glass-card"
+import { ArrowDownRight, ArrowUpRight, FileText } from "lucide-react"
 import { siteConfig } from "@/data/site"
-import { EtheralShadow } from "@/components/ui/etheral-shadow"
-import { SkillsMarquee } from "@/components/ui/marquee"
-import { DisplayCards } from "@/components/ui/display-cards"
-import { PulseBeamsDemo } from "@/components/ui/pulse-beams"
-import { AnimatedTabs } from "@/components/ui/animated-tabs"
+import { Cursor } from "@/components/ui/inverted-cursor"
+import { FadeUp } from "@/components/ui/fade-up"
+import { ContactForm } from "@/components/ui/contact-form"
 
-export default function PortfolioPage() {
+const sectionLabel = "font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
+
+export default function Page() {
   return (
-    <main className="relative min-h-screen text-foreground overflow-x-hidden transition-colors duration-500">
-      {/* Background Layer - Fixed and Persistent */}
-      <div className="fixed inset-0 -z-50 bg-background transition-colors duration-500">
-        <EtheralShadow
-          animation={{ scale: 30, speed: 6 }}
-          noise={{ opacity: 0.2, scale: 1.0 }}
-          sizing="fill"
-          title=""
-          className="opacity-30"
-        />
-      </div>
+    <>
+      <Cursor size={56} />
+      <main className="relative">
+        {/* HERO */}
+        <section
+          id="home"
+          className="mx-auto flex min-h-svh max-w-3xl flex-col justify-center px-6 pt-32 pb-24"
+        >
+          <div className="space-y-8">
+            <p className={sectionLabel}>
+              <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 align-middle shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+              Portfolio · 2026
+            </p>
 
-      {/* Custom Cursor - Desktop Only */}
-      <Cursor size={60} />
-
-      {/* Theme Toggle - Fixed Position */}
-      <div className="fixed top-6 right-6 z-50">
-        <ThemeToggle />
-      </div>
-
-      {/* 1. HERO Section */}
-      <section id="home" className="relative min-h-svh flex items-center justify-center">
-        <div className="text-center z-10 space-y-6">
-          <div className="relative inline-block">
-          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-extrabold tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground/90 to-slate-400 drop-shadow-2xl cursor-default">
-              Shaik Mohammed Suhaib
+            <h1 className="text-5xl font-medium leading-[0.95] tracking-tight md:text-7xl">
+              Shaik Mohammed
+              <br />
+              Suhaib<span className="text-cyan-400">.</span>
             </h1>
+
+            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              Product engineer building{" "}
+              <span className="text-foreground">agentic AI tools</span> and{" "}
+              <span className="text-foreground">recommendation systems</span>. Studying IT
+              in Chennai, shipping side projects in between.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-2">
+              <a
+                href="#work"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-cyan-400"
+              >
+                Selected Work
+                <ArrowDownRight className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
+              </a>
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Get in Touch
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
           </div>
-          <p className="text-slate-400 text-lg md:text-xl font-light tracking-[0.6em] md:tracking-[0.8em] uppercase opacity-80">
-            Product Engineering <span className="text-cyan-500/50 mx-2">·</span> AI Systems
-          </p>
-        </div>
-      </section>
-
-      {/* Glassmorphic Container for the rest of the content */}
-      <div className="relative space-y-32 pb-32">
-        
-        {/* 2. ABOUT Section */}
-        <section id="about" className="px-4 scroll-mt-32">
-          <FadeUp>
-            <Spotlight>
-              <GlassCard className="max-w-5xl mx-auto p-12 md:p-16 shadow-2xl relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 opacity-50 dark:opacity-30" />
-                
-                <div className="relative z-10">
-                  <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                    <SpecialText inView>About Me</SpecialText>
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-8">
-                      <p className="text-xl text-foreground font-light leading-relaxed">
-                        {`I'm an IT student focused on building AI-powered systems and real-world products.`}
-                      </p>
-                      <p className="text-muted-foreground leading-relaxed text-lg">
-                        Currently exploring agentic AI, recommendation systems, and web-based AI tools — combining product thinking with engineering to turn ideas into functional, user-focused applications.
-                      </p>
-                      <div className="flex gap-6 pt-6">
-                        {siteConfig.socials.map(({ label, href }) => (
-                          <a
-                            key={label}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Visit my ${label} profile`}
-                            className="text-cyan-400 hover:text-white transition-all duration-300 border-b border-transparent hover:border-cyan-400 pb-1 font-mono text-sm uppercase tracking-wider"
-                          >
-                            {label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="relative group/card">
-                      <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/30 to-violet-500/30 rounded-2xl blur-3xl opacity-20 group-hover/card:opacity-40 transition-opacity duration-500" />
-                      <div className="relative bg-foreground/8 border border-foreground/15 backdrop-blur-2xl rounded-3xl p-8 space-y-6 shadow-xl transition-transform duration-500 group-hover/card:-translate-y-2">
-                        <div className="flex items-center gap-3 text-sm text-cyan-500 dark:text-cyan-400 font-mono">
-                          <span className="w-2 h-2 bg-cyan-500 dark:bg-cyan-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-                          Status: Open to Work
-                        </div>
-                        <div className="space-y-4">
-                          <p className="text-foreground/80 flex justify-between"><span className="text-muted-foreground font-mono uppercase text-xs">Location</span> India</p>
-                          <p className="text-foreground/80 flex justify-between"><span className="text-muted-foreground font-mono uppercase text-xs">Focus</span> AI Systems, Full Stack</p>
-                          <p className="text-foreground/80 flex justify-between truncate gap-4"><span className="text-muted-foreground font-mono uppercase text-xs shrink-0">Email</span> shaiksuhaib360@gmail.com</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-            </Spotlight>
-          </FadeUp>
         </section>
 
-        {/* 2.5 EDUCATION & EXPERIENCE Section */}
-        <section id="experience" className="px-4 scroll-mt-32">
+        {/* ABOUT */}
+        <section
+          id="about"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
           <FadeUp>
-            <div className="max-w-5xl mx-auto space-y-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                <SpecialText inView>Education & Experience</SpecialText>
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Education */}
-                <GlassCard className="p-8 md:p-10 shadow-xl space-y-8">
-                  <div className="flex items-center gap-4 text-cyan-500">
-                    <GraduationCap className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold text-foreground">Education</h3>
-                  </div>
-                  <div className="space-y-6">
-                    <div className="relative pl-6 border-l border-cyan-500/30">
-                      <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-                      <h4 className="font-bold text-lg text-foreground">B.Tech in Information Technology</h4>
-                      <p className="text-muted-foreground text-sm font-mono mt-1">2024 — 2028</p>
-                      <p className="text-foreground/70 mt-3 text-sm leading-relaxed">
-                        Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology, Chennai. Core focus on AI, algorithms, and intelligent systems development.
-                      </p>
-                    </div>
-                  </div>
-                </GlassCard>
-
-                {/* Experience / Projects Highlights */}
-                <GlassCard className="p-8 md:p-10 shadow-xl space-y-8">
-                  <div className="flex items-center gap-4 text-violet-500">
-                    <Briefcase className="w-8 h-8" />
-                    <h3 className="text-2xl font-bold text-foreground">Experience</h3>
-                  </div>
-                  <div className="space-y-6">
-                    <div className="relative pl-6 border-l border-violet-500/30">
-                      <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(139,92,246,0.8)]" />
-                      <h4 className="font-bold text-lg text-foreground">Independent Developer & AI Researcher</h4>
-                      <p className="text-muted-foreground text-sm font-mono mt-1">2024 — Present</p>
-                      <p className="text-foreground/70 mt-3 text-sm leading-relaxed">
-                        Building agentic AI tools and recommendation systems. Focused on turning complex math into functional, user-centric software.
-                      </p>
-                    </div>
-                  </div>
-                </GlassCard>
-              </div>
-            </div>
-          </FadeUp>
-        </section>
-
-        {/* 3. SKILLS Section with Lamp */}
-        <section id="skills" className="relative px-4 scroll-mt-32">
-          <FadeUp>
-            <div className="max-w-6xl mx-auto backdrop-blur-2xl bg-foreground/[0.02] border border-foreground/10 border-t-foreground/20 rounded-[2.5rem] py-20 overflow-hidden shadow-inner">
-              <h2 className="text-4xl font-bold text-center mb-16">
-                <SpecialText inView>Skills & Technologies</SpecialText>
-              </h2>
-              <div className="relative">
-                <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-background/80 to-transparent z-10" />
-                <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-background/80 to-transparent z-10" />
-                <SkillsMarquee />
-              </div>
-            </div>
-          </FadeUp>
-        </section>
-
-        {/* 4. PROJECTS Section */}
-        <section id="projects" className="px-4 scroll-mt-32">
-          <FadeUp>
-            <GlassCard className="max-w-6xl mx-auto p-12 md:p-16 shadow-2xl relative">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                <SpecialText inView>Featured Projects</SpecialText>
-              </h2>
-              
-              <div className="flex justify-center mb-20">
-                <DisplayCards />
-              </div>
-
-              <div className="relative">
-                <div className="absolute -inset-10 bg-cyan-500/5 blur-[100px] opacity-20 pointer-events-none" />
-                <AnimatedTabs />
-              </div>
-            </GlassCard>
-          </FadeUp>
-        </section>
-
-        {/* 5. LEARNING PATH Section */}
-        <section id="blog" className="px-4 scroll-mt-32">
-          <FadeUp>
-            <GlassCard className="max-w-6xl mx-auto p-12 md:p-16 shadow-2xl">
-              <h2 className="text-4xl font-bold text-center mb-16">
-                <SpecialText inView>Learning Path & Research</SpecialText>
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {siteConfig.learningPath.map((blog) => (
-                <a
-                  key={blog.title}
-                  href={blog.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative rounded-2xl border border-foreground/10 border-t-foreground/20 bg-white/40 dark:bg-foreground/5 p-8 backdrop-blur-xl hover:bg-white/60 dark:hover:bg-foreground/10 hover:border-cyan-400/30 hover:border-t-cyan-400/50 transition-all duration-500 overflow-hidden shadow-xl shadow-black/5 dark:shadow-none"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-cyan-600 dark:text-cyan-400 border border-cyan-400/30 rounded-full px-3 py-1 uppercase">
-                      {blog.tag}
-                    </span>
-                    <span className="text-xs text-muted-foreground font-mono tracking-tighter">{blog.date}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
-                    {blog.title}
-                  </h3>
-                  <p className="mt-4 text-sm text-slate-600 dark:text-muted-foreground leading-relaxed font-normal">
-                    {blog.description}
+            <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>01 / About</p>
+              <div className="space-y-6">
+                {siteConfig.bio.map((p, i) => (
+                  <p key={i} className="text-lg leading-relaxed text-foreground/90">
+                    {p}
                   </p>
-                  <div className="mt-6 flex items-center gap-2 text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
-                    Read Now <span className="text-lg">→</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </GlassCard>
-        </FadeUp>
-      </section>
-
-        {/* 6. CONTACT Section */}
-        <section id="contact" className="px-4 scroll-mt-32">
-          <FadeUp>
-            <Spotlight color="rgba(139, 92, 246, 0.05)">
-              <div className="max-w-6xl mx-auto space-y-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-center">
-                  <SpecialText inView>Get In Touch</SpecialText>
-                </h2>
-                
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
-                  <GlassCard className="shadow-2xl relative overflow-hidden group h-full flex items-center justify-center min-h-[400px]">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-transparent opacity-30" />
-                    <PulseBeamsDemo />
-                  </GlassCard>
-                  <ContactForm />
-                </div>
+                ))}
+                <dl className="grid grid-cols-[110px_1fr] gap-y-3 pt-6 text-sm">
+                  <dt className={sectionLabel}>Location</dt>
+                  <dd>{siteConfig.location}</dd>
+                  <dt className={sectionLabel}>Focus</dt>
+                  <dd>{siteConfig.focus}</dd>
+                  <dt className={sectionLabel}>Status</dt>
+                  <dd className="text-cyan-400">{siteConfig.status}</dd>
+                </dl>
               </div>
-            </Spotlight>
+            </div>
           </FadeUp>
         </section>
 
-        {/* 7. RESUME Section */}
-        <section id="resume" className="flex flex-col items-center justify-center py-20 -mt-12">
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-cyan-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* WORK */}
+        <section
+          id="work"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
+          <FadeUp>
+            <div className="mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>02 / Work</p>
+              <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
+                Selected projects.
+              </h2>
+            </div>
+            <div className="md:pl-[136px]">
+              <ul className="border-t border-foreground/10">
+                {siteConfig.projects.map((p) => (
+                  <li key={p.title} className="border-b border-foreground/10">
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex flex-col gap-3 py-8"
+                    >
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-cyan-400">
+                          {p.title}
+                          <ArrowUpRight className="ml-1 inline h-4 w-4 -translate-y-0.5 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-60" />
+                        </h3>
+                        <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest tabular-nums text-muted-foreground">
+                          {p.year}
+                        </span>
+                      </div>
+                      <p className="max-w-xl leading-relaxed text-muted-foreground">
+                        {p.description}
+                      </p>
+                      <ul className="flex flex-wrap gap-2 pt-2">
+                        {p.tech.map((t) => (
+                          <li
+                            key={t}
+                            className="rounded border border-foreground/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+                          >
+                            {t}
+                          </li>
+                        ))}
+                      </ul>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* STACK */}
+        <section
+          id="stack"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
+          <FadeUp>
+            <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>03 / Stack</p>
+              <div className="space-y-8">
+                {siteConfig.stack.map((g) => (
+                  <div
+                    key={g.group}
+                    className="grid grid-cols-[110px_1fr] items-baseline gap-6 border-b border-foreground/5 pb-5 last:border-b-0"
+                  >
+                    <h3 className={sectionLabel}>{g.group}</h3>
+                    <ul className="flex flex-wrap gap-x-6 gap-y-2 text-foreground/90">
+                      {g.items.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* JOURNEY */}
+        <section
+          id="journey"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
+          <FadeUp>
+            <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>04 / Journey</p>
+              <ul className="space-y-12">
+                {siteConfig.experience.map((e) => (
+                  <li key={e.role} className="space-y-2">
+                    <span className={sectionLabel}>{e.period}</span>
+                    <h3 className="text-xl font-medium tracking-tight">{e.role}</h3>
+                    <p className="text-sm text-muted-foreground">{e.org}</p>
+                    <p className="pt-1 leading-relaxed text-foreground/80">
+                      {e.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* WRITING */}
+        <section
+          id="writing"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
+          <FadeUp>
+            <div className="mb-10 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>05 / Writing</p>
+              <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
+                Notes & research.
+              </h2>
+            </div>
+            <div className="md:pl-[136px]">
+              <ul className="border-t border-foreground/10">
+                {siteConfig.writing.map((w) => (
+                  <li key={w.title} className="border-b border-foreground/10">
+                    <a
+                      href={w.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex flex-col gap-2 py-6"
+                    >
+                      <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                        <span>{w.tag}</span>
+                        <span className="opacity-30">·</span>
+                        <span>{w.date}</span>
+                      </div>
+                      <h3 className="flex items-center gap-2 text-xl font-medium tracking-tight transition-colors group-hover:text-cyan-400">
+                        {w.title}
+                        <ArrowUpRight className="h-4 w-4 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-60" />
+                      </h3>
+                      <p className="max-w-xl leading-relaxed text-muted-foreground">
+                        {w.description}
+                      </p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
+          <FadeUp>
+            <div className="mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>06 / Contact</p>
+              <div className="space-y-5">
+                <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
+                  Let&apos;s build something.
+                </h2>
+                <p className="max-w-xl leading-relaxed text-muted-foreground">
+                  Open to internships, freelance, and research collaborations. Drop a
+                  line — I read every email.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 font-mono text-sm">
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="text-foreground transition-colors hover:text-cyan-400"
+                  >
+                    {siteConfig.email}
+                  </a>
+                  {siteConfig.socials.map(({ icon: Icon, href, label, handle }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      {handle}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="mt-16 md:pl-[136px]">
+              <ContactForm />
+            </div>
+            <div className="mt-16 md:pl-[136px]">
+              <a
+                href={siteConfig.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <FileText className="h-3.5 w-3.5" />
+                Download Résumé
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="mt-12 border-t border-foreground/5">
+          <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-8">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              © {new Date().getFullYear()} — {siteConfig.name}
+            </p>
             <a
-              href="https://drive.google.com/file/d/1ZaHawnbNC8nFV-uir2fsXjMqfoUzO4YJ/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative block"
+              href="#home"
+              className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
             >
-              <InteractiveHoverButton text="Download Resume" />
+              ↑ Top
             </a>
           </div>
-          <p className="text-slate-500 text-[10px] mt-6 flex items-center gap-2 font-mono uppercase tracking-[0.3em]">
-            <FileText className="w-3 h-3 text-cyan-400" />
-            Format: PDF 2026
-          </p>
-        </section>
-      </div>
-
-      {/* Footer */}
-      <footer className="w-full relative py-12 backdrop-blur-xl border-t border-foreground/10 bg-foreground/5 dark:bg-black/20 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent shadow-[0_0_15px_rgba(34,211,238,0.5)]" />
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase mb-4">
-            Built for the Future
-          </p>
-          <p className="text-foreground/40 font-mono text-[10px] tracking-[0.3em] uppercase">
-            © {new Date().getFullYear()} Shaik Mohammed Suhaib
-          </p>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+    </>
   )
 }
