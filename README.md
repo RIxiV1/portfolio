@@ -5,15 +5,13 @@
 ![GitHub Forks](https://img.shields.io/github/forks/RIxiV1/portfolio-suhaib)
 ![GitHub Issues](https://img.shields.io/github/issues/RIxiV1/portfolio-suhaib)
 
-
-A personal developer portfolio focused on **Agentic AI** and **Product Engineering**, built with modern web technologies and smooth motion design.
+A personal developer portfolio focused on **Agentic AI** and **Product Engineering**, built with modern web technologies, a typography-first minimalist aesthetic, and smooth motion design.
 
 ## 🚀 Latest Updates
+- **v2.0.0**: Complete redesign focusing on a minimalist, typography-first approach with deep dark-mode contrasts, a custom inverted cursor, and cyan accents.
 - **v1.2.0**: Integrated background paths and cinematic fade-up animations.
-- **v1.1.0**: Added glassmorphism components and dark mode refinements.
 
-
-> **Live Demo:** [your-deployed-url.vercel.app](https://your-deployed-url.vercel.app) ← _replace this_
+> **Live Demo:** [suhaib.dev](https://suhaib.dev) *(Replace with actual deployed URL)*
 
 ![Portfolio Preview](./portfolio-preview.png)
 
@@ -23,30 +21,25 @@ A personal developer portfolio focused on **Agentic AI** and **Product Engineeri
 
 | Technology | Version | Purpose |
 |---|---|---|
-| [Next.js](https://nextjs.org/) | 16 | Framework & routing |
+| [Next.js](https://nextjs.org/) | 15+ | Framework & routing |
 | [React](https://react.dev/) | 19 | UI library |
-| [TypeScript](https://www.typescriptlang.org/) | 5.7 | Type safety |
-| [Tailwind CSS](https://tailwindcss.com/) | 4.2 | Styling |
-| [Framer Motion](https://www.framer.com/motion/) | 11 | Animations & transitions |
-| [Radix UI](https://www.radix-ui.com/) | — | Accessible UI primitives |
-| [shadcn/ui](https://ui.shadcn.com/) | — | Component system |
+| [TypeScript](https://www.typescriptlang.org/) | 5+ | Type safety |
+| [Tailwind CSS](https://tailwindcss.com/) | 4+ | Styling |
+| [Framer Motion](https://www.framer.com/motion/) | 11+ | Animations & transitions |
 | [Lucide React](https://lucide.dev/) | — | Icons |
-| [Vercel Analytics](https://vercel.com/analytics) | — | Performance & usage insights |
+| [Vercel](https://vercel.com/) | — | Hosting & Analytics |
 
 ---
 
 ## Features
 
-- **Cinematic motion design** — page transitions and scroll animations via Framer Motion
-- **Glassmorphism UI** — layered transparency and blur effects throughout
-- **Dark-first aesthetic** — deep, high-contrast visual language with accent glows
+- **Typography-First Minimalist UI** — clean, content-focused layout with a strict grid system
+- **Smooth Motion Design** — subtle fade-up scrolling animations via Framer Motion
+- **Custom Inverted Cursor** — interactive cursor that inverts colors on hover
+- **Dark-First Aesthetic** — deep, high-contrast visual language with cyan glows (`#22d3ee`)
 - **Responsive Layout** — optimized for all screen sizes from mobile to desktop
-- **Typography** — carefully curated modern fonts for maximum readability
-- **Micro-interactions** — subtle hover and click effects for a premium feel
-- **Fully typed** — 96%+ TypeScript coverage
-- **Accessible components** — built on Radix UI primitives
-- **Analytics-ready** — Vercel Analytics integrated out of the box
-
+- **Data-Driven Content** — all content is managed centrally via `data/site.ts`
+- **Fully Typed** — strict TypeScript coverage
 
 ---
 
@@ -55,8 +48,7 @@ A personal developer portfolio focused on **Agentic AI** and **Product Engineeri
 1. **Agentic Interaction**: Designing UI that anticipates user needs and integrates seamlessly with AI agents.
 2. **Performance First**: Optimizing every frame for 60fps animations and near-instant load times.
 3. **Developer Experience**: Maintaining a clean, well-documented codebase for easy iteration.
-4. **Motion with Purpose**: Using Framer Motion not just for flair, but to guide the user's focus.
-
+4. **Content over Clutter**: Letting the work and the writing speak for itself without unnecessary decorative elements.
 
 ---
 
@@ -64,7 +56,8 @@ A personal developer portfolio focused on **Agentic AI** and **Product Engineeri
 
 ```
 ├── app/              # Next.js App Router pages and layouts
-├── components/       # Reusable UI components
+├── components/       # Reusable UI components (Cursor, FadeUp, ContactForm, etc.)
+├── data/             # Centralized content configuration (site.ts)
 ├── hooks/            # Custom React hooks
 ├── lib/              # Utility functions and helpers
 ├── public/           # Static assets
@@ -78,7 +71,7 @@ A personal developer portfolio focused on **Agentic AI** and **Product Engineeri
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) v18+
-- [pnpm](https://pnpm.io/) (recommended)
+- [npm](https://www.npmjs.com/) (or pnpm/yarn)
 
 ### Installation
 
@@ -88,10 +81,10 @@ git clone https://github.com/RIxiV1/portfolio-suhaib.git
 cd portfolio-suhaib
 
 # Install dependencies
-pnpm install
+npm install
 
 # Start the development server
-pnpm dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -99,8 +92,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Build for Production
 
 ```bash
-pnpm build
-pnpm start
+npm run build
+npm run start
 ```
 
 ### Deploy to Vercel
