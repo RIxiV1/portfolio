@@ -1,12 +1,14 @@
 "use client"
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 
 export function InitialLoader() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Simulate initialization time or wait for hydration
+    if (sessionStorage.getItem("seenIntro") === "1") return
+    setLoading(true)
+    sessionStorage.setItem("seenIntro", "1")
     const timer = setTimeout(() => {
       setLoading(false)
     }, 2000)

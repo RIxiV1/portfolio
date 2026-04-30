@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion, useMotionValue, useSpring } from "motion/react"
 import { cn } from "@/lib/utils"
 
@@ -13,7 +13,8 @@ export function Cursor({ size = 60, className }: CursorProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
-  
+  const isVisibleRef = useRef(false)
+
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
 
@@ -31,7 +32,10 @@ export function Cursor({ size = 60, className }: CursorProps) {
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - size / 2)
       cursorY.set(e.clientY - size / 2)
-      if (!isVisible) setIsVisible(true)
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true
+        setIsVisible(true)
+      }
     }
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -43,8 +47,14 @@ export function Cursor({ size = 60, className }: CursorProps) {
       }
     }
 
-    const hideCursor = () => setIsVisible(false)
-    const showCursor = () => setIsVisible(true)
+    const hideCursor = () => {
+      isVisibleRef.current = false
+      setIsVisible(false)
+    }
+    const showCursor = () => {
+      isVisibleRef.current = true
+      setIsVisible(true)
+    }
 
     window.addEventListener("mousemove", moveCursor)
     document.addEventListener("mouseover", handleMouseOver)
@@ -57,7 +67,7 @@ export function Cursor({ size = 60, className }: CursorProps) {
       document.removeEventListener("mouseleave", hideCursor)
       document.removeEventListener("mouseenter", showCursor)
     }
-  }, [size, isVisible, cursorX, cursorY])
+  }, [size, cursorX, cursorY])
 
   if (isTouchDevice) return null
 

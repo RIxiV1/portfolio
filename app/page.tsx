@@ -19,8 +19,8 @@ export default function PortfolioPage() {
     <main className="relative min-h-screen text-foreground overflow-x-hidden transition-colors duration-500">
       {/* Background Layer - Fixed and Persistent */}
       <div className="fixed inset-0 -z-50 bg-background transition-colors duration-500">
-        <EtheralShadow 
-          animation={{ scale: 50, speed: 20 }}
+        <EtheralShadow
+          animation={{ scale: 30, speed: 6 }}
           noise={{ opacity: 0.2, scale: 1.0 }}
           sizing="fill"
           title=""
