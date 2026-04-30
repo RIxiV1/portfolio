@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { ThemeProvider } from 'next-themes'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -55,12 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <div className="fixed inset-0 -z-50 bg-background" />
-          <div className="pointer-events-none fixed inset-0 -z-40 grid-bg" />
-          <Nav />
-          {children}
-        </ThemeProvider>
+        <div className="fixed inset-0 -z-50 bg-background" />
+        <div className="pointer-events-none fixed inset-0 -z-40 grid-bg" />
+        <Nav />
+        {children}
         <Analytics />
       </body>
     </html>
