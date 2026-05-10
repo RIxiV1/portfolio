@@ -1,53 +1,39 @@
-# portfolio-suhaib
+# Shaik Mohammed Suhaib
+### Product Engineer · Agentic AI · Recommendation Systems
 
-Personal portfolio for [Shaik Mohammed Suhaib](https://github.com/RIxiV1) — IT student, building agentic AI tools and recommendation systems.
+Personal portfolio built with a focus on high-end performance, minimalist design, and mathematical beauty.
 
-**Live:** [portfolio-suhaibdev.vercel.app](https://portfolio-suhaibdev.vercel.app/)
+**[Live Demo](https://portfolio-suhaibdev.vercel.app/)**
 
-## Stack
+---
 
-- **Next.js 16** (App Router) + **React 19** + **TypeScript**
-- **Tailwind CSS v4** with `@tailwindcss/postcss`
-- **motion/react** for animation
-- **Resend** + **Upstash Ratelimit** behind `/api/contact`
-- Deployed on **Vercel**
+## ✦ Key Features
+- **3D ASCII Torus:** A custom-built, zero-dependency mathematical background engine.
+- **Minimalist UX:** Clean typography and smooth, performance-optimized transitions.
+- **Smart Forms:** Contact system powered by **Resend** and **Upstash** rate-limiting.
+- **Agentic Ready:** Architecture designed for building and showcasing AI-driven products.
 
-## Layout
+## 🛠 Tech Stack
+- **Core:** Next.js 16, React 19, TypeScript
+- **Styling:** Tailwind CSS v4, Framer Motion
+- **Infra:** Vercel, Resend, Upstash
 
-```
-app/                  # routes, metadata, API
-  api/contact/        # rate-limited contact endpoint
-  layout.tsx          # root: fonts, grid background, nav
-  page.tsx            # the single-page portfolio
-components/ui/        # Nav, Cursor, FadeUp, ContactForm
-data/site.ts          # all content lives here
-lib/utils.ts          # `cn()` helper
-```
-
-## Develop
-
+## 🚀 Quick Start
 ```bash
 npm install
-npm run dev          # http://localhost:3000
+npm run dev
 ```
+*Note: Fill in `.env.local` using the keys from `.env.example` to enable contact form delivery.*
 
-Copy `.env.example` to `.env.local` and fill in `RESEND_API_KEY` / Upstash creds if you want the contact form to deliver mail.
+## 📂 Project Map
+- `app/` — Routing & API endpoints
+- `components/ui/` — High-end UI components (Torus, Nav, Cursor)
+- `data/site.ts` — Single source of truth for all content
+- `lib/` — Utility functions
 
-## Build
+## 📬 Reach Out
+- [shaiksuhaib360@gmail.com](mailto:shaiksuhaib360@gmail.com)
+- [GitHub](https://github.com/RIxiV1) · [LinkedIn](https://www.linkedin.com/in/shaiksuhaib) · [Twitter/X](https://x.com/suhaibX0)
 
-```bash
-npm run build
-npm run start
-```
-
-## Contact
-
-- Email — [shaiksuhaib360@gmail.com](mailto:shaiksuhaib360@gmail.com)
-- GitHub — [@RIxiV1](https://github.com/RIxiV1)
-- LinkedIn — [shaiksuhaib](https://www.linkedin.com/in/shaiksuhaib)
-- X — [@suhaibX0](https://x.com/suhaibX0)
-
-## License
-
-MIT — see [LICENSE](./LICENSE).
-
+---
+MIT © [Shaik Mohammed Suhaib](https://github.com/RIxiV1)
