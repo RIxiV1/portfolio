@@ -113,8 +113,8 @@ export function AsciiTorus() {
     // Rotate based on time and mouse position
     const mx = mouseRef.current.x
     const my = mouseRef.current.y
-    angleARef.current += 0.04 + (my * 0.05)
-    angleBRef.current += 0.02 + (mx * 0.05)
+    angleARef.current += 0.015 + (my * 0.015)
+    angleBRef.current += 0.01 + (mx * 0.015)
 
     frameRef.current = requestAnimationFrame(render)
   }, [])
