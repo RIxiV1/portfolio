@@ -14,17 +14,14 @@ export default async function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background:
-            'radial-gradient(circle at 30% 30%, rgba(16,185,129,0.35), transparent 60%), #000',
+          background: '#000',
           color: '#fff',
-          fontFamily: 'sans-serif',
-          fontSize: 108,
-          fontWeight: 800,
-          letterSpacing: '-0.05em',
-          textTransform: 'uppercase',
+          fontFamily: 'monospace',
+          fontSize: 80,
+          fontWeight: 600,
         }}
       >
-        {siteConfig.name.charAt(0)}
+        <span style={{ color: '#22d3ee' }}>&gt;</span> _
       </div>
     ),
     { ...size },

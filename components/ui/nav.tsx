@@ -51,7 +51,7 @@ export function Nav() {
           className="flex items-center gap-2 font-mono text-sm tracking-tight text-foreground transition-opacity hover:opacity-70"
           aria-label="Home"
         >
-          <img src="/logo.png" alt="Logo" className="h-6 w-6 rounded-sm" />
+          <img src="/logo.png" alt="Logo" className="h-10 w-10 scale-150" />
           shaik<span className="text-cyan-400">.</span>dev
         </a>
 
