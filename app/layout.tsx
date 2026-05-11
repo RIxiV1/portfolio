@@ -25,10 +25,7 @@ export const metadata: Metadata = {
     description: 'Personal portfolio of Shaik Mohammed Suhaib - Product Engineer focused on Agentic AI, recommendation systems, and building intelligent products.',
     creator: '@suhaibX0',
   },
-  icons: {
-    icon: '/logo.png',
-    apple: '/apple-icon.png',
-  },
+
 }
 
 import { Nav } from '@/components/ui/nav'
