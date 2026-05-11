@@ -7,12 +7,12 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 export const metadata: Metadata = {
-  title: 'Shaik Mohammed Suhaib | Product Engineer & AI Systems',
+  title: 'suhaibs portfolio',
   description: 'Personal portfolio of Shaik Mohammed Suhaib - Product Engineer focused on Agentic AI, recommendation systems, and building intelligent products.',
   generator: 'v0.app',
   metadataBase: new URL('https://shaiksuhaib.com'), // Replace with actual domain if known
   openGraph: {
-    title: 'Shaik Mohammed Suhaib | Product Engineer & AI Systems',
+    title: 'suhaibs portfolio',
     description: 'Personal portfolio of Shaik Mohammed Suhaib - Product Engineer focused on Agentic AI, recommendation systems, and building intelligent products.',
     url: 'https://shaiksuhaib.com',
     siteName: 'Shaik Mohammed Suhaib Portfolio',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shaik Mohammed Suhaib | Product Engineer & AI Systems',
+    title: 'suhaibs portfolio',
     description: 'Personal portfolio of Shaik Mohammed Suhaib - Product Engineer focused on Agentic AI, recommendation systems, and building intelligent products.',
     creator: '@suhaibX0',
   },

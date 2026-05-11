@@ -131,7 +131,7 @@ export const siteConfig = {
   ],
 
   metadata: {
-    title: 'Shaik Mohammed Suhaib — Product Engineer',
+    title: 'suhaibs portfolio',
     description:
       'Product engineer building agentic AI systems and recommendation engines. Open to internships and freelance.',
     twitterHandle: '@suhaibX0',
