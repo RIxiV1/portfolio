@@ -1,10 +1,10 @@
 import { ImageResponse } from 'next/og';
-import { siteConfig } from '@/data/site';
+import { Logo } from '@/components/ui/logo';
 
-export const size = { width: 180, height: 180 };
+export const size = { width: 32, height: 32 };
 export const contentType = 'image/png';
 
-export default async function AppleIcon() {
+export default async function Icon() {
   return new ImageResponse(
     (
       <div
@@ -14,14 +14,11 @@ export default async function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#000',
-          color: '#fff',
-          fontFamily: 'monospace',
-          fontSize: 80,
-          fontWeight: 600,
+          background: '#0a0a0a',
+          borderRadius: 6,
         }}
       >
-        <span style={{ color: '#22d3ee' }}>&gt;</span> _
+        <Logo size={24} showBackground={false} hideAnimation={true} />
       </div>
     ),
     { ...size },
