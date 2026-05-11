@@ -48,9 +48,10 @@ export function Nav() {
       <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
         <a
           href="#home"
-          className="font-mono text-sm tracking-tight text-foreground transition-opacity hover:opacity-70"
+          className="flex items-center gap-2 font-mono text-sm tracking-tight text-foreground transition-opacity hover:opacity-70"
           aria-label="Home"
         >
+          <img src="/logo.png" alt="Logo" className="h-6 w-6 rounded-sm" />
           shaik<span className="text-cyan-400">.</span>dev
         </a>
 
