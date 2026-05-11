@@ -54,7 +54,7 @@ export function Nav() {
           shaik<span className="text-cyan-400">.</span>dev
         </a>
 
-        <ul className="hidden items-center gap-1 sm:flex">
+        <ul className="flex items-center gap-1 overflow-x-auto whitespace-nowrap sm:flex-wrap pb-1 sm:pb-0">
           {siteConfig.navLinks.map((l) => {
             const isActive = active === l.href
             return (

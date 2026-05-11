@@ -5,7 +5,7 @@ import { FadeUp } from "@/components/ui/fade-up"
 import { ContactForm } from "@/components/ui/contact-form"
 import { AsciiTorus } from "@/components/ui/ascii-torus"
 
-const sectionLabel = "font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
+const sectionLabel = "font-mono text-xs uppercase tracking-[0.2em] text-foreground/70"
 
 export default function Page() {
   return (
@@ -105,7 +105,7 @@ export default function Page() {
                       rel="noopener noreferrer"
                       className="group flex flex-col gap-3 py-8"
                     >
-                      <div className="flex items-baseline justify-between gap-4">
+                      <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 mb-2">
                         <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-cyan-400">
                           {p.title}
                           <ArrowUpRight className="ml-1 inline h-4 w-4 -translate-y-0.5 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-60" />
@@ -244,7 +244,7 @@ export default function Page() {
                   Open to internships, freelance, and research collaborations. Drop a
                   line — I read every email.
                 </p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 font-mono text-sm">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-2 font-mono text-sm">
                   <a
                     href={`mailto:${siteConfig.email}`}
                     className="text-foreground transition-colors hover:text-cyan-400"

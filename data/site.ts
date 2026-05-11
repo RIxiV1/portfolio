@@ -65,7 +65,7 @@ export const siteConfig = {
       title: 'SubSentry',
       year: '2026',
       description:
-        'Your fin-bestie for tracking subs. Stop letting them ghost your bank account. 💸 No cap, just clarity. Secure AF.',
+        'A secure, streamlined platform for managing recurring subscriptions. Features intelligent tracking to identify unused services and clear dashboards for financial clarity.',
       tech: ['TypeScript', 'Lovable'],
       href: 'https://github.com/RIxiV1/SubSentry',
     },
@@ -108,7 +108,7 @@ export const siteConfig = {
       title: 'Recommendation Systems: The Math Behind Discovery',
       description:
         'Researching the algorithms that power modern content discovery and personalisation.',
-      date: 'In Progress',
+      date: 'Published',
       tag: 'AI/ML',
       url: 'https://medium.com/@shaiksuhaib360',
     },
@@ -116,7 +116,7 @@ export const siteConfig = {
       title: 'Network Theory: The Science of Connections',
       description:
         'The invisible threads that bind our world through mathematical relationships.',
-      date: 'Drafting',
+      date: 'Published',
       tag: 'Math',
       url: 'https://medium.com/@shaiksuhaib360',
     },
@@ -124,7 +124,7 @@ export const siteConfig = {
       title: 'Chaos Theory & The Butterfly Effect',
       description:
         'Why small changes lead to dramatically different and unpredictable outcomes.',
-      date: 'Drafting',
+      date: 'Published',
       tag: 'Science',
       url: 'https://medium.com/@shaiksuhaib360',
     },

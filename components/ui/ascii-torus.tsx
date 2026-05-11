@@ -14,6 +14,7 @@ export function AsciiTorus() {
   const frameRef = useRef<number>(0)
   const angleARef = useRef(0)
   const angleBRef = useRef(0)
+  const mouseRef = useRef({ x: 0, y: 0 })
 
   const render = useCallback(() => {
     const pre = preRef.current
@@ -109,16 +110,30 @@ export function AsciiTorus() {
 
     pre.textContent = result
 
-    // Slowly rotate
-    angleARef.current += 0.04
-    angleBRef.current += 0.02
+    // Rotate based on time and mouse position
+    const mx = mouseRef.current.x
+    const my = mouseRef.current.y
+    angleARef.current += 0.04 + (my * 0.05)
+    angleBRef.current += 0.02 + (mx * 0.05)
 
     frameRef.current = requestAnimationFrame(render)
   }, [])
 
   useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = {
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      }
+    }
+    
+    window.addEventListener('mousemove', handleMouseMove)
     frameRef.current = requestAnimationFrame(render)
-    return () => cancelAnimationFrame(frameRef.current)
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      cancelAnimationFrame(frameRef.current)
+    }
   }, [render])
 
   return (
