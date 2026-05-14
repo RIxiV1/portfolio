@@ -66,6 +66,20 @@
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-hidden,
+  html.cursor-hidden body,
+  html.cursor-hidden a,
+  html.cursor-hidden button,
+  html.cursor-hidden input,
+  html.cursor-hidden textarea,
+  html.cursor-hidden select,
+  html.cursor-hidden label,
+  html.cursor-hidden [role="button"] {
+    cursor: none;
+  }
+}
+
 @layer utilities {
   .grid-bg {
     background-image:

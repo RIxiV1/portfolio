@@ -1,23 +1,23 @@
 import { ArrowDownRight, ArrowUpRight, FileText } from "lucide-react"
 import { siteConfig } from "@/data/site"
-import { Cursor } from "@/components/ui/inverted-cursor"
+import { Cursor } from "@/components/ui/cursor"
 import { FadeUp } from "@/components/ui/fade-up"
 import { ContactForm } from "@/components/ui/contact-form"
-import { AsciiTorus } from "@/components/ui/ascii-torus"
+import { PointCloud } from "@/components/ui/point-cloud"
 
 const sectionLabel = "font-mono text-xs uppercase tracking-[0.2em] text-foreground/70"
 
 export default function Page() {
   return (
     <>
-      <Cursor size={56} />
+      <Cursor />
       <main className="relative">
         {/* HERO */}
         <section
           id="home"
           className="relative mx-auto flex min-h-svh max-w-3xl flex-col justify-center px-6 pt-32 pb-24"
         >
-          <AsciiTorus />
+          <PointCloud />
           <div className="space-y-8">
             <p className={sectionLabel}>
               <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 align-middle shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
