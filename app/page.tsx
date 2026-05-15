@@ -3,9 +3,11 @@ import { siteConfig } from "@/data/site"
 import { Cursor } from "@/components/ui/cursor"
 import { FadeUp } from "@/components/ui/fade-up"
 import { ContactForm } from "@/components/ui/contact-form"
-import { PointCloud } from "@/components/ui/point-cloud"
+import { CommandPalette } from "@/components/ui/command-palette"
+import { ExperienceTabs } from "@/components/ui/experience-tabs"
+import { ScrambleText } from "@/components/ui/scramble-text"
 
-const sectionLabel = "font-mono text-xs uppercase tracking-[0.2em] text-foreground/70"
+const sectionLabel = "font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
 
 export default function Page() {
   return (
@@ -17,7 +19,6 @@ export default function Page() {
           id="home"
           className="relative mx-auto flex min-h-svh max-w-3xl flex-col justify-center px-6 pt-32 pb-24"
         >
-          <PointCloud />
           <div className="space-y-8">
             <p className={sectionLabel}>
               <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 align-middle shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
@@ -42,16 +43,20 @@ export default function Page() {
                 href="#work"
                 className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-cyan-400"
               >
-                Selected Work
+                <ScrambleText>Selected Work</ScrambleText>
                 <ArrowDownRight className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
               </a>
               <a
                 href="#contact"
                 className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
               >
-                Get in Touch
+                <ScrambleText>Get in Touch</ScrambleText>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
+            </div>
+
+            <div className="max-w-md pt-6">
+              <CommandPalette />
             </div>
           </div>
         </section>
@@ -63,7 +68,7 @@ export default function Page() {
         >
           <FadeUp>
             <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>01 / About</p>
+              <p className={`${sectionLabel} pt-2`}>[01] / ABOUT</p>
               <div className="space-y-6">
                 {siteConfig.bio.map((p, i) => (
                   <p key={i} className="text-lg leading-relaxed text-foreground/90">
@@ -90,15 +95,15 @@ export default function Page() {
         >
           <FadeUp>
             <div className="mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>02 / Work</p>
+              <p className={`${sectionLabel} pt-2`}>[02] / WORK</p>
               <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
                 Selected projects.
               </h2>
             </div>
             <div className="md:pl-[136px]">
-              <ul className="border-t border-foreground/10">
+              <ul className="border-t border-foreground/[0.05]">
                 {siteConfig.projects.map((p) => (
-                  <li key={p.title} className="border-b border-foreground/10">
+                  <li key={p.title} className="border-b border-foreground/[0.05]">
                     <a
                       href={p.href}
                       target="_blank"
@@ -107,7 +112,7 @@ export default function Page() {
                     >
                       <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 mb-2">
                         <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-cyan-400">
-                          {p.title}
+                          <ScrambleText>{p.title}</ScrambleText>
                           <ArrowUpRight className="ml-1 inline h-4 w-4 -translate-y-0.5 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-60" />
                         </h3>
                         <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest tabular-nums text-muted-foreground">
@@ -121,7 +126,7 @@ export default function Page() {
                         {p.tech.map((t) => (
                           <li
                             key={t}
-                            className="rounded border border-foreground/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+                            className="rounded border border-foreground/[0.08] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
                           >
                             {t}
                           </li>
@@ -142,12 +147,12 @@ export default function Page() {
         >
           <FadeUp>
             <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>03 / Stack</p>
+              <p className={`${sectionLabel} pt-2`}>[03] / STACK</p>
               <div className="space-y-8">
                 {siteConfig.stack.map((g) => (
                   <div
                     key={g.group}
-                    className="grid grid-cols-[110px_1fr] items-baseline gap-6 border-b border-foreground/5 pb-5 last:border-b-0"
+                    className="grid grid-cols-[110px_1fr] items-baseline gap-6 border-b border-foreground/[0.05] pb-5 last:border-b-0"
                   >
                     <h3 className={sectionLabel}>{g.group}</h3>
                     <ul className="flex flex-wrap gap-x-6 gap-y-2 text-foreground/90">
@@ -169,19 +174,8 @@ export default function Page() {
         >
           <FadeUp>
             <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>04 / Journey</p>
-              <ul className="space-y-12">
-                {siteConfig.experience.map((e) => (
-                  <li key={e.role} className="space-y-2">
-                    <span className={sectionLabel}>{e.period}</span>
-                    <h3 className="text-xl font-medium tracking-tight">{e.role}</h3>
-                    <p className="text-sm text-muted-foreground">{e.org}</p>
-                    <p className="pt-1 leading-relaxed text-foreground/80">
-                      {e.description}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+              <p className={`${sectionLabel} pt-2`}>[04] / JOURNEY</p>
+              <ExperienceTabs items={siteConfig.experience} />
             </div>
           </FadeUp>
         </section>
@@ -193,15 +187,15 @@ export default function Page() {
         >
           <FadeUp>
             <div className="mb-10 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>05 / Writing</p>
+              <p className={`${sectionLabel} pt-2`}>[05] / WRITING</p>
               <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
                 Notes & research.
               </h2>
             </div>
             <div className="md:pl-[136px]">
-              <ul className="border-t border-foreground/10">
+              <ul className="border-t border-foreground/[0.05]">
                 {siteConfig.writing.map((w) => (
-                  <li key={w.title} className="border-b border-foreground/10">
+                  <li key={w.title} className="border-b border-foreground/[0.05]">
                     <a
                       href={w.url}
                       target="_blank"
@@ -214,7 +208,7 @@ export default function Page() {
                         <span>{w.date}</span>
                       </div>
                       <h3 className="flex items-center gap-2 text-xl font-medium tracking-tight transition-colors group-hover:text-cyan-400">
-                        {w.title}
+                        <ScrambleText>{w.title}</ScrambleText>
                         <ArrowUpRight className="h-4 w-4 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-60" />
                       </h3>
                       <p className="max-w-xl leading-relaxed text-muted-foreground">
@@ -235,7 +229,7 @@ export default function Page() {
         >
           <FadeUp>
             <div className="mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>06 / Contact</p>
+              <p className={`${sectionLabel} pt-2`}>[06] / CONTACT</p>
               <div className="space-y-5">
                 <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
                   Let&apos;s build something.
@@ -249,7 +243,7 @@ export default function Page() {
                     href={`mailto:${siteConfig.email}`}
                     className="text-foreground transition-colors hover:text-cyan-400"
                   >
-                    {siteConfig.email}
+                    <ScrambleText>{siteConfig.email}</ScrambleText>
                   </a>
                   {siteConfig.socials.map(({ icon: Icon, href, label, handle }) => (
                     <a
@@ -261,7 +255,7 @@ export default function Page() {
                       className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
                     >
                       <Icon className="h-3.5 w-3.5" />
-                      {handle}
+                      <ScrambleText>{handle}</ScrambleText>
                     </a>
                   ))}
                 </div>
@@ -278,7 +272,7 @@ export default function Page() {
                 className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 <FileText className="h-3.5 w-3.5" />
-                Download Résumé
+                <ScrambleText>Download Résumé</ScrambleText>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
@@ -286,7 +280,7 @@ export default function Page() {
         </section>
 
         {/* FOOTER */}
-        <footer className="mt-12 border-t border-foreground/5">
+        <footer className="mt-12 border-t border-foreground/[0.05]">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-8">
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               © {new Date().getFullYear()} — {siteConfig.name}

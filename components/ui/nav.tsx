@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { siteConfig } from "@/data/site"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/ui/logo"
+import { ScrambleText } from "@/components/ui/scramble-text"
 
 export function Nav() {
   const [active, setActive] = useState<string>("")
@@ -77,7 +78,7 @@ export function Nav() {
                   >
                     ›
                   </span>
-                  {l.name}
+                  <ScrambleText>{l.name}</ScrambleText>
                 </a>
               </li>
             )
