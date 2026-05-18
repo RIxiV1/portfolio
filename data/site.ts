@@ -9,6 +9,13 @@ export const siteConfig = {
   email: 'shaiksuhaib360@gmail.com',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://suhaib.dev',
   status: 'Open to internships & freelance',
+
+  now: [
+    'shipping SubSentry v2',
+    'writing: recsys deep dive',
+    'open to internships',
+  ],
+
   resumeUrl:
     'https://drive.google.com/file/d/1ZaHawnbNC8nFV-uir2fsXjMqfoUzO4YJ/view?usp=sharing',
 

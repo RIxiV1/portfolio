@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { siteConfig } from "@/data/site"
 import { cn } from "@/lib/utils"
 
@@ -27,9 +27,19 @@ const COMMANDS: Record<string, Command> = {
   clear:   { hint: 'clear',   run: () => '' },
 }
 
+const COMMAND_KEYS = Object.keys(COMMANDS).concat(['help'])
+
 export function CommandPalette() {
   const [value, setValue] = useState('')
   const [feedback, setFeedback] = useState<{ msg: string; ok: boolean } | null>(null)
+
+  // Best autocomplete match for the current input.
+  const suggestion = useMemo(() => {
+    const cmd = value.trim().toLowerCase()
+    if (!cmd) return ''
+    const match = COMMAND_KEYS.find((k) => k.startsWith(cmd) && k !== cmd)
+    return match ? match.slice(cmd.length) : ''
+  }, [value])
 
   const exec = (raw: string) => {
     const cmd = raw.trim().toLowerCase()
@@ -58,21 +68,51 @@ export function CommandPalette() {
     }
   }
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      exec(value)
+    } else if ((e.key === 'Tab' || e.key === 'ArrowRight') && suggestion) {
+      // Only autocomplete on ArrowRight if caret is at the end.
+      if (e.key === 'ArrowRight') {
+        const input = e.currentTarget
+        if (input.selectionStart !== value.length) return
+      }
+      e.preventDefault()
+      setValue(value + suggestion)
+    }
+  }
+
   return (
     <div className="font-mono text-xs">
       <div className="flex items-center gap-2 border border-foreground/[0.08] bg-foreground/[0.02] px-3 py-2 transition-colors focus-within:border-cyan-400/40">
-        <span className="text-cyan-400 select-none">$</span>
-        <input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') exec(value) }}
-          placeholder="type 'help' to interact"
-          aria-label="Command input"
-          spellCheck={false}
-          autoComplete="off"
-          className="flex-1 bg-transparent text-foreground outline-none placeholder:text-muted-foreground/40"
-        />
-        <kbd className="rounded border border-foreground/10 px-1.5 py-0.5 text-[10px] text-muted-foreground">↵</kbd>
+        <span className="select-none text-cyan-400">$</span>
+
+        {/* Input layered over ghost suggestion text */}
+        <div className="relative flex-1">
+          <input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={onKeyDown}
+            placeholder="type 'help' to interact"
+            aria-label="Command input"
+            spellCheck={false}
+            autoComplete="off"
+            className="relative z-10 w-full bg-transparent text-foreground outline-none placeholder:text-muted-foreground/40"
+          />
+          {suggestion && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-0 whitespace-pre text-muted-foreground/35"
+            >
+              <span className="invisible">{value}</span>
+              {suggestion}
+            </span>
+          )}
+        </div>
+
+        <kbd className="rounded border border-foreground/10 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+          {suggestion ? '⇥' : '↵'}
+        </kbd>
       </div>
       {feedback && (
         <p

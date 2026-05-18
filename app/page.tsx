@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/ui/contact-form"
 import { CommandPalette } from "@/components/ui/command-palette"
 import { ExperienceTabs } from "@/components/ui/experience-tabs"
 import { ScrambleText } from "@/components/ui/scramble-text"
+import { NowTicker } from "@/components/ui/now-ticker"
 
 const sectionLabel = "font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
 
@@ -20,15 +21,23 @@ export default function Page() {
           className="relative mx-auto flex min-h-svh max-w-3xl flex-col justify-center px-6 pt-32 pb-24"
         >
           <div className="space-y-8">
-            <p className={sectionLabel}>
-              <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 align-middle shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-              Portfolio · 2026
-            </p>
+            <div className={`${sectionLabel} flex flex-wrap items-center gap-x-4 gap-y-2`}>
+              <span className="flex items-center">
+                <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 align-middle shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+                Portfolio · 2026
+              </span>
+              <span className="opacity-30">/</span>
+              <span className="flex items-center gap-2 normal-case tracking-normal">
+                <span className="text-cyan-400">NOW</span>
+                <NowTicker items={siteConfig.now} />
+              </span>
+            </div>
 
             <h1 className="text-5xl font-medium leading-[0.95] tracking-tight md:text-7xl">
-              Shaik Mohammed
+              <ScrambleText autoStart delay={150}>Shaik Mohammed</ScrambleText>
               <br />
-              Suhaib<span className="text-cyan-400">.</span>
+              <ScrambleText autoStart delay={420}>Suhaib</ScrambleText>
+              <span className="text-cyan-400">.</span>
             </h1>
 
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
