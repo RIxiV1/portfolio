@@ -17,7 +17,7 @@ export default async function OpengraphImage() {
           justifyContent: 'space-between',
           padding: '72px',
           background:
-            'radial-gradient(ellipse at top left, rgba(16,185,129,0.18), transparent 55%), radial-gradient(ellipse at bottom right, rgba(37,106,244,0.18), transparent 55%), #000',
+            'radial-gradient(ellipse at top left, rgba(34,211,238,0.22), transparent 55%), radial-gradient(ellipse at bottom right, rgba(34,211,238,0.10), transparent 55%), #030712',
           color: '#fff',
           fontFamily: 'sans-serif',
         }}
@@ -30,7 +30,7 @@ export default async function OpengraphImage() {
             fontSize: 22,
             letterSpacing: '0.25em',
             textTransform: 'uppercase',
-            color: '#34d399',
+            color: '#22d3ee',
           }}
         >
           <div
@@ -38,8 +38,8 @@ export default async function OpengraphImage() {
               width: 12,
               height: 12,
               borderRadius: 999,
-              background: '#34d399',
-              boxShadow: '0 0 16px rgba(52,211,153,0.8)',
+              background: '#22d3ee',
+              boxShadow: '0 0 16px rgba(34,211,238,0.8)',
             }}
           />
           Available for work

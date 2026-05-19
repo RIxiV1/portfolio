@@ -7,13 +7,13 @@ export const siteConfig = {
   focus: 'Agentic AI · Recommendation Systems',
   location: 'Chennai, India',
   email: 'shaiksuhaib360@gmail.com',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://suhaib.dev',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-suhaibdev.vercel.app',
   status: 'Open to internships & freelance',
 
   now: [
-    'shipping SubSentry v2',
-    'writing: recsys deep dive',
-    'open to internships',
+    'open to internships & freelance',
+    'writing: recommendation systems',
+    'B.Tech IT @ Vel Tech',
   ],
 
   resumeUrl:
