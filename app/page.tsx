@@ -47,17 +47,17 @@ export default function Page() {
               in Chennai, shipping side projects in between.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-2">
+            <div className="flex flex-col gap-y-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 pt-2">
               <a
                 href="#work"
-                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-cyan-400"
+                className="group inline-flex w-full sm:w-auto items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-cyan-400"
               >
                 <ScrambleText>Selected Work</ScrambleText>
                 <ArrowDownRight className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
               </a>
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+                className="group inline-flex w-full sm:w-auto items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 <ScrambleText>Get in Touch</ScrambleText>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
