@@ -79,9 +79,9 @@ export function Cursor() {
       style={{ x: sx, y: sy, opacity: isReady ? 1 : 0 }}
     >
       <motion.svg
-        width="28"
-        height="28"
-        viewBox="0 0 28 28"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
         fill="none"
         style={{
           translateX: '-50%',
@@ -90,53 +90,37 @@ export function Cursor() {
           willChange: 'transform',
         }}
         animate={{
-          rotate: isHovering ? 45 : 0,
-          scale: isPressed ? 0.85 : isHovering ? 1.35 : 1,
+          scale: isPressed ? 0.7 : isHovering ? 1.55 : 1,
         }}
-        transition={{ type: 'spring', stiffness: 380, damping: 22 }}
+        transition={{ type: 'spring', stiffness: 420, damping: 26 }}
       >
-        {/* Top arm */}
-        <line
-          x1="14"
-          y1="2"
-          x2="14"
-          y2="10"
+        {/* Corner brackets — viewfinder framing the cursor target */}
+        <path
+          d="M4 10 L4 4 L10 4"
           stroke="#22d3ee"
-          strokeWidth="1.5"
-          strokeLinecap="round"
+          strokeWidth="1.25"
+          strokeLinecap="square"
         />
-        {/* Bottom arm */}
-        <line
-          x1="14"
-          y1="18"
-          x2="14"
-          y2="26"
+        <path
+          d="M22 4 L28 4 L28 10"
           stroke="#22d3ee"
-          strokeWidth="1.5"
-          strokeLinecap="round"
+          strokeWidth="1.25"
+          strokeLinecap="square"
         />
-        {/* Left arm */}
-        <line
-          x1="2"
-          y1="14"
-          x2="10"
-          y2="14"
+        <path
+          d="M4 22 L4 28 L10 28"
           stroke="#22d3ee"
-          strokeWidth="1.5"
-          strokeLinecap="round"
+          strokeWidth="1.25"
+          strokeLinecap="square"
         />
-        {/* Right arm */}
-        <line
-          x1="18"
-          y1="14"
-          x2="26"
-          y2="14"
+        <path
+          d="M22 28 L28 28 L28 22"
           stroke="#22d3ee"
-          strokeWidth="1.5"
-          strokeLinecap="round"
+          strokeWidth="1.25"
+          strokeLinecap="square"
         />
-        {/* Center pixel */}
-        <circle cx="14" cy="14" r="1" fill="#22d3ee" />
+        {/* Precision dot — always marks exact pointer position */}
+        <circle cx="16" cy="16" r="1.25" fill="#22d3ee" />
       </motion.svg>
     </motion.div>
   )

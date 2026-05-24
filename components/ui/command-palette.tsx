@@ -6,12 +6,23 @@ import { cn } from "@/lib/utils"
 
 type Command = {
   hint: string
-  run: () => string | void
+  run: () => string | Promise<string> | void
+  // Hidden commands work but don't appear in `help` or autocomplete — easter eggs.
+  hidden?: boolean
 }
 
 const scrollTo = (id: string) => () => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   return `→ jumping to #${id}`
+}
+
+const copyEmail = async () => {
+  try {
+    await navigator.clipboard.writeText(siteConfig.email)
+    return `→ copied ${siteConfig.email} to clipboard`
+  } catch {
+    return `?? clipboard blocked — email: ${siteConfig.email}`
+  }
 }
 
 const COMMANDS: Record<string, Command> = {
@@ -22,12 +33,22 @@ const COMMANDS: Record<string, Command> = {
   writing: { hint: 'writing', run: scrollTo('writing') },
   contact: { hint: 'contact', run: scrollTo('contact') },
   email:   { hint: 'email',   run: () => { window.location.href = `mailto:${siteConfig.email}`; return `→ opening mail client` } },
+  copy:    { hint: 'copy',    run: copyEmail },
   resume:  { hint: 'resume',  run: () => { window.open(siteConfig.resumeUrl, '_blank'); return `→ opening résumé` } },
   github:  { hint: 'github',  run: () => { window.open('https://github.com/RIxiV1', '_blank'); return `→ opening github` } },
   clear:   { hint: 'clear',   run: () => '' },
+
+  // Easter eggs — discovery is the reward; keep them out of help & autocomplete.
+  whoami:  { hint: 'whoami',  hidden: true, run: () => `→ ${siteConfig.name.toLowerCase().replace(/\s+/g, '_')} (uid=1000)` },
+  sudo:    { hint: 'sudo',    hidden: true, run: () => `?? ${siteConfig.name.split(' ')[0].toLowerCase()} is not in the sudoers file. This incident will be reported.` },
+  ls:      { hint: 'ls',      hidden: true, run: () => `about/  work/  stack/  journey/  writing/  contact/` },
+  pwd:     { hint: 'pwd',     hidden: true, run: () => `/home/visitor/shaik.dev` },
+  coffee:  { hint: 'coffee',  hidden: true, run: () => `→ brewing... (HTTP 418 I'm a teapot)` },
+  exit:    { hint: 'exit',    hidden: true, run: () => `?? nice try — you're stuck here with me` },
 }
 
-const COMMAND_KEYS = Object.keys(COMMANDS).concat(['help'])
+const COMMAND_KEYS = Object.keys(COMMANDS).filter((k) => !COMMANDS[k].hidden).concat(['help'])
+const VISIBLE_KEYS = Object.keys(COMMANDS).filter((k) => !COMMANDS[k].hidden)
 
 export function CommandPalette() {
   const [value, setValue] = useState('')
@@ -41,13 +62,13 @@ export function CommandPalette() {
     return match ? match.slice(cmd.length) : ''
   }, [value])
 
-  const exec = (raw: string) => {
+  const exec = async (raw: string) => {
     const cmd = raw.trim().toLowerCase()
     if (!cmd) return
 
     if (cmd === 'help' || cmd === '?') {
       setFeedback({
-        msg: Object.keys(COMMANDS).join(' · '),
+        msg: VISIBLE_KEYS.join(' · '),
         ok: true,
       })
       setValue('')
@@ -56,7 +77,7 @@ export function CommandPalette() {
 
     const command = COMMANDS[cmd]
     if (command) {
-      const result = command.run()
+      const result = await command.run()
       if (result === '') {
         setFeedback(null)
       } else {
