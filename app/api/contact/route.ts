@@ -68,19 +68,43 @@ function getResend(): Resend | null {
   return _resend;
 }
 
-export async function POST(req: Request) {
-  const origin = req.headers.get('origin');
+function allowedOriginsFor(req: Request): Set<string> {
   const host = req.headers.get('host');
-  const allowedOrigins = new Set(
+  return new Set(
     [
       host ? `https://${host}` : null,
       host ? `http://${host}` : null,
       siteConfig.url,
     ].filter((v): v is string => v !== null),
   );
+}
+
+function corsHeaders(origin: string): HeadersInit {
+  return {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400',
+    Vary: 'Origin',
+  };
+}
+
+export async function OPTIONS(req: Request) {
+  const origin = req.headers.get('origin');
+  const allowed = allowedOriginsFor(req);
+  if (!origin || !allowed.has(origin)) {
+    return new NextResponse(null, { status: 403 });
+  }
+  return new NextResponse(null, { status: 204, headers: corsHeaders(origin) });
+}
+
+export async function POST(req: Request) {
+  const origin = req.headers.get('origin');
+  const allowedOrigins = allowedOriginsFor(req);
   if (!origin || !allowedOrigins.has(origin)) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
+  const cors = corsHeaders(origin);
 
   // x-real-ip is set by trusted proxies (Vercel/Cloudflare).
   // Bare x-forwarded-for is client-spoofable, so it's the last resort.
@@ -90,7 +114,7 @@ export async function POST(req: Request) {
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown';
   if (!(await allow(ip))) {
-    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429, headers: cors });
   }
 
   let body: {
@@ -102,12 +126,12 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400, headers: cors });
   }
 
   // Honeypot: real users never fill this; bots fill every field.
   if (body.company && body.company.length > 0) {
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, { headers: cors });
   }
 
   const name = body.name?.trim() ?? '';
@@ -115,18 +139,18 @@ export async function POST(req: Request) {
   const message = body.message?.trim() ?? '';
 
   if (name.length < 2 || name.length > 80) {
-    return NextResponse.json({ error: 'Name must be 2–80 characters' }, { status: 400 });
+    return NextResponse.json({ error: 'Name must be 2–80 characters' }, { status: 400, headers: cors });
   }
   if (!EMAIL_RE.test(email) || email.length > 120) {
-    return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
+    return NextResponse.json({ error: 'Valid email required' }, { status: 400, headers: cors });
   }
   if (message.length < 10 || message.length > 4000) {
-    return NextResponse.json({ error: 'Message must be 10–4000 characters' }, { status: 400 });
+    return NextResponse.json({ error: 'Message must be 10–4000 characters' }, { status: 400, headers: cors });
   }
 
   const resend = getResend();
   if (!resend) {
-    return NextResponse.json({ error: 'Email service not configured' }, { status: 503 });
+    return NextResponse.json({ error: 'Email service not configured' }, { status: 503, headers: cors });
   }
 
   const fromAddress = process.env.CONTACT_FROM_EMAIL ?? 'onboarding@resend.dev';
@@ -146,10 +170,10 @@ export async function POST(req: Request) {
     });
 
     if (error) {
-      return NextResponse.json({ error: 'Failed to send' }, { status: 502 });
+      return NextResponse.json({ error: 'Failed to send' }, { status: 502, headers: cors });
     }
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, { headers: cors });
   } catch {
-    return NextResponse.json({ error: 'Failed to send' }, { status: 502 });
+    return NextResponse.json({ error: 'Failed to send' }, { status: 502, headers: cors });
   }
 }

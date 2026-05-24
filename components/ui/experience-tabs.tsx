@@ -17,18 +17,26 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
 
   return (
     <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-12">
-      {/* Tab rail */}
-      <ul className="border-l border-foreground/[0.08]" role="tablist" aria-label="Experience">
+      {/* Tab rail — horizontal scroll on mobile, vertical rail on md+ */}
+      <ul
+        role="tablist"
+        aria-label="Experience"
+        className={cn(
+          "flex snap-x snap-mandatory gap-2 overflow-x-auto border-b border-foreground/[0.08] pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          "md:flex-col md:gap-0 md:overflow-visible md:border-b-0 md:border-l md:border-foreground/[0.08] md:pb-0"
+        )}
+      >
         {items.map((item, i) => {
           const isActive = i === active
           return (
-            <li key={i}>
+            <li key={i} className="snap-start shrink-0 md:shrink">
               <button
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "block w-full -ml-px border-l py-3 pl-4 text-left transition-colors",
+                  "block w-full whitespace-nowrap border-b px-3 py-2 text-left transition-colors -mb-px",
+                  "md:whitespace-normal md:border-b-0 md:border-l md:py-3 md:pl-4 md:pr-0 md:-ml-px md:mb-0",
                   isActive
                     ? "border-cyan-400"
                     : "border-transparent hover:border-foreground/30"

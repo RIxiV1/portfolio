@@ -182,7 +182,6 @@ export function ContactForm() {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18 }}
             role="alert"
-            aria-live="assertive"
             className="flex items-start gap-3 border border-red-400/30 bg-red-400/[0.05] p-4 text-sm"
           >
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />

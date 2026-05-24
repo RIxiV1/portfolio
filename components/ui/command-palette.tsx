@@ -102,7 +102,7 @@ export function CommandPalette() {
           {suggestion && (
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-0 whitespace-pre text-muted-foreground/35"
+              className="pointer-events-none absolute inset-0 z-0 whitespace-pre text-muted-foreground/55"
             >
               <span className="invisible">{value}</span>
               {suggestion}
