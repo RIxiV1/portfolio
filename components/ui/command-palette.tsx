@@ -105,40 +105,61 @@ export function CommandPalette() {
 
   return (
     <div className="font-mono text-xs">
-      <div className="flex items-center gap-2 border border-foreground/[0.08] bg-foreground/[0.02] px-3 py-2 transition-colors focus-within:border-cyan-400/40">
-        <span className="select-none text-cyan-400">$</span>
-
-        {/* Input layered over ghost suggestion text */}
-        <div className="relative flex-1">
-          <input
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyDown={onKeyDown}
-            placeholder="type 'help' to interact"
-            aria-label="Command input"
-            spellCheck={false}
-            autoComplete="off"
-            className="relative z-10 w-full bg-transparent text-foreground outline-none placeholder:text-muted-foreground/40"
-          />
-          {suggestion && (
+      {/* macOS-style window chrome */}
+      <div className="overflow-hidden rounded-md border border-foreground/[0.08] bg-foreground/[0.02] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-colors focus-within:border-cyan-400/40">
+        <div className="flex items-center gap-2 border-b border-foreground/[0.06] bg-foreground/[0.015] px-3 py-1.5">
+          <div className="flex items-center gap-1.5">
+            <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]/80" />
+            <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/80" />
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-0 whitespace-pre text-muted-foreground/55"
+              className="relative h-2.5 w-2.5 rounded-full bg-[#28c840]/80"
             >
-              <span className="invisible">{value}</span>
-              {suggestion}
+              <span className="absolute inset-0 animate-ping rounded-full bg-[#28c840]/60" />
             </span>
-          )}
+          </div>
+          <span className="flex-1 select-none text-center text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
+            shaik@portfolio: ~/now — zsh — 80×24
+          </span>
+          {/* Spacer to balance the traffic lights so title centers visually */}
+          <div aria-hidden="true" className="w-[42px]" />
         </div>
 
-        <kbd className="rounded border border-foreground/10 px-1.5 py-0.5 text-[10px] text-muted-foreground">
-          {suggestion ? '⇥' : '↵'}
-        </kbd>
+        <div className="flex items-center gap-2 px-3 py-2.5">
+          <span className="select-none text-cyan-400">$</span>
+
+          {/* Input layered over ghost suggestion text */}
+          <div className="relative flex-1">
+            <input
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyDown={onKeyDown}
+              placeholder="type 'help' to interact"
+              aria-label="Command input"
+              spellCheck={false}
+              autoComplete="off"
+              className="relative z-10 w-full bg-transparent text-foreground outline-none placeholder:text-muted-foreground/40"
+            />
+            {suggestion && (
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-0 whitespace-pre text-muted-foreground/55"
+              >
+                <span className="invisible">{value}</span>
+                {suggestion}
+              </span>
+            )}
+          </div>
+
+          <kbd className="rounded border border-foreground/10 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+            {suggestion ? '⇥' : '↵'}
+          </kbd>
+        </div>
       </div>
       {feedback && (
         <p
           className={cn(
-            "mt-2 text-[11px]",
+            "mt-2 px-1 text-[11px]",
             feedback.ok ? "text-muted-foreground" : "text-red-400/80"
           )}
         >

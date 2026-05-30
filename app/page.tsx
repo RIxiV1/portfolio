@@ -7,13 +7,38 @@ import { CommandPalette } from "@/components/ui/command-palette"
 import { ExperienceTabs } from "@/components/ui/experience-tabs"
 import { ScrambleText } from "@/components/ui/scramble-text"
 import { NowTicker } from "@/components/ui/now-ticker"
+import { BootLog } from "@/components/ui/boot-log"
+import { ProjectArt } from "@/components/ui/project-art"
+import { RecommendationLab } from "@/components/ui/recommendation-lab"
+import { MagneticLink } from "@/components/ui/magnetic-link"
+import { ScrollRail } from "@/components/ui/scroll-rail"
 
 const sectionLabel = "font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
+
+function SectionIndex({ n }: { n: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="pointer-events-none absolute -left-2 top-20 hidden select-none font-mono text-[10rem] font-bold leading-none tabular-nums text-foreground/[0.025] md:block lg:-left-4 lg:text-[12rem]"
+    >
+      {n}
+    </span>
+  )
+}
+
+function projectDomain(href: string) {
+  try {
+    return new URL(href).hostname.replace(/^www\./, '')
+  } catch {
+    return null
+  }
+}
 
 export default function Page() {
   return (
     <>
       <Cursor />
+      <ScrollRail />
       <main className="relative">
         {/* HERO */}
         <section
@@ -21,6 +46,14 @@ export default function Page() {
           className="relative mx-auto flex min-h-svh max-w-3xl flex-col justify-center px-6 pt-32 pb-24"
         >
           <div className="space-y-8">
+            <BootLog
+              lines={[
+                "./shaik.dev --boot",
+                "identity ok · location chennai · b.tech IT",
+                "mode: open for work",
+                "ready.",
+              ]}
+            />
             <div className={`${sectionLabel} flex flex-wrap items-center gap-x-4 gap-y-2`}>
               <span className="flex items-center">
                 <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 align-middle shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
@@ -48,20 +81,20 @@ export default function Page() {
             </p>
 
             <div className="flex flex-col gap-y-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 pt-2">
-              <a
+              <MagneticLink
                 href="#work"
                 className="group inline-flex w-full sm:w-auto items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-cyan-400"
               >
                 <ScrambleText>Selected Work</ScrambleText>
                 <ArrowDownRight className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
-              </a>
-              <a
+              </MagneticLink>
+              <MagneticLink
                 href="#contact"
                 className="group inline-flex w-full sm:w-auto items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 <ScrambleText>Get in Touch</ScrambleText>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              </MagneticLink>
             </div>
 
             <div className="max-w-md pt-6">
@@ -73,11 +106,12 @@ export default function Page() {
         {/* ABOUT */}
         <section
           id="about"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
         >
+          <SectionIndex n="01" />
           <FadeUp>
-            <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>[01] / ABOUT</p>
+            <div className="relative grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ ABOUT</p>
               <div className="space-y-6">
                 {siteConfig.bio.map((p, i) => (
                   <p key={i} className="text-lg leading-relaxed text-foreground/90">
@@ -100,51 +134,126 @@ export default function Page() {
         {/* WORK */}
         <section
           id="work"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
         >
+          <SectionIndex n="02" />
           <FadeUp>
-            <div className="mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>[02] / WORK</p>
+            <div className="relative mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ WORK</p>
               <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
                 Selected projects.
               </h2>
             </div>
             <div className="md:pl-[136px]">
               <ul className="border-t border-foreground/[0.05]">
-                {siteConfig.projects.map((p) => (
-                  <li key={p.title} className="border-b border-foreground/[0.05]">
-                    <a
-                      href={p.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col gap-3 py-8"
+                {siteConfig.projects.map((p, i) => {
+                  const domain = projectDomain(p.href)
+                  return (
+                    <li
+                      key={p.title}
+                      className="border-b border-foreground/[0.05] transition-colors hover:border-[color:var(--project-accent)]/30"
+                      style={{ ['--project-accent' as string]: p.accent } as React.CSSProperties}
                     >
-                      <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 mb-2">
-                        <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-cyan-400">
-                          <ScrambleText>{p.title}</ScrambleText>
-                          <ArrowUpRight className="ml-1 inline h-4 w-4 -translate-y-0.5 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-60" />
-                        </h3>
-                        <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest tabular-nums text-muted-foreground">
-                          {p.year}
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative grid grid-cols-[36px_1fr] gap-x-4 gap-y-2 py-8"
+                      >
+                        <ProjectArt
+                          seed={p.title}
+                          className="pointer-events-none absolute right-0 top-6 hidden h-20 w-20 md:block"
+                        />
+                        <span className="pt-2 font-mono text-[10px] uppercase tracking-widest tabular-nums text-muted-foreground/50 transition-colors group-hover:text-[color:var(--project-accent)]">
+                          P{String(i + 1).padStart(2, '0')}
                         </span>
-                      </div>
-                      <p className="max-w-xl leading-relaxed text-muted-foreground">
-                        {p.description}
-                      </p>
-                      <ul className="flex flex-wrap gap-2 pt-2">
-                        {p.tech.map((t) => (
-                          <li
-                            key={t}
-                            className="rounded border border-foreground/[0.08] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
-                          >
-                            {t}
-                          </li>
-                        ))}
-                      </ul>
-                    </a>
-                  </li>
-                ))}
+                        <div className="flex flex-col gap-3 md:pr-28">
+                          <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-4">
+                            <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-[color:var(--project-accent)]">
+                              <ScrambleText>{p.title}</ScrambleText>
+                              <ArrowUpRight className="ml-1 inline h-4 w-4 -translate-y-0.5 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-60" />
+                            </h3>
+                            <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest tabular-nums text-muted-foreground">
+                              {p.year}
+                            </span>
+                          </div>
+                          <p className="max-w-xl leading-relaxed text-muted-foreground">
+                            {p.description}
+                          </p>
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-2">
+                            <ul className="flex flex-wrap gap-2">
+                              {p.tech.map((t) => (
+                                <li
+                                  key={t}
+                                  className="rounded border border-foreground/[0.08] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-colors group-hover:border-[color:var(--project-accent)]/30"
+                                >
+                                  {t}
+                                </li>
+                              ))}
+                            </ul>
+                            {domain && (
+                              <span className="font-mono text-[10px] uppercase tracking-widest text-[color:var(--project-accent)]/70 opacity-0 transition-opacity group-hover:opacity-100">
+                                ↗ {domain}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* INTERSTITIAL — editorial layout break between products and the math */}
+        <section
+          aria-hidden="true"
+          className="relative mx-auto max-w-3xl px-6 py-24"
+        >
+          <FadeUp>
+            <div className="relative md:pl-[136px]">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-2 -top-10 select-none font-serif text-[7rem] font-bold leading-none text-foreground/[0.05] md:text-[10rem]"
+              >
+                &ldquo;
+              </span>
+              <p className="relative text-2xl font-medium leading-[1.15] tracking-tight md:text-4xl lg:text-5xl">
+                Discovery is{" "}
+                <span className="italic text-cyan-400">math wearing a UI</span>.
+              </p>
+              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground/55">
+                — note to self · on recommendations
+              </p>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* LAB */}
+        <section
+          id="lab"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        >
+          <SectionIndex n="03" />
+          <FadeUp>
+            <div className="relative mb-10 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ LAB</p>
+              <div className="space-y-4">
+                <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
+                  Recommendation graph.
+                </h2>
+                <p className="max-w-xl leading-relaxed text-muted-foreground">
+                  A toy of the math I&apos;m writing about — twelve items across three
+                  domains, edges weighted by similarity. Hover any node to see its
+                  1-hop neighborhood; that&apos;s the candidate pool a recommender
+                  draws from before re-ranking.
+                </p>
+              </div>
+            </div>
+            <div className="md:pl-[136px]">
+              <RecommendationLab />
             </div>
           </FadeUp>
         </section>
@@ -152,21 +261,29 @@ export default function Page() {
         {/* STACK */}
         <section
           id="stack"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
         >
+          <SectionIndex n="04" />
           <FadeUp>
-            <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>[03] / STACK</p>
-              <div className="space-y-8">
+            <div className="relative grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ STACK</p>
+              <div className="space-y-6">
                 {siteConfig.stack.map((g) => (
                   <div
                     key={g.group}
                     className="grid grid-cols-[110px_1fr] items-baseline gap-6 border-b border-foreground/[0.05] pb-5 last:border-b-0"
                   >
                     <h3 className={sectionLabel}>{g.group}</h3>
-                    <ul className="flex flex-wrap gap-x-6 gap-y-2 text-foreground/90">
-                      {g.items.map((t) => (
-                        <li key={t}>{t}</li>
+                    <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-sm">
+                      {g.items.map((t, i) => (
+                        <li key={t} className="flex items-center gap-3">
+                          <span className={i === 0 ? "text-cyan-400" : "text-muted-foreground"}>
+                            {t}
+                          </span>
+                          {i < g.items.length - 1 && (
+                            <span aria-hidden="true" className="text-foreground/15">·</span>
+                          )}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -179,11 +296,12 @@ export default function Page() {
         {/* JOURNEY */}
         <section
           id="journey"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
         >
+          <SectionIndex n="05" />
           <FadeUp>
-            <div className="grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>[04] / JOURNEY</p>
+            <div className="relative grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ JOURNEY</p>
               <ExperienceTabs items={siteConfig.experience} />
             </div>
           </FadeUp>
@@ -192,11 +310,12 @@ export default function Page() {
         {/* WRITING */}
         <section
           id="writing"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
         >
+          <SectionIndex n="06" />
           <FadeUp>
-            <div className="mb-10 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>[05] / WRITING</p>
+            <div className="relative mb-10 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ WRITING</p>
               <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
                 Notes & research.
               </h2>
@@ -234,11 +353,12 @@ export default function Page() {
         {/* CONTACT */}
         <section
           id="contact"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+          className="relative mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
         >
+          <SectionIndex n="07" />
           <FadeUp>
-            <div className="mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
-              <p className={`${sectionLabel} pt-2`}>[06] / CONTACT</p>
+            <div className="relative mb-12 grid gap-8 md:grid-cols-[120px_1fr] md:gap-16">
+              <p className={`${sectionLabel} pt-2`}>/ CONTACT</p>
               <div className="space-y-5">
                 <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
                   Let&apos;s build something.
@@ -290,7 +410,12 @@ export default function Page() {
 
         {/* FOOTER */}
         <footer className="mt-12 border-t border-foreground/[0.05]">
-          <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-8">
+          <div className="mx-auto max-w-3xl px-6 pt-8">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground/40">
+              // sys.ok · node.chennai · build.master · {new Date().getFullYear()}
+            </p>
+          </div>
+          <div className="mx-auto flex max-w-3xl items-center justify-between px-6 pt-3 pb-8">
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               © {new Date().getFullYear()} — {siteConfig.name}
             </p>

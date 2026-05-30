@@ -38,6 +38,7 @@ export const siteConfig = {
   navLinks: [
     { name: 'About', href: '#about' },
     { name: 'Work', href: '#work' },
+    { name: 'Lab', href: '#lab' },
     { name: 'Stack', href: '#stack' },
     { name: 'Writing', href: '#writing' },
     { name: 'Contact', href: '#contact' },
@@ -51,6 +52,7 @@ export const siteConfig = {
         'AI-powered resume screening agent built with n8n and Lovable. Candidates upload a PDF resume and JD; the workflow extracts text, scores the match with an LLM, returns a structured report (score, summary, strengths, gaps, next steps), and can optionally send interview or rejection emails automatically.',
       tech: ['n8n', 'Lovable', 'OpenAI', 'TypeScript'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
+      accent: 'oklch(0.8 0.16 75)', // amber
     },
     {
       title: 'InfoBlend',
@@ -59,6 +61,7 @@ export const siteConfig = {
         'InfoBlend is a Manifest V3 Chrome extension that augments web browsing with in-page definitions, extractive page summaries all executed client-side for privacy and performance.',
       tech: ['Chrome MV3', 'JavaScript'],
       href: 'https://github.com/RIxiV1/InfoBlend',
+      accent: 'oklch(0.72 0.18 280)', // indigo
     },
     {
       title: 'Lab Report Explainer',
@@ -67,6 +70,7 @@ export const siteConfig = {
         'Clinically Precise interpretation of Semen Analysis Reports — Powered by WHO 2021',
       tech: ['JavaScript', 'LLM', 'Vercel'],
       href: 'https://github.com/RIxiV1/Lab_report_explainer',
+      accent: 'oklch(0.76 0.16 160)', // emerald
     },
     {
       title: 'SubSentry',
@@ -75,6 +79,7 @@ export const siteConfig = {
         'A secure, streamlined platform for managing recurring subscriptions. Features intelligent tracking to identify unused services and clear dashboards for financial clarity.',
       tech: ['TypeScript', 'Lovable'],
       href: 'https://github.com/RIxiV1/SubSentry',
+      accent: 'oklch(0.74 0.18 15)', // rose
     },
     {
       title: 'Jarvis',
@@ -83,6 +88,7 @@ export const siteConfig = {
         'A simple voice-activated assistant that responds to your commands using speech recognition and integrates AI (via OpenAI) to answer questions, play music, or open websites all hands-free.',
       tech: ['Python', 'OpenAI', 'SpeechRecognition'],
       href: 'https://github.com/RIxiV1/Jarvis',
+      accent: 'oklch(0.8 0.15 200)', // cyan
     },
   ],
 
