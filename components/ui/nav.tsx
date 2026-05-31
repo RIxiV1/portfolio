@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react"
 import { siteConfig } from "@/data/site"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/ui/logo"
-import { ScrambleText } from "@/components/ui/scramble-text"
 
 export function Nav() {
   const [active, setActive] = useState<string>("")
@@ -62,22 +61,22 @@ export function Nav() {
     <nav
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        (scrolled || open) && "bg-background/70 backdrop-blur-xl border-b border-foreground/5"
+        (scrolled || open) && "border-b border-foreground/5 bg-background/70 backdrop-blur-xl",
       )}
     >
-      <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a
           href="#home"
           onClick={() => setOpen(false)}
-          className="flex items-center gap-2 font-mono text-sm tracking-tight text-foreground transition-opacity hover:opacity-70"
+          className="flex items-center gap-2 text-sm font-medium tracking-tight text-foreground transition-opacity hover:opacity-70"
           aria-label="Home"
         >
           <Logo size={28} />
-          shaik<span className="text-cyan-400">.</span>dev
+          shaik<span className="text-accent">.</span>dev
         </a>
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-1 md:flex">
+        {/* Desktop pill nav */}
+        <ul className="hidden items-center gap-1 rounded-full border border-foreground/[0.06] bg-foreground/[0.02] p-1 md:flex">
           {siteConfig.navLinks.map((l) => {
             const isActive = active === l.href
             return (
@@ -85,20 +84,13 @@ export function Nav() {
                 <a
                   href={l.href}
                   className={cn(
-                    "group relative px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300",
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    "block rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors",
+                    isActive
+                      ? "bg-foreground text-background"
+                      : "text-muted-foreground hover:bg-foreground/[0.05] hover:text-foreground",
                   )}
                 >
-                  <span
-                    aria-hidden
-                    className={cn(
-                      "mr-1 text-cyan-400 transition-opacity",
-                      isActive ? "opacity-100" : "opacity-0"
-                    )}
-                  >
-                    ›
-                  </span>
-                  <ScrambleText>{l.name}</ScrambleText>
+                  {l.name}
                 </a>
               </li>
             )
@@ -112,7 +104,7 @@ export function Nav() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded border border-foreground/10 text-foreground transition-colors hover:border-cyan-400/40 hover:text-cyan-400"
+          className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 text-foreground transition-colors hover:border-accent/40 hover:text-accent"
         >
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
@@ -129,7 +121,7 @@ export function Nav() {
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="md:hidden border-t border-foreground/[0.08] bg-background/95 backdrop-blur-xl"
           >
-            <ul className="mx-auto flex max-w-3xl flex-col px-6 py-3">
+            <ul className="mx-auto flex max-w-5xl flex-col px-6 py-3">
               {siteConfig.navLinks.map((l) => {
                 const isActive = active === l.href
                 return (
@@ -138,19 +130,12 @@ export function Nav() {
                       href={l.href}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        "flex items-center gap-2 py-3 font-mono text-xs uppercase tracking-[0.18em] transition-colors",
-                        isActive ? "text-foreground" : "text-muted-foreground"
+                        "flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium transition-colors",
+                        isActive
+                          ? "bg-foreground/[0.06] text-foreground"
+                          : "text-muted-foreground hover:bg-foreground/[0.03] hover:text-foreground",
                       )}
                     >
-                      <span
-                        aria-hidden
-                        className={cn(
-                          "text-cyan-400 transition-opacity",
-                          isActive ? "opacity-100" : "opacity-30"
-                        )}
-                      >
-                        ›
-                      </span>
                       {l.name}
                     </a>
                   </li>

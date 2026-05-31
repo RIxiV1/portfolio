@@ -13,9 +13,9 @@ type LabNode = {
 }
 
 const CLUSTERS = [
-  { hue: 200, label: "agents" },
-  { hue: 320, label: "rec.sys" },
-  { hue: 90, label: "infra" },
+  { hue: 75, label: "agents" },    // amber — primary
+  { hue: 25, label: "rec.sys" },   // coral
+  { hue: 145, label: "infra" },    // warm sage
 ]
 
 const NODES_DATA: Array<{ label: string; cluster: number }> = [

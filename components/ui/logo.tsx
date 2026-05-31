@@ -26,7 +26,7 @@ export function Logo({
         d="M30 25
            C70 25, 70 45, 50 50
            C30 55, 30 75, 70 75"
-        stroke="url(#cyan-gradient)"
+        stroke="url(#amber-gradient)"
         strokeWidth="8"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -36,7 +36,7 @@ export function Logo({
       {/* Arrow tip at the bottom exit — completion of the 'agentic' loop */}
       <path
         d="M70 75 L78 75 M78 75 L74 71 M78 75 L74 79"
-        stroke="#22d3ee"
+        stroke="#fbbf24"
         strokeWidth="6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -44,7 +44,7 @@ export function Logo({
       />
 
       {/* Cursor dot at the top entry — indicating active input/agent */}
-      <circle cx="30" cy="25" r="4" fill="#22d3ee">
+      <circle cx="30" cy="25" r="4" fill="#fbbf24">
         {!hideAnimation && (
           <animate
             attributeName="opacity"
@@ -56,10 +56,10 @@ export function Logo({
       </circle>
 
       <defs>
-        <linearGradient id="cyan-gradient" x1="30" y1="25" x2="70" y2="75" gradientUnits="userSpaceOnUse">
+        <linearGradient id="amber-gradient" x1="30" y1="25" x2="70" y2="75" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="20%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="20%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#fbbf24" />
         </linearGradient>
       </defs>
     </svg>

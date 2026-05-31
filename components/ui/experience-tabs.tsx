@@ -38,14 +38,14 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
                   "block w-full whitespace-nowrap border-b px-3 py-2 text-left transition-colors -mb-px",
                   "md:whitespace-normal md:border-b-0 md:border-l md:py-3 md:pl-4 md:pr-0 md:-ml-px md:mb-0",
                   isActive
-                    ? "border-cyan-400"
+                    ? "border-accent"
                     : "border-transparent hover:border-foreground/30"
                 )}
               >
                 <span
                   className={cn(
                     "block font-mono text-[10px] uppercase tracking-[0.18em] transition-colors",
-                    isActive ? "text-cyan-400" : "text-muted-foreground"
+                    isActive ? "text-accent" : "text-muted-foreground"
                   )}
                 >
                   {item.org.split(',')[0].split('—')[0].trim()}
@@ -71,7 +71,7 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
             className="space-y-3"
           >
             <h3 className="text-xl font-medium tracking-tight">
-              {current.role} <span className="text-cyan-400">@</span>{" "}
+              {current.role} <span className="text-accent">@</span>{" "}
               <span className="text-muted-foreground">{current.org}</span>
             </h3>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">

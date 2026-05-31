@@ -12,7 +12,7 @@ type FormState =
   | { kind: "error"; reason: string }
 
 const fieldClass =
-  "w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-cyan-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+  "w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 const labelClass =
   "block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2"
 
@@ -74,9 +74,9 @@ export function ContactForm() {
         transition={{ duration: 0.25 }}
         role="status"
         aria-live="polite"
-        className="space-y-5 border border-cyan-400/30 bg-cyan-400/[0.04] p-6"
+        className="space-y-5 border border-accent/30 bg-accent/[0.04] p-6"
       >
-        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-400">
+        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
           <Check className="h-3.5 w-3.5" />
           Message sent
         </div>
@@ -86,7 +86,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={acknowledgeSuccess}
-          className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-cyan-400"
+          className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:text-accent"
         >
           Send another
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -211,7 +211,7 @@ export function ContactForm() {
           "group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors",
           submitting
             ? "text-muted-foreground cursor-not-allowed"
-            : "text-foreground hover:text-cyan-400"
+            : "text-foreground hover:text-accent"
         )}
       >
         {submitting ? (
