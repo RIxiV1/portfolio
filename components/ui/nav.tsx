@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { siteConfig } from "@/data/site"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/ui/logo"
 
 export function Nav() {
   const [active, setActive] = useState<string>("")
@@ -67,9 +68,10 @@ export function Nav() {
         <a
           href="#home"
           onClick={() => setOpen(false)}
-          className="text-sm font-medium tracking-tight text-foreground transition-opacity hover:opacity-70"
+          className="flex items-center gap-2 text-sm font-medium tracking-tight text-foreground transition-opacity hover:opacity-70"
           aria-label="Home"
         >
+          <Logo size={26} />
           shaik<span className="text-accent">.</span>dev
         </a>
 

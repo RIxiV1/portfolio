@@ -2,7 +2,6 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
-  shortName: 'Suhaib',
   role: 'Product-minded software engineer',
   focus: 'Full-stack · AI products · n8n automation',
   location: 'Chennai, India',
