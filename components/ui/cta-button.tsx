@@ -19,10 +19,10 @@ export function CtaButton({
   external,
 }: CtaButtonProps) {
   const base =
-    "group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors"
+    "group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-[background-color,box-shadow,border-color,color] duration-300"
   const styles =
     variant === "primary"
-      ? "bg-accent text-background hover:bg-accent/90"
+      ? "bg-accent text-background shadow-[0_0_40px_-8px_oklch(0.78_0.16_75/0.55)] hover:bg-accent/90 hover:shadow-[0_0_60px_-4px_oklch(0.78_0.16_75/0.75)]"
       : "border border-foreground/15 text-foreground hover:border-accent/50 hover:text-accent"
 
   return (

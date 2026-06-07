@@ -3,25 +3,24 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
   shortName: 'Suhaib',
-  role: 'Product Engineer',
-  focus: 'Agentic AI · Recommendation Systems',
+  role: 'Product-minded software engineer',
+  focus: 'Full-stack · AI products · n8n automation',
   location: 'Chennai, India',
   email: 'shaiksuhaib360@gmail.com',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-suhaibdev.vercel.app',
   status: 'Open to internships & freelance',
 
   now: [
-    'open to internships & freelance',
-    'writing: recommendation systems',
-    'B.Tech IT @ Vel Tech',
+    'just shipped a consumer health AI tool @ ForMen Digital Clinic',
+    'cert in product mgmt & agentic AI @ IIT Patna',
+    'B.Tech IT @ Vel Tech Chennai',
   ],
 
-  resumeUrl:
-    'https://drive.google.com/file/d/1ZaHawnbNC8nFV-uir2fsXjMqfoUzO4YJ/view?usp=sharing',
+  resumeUrl: '/resume.pdf',
 
   bio: [
-    "I'm an IT student building agentic AI tools and recommendation systems — turning the math behind discovery, ranking, and reasoning into products people actually use.",
-    'Studying B.Tech Information Technology at Vel Tech in Chennai, and shipping side projects in between that sit at the intersection of AI research and product engineering.',
+    "I'm an IT undergrad in Chennai who builds and ships full-stack AI products end-to-end. Comfortable across React/TypeScript front ends, Supabase backends, and LLM-driven automation in n8n.",
+    "I treat building like a product problem — write the PRD, validate with users, ship the MVP. Recently wrapped an internship at ForMen Digital Clinic where I shipped a consumer health AI tool, and I'm pursuing a Product Management & Agentic AI cert from IIT Patna alongside my B.Tech.",
   ],
 
   socials: [
@@ -46,11 +45,11 @@ export const siteConfig = {
 
   projects: [
     {
-      title: 'Resume Screening Agent',
+      title: 'ResumeScreen',
       year: '2025',
       description:
-        'AI-powered resume screening agent built with n8n and Lovable. Candidates upload a PDF resume and JD; the workflow extracts text, scores the match with an LLM, returns a structured report (score, summary, strengths, gaps, next steps), and can optionally send interview or rejection emails automatically.',
-      tech: ['n8n', 'Lovable', 'OpenAI', 'TypeScript'],
+        'An end-to-end resume screening pipeline. A React form posts a resume PDF and JD to an n8n webhook; an LLM agent (OpenAI / Gemini / Groq) returns a structured 0–100 match score with matched skills, years of experience, and an interview/reject recommendation. Auto-routes follow-up emails via Gmail based on the verdict. IIT Patna capstone.',
+      tech: ['n8n', 'React', 'TypeScript', 'Supabase', 'LLMs'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       accent: 'oklch(0.8 0.16 75)', // amber
     },
@@ -58,62 +57,51 @@ export const siteConfig = {
       title: 'InfoBlend',
       year: '2026',
       description:
-        'InfoBlend is a Manifest V3 Chrome extension that augments web browsing with in-page definitions, extractive page summaries all executed client-side for privacy and performance.',
-      tech: ['Chrome MV3', 'JavaScript'],
+        'A Manifest V3 Chrome extension with a service-worker background and content scripts. UI rendered inside a Shadow DOM so styles never leak into the host page. Frequency-based extractive summarizer, instant dictionary definitions with Wikipedia fallback, privacy-focused ad blocking via declarativeNetRequest, and optional LLM (Gemini) explanations.',
+      tech: ['JavaScript', 'Manifest V3', 'Shadow DOM'],
       href: 'https://github.com/RIxiV1/InfoBlend',
       accent: 'oklch(0.72 0.18 280)', // indigo
-    },
-    {
-      title: 'Lab Report Explainer',
-      year: '2026',
-      description:
-        'Clinically Precise interpretation of Semen Analysis Reports — Powered by WHO 2021',
-      tech: ['JavaScript', 'LLM', 'Vercel'],
-      href: 'https://github.com/RIxiV1/Lab_report_explainer',
-      accent: 'oklch(0.76 0.16 160)', // emerald
     },
     {
       title: 'SubSentry',
       year: '2026',
       description:
-        'A secure, streamlined platform for managing recurring subscriptions. Features intelligent tracking to identify unused services and clear dashboards for financial clarity.',
-      tech: ['TypeScript', 'Lovable'],
+        'A subscription-tracking dashboard with React + Vite and a Supabase Postgres backend — no bank linking required. Per-user data isolation via Supabase Row Level Security. Zod for type-safe form validation, shadcn/ui + Tailwind for the component system.',
+      tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod'],
       href: 'https://github.com/RIxiV1/SubSentry',
       accent: 'oklch(0.74 0.18 15)', // rose
-    },
-    {
-      title: 'Jarvis',
-      year: '2025',
-      description:
-        'A simple voice-activated assistant that responds to your commands using speech recognition and integrates AI (via OpenAI) to answer questions, play music, or open websites all hands-free.',
-      tech: ['Python', 'OpenAI', 'SpeechRecognition'],
-      href: 'https://github.com/RIxiV1/Jarvis',
-      accent: 'oklch(0.8 0.15 200)', // cyan
     },
   ],
 
   experience: [
     {
-      role: 'Independent Developer & AI Researcher',
-      org: 'Self-directed',
-      period: '2024 — Present',
+      role: 'Product & Development Intern',
+      org: 'ForMen Digital Clinic — Remote',
+      period: 'Mar 2026 — Jun 2026',
       description:
-        'Building agentic AI tools, recommendation engines, and full-stack products. Focused on turning research-grade math into shippable software.',
+        "Built a consumer-facing AI tool from scratch that explains men's-health lab reports in plain language, owning it end to end from PRD through working product. Designed and implemented the interface, turning structured health metrics into clear, interactive screens. Authored the research notes and Product Requirements Documents that scoped the digital clinic assessment tool.",
+    },
+    {
+      role: 'Certification — Product Management & Agentic AI',
+      org: 'Indian Institute of Technology (IIT), Patna — Online / Hybrid',
+      period: 'Jan 2025 — Present',
+      description:
+        'Working through the full product lifecycle: market research, MVP scoping, and iterative launches. Designed agentic automation workflows in n8n backed by LLMs to reduce manual, repetitive steps.',
     },
     {
       role: 'B.Tech, Information Technology',
-      org: 'Vel Tech Rangarajan Dr. Sagunthala R&D Institute, Chennai',
-      period: '2024 — 2028',
+      org: 'Vel Tech High Tech Engineering College, Chennai',
+      period: 'Jun 2024 — May 2028 (Expected)',
       description:
-        'Core focus on AI, algorithms, and intelligent systems. Side-tracking into systems design and applied math.',
+        'Core focus on full-stack development, AI agents, and intelligent systems. Active contributor to open-source UI libraries; maintain five public GitHub repositories spanning full-stack web, browser extensions, and AI automation.',
     },
   ],
 
   stack: [
-    { group: 'Languages', items: ['TypeScript', 'Python', 'Go', 'SQL'] },
-    { group: 'Frameworks', items: ['Next.js', 'React', 'FastAPI', 'Tailwind'] },
-    { group: 'AI / ML', items: ['PyTorch', 'LangGraph', 'Anthropic SDK', 'OpenAI'] },
-    { group: 'Infra', items: ['Postgres', 'Redis', 'Vercel', 'Docker'] },
+    { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'SQL'] },
+    { group: 'Frontend', items: ['React', 'Vite', 'Tailwind', 'shadcn/ui'] },
+    { group: 'Backend', items: ['Supabase', 'Postgres', 'Zod', 'REST'] },
+    { group: 'AI / Automation', items: ['n8n', 'OpenAI', 'Gemini', 'LLM prompting'] },
   ],
 
   writing: [
@@ -144,9 +132,9 @@ export const siteConfig = {
   ],
 
   metadata: {
-    title: 'suhaibs portfolio',
+    title: 'shaik suhaib — product-minded software engineer',
     description:
-      'Product engineer building agentic AI systems and recommendation engines. Open to internships and freelance.',
+      'Product-minded software engineer building full-stack AI products. Interning at ForMen Digital Clinic, studying IT at Vel Tech Chennai. Open to internships and freelance.',
     twitterHandle: '@suhaibX0',
   },
 };

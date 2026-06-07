@@ -36,9 +36,11 @@ export default function Page() {
           </h1>
 
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Product engineer studying IT in Chennai. I build agentic AI tools
-            and recommendation systems — turning the math behind discovery and
-            ranking into products people actually use.
+            IT undergrad in Chennai. I build and ship full-stack AI products
+            end-to-end — React on the front, Supabase and n8n on the back,
+            LLM agents for the heavy lifting. Recently shipped a consumer
+            health AI tool at{" "}
+            <span className="text-foreground">ForMen Digital Clinic</span>.
           </p>
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
@@ -190,10 +192,10 @@ export default function Page() {
             <header className="space-y-3">
               <h2 className={sectionHeading}>A small lab.</h2>
               <p className={sectionIntro}>
-                A toy of the math I&apos;m writing about — twelve items across three
-                domains, edges weighted by similarity. Hover any node to see its
-                1-hop neighborhood; that&apos;s the candidate pool a recommender draws
-                from before re-ranking.
+                A small interactive — twelve items across three domains, edges
+                weighted by similarity. Hover any node to see its 1-hop
+                neighborhood. The kind of mechanic that powers product
+                recommendations when you build with LLMs.
               </p>
             </header>
             <RecommendationLab />

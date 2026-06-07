@@ -1,13 +1,13 @@
 export function Logo({
   size = 32,
   className = '',
-  showBackground = true,
-  hideAnimation = false
+  showBackground = false,
+  hideAnimation = false,
 }: {
-  size?: number;
-  className?: string;
-  showBackground?: boolean;
-  hideAnimation?: boolean;
+  size?: number
+  className?: string
+  showBackground?: boolean
+  hideAnimation?: boolean
 }) {
   return (
     <svg
@@ -17,51 +17,43 @@ export function Logo({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={{
+        filter: 'drop-shadow(0 0 6px rgba(251, 191, 36, 0.5))',
+      }}
     >
-      {/* Background */}
-      {showBackground && <rect width="100" height="100" rx="16" fill="#0a0a0a" />}
+      {/* Optional rounded dark background — used for favicon / app icon contexts */}
+      {showBackground && <rect width="100" height="100" rx="20" fill="#0a0a0a" />}
 
-      {/* The "S" — a single kinetic path representing a signal routing through a system */}
-      <path
-        d="M30 25
-           C70 25, 70 45, 50 50
-           C30 55, 30 75, 70 75"
-        stroke="url(#amber-gradient)"
-        strokeWidth="8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      {/*
+        Single focal dot + a thin orbit ring around it.
+        Conceptually: a point in embedding space + its semantic neighborhood —
+        the entire premise of recommendation systems.
+        Visually: simple enough to remember at one glance, deliberate enough
+        not to read as "missing logo."
+      */}
+
+      {/* Orbit ring */}
+      <circle
+        cx="50"
+        cy="50"
+        r="34"
         fill="none"
-      />
-
-      {/* Arrow tip at the bottom exit — completion of the 'agentic' loop */}
-      <path
-        d="M70 75 L78 75 M78 75 L74 71 M78 75 L74 79"
         stroke="#fbbf24"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
+        strokeWidth="4"
+        strokeOpacity="0.4"
       />
 
-      {/* Cursor dot at the top entry — indicating active input/agent */}
-      <circle cx="30" cy="25" r="4" fill="#fbbf24">
+      {/* Focal dot */}
+      <circle cx="50" cy="50" r="14" fill="#fbbf24">
         {!hideAnimation && (
           <animate
-            attributeName="opacity"
-            values="1;0.4;1"
-            dur="2s"
+            attributeName="r"
+            values="14;16;14"
+            dur="2.6s"
             repeatCount="indefinite"
           />
         )}
       </circle>
-
-      <defs>
-        <linearGradient id="amber-gradient" x1="30" y1="25" x2="70" y2="75" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="20%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#fbbf24" />
-        </linearGradient>
-      </defs>
     </svg>
-  );
+  )
 }
