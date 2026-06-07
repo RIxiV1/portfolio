@@ -18,39 +18,40 @@ export function Logo({
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={{
-        filter: 'drop-shadow(0 0 6px rgba(251, 191, 36, 0.5))',
+        filter: 'drop-shadow(0 4px 12px rgba(251, 191, 36, 0.45))',
       }}
     >
       {/* Optional rounded dark background — used for favicon / app icon contexts */}
       {showBackground && <rect width="100" height="100" rx="20" fill="#0a0a0a" />}
 
       {/*
-        Bold custom S — the system.
-        A single dot floats in the upper pocket — the thing the system found.
-        One mark, two parts, one idea: discovery + recommendation.
+        Isometric cube — three faces of a 3D module.
+        Reads as a building block / shipped unit / stack primitive.
+        Light from upper-front-left: top face brightest, left mid, right shadow.
       */}
+      <g style={{ transformOrigin: '50px 50px' }}>
+        {/* Left face (mid amber) */}
+        <path d="M 22 34 L 50 50 L 50 82 L 22 66 Z" fill="#d97706" />
 
-      {/* The S */}
-      <path
-        d="M 78 28 C 78 18, 65 13, 50 13 C 33 13, 22 22, 22 33 C 22 43, 30 48, 50 52 C 70 56, 78 60, 78 70 C 78 81, 65 87, 50 87 C 35 87, 22 82, 22 72"
-        fill="none"
-        stroke="#fbbf24"
-        strokeWidth="15"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+        {/* Right face (deep shadow amber) */}
+        <path d="M 78 34 L 50 50 L 50 82 L 78 66 Z" fill="#92400e" />
 
-      {/* The found item — pulses gently */}
-      <circle cx="56" cy="30" r="6" fill="#fbbf24">
+        {/* Top face (bright amber) — catches the light */}
+        <path d="M 50 18 L 78 34 L 50 50 L 22 34 Z" fill="#fbd457" />
+
+        {/* Subtle highlight on the top vertex for premium depth */}
+        <circle cx="50" cy="18" r="2" fill="#fef3c7" opacity="0.9" />
+
         {!hideAnimation && (
-          <animate
-            attributeName="r"
-            values="6;7.5;6"
-            dur="2.4s"
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            values="-2 50 50; 2 50 50; -2 50 50"
+            dur="6s"
             repeatCount="indefinite"
           />
         )}
-      </circle>
+      </g>
     </svg>
   )
 }
