@@ -18,8 +18,8 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "I build product-shaped things. Write the PRD, find one person who'd actually use the thing, ship the smallest version that works, see what they do with it. The interesting work is usually in the gap between what people say they want and what they actually do.",
-    "I keep coming back to the math behind discovery — recommendation systems, network theory, the algorithms that turn a feed full of noise into things you might care about. Most of what I write orbits that. Right now I'm interning at ForMen Digital Clinic on a consumer health AI tool, doing my IT undergrad at Vel Tech Chennai, and chipping away at a Product Management & Agentic AI cert at IIT Patna on the side. Day-to-day: React/TypeScript on the front, Supabase on the back, n8n and LLMs for the agent stuff.",
+    "I build product-shaped things. Write the PRD, find someone who'd actually use it, ship the smallest version, watch what they do.",
+    "Drawn to the math behind discovery — recommendation systems, network theory, how noise becomes signal. Right now: interning at ForMen Digital Clinic on a consumer health AI tool, IT undergrad at Vel Tech, PM + Agentic AI cert at IIT Patna on the side.",
   ],
 
   socials: [
@@ -48,7 +48,7 @@ export const siteConfig = {
       year: '2025',
       slug: 'resumescreen',
       description:
-        'A live AI screener. Drop in a resume PDF and a JD; an n8n workflow runs it through a Gemini agent that returns a typed JSON verdict (score, matched skills, years of experience, interview or reject) and optionally fires the follow-up email. Course project for the IIT Patna PM & Agentic AI cert.',
+        'Live AI screener. Resume PDF + JD in, typed JSON verdict out (score, matched skills, interview/reject), follow-up email fired by n8n. Course project for the IIT Patna PM + Agentic AI cert.',
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       liveUrl: 'https://talent-spotter-flow.lovable.app',
@@ -88,7 +88,7 @@ export const siteConfig = {
       year: '2026',
       slug: 'infoblend',
       description:
-        'A reading toolkit I built for myself, packaged as a Manifest V3 extension for Chrome, Edge, and Firefox. Double-click any word for a definition (Dictionary → Datamuse → Wiktionary → Wikipedia → Urban Dictionary, falling back automatically). Right-click to translate selections in 17 languages. Ctrl+K summarises the page locally with TF-IDF, or hits Gemini/OpenAI if you BYOK. Knowledge Vault saves anything to local storage with CSV/Markdown export. Zero dependencies, encrypted key, Shadow DOM isolation.',
+        "Reading toolkit I built for myself, shipped as a Manifest V3 extension for Chrome, Edge, and Firefox. Double-click to define, right-click to translate (17 languages), Ctrl+K to summarise. Zero deps, BYOK AI, Shadow DOM isolation.",
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
       href: 'https://github.com/RIxiV1/InfoBlend',
       accent: 'oklch(0.72 0.18 280)', // indigo
@@ -131,7 +131,7 @@ export const siteConfig = {
       year: '2025',
       slug: 'subsentry',
       description:
-        "A subscription tracker that doesn't ask for your bank credentials. React + Vite + Supabase, with Row Level Security doing the per-user isolation at the database layer instead of trusting the app code. Budgeting tool, spending insights, swipe-gesture cards on mobile, and a confetti burst every time you cancel a sub.",
+        "Subscription tracker that doesn't ask for your bank credentials. RLS-isolated at the database, swipe-gesture cards on mobile, confetti burst every time you cancel a sub.",
       tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod', 'shadcn/ui'],
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
@@ -178,21 +178,21 @@ export const siteConfig = {
       org: 'ForMen Digital Clinic — Remote',
       period: 'Mar 2026 — Jun 2026',
       description:
-        "Building a consumer-facing AI tool that turns men's-health lab reports into plain-language, interactive explanations. Owning it from PRD to working product — research notes, requirements docs, interface design, and the implementation that turns structured health metrics into screens you'd actually read.",
+        "Building a consumer-facing AI tool that turns men's-health lab reports into plain-language, interactive explanations. PRD to working product — research notes, requirements, UI, implementation.",
     },
     {
       role: 'Certification — Product Management & Agentic AI',
       org: 'Indian Institute of Technology (IIT), Patna — Online / Hybrid',
       period: 'Jan 2025 — Present',
       description:
-        'Going through the full product lifecycle — market research, MVP scoping, iterative launches. Designed agentic automation in n8n + LLMs to take repetitive steps out of real workflows.',
+        'Full product lifecycle — market research, MVP scoping, iterative launches. Agentic automation in n8n + LLMs.',
     },
     {
       role: 'B.Tech, Information Technology',
       org: 'Vel Tech High Tech Engineering College, Chennai',
       period: 'Jun 2024 — May 2028 (Expected)',
       description:
-        'Core focus on full-stack development, AI agents, and intelligent systems. Active in open-source UI work. Five public GitHub repos spanning full-stack web, browser extensions, and AI automation.',
+        'Full-stack, AI agents, intelligent systems. Five public GitHub repos across web, browser extensions, and AI automation.',
     },
   ],
 
@@ -207,7 +207,7 @@ export const siteConfig = {
     {
       title: 'Recommendation Systems: The Math Behind Discovery',
       description:
-        'How Netflix, Spotify, and your feed actually decide what to show you next. Walks through the math without losing it in notation.',
+        'How Netflix, Spotify, and your feed decide what to show you next. The math without the notation.',
       date: 'Published',
       tag: 'AI/ML',
       url: 'https://medium.com/@shaiksuhaib360/recommendation-systems-the-math-behind-netflix-spotify-and-social-media-feeds-d61cfd501ba0',
@@ -215,7 +215,7 @@ export const siteConfig = {
     {
       title: 'Network Theory: The Science of Connections',
       description:
-        'Six degrees of Kevin Bacon, why diseases spread the way they do, and how a small set of equations explains both.',
+        'Six degrees of Kevin Bacon, why diseases spread, and the equations that explain both.',
       date: 'Published',
       tag: 'Math',
       url: 'https://medium.com/@shaiksuhaib360/network-theory-how-everything-connects-56a54ee1265a',
@@ -223,7 +223,7 @@ export const siteConfig = {
     {
       title: 'Chaos Theory & The Butterfly Effect',
       description:
-        "Why a butterfly in Tokyo really can shift the weather in New York — and what that means for anything we try to predict.",
+        'Why a butterfly in Tokyo can shift weather in New York — and what that means for anything we try to predict.',
       date: 'Published',
       tag: 'Science',
       url: 'https://medium.com/@shaiksuhaib360/why-chaos-theory-explains-science-of-the-butterfly-effect-368dd5f34b7f',
@@ -233,7 +233,7 @@ export const siteConfig = {
   metadata: {
     title: 'shaik suhaib — product-minded software engineer',
     description:
-      'IT undergrad in Chennai building product-shaped AI things. Interning at ForMen Digital Clinic, studying at Vel Tech, doing a PM + Agentic AI cert at IIT Patna on the side.',
+      'IT undergrad in Chennai building product-shaped AI things. ForMen Digital Clinic + Vel Tech + IIT Patna.',
     twitterHandle: '@suhaibX0',
   },
 };

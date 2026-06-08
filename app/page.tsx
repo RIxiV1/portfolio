@@ -58,10 +58,8 @@ export default function Page() {
           </h1>
 
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            IT undergrad in Chennai. I build and ship full-stack AI products
-            end-to-end — React on the front, Supabase and n8n on the back,
-            LLM agents for the heavy lifting. Recently shipped a consumer
-            health AI tool at{" "}
+            IT undergrad in Chennai. Building product-shaped AI things —
+            React/TypeScript, Supabase, n8n, LLMs. Currently at{" "}
             <span className="text-foreground">ForMen Digital Clinic</span>.
           </p>
 
@@ -139,10 +137,8 @@ export default function Page() {
               <header className="space-y-3">
                 <h2 className={sectionHeading}>Selected projects.</h2>
                 <p className={sectionIntro}>
-                  Things I keep building while I figure out how AI products
-                  actually get shipped. Click any card for the case study;
-                  hover a tech chip to see where it&apos;s shown up in the
-                  stack below.
+                  Things I keep building while figuring out how AI products
+                  get shipped. Click a card for the case study.
                 </p>
               </header>
               <ProjectsList projects={siteConfig.projects} />
@@ -160,11 +156,9 @@ export default function Page() {
               <header className="space-y-3">
                 <h2 className={sectionHeading}>A small lab.</h2>
                 <p className={sectionIntro}>
-                  An interactive sketch — twelve items, three domains, edges
-                  weighted by cosine similarity. Hover any node to see its
-                  1-hop neighborhood. Not a shipped product; just a picture
-                  of the mechanic that drives the recommendation systems I
-                  keep writing about (and want to build properly).
+                  Twelve items, three domains, cosine-similarity edges.
+                  Hover a node to see its neighborhood. Not a real product
+                  — a picture of the mechanic.
                 </p>
               </header>
               <RecommendationLab />
@@ -212,9 +206,7 @@ export default function Page() {
             <header className="space-y-3">
               <h2 className={sectionHeading}>Notes & research.</h2>
               <p className={sectionIntro}>
-                Essays on the math I keep coming back to — how things get
-                sorted, how things connect, why small changes don&apos;t stay
-                small.
+                Essays on the math I keep coming back to.
               </p>
             </header>
             <ul className="border-t border-foreground/[0.05]">
