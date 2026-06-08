@@ -102,6 +102,25 @@ export default async function ProjectCaseStudyPage({
                   </li>
                 ))}
               </ul>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-widest transition-colors"
+                  style={{
+                    borderColor: 'color-mix(in oklch, var(--project-accent) 40%, transparent)',
+                    color: 'var(--project-accent)',
+                  }}
+                >
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inset-0 animate-ping rounded-full bg-[color:var(--project-accent)]/60" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--project-accent)]" />
+                  </span>
+                  live demo
+                  <ArrowUpRight className="h-3 w-3 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              )}
               <a
                 href={project.href}
                 target="_blank"

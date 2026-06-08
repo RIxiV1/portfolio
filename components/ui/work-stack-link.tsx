@@ -12,6 +12,7 @@ type Project = {
   description: string
   tech: string[]
   href: string
+  liveUrl?: string
   accent: string
   caseStudy?: unknown
 }
@@ -127,11 +128,11 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
                       )
                     })}
                   </ul>
-                  {domain && (
-                    <span className="font-mono text-[10px] text-[color:var(--project-accent)]/70 opacity-0 transition-opacity group-hover:opacity-100">
-                      ↗ {hasCaseStudy ? 'case study' : domain}
-                    </span>
-                  )}
+                  <span className="flex items-center gap-2 font-mono text-[10px] text-[color:var(--project-accent)]/70 opacity-0 transition-opacity group-hover:opacity-100">
+                    {p.liveUrl && <span className="rounded-full bg-[color:var(--project-accent)]/15 px-2 py-0.5">live</span>}
+                    {hasCaseStudy && <span>↗ case study</span>}
+                    {!hasCaseStudy && domain && <span>↗ {domain}</span>}
+                  </span>
                 </div>
               </div>
             </LinkComp>
