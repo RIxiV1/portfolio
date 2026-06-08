@@ -11,14 +11,14 @@ export const siteConfig = {
 
   now: [
     'wrapping a product & dev internship @ ForMen Digital Clinic',
-    'PM & agentic AI cert @ IIT Patna',
+    'just finished a PM & agentic AI cert @ IIT Patna',
     'B.Tech IT @ Vel Tech Chennai',
   ],
 
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "Wrapping a Product & Development internship this month at ForMen Digital Clinic, where I built a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai, doing a Product Management & Agentic AI cert at IIT Patna on the side.",
+    "Wrapping a Product & Development internship this month at ForMen Digital Clinic, where I built a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai, just finished a Product Management & Agentic AI cert at IIT Patna.",
     "Stack I keep coming back to: TypeScript, React, Supabase, n8n, and Gemini for the agentic stuff.",
     "Outside work: falling down quantum physics and space rabbit holes. Oh, and I play too many Souls games and suck at chess.",
   ],
@@ -184,9 +184,9 @@ export const siteConfig = {
     {
       role: 'Certification — Product Management & Agentic AI',
       org: 'Indian Institute of Technology (IIT), Patna — Online / Hybrid',
-      period: 'Jan 2025 — Present',
+      period: 'Jan 2025 — Jun 2026',
       description:
-        'Full product lifecycle — market research, MVP scoping, iterative launches. Agentic automation in n8n + LLMs.',
+        'Full product lifecycle — market research, MVP scoping, iterative launches. Built agentic automation in n8n + LLMs.',
     },
     {
       role: 'B.Tech, Information Technology',
