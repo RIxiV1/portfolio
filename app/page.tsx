@@ -4,18 +4,14 @@ import { FadeUp } from "@/components/ui/fade-up"
 import { ContactForm } from "@/components/ui/contact-form"
 import { ExperienceTabs } from "@/components/ui/experience-tabs"
 import { ScrambleText } from "@/components/ui/scramble-text"
-import { ProjectArt } from "@/components/ui/project-art"
 import { RecommendationLab } from "@/components/ui/recommendation-lab"
 import { StatusPill } from "@/components/ui/status-pill"
 import { CtaButton } from "@/components/ui/cta-button"
-
-function projectDomain(href: string) {
-  try {
-    return new URL(href).hostname.replace(/^www\./, '')
-  } catch {
-    return null
-  }
-}
+import {
+  CrossLinkProvider,
+  ProjectsList,
+  StackList,
+} from "@/components/ui/work-stack-link"
 
 const sectionHeading = "text-3xl font-semibold tracking-tight md:text-4xl"
 const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
@@ -106,136 +102,65 @@ export default function Page() {
         </FadeUp>
       </section>
 
-      {/* WORK */}
-      <section
-        id="work"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-      >
-        <FadeUp>
-          <div className="space-y-10">
-            <header className="space-y-3">
-              <h2 className={sectionHeading}>Selected projects.</h2>
-              <p className={sectionIntro}>
-                Side projects and small systems at the intersection of AI research and
-                product engineering. Hover for details.
-              </p>
-            </header>
-            <ul className="border-t border-foreground/[0.05]">
-              {siteConfig.projects.map((p, i) => {
-                const domain = projectDomain(p.href)
-                return (
-                  <li
-                    key={p.title}
-                    className="border-b border-foreground/[0.05] transition-colors hover:border-[color:var(--project-accent)]/30"
-                    style={{ ['--project-accent' as string]: p.accent } as React.CSSProperties}
-                  >
-                    <a
-                      href={p.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative grid grid-cols-[36px_1fr] gap-x-4 gap-y-2 py-8"
-                    >
-                      <ProjectArt
-                        seed={p.title}
-                        className="pointer-events-none absolute right-0 top-6 hidden h-20 w-20 md:block"
-                      />
-                      <span className="pt-2 font-mono text-[10px] uppercase tracking-widest tabular-nums text-muted-foreground/50 transition-colors group-hover:text-[color:var(--project-accent)]">
-                        P{String(i + 1).padStart(2, '0')}
-                      </span>
-                      <div className="flex flex-col gap-3 md:pr-28">
-                        <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-4">
-                          <h3 className="text-2xl font-semibold tracking-tight transition-colors group-hover:text-[color:var(--project-accent)]">
-                            {p.title}
-                            <ArrowUpRight className="ml-1 inline h-4 w-4 -translate-y-0.5 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-60" />
-                          </h3>
-                          <span className="shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">
-                            {p.year}
-                          </span>
-                        </div>
-                        <p className="max-w-xl leading-relaxed text-muted-foreground">
-                          {p.description}
-                        </p>
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-2">
-                          <ul className="flex flex-wrap gap-2">
-                            {p.tech.map((t) => (
-                              <li
-                                key={t}
-                                className="rounded-full border border-foreground/[0.08] px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground transition-colors group-hover:border-[color:var(--project-accent)]/30"
-                              >
-                                {t}
-                              </li>
-                            ))}
-                          </ul>
-                          {domain && (
-                            <span className="font-mono text-[10px] text-[color:var(--project-accent)]/70 opacity-0 transition-opacity group-hover:opacity-100">
-                              ↗ {domain}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </FadeUp>
-      </section>
-
-      {/* LAB */}
-      <section
-        id="lab"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-      >
-        <FadeUp>
-          <div className="space-y-8">
-            <header className="space-y-3">
-              <h2 className={sectionHeading}>A small lab.</h2>
-              <p className={sectionIntro}>
-                A small interactive — twelve items across three domains, edges
-                weighted by similarity. Hover any node to see its 1-hop
-                neighborhood. The kind of mechanic that powers product
-                recommendations when you build with LLMs.
-              </p>
-            </header>
-            <RecommendationLab />
-          </div>
-        </FadeUp>
-      </section>
-
-      {/* STACK */}
-      <section
-        id="stack"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-      >
-        <FadeUp>
-          <div className="space-y-8">
-            <h2 className={sectionHeading}>What I work with.</h2>
-            <div className="space-y-5">
-              {siteConfig.stack.map((g) => (
-                <div
-                  key={g.group}
-                  className="grid grid-cols-[120px_1fr] items-baseline gap-6 border-b border-foreground/[0.05] pb-4 last:border-b-0"
-                >
-                  <h3 className="text-sm text-muted-foreground">{g.group}</h3>
-                  <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
-                    {g.items.map((t, i) => (
-                      <li key={t} className="flex items-center gap-3">
-                        <span className={i === 0 ? "text-accent" : "text-foreground/85"}>
-                          {t}
-                        </span>
-                        {i < g.items.length - 1 && (
-                          <span aria-hidden="true" className="text-foreground/15">·</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+      <CrossLinkProvider>
+        {/* WORK */}
+        <section
+          id="work"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        >
+          <FadeUp>
+            <div className="space-y-10">
+              <header className="space-y-3">
+                <h2 className={sectionHeading}>Selected projects.</h2>
+                <p className={sectionIntro}>
+                  Side projects and small systems at the intersection of AI
+                  research and product engineering. Click any card for the full
+                  case study; hover any tech chip to cross-link it with the
+                  stack below.
+                </p>
+              </header>
+              <ProjectsList projects={siteConfig.projects} />
             </div>
-          </div>
-        </FadeUp>
-      </section>
+          </FadeUp>
+        </section>
+
+        {/* LAB */}
+        <section
+          id="lab"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        >
+          <FadeUp>
+            <div className="space-y-8">
+              <header className="space-y-3">
+                <h2 className={sectionHeading}>A small lab.</h2>
+                <p className={sectionIntro}>
+                  A small interactive — twelve items across three domains, edges
+                  weighted by similarity. Hover any node to see its 1-hop
+                  neighborhood. The kind of mechanic that powers product
+                  recommendations when you build with LLMs.
+                </p>
+              </header>
+              <RecommendationLab />
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* STACK */}
+        <section
+          id="stack"
+          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        >
+          <FadeUp>
+            <div className="space-y-8">
+              <h2 className={sectionHeading}>What I work with.</h2>
+              <StackList
+                stack={siteConfig.stack}
+                projects={siteConfig.projects}
+              />
+            </div>
+          </FadeUp>
+        </section>
+      </CrossLinkProvider>
 
       {/* JOURNEY */}
       <section
