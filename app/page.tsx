@@ -58,10 +58,10 @@ export default function Page() {
           </h1>
 
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            IT undergrad in Chennai. Currently at{" "}
-            <span className="text-foreground">ForMen Digital Clinic</span>{" "}
-            shipping a consumer health AI tool. Mostly into the math behind
-            recommendation systems.
+            IT undergrad in Chennai. Wrapping an internship this month at{" "}
+            <span className="text-foreground">ForMen Digital Clinic</span>,
+            where I shipped a consumer health AI tool. Mostly into the math
+            behind recommendation systems.
           </p>
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">

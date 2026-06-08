@@ -10,7 +10,7 @@ export const siteConfig = {
   status: 'Open to internships & freelance',
 
   now: [
-    'shipping a consumer health AI tool @ ForMen Digital Clinic',
+    'wrapping a product & dev internship @ ForMen Digital Clinic',
     'PM & agentic AI cert @ IIT Patna',
     'B.Tech IT @ Vel Tech Chennai',
   ],
@@ -18,7 +18,7 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "I'm currently interning at ForMen Digital Clinic, where I'm building a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai, doing a Product Management & Agentic AI cert at IIT Patna on the side.",
+    "Wrapping a Product & Development internship this month at ForMen Digital Clinic, where I built a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai, doing a Product Management & Agentic AI cert at IIT Patna on the side.",
     "Stack I keep coming back to: TypeScript, React, Supabase, n8n, and Gemini for the agentic stuff.",
     "Outside work: falling down quantum physics and space rabbit holes. Oh, and I play too many Souls games and suck at chess.",
   ],
