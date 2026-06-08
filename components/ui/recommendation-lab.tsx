@@ -210,10 +210,22 @@ export function RecommendationLab() {
             return (
               <g
                 key={n.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`${n.label} — toggle related items`}
+                aria-pressed={pinned === n.id}
                 onPointerEnter={() => setHover(n.id)}
                 onPointerLeave={() => setHover(null)}
+                onFocus={() => setHover(n.id)}
+                onBlur={() => setHover(null)}
                 onClick={() => setPinned(pinned === n.id ? null : n.id)}
-                className="cursor-pointer transition-opacity duration-300"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    setPinned(pinned === n.id ? null : n.id)
+                  }
+                }}
+                className="cursor-pointer transition-opacity duration-300 focus:outline-none focus-visible:[outline:2px_solid_var(--accent)] focus-visible:[outline-offset:2px]"
                 style={{ opacity: dimmed ? 0.2 : 1 }}
               >
                 {isHover && (

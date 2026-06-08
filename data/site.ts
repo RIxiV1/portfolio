@@ -47,8 +47,8 @@ export const siteConfig = {
       title: 'ResumeScreen',
       year: '2025',
       description:
-        'An end-to-end resume screening pipeline. A React form posts a resume PDF and JD to an n8n webhook; an LLM agent (OpenAI / Gemini / Groq) returns a structured 0–100 match score with matched skills, years of experience, and an interview/reject recommendation. Auto-routes follow-up emails via Gmail based on the verdict. IIT Patna capstone.',
-      tech: ['n8n', 'React', 'TypeScript', 'Supabase', 'LLMs'],
+        'An end-to-end resume screening pipeline. A React form posts a resume PDF and JD to an n8n webhook; a Gemini agent returns a structured 0–100 match score with matched skills, years of experience, and an interview/reject recommendation. Auto-routes follow-up emails via Gmail based on the verdict. IIT Patna capstone.',
+      tech: ['n8n', 'React', 'TypeScript', 'Supabase', 'Gemini'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       accent: 'oklch(0.8 0.16 75)', // amber
     },
@@ -110,7 +110,7 @@ export const siteConfig = {
         'Researching the algorithms that power modern content discovery and personalisation.',
       date: 'Published',
       tag: 'AI/ML',
-      url: 'https://medium.com/@shaiksuhaib360',
+      url: 'https://medium.com/@shaiksuhaib360/recommendation-systems-the-math-behind-netflix-spotify-and-social-media-feeds-d61cfd501ba0',
     },
     {
       title: 'Network Theory: The Science of Connections',
@@ -118,7 +118,7 @@ export const siteConfig = {
         'The invisible threads that bind our world through mathematical relationships.',
       date: 'Published',
       tag: 'Math',
-      url: 'https://medium.com/@shaiksuhaib360',
+      url: 'https://medium.com/@shaiksuhaib360/network-theory-how-everything-connects-56a54ee1265a',
     },
     {
       title: 'Chaos Theory & The Butterfly Effect',
@@ -126,7 +126,7 @@ export const siteConfig = {
         'Why small changes lead to dramatically different and unpredictable outcomes.',
       date: 'Published',
       tag: 'Science',
-      url: 'https://medium.com/@shaiksuhaib360',
+      url: 'https://medium.com/@shaiksuhaib360/why-chaos-theory-explains-science-of-the-butterfly-effect-368dd5f34b7f',
     },
   ],
 

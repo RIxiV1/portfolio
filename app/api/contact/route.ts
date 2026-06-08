@@ -2,12 +2,18 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
+import { z } from 'zod';
 import { siteConfig } from '@/data/site';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 3;
+
+const ContactSchema = z.object({
+  name: z.string().trim().min(2, 'Name must be 2–80 characters').max(80, 'Name must be 2–80 characters'),
+  email: z.string().trim().max(120, 'Valid email required').email('Valid email required'),
+  message: z.string().trim().min(10, 'Message must be 10–4000 characters').max(4000, 'Message must be 10–4000 characters'),
+  company: z.string().optional(),
+});
 
 // Distributed limiter for production. Falls back to per-worker in-memory
 // for dev when Upstash env vars are missing.
@@ -117,35 +123,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429, headers: cors });
   }
 
-  let body: {
-    name?: string;
-    email?: string;
-    message?: string;
-    company?: string;
-  };
+  let raw: unknown;
   try {
-    body = await req.json();
+    raw = await req.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400, headers: cors });
   }
 
+  const parsed = ContactSchema.safeParse(raw);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: parsed.error.issues[0]?.message ?? 'Invalid input' },
+      { status: 400, headers: cors },
+    );
+  }
+  const { name, email, message, company } = parsed.data;
+
   // Honeypot: real users never fill this; bots fill every field.
-  if (body.company && body.company.length > 0) {
+  if (company && company.length > 0) {
     return NextResponse.json({ ok: true }, { headers: cors });
-  }
-
-  const name = body.name?.trim() ?? '';
-  const email = body.email?.trim() ?? '';
-  const message = body.message?.trim() ?? '';
-
-  if (name.length < 2 || name.length > 80) {
-    return NextResponse.json({ error: 'Name must be 2–80 characters' }, { status: 400, headers: cors });
-  }
-  if (!EMAIL_RE.test(email) || email.length > 120) {
-    return NextResponse.json({ error: 'Valid email required' }, { status: 400, headers: cors });
-  }
-  if (message.length < 10 || message.length > 4000) {
-    return NextResponse.json({ error: 'Message must be 10–4000 characters' }, { status: 400, headers: cors });
   }
 
   const resend = getResend();
