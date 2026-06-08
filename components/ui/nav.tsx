@@ -72,7 +72,9 @@ export function Nav() {
           aria-label="Home"
         >
           <Logo size={26} />
-          shaik<span className="text-accent">.</span>dev
+          <span>
+            Shaik<span className="text-accent">.</span>dev
+          </span>
         </a>
 
         {/* Desktop pill nav */}

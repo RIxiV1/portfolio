@@ -16,6 +16,31 @@ import {
 const sectionHeading = "text-3xl font-semibold tracking-tight md:text-4xl"
 const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
 
+function SectionLabel({ children }: { children: string }) {
+  return (
+    <span className="font-mono text-sm lowercase text-accent">
+      <span className="text-accent/50">/</span> {children}
+    </span>
+  )
+}
+
+function SectionAction({ href, children }: { href: string; children: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex shrink-0 items-center gap-1 whitespace-nowrap pb-1 text-sm text-muted-foreground transition-colors hover:text-accent"
+    >
+      {children}
+      <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </a>
+  )
+}
+
+const GITHUB_URL = "https://github.com/RIxiV1"
+const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
+
 const BIO_HIGHLIGHTS = [
   "React/TypeScript",
   "Supabase",
@@ -33,7 +58,7 @@ function highlightTerms(text: string, terms: string[]) {
   const parts = text.split(pattern)
   return parts.map((part, i) =>
     terms.includes(part) ? (
-      <span key={i} className="text-foreground">
+      <span key={i} className="font-medium text-accent">
         {part}
       </span>
     ) : (
@@ -54,7 +79,10 @@ export default function Page() {
           <StatusPill>Available for internships · Chennai</StatusPill>
 
           <h1 className="text-6xl font-semibold leading-[0.92] tracking-tight md:text-8xl lg:text-[10rem]">
-            <ScrambleText autoStart delay={150}>shaik suhaib</ScrambleText>
+            <ScrambleText autoStart delay={150}>Shaik Suhaib</ScrambleText>
+            <span aria-hidden className="caret-blink ml-1 font-light text-accent">
+              |
+            </span>
           </h1>
 
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -99,7 +127,10 @@ export default function Page() {
       >
         <FadeUp>
           <div className="space-y-10">
-            <h2 className={sectionHeading}>A little about me.</h2>
+            <header className="space-y-2">
+              <SectionLabel>about</SectionLabel>
+              <h2 className={sectionHeading}>A little about me.</h2>
+            </header>
             <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -136,7 +167,13 @@ export default function Page() {
           <FadeUp>
             <div className="space-y-10">
               <header className="space-y-3">
-                <h2 className={sectionHeading}>Selected projects.</h2>
+                <div className="flex items-end justify-between gap-4">
+                  <div className="space-y-2">
+                    <SectionLabel>work</SectionLabel>
+                    <h2 className={sectionHeading}>Selected projects.</h2>
+                  </div>
+                  <SectionAction href={GITHUB_URL}>All on GitHub</SectionAction>
+                </div>
                 <p className={sectionIntro}>
                   Stuff I&apos;ve built. Click a card for the case study.
                 </p>
@@ -154,7 +191,10 @@ export default function Page() {
           <FadeUp>
             <div className="space-y-8">
               <header className="space-y-3">
-                <h2 className={sectionHeading}>A small lab.</h2>
+                <div className="space-y-2">
+                  <SectionLabel>lab</SectionLabel>
+                  <h2 className={sectionHeading}>A small lab.</h2>
+                </div>
                 <p className={sectionIntro}>
                   Twelve items, three domains, cosine-similarity edges.
                   Hover a node to see its neighborhood. Not a real product
@@ -173,7 +213,10 @@ export default function Page() {
         >
           <FadeUp>
             <div className="space-y-8">
-              <h2 className={sectionHeading}>What I work with.</h2>
+              <header className="space-y-2">
+                <SectionLabel>stack</SectionLabel>
+                <h2 className={sectionHeading}>What I work with.</h2>
+              </header>
               <StackList
                 stack={siteConfig.stack}
                 projects={siteConfig.projects}
@@ -190,7 +233,10 @@ export default function Page() {
       >
         <FadeUp>
           <div className="space-y-8">
-            <h2 className={sectionHeading}>Where I&apos;ve been.</h2>
+            <header className="space-y-2">
+              <SectionLabel>journey</SectionLabel>
+              <h2 className={sectionHeading}>Where I&apos;ve been.</h2>
+            </header>
             <ExperienceTabs items={siteConfig.experience} />
           </div>
         </FadeUp>
@@ -204,7 +250,13 @@ export default function Page() {
         <FadeUp>
           <div className="space-y-8">
             <header className="space-y-3">
-              <h2 className={sectionHeading}>Notes & research.</h2>
+              <div className="flex items-end justify-between gap-4">
+                <div className="space-y-2">
+                  <SectionLabel>writing</SectionLabel>
+                  <h2 className={sectionHeading}>Notes & research.</h2>
+                </div>
+                <SectionAction href={MEDIUM_URL}>Read on Medium</SectionAction>
+              </div>
               <p className={sectionIntro}>
                 Essays on the math I keep coming back to.
               </p>
@@ -245,6 +297,7 @@ export default function Page() {
         <FadeUp>
           <div className="space-y-8">
             <header className="space-y-4">
+              <SectionLabel>contact</SectionLabel>
               <h2 className={sectionHeading}>Let&apos;s build something.</h2>
               <p className={sectionIntro}>
                 Open to internships, freelance, and research collaborations. Drop a
