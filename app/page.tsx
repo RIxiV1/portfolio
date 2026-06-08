@@ -20,9 +20,10 @@ const BIO_HIGHLIGHTS = [
   "React/TypeScript",
   "Supabase",
   "n8n",
-  "LLM-driven automation",
+  "LLMs",
   "ForMen Digital Clinic",
   "Product Management & Agentic AI",
+  "recommendation systems",
 ]
 
 function highlightTerms(text: string, terms: string[]) {
@@ -138,9 +139,9 @@ export default function Page() {
               <header className="space-y-3">
                 <h2 className={sectionHeading}>Selected projects.</h2>
                 <p className={sectionIntro}>
-                  Side projects and small systems at the intersection of AI
-                  research and product engineering. Click any card for the full
-                  case study; hover any tech chip to cross-link it with the
+                  Things I keep building while I figure out how AI products
+                  actually get shipped. Click any card for the case study;
+                  hover a tech chip to see where it&apos;s shown up in the
                   stack below.
                 </p>
               </header>
@@ -161,9 +162,9 @@ export default function Page() {
                 <p className={sectionIntro}>
                   An interactive sketch — twelve items, three domains, edges
                   weighted by cosine similarity. Hover any node to see its
-                  1-hop neighborhood. Not a shipped product; a visualisation
+                  1-hop neighborhood. Not a shipped product; just a picture
                   of the mechanic that drives the recommendation systems I
-                  write about and intend to build.
+                  keep writing about (and want to build properly).
                 </p>
               </header>
               <RecommendationLab />
@@ -211,8 +212,9 @@ export default function Page() {
             <header className="space-y-3">
               <h2 className={sectionHeading}>Notes & research.</h2>
               <p className={sectionIntro}>
-                Essays on the math I keep coming back to — recommendation systems,
-                network theory, chaos.
+                Essays on the math I keep coming back to — how things get
+                sorted, how things connect, why small changes don&apos;t stay
+                small.
               </p>
             </header>
             <ul className="border-t border-foreground/[0.05]">
