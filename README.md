@@ -1,6 +1,6 @@
 # Shaik Mohammed Suhaib — portfolio
 
-Personal site at **[portfolio-suhaib.vercel.app](https://portfolio-suhaib.vercel.app)**.
+Personal site at **[shaikuhaibdev.vercel.app](https://shaikuhaibdev.vercel.app)**.
 
 Single-page scroll with deeper case studies for each project. Tech-minimalist on a warm-amber-on-charcoal palette. Dark-mode only by design.
 

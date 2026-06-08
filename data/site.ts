@@ -6,7 +6,7 @@ export const siteConfig = {
   focus: 'Full-stack · AI products · n8n automation',
   location: 'Chennai, India',
   email: 'shaiksuhaib360@gmail.com',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-suhaibdev.vercel.app',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shaikuhaibdev.vercel.app',
   status: 'Open to internships & freelance',
 
   now: [
