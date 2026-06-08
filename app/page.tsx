@@ -16,6 +16,31 @@ import {
 const sectionHeading = "text-3xl font-semibold tracking-tight md:text-4xl"
 const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
 
+const BIO_HIGHLIGHTS = [
+  "React/TypeScript",
+  "Supabase",
+  "n8n",
+  "LLM-driven automation",
+  "ForMen Digital Clinic",
+  "Product Management & Agentic AI",
+]
+
+function highlightTerms(text: string, terms: string[]) {
+  if (!terms.length) return text
+  const escaped = terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+  const pattern = new RegExp(`(${escaped.join("|")})`, "g")
+  const parts = text.split(pattern)
+  return parts.map((part, i) =>
+    terms.includes(part) ? (
+      <span key={i} className="text-foreground">
+        {part}
+      </span>
+    ) : (
+      <span key={i}>{part}</span>
+    ),
+  )
+}
+
 export default function Page() {
   return (
     <main className="relative">
@@ -83,9 +108,9 @@ export default function Page() {
                 className="aspect-[4/5] w-full max-w-[200px] rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] object-cover"
               />
               <div className="space-y-5">
-                <div className="space-y-4 text-base leading-relaxed text-foreground/90 md:text-lg">
+                <div className="space-y-4 text-base leading-relaxed text-foreground/75 md:text-lg">
                   {siteConfig.bio.map((p, i) => (
-                    <p key={i}>{p}</p>
+                    <p key={i}>{highlightTerms(p, BIO_HIGHLIGHTS)}</p>
                   ))}
                 </div>
                 <dl className="grid grid-cols-[110px_1fr] gap-y-2 pt-4 text-sm">
