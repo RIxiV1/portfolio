@@ -11,14 +11,15 @@ export const siteConfig = {
 
   now: [
     'wrapping a product & dev internship @ ForMen Digital Clinic',
-    'PM & agentic AI cert @ Vishlesan i-Hub, IIT Patna · earlier this year',
+    'PM & agentic AI cert @ IIT Patna × Masai · 2025',
+    'NPTEL elite cert in Big Data Computing @ IIT Kanpur · 2025',
     'B.Tech IT @ Vel Tech Chennai',
   ],
 
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "Wrapping a Product & Development internship this month at ForMen Digital Clinic, where I built a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai. Picked up a Product Management & Agentic AI cert from Vishlesan i-Hub at IIT Patna earlier this year.",
+    "Wrapping a Product & Development internship this month at ForMen Digital Clinic, where I built a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai. Picked up a Product Management & Agentic AI cert from IIT Patna × Masai last year.",
     "Stack I keep coming back to: TypeScript, React, Supabase, n8n, and Gemini for the agentic stuff.",
     "Outside work: falling down quantum physics and space rabbit holes. Oh, and I play too many Souls games and suck at chess.",
   ],
@@ -183,10 +184,17 @@ export const siteConfig = {
     },
     {
       role: 'Certificate Program — Product Management & Agentic AI',
-      org: 'Vishlesan i-Hub, IIT Patna — Online / Hybrid',
-      period: 'Jan 2025 — Mar 2026',
+      org: 'IIT Patna × Masai (Vishlesan i-Hub Foundation) — Online / Hybrid',
+      period: 'Apr 2025 — Oct 2025',
       description:
         'Full product lifecycle — market research, MVP scoping, iterative launches. Built agentic automation in n8n + LLMs.',
+    },
+    {
+      role: 'NPTEL Elite Certification — Big Data Computing',
+      org: 'SWAYAM–NPTEL · IIT Kanpur — Online',
+      period: 'Completed Oct 2025',
+      description:
+        'Elite-track NPTEL course on distributed processing, Hadoop, and large-scale data systems.',
     },
     {
       role: 'B.Tech, Information Technology',
