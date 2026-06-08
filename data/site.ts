@@ -18,8 +18,9 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "I build product-shaped things. Write the PRD, find someone who'd actually use it, ship the smallest version, watch what they do.",
-    "Drawn to the math behind discovery — recommendation systems, network theory, how noise becomes signal. Right now: interning at ForMen Digital Clinic on a consumer health AI tool, IT undergrad at Vel Tech, PM + Agentic AI cert at IIT Patna on the side.",
+    "I'm currently interning at ForMen Digital Clinic, where I'm building a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai, doing a Product Management & Agentic AI cert at IIT Patna on the side.",
+    "Stack I keep coming back to: TypeScript, React, Supabase, n8n, and Gemini for the agentic stuff.",
+    "When I'm not shipping things, I'm writing about the math behind discovery — recommendation systems, network theory, why small changes compound into big ones. Three essays on Medium so far.",
   ],
 
   socials: [
@@ -48,7 +49,7 @@ export const siteConfig = {
       year: '2025',
       slug: 'resumescreen',
       description:
-        'Live AI screener. Resume PDF + JD in, typed JSON verdict out (score, matched skills, interview/reject), follow-up email fired by n8n. Course project for the IIT Patna PM + Agentic AI cert.',
+        'A live AI screener built for the IIT Patna PM + Agentic AI cert. Resume PDF + JD in, a typed verdict out (score, matched skills, interview/reject), follow-up email fired automatically.',
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       liveUrl: 'https://talent-spotter-flow.lovable.app',
@@ -88,7 +89,7 @@ export const siteConfig = {
       year: '2026',
       slug: 'infoblend',
       description:
-        "Reading toolkit I built for myself, shipped as a Manifest V3 extension for Chrome, Edge, and Firefox. Double-click to define, right-click to translate (17 languages), Ctrl+K to summarise. Zero deps, BYOK AI, Shadow DOM isolation.",
+        "A reading toolkit I built for myself. Manifest V3 extension for Chrome, Edge, and Firefox — double-click to define, right-click to translate, Ctrl+K to summarise. Zero deps, BYOK AI.",
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
       href: 'https://github.com/RIxiV1/InfoBlend',
       accent: 'oklch(0.72 0.18 280)', // indigo
@@ -131,7 +132,7 @@ export const siteConfig = {
       year: '2025',
       slug: 'subsentry',
       description:
-        "Subscription tracker that doesn't ask for your bank credentials. RLS-isolated at the database, swipe-gesture cards on mobile, confetti burst every time you cancel a sub.",
+        "A subscription tracker that doesn't ask for your bank credentials. Swipe-gesture cards on mobile, confetti every time you cancel a sub.",
       tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod', 'shadcn/ui'],
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
