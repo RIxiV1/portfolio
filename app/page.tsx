@@ -159,10 +159,11 @@ export default function Page() {
               <header className="space-y-3">
                 <h2 className={sectionHeading}>A small lab.</h2>
                 <p className={sectionIntro}>
-                  A small interactive — twelve items across three domains, edges
-                  weighted by similarity. Hover any node to see its 1-hop
-                  neighborhood. The kind of mechanic that powers product
-                  recommendations when you build with LLMs.
+                  An interactive sketch — twelve items, three domains, edges
+                  weighted by cosine similarity. Hover any node to see its
+                  1-hop neighborhood. Not a shipped product; a visualisation
+                  of the mechanic that drives the recommendation systems I
+                  write about and intend to build.
                 </p>
               </header>
               <RecommendationLab />

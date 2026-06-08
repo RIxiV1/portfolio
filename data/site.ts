@@ -18,8 +18,8 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "I'm an IT undergrad in Chennai who builds and ships full-stack AI products end-to-end. Comfortable across React/TypeScript front ends, Supabase backends, and LLM-driven automation in n8n.",
-    "I treat building like a product problem — write the PRD, validate with users, ship the MVP. Recently wrapped an internship at ForMen Digital Clinic where I shipped a consumer health AI tool, and I'm pursuing a Product Management & Agentic AI cert from IIT Patna alongside my B.Tech.",
+    "I treat building like a product problem — write the PRD, validate it with someone who'd actually use the thing, ship the MVP, then watch what they do with it. The interesting work lives in the gap between what users say they want and what they actually do.",
+    "I'm drawn to the math behind discovery — recommendation systems, network theory, how complex stuff gets sorted into things you'd care about. Most of what I write and build orbits that. Currently interning at ForMen Digital Clinic shipping a consumer health AI tool end-to-end; IT undergrad at Vel Tech Chennai; pursuing a Product Management & Agentic AI cert from IIT Patna alongside the B.Tech. Stack: React/TypeScript, Supabase, n8n, LLM-driven automation.",
   ],
 
   socials: [
@@ -48,14 +48,14 @@ export const siteConfig = {
       year: '2025',
       slug: 'resumescreen',
       description:
-        'An end-to-end AI resume screener. A Lovable-built form posts a resume PDF and job description to an n8n webhook; a Gemini agent returns a typed JSON verdict — overall score, confidence, matched skills, years of relevant experience, an interview/reject recommendation, and recommended next steps. Optional Gmail nodes auto-route interview or rejection emails. IIT Patna Product Management & Agentic AI capstone.',
+        'An end-to-end AI resume screener. A Lovable-built form posts a resume PDF and job description to an n8n webhook; a Gemini agent returns a typed JSON verdict — overall score, confidence, matched skills, years of relevant experience, an interview/reject recommendation, and recommended next steps. Optional Gmail nodes auto-route interview or rejection emails. Course project for the IIT Patna Product Management & Agentic AI cert.',
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       liveUrl: 'https://talent-spotter-flow.lovable.app',
       accent: 'oklch(0.8 0.16 75)', // amber
       caseStudy: {
         tagline:
-          'A live AI resume screener that takes a PDF + JD and returns a typed JSON verdict — overall score, matched skills, years of experience, interview/reject recommendation, and auto-routed follow-up emails. Built as the IIT Patna Product Management & Agentic AI capstone.',
+          'A live AI resume screener that takes a PDF + JD and returns a typed JSON verdict — overall score, matched skills, years of experience, interview/reject recommendation, and auto-routed follow-up emails. Built as the course project for the IIT Patna Product Management & Agentic AI cert.',
         problem:
           'Recruiters at small companies spend hours on first-pass screening where most resumes are clearly off-fit. The "is this candidate worth a call" decision is structured enough — must-have skills, years of experience, role match — that an LLM can extract it reliably, if you commit to a typed contract instead of free-form text and let an orchestrator handle the side effects.',
         approach:
@@ -75,7 +75,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          'Live deployment at talent-spotter-flow.lovable.app, accepting PDF uploads and returning a full JSON screening in seconds. Submitted as the IIT Patna Product Management & Agentic AI capstone. The n8n workflow JSON is in the repo so the pipeline is reproducible end-to-end.',
+          'Live deployment at talent-spotter-flow.lovable.app, accepting PDF uploads from anyone. The n8n workflow runs 7 nodes from webhook → text extraction → Gemini agent → optional Gmail branch, and the agent returns a 9-field JSON verdict (overall_score, confidence, summary, strengths, matched_skills, years_relevant_experience, recommendation, short_reason, recommended_next_steps). Workflow JSON is committed to the repo so the pipeline is reproducible end-to-end. Submitted as the course project for the IIT Patna PM & Agentic AI cert.',
         learnings: [
           'Demand a typed JSON contract from the LLM upfront. Iterating on prose outputs is slow; iterating on a schema is mechanical.',
           'No-code where it doesn\'t matter, code where it does. The form was throwaway; the prompt + workflow is what proves the engineering.',
@@ -118,7 +118,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          'Version 3.1.1, installable from source today on Chrome, Edge, Brave, and Firefox. Not yet published to either store — currently doing the submission-readiness work: PRIVACY.md added, AMO validator fixes landed, CWS-required metadata in place, square icons, no innerHTML. 35+ commits in the most recent ship cycle alone.',
+          'Version 3.1.1, installable from source today on Chrome, Edge, Brave, and Firefox. Five-source definition fallback chain (Dictionary → Datamuse → Wiktionary → Wikipedia → Urban Dictionary). 17 translation languages. 500-item LRU Knowledge Vault with CSV/Markdown export. Not yet published to either store — currently doing the submission-readiness work: PRIVACY.md added, AMO validator fixes landed, CWS-required metadata in place, square icons, no innerHTML. 35+ commits in the most recent ship cycle alone.',
         learnings: [
           'The MV3 service-worker lifecycle bites you in subtle ways — stale callbacks, sendResponse races, audio context loss on suspend. Designing for it from day one is much cheaper than retrofitting an MV2 codebase.',
           '"Zero dependencies" sounded like a constraint and became a feature — every byte is auditable for store reviewers, and the extension survives any single dependency\'s breaking change.',
@@ -162,7 +162,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          'Live demo at ssubsentry.lovable.app. Solo build over roughly three weeks (Nov 11 → Dec 4 2025). Working flows: auth, add/edit/delete subscriptions, budgeting tool with caps and inline validation, spending insights by category, swipe-gesture mobile controls, and the confetti "Slay" moment on cancellation.',
+          'Live demo at ssubsentry.lovable.app. Solo build over roughly three weeks (Nov 11 → Dec 4 2025), 20+ commits across UI/UX, validation, budgeting, and the GenZ-tone pass. Working flows: auth, add/edit/delete subscriptions, budgeting tool with caps and inline validation, spending insights by category, swipe-gesture mobile controls, and the confetti "Slay" moment on cancellation.',
         learnings: [
           'Personal finance UX is mostly a tone problem dressed up as a math problem. Solve the tone, the math follows — users won\'t look at the numbers if the app shames them for the numbers.',
           'Supabase RLS is the right answer for any multi-tenant consumer app — designing schema with policies in mind from day one is much cheaper than bolting them on later.',
