@@ -42,13 +42,11 @@ const GITHUB_URL = "https://github.com/RIxiV1"
 const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
 
 const BIO_HIGHLIGHTS = [
-  "React/TypeScript",
-  "Supabase",
-  "n8n",
-  "LLMs",
   "ForMen Digital Clinic",
   "Product Management & Agentic AI",
-  "recommendation systems",
+  "Supabase",
+  "n8n",
+  "Gemini",
 ]
 
 function highlightTerms(text: string, terms: string[]) {
@@ -167,7 +165,7 @@ export default function Page() {
           <FadeUp>
             <div className="space-y-10">
               <header className="space-y-3">
-                <div className="flex items-end justify-between gap-4">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                   <div className="space-y-2">
                     <SectionLabel>work</SectionLabel>
                     <h2 className={sectionHeading}>Selected projects.</h2>
