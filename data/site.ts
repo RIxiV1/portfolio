@@ -58,7 +58,6 @@ export const siteConfig = {
         "I wanted to see if I could hand the boring first pass of resume screening to an agent. Drop in a resume and a job description, get back a clear interview-or-reject with reasons, and the email sends itself. Built for the IIT Patna PM & Agentic AI cert.",
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
-      liveUrl: 'https://talent-spotter-flow.lovable.app',
       accent: '#b0803f', // brass
       caseStudy: {
         tagline:
@@ -78,7 +77,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          'Live at talent-spotter-flow.lovable.app — drop in a PDF and a JD and it runs end to end. Seven nodes, nine fields back from the agent, and the n8n JSON is in the repo if you want to see the wiring.',
+          "Built for the IIT Patna PM & Agentic AI cert. It ran end to end during the course — webhook, PDF text extraction, Gemini agent, optional Gmail. The hosted n8n agent has since expired, but the full workflow JSON is in the repo, so the whole pipeline is reproducible.",
       },
     },
     {
