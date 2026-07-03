@@ -36,6 +36,12 @@ function SectionAction({ href, children }: { href: string; children: string }) {
 const GITHUB_URL = "https://github.com/RIxiV1"
 const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
 
+// Lead with the live, clickable, real full-stack app; lightest (no-code) last.
+const PROJECT_ORDER = ["subsentry", "infoblend", "resumescreen"]
+const orderedProjects = [...siteConfig.projects].sort(
+  (a, b) => PROJECT_ORDER.indexOf(a.slug) - PROJECT_ORDER.indexOf(b.slug),
+)
+
 const BIO_HIGHLIGHTS: string[] = []
 
 function highlightTerms(text: string, terms: string[]) {
@@ -165,7 +171,7 @@ export default function Page() {
                 for the whole story.
               </p>
             </header>
-            <ProjectsList projects={siteConfig.projects} />
+            <ProjectsList projects={orderedProjects} />
           </div>
         </FadeUp>
       </section>
