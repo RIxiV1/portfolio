@@ -180,7 +180,7 @@ export const siteConfig = {
       org: 'ForMen Digital Clinic — Remote',
       period: 'Mar 2026 — Jun 2026',
       description:
-        "Building a consumer-facing AI tool that turns men's-health lab reports into plain-language, interactive explanations. PRD to working product — research notes, requirements, UI, implementation.",
+        "Built a consumer-facing AI tool that turns men's-health lab reports into plain-language, interactive explanations. Owned it PRD to working product — research, requirements, UI, implementation.",
     },
     {
       role: 'Certificate Program — Product Management & Agentic AI',

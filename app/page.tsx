@@ -83,12 +83,19 @@ export default function Page() {
             </span>
           </h1>
 
-          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            IT undergrad in Chennai. Wrapping an internship this month at{" "}
-            <span className="text-foreground">ForMen Digital Clinic</span>,
-            where I shipped a consumer health AI tool. Mostly into the math
-            behind recommendation systems.
-          </p>
+          <div className="max-w-2xl space-y-4">
+            <p className="text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
+              Building software that makes complicated things easier to
+              understand.
+            </p>
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              I just wrapped a product &amp; development internship where I
+              helped build an AI lab-report explainer at{" "}
+              <span className="text-foreground">ForMen Digital Clinic</span>.
+              Outside of that, I enjoy building tools that solve real problems
+              and feel simple to use.
+            </p>
+          </div>
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
             <CtaButton href="#contact" variant="primary">
