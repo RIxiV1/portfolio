@@ -10,13 +10,6 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shaikuhaibdev.vercel.app',
   status: 'Open to internships & freelance',
 
-  now: [
-    'wrapping a product & dev internship @ ForMen Digital Clinic',
-    'PM & agentic AI cert @ IIT Patna × Masai · 2025',
-    'NPTEL elite cert in Big Data Computing @ IIT Kanpur · 2025',
-    'B.Tech IT @ Vel Tech Chennai',
-  ],
-
   resumeUrl: '/resume.pdf',
 
   bio: [
@@ -184,13 +177,6 @@ export const siteConfig = {
     },
   ],
 
-  stack: [
-    { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'SQL'] },
-    { group: 'Frontend', items: ['React', 'Vite', 'Tailwind', 'shadcn/ui'] },
-    { group: 'Backend', items: ['Supabase', 'Postgres', 'Zod', 'REST'] },
-    { group: 'AI / Automation', items: ['n8n', 'OpenAI', 'Gemini', 'LLM prompting'] },
-  ],
-
   writing: [
     {
       title: 'Recommendation Systems: The Math Behind Discovery',
@@ -219,7 +205,6 @@ export const siteConfig = {
   ],
 
   metadata: {
-    title: 'Shaik Suhaib — software engineer',
     description:
       'I like building software that takes something confusing and makes it make sense — most recently an AI tool at ForMen Digital Clinic that explains blood reports in plain English.',
   },

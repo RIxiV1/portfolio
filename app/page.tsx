@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { ArrowUpRight, FileText, Sparkles } from "lucide-react"
 import { siteConfig } from "@/data/site"
 import { FadeUp } from "@/components/ui/fade-up"
@@ -41,24 +42,6 @@ const PROJECT_ORDER = ["infoblend", "subsentry", "resumescreen"]
 const orderedProjects = [...siteConfig.projects].sort(
   (a, b) => PROJECT_ORDER.indexOf(a.slug) - PROJECT_ORDER.indexOf(b.slug),
 )
-
-const BIO_HIGHLIGHTS: string[] = []
-
-function highlightTerms(text: string, terms: string[]) {
-  if (!terms.length) return text
-  const escaped = terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-  const pattern = new RegExp(`(${escaped.join("|")})`, "g")
-  const parts = text.split(pattern)
-  return parts.map((part, i) =>
-    terms.includes(part) ? (
-      <span key={i} className="font-medium text-accent">
-        {part}
-      </span>
-    ) : (
-      <span key={i}>{part}</span>
-    ),
-  )
-}
 
 export default function Page() {
   return (
@@ -240,16 +223,17 @@ export default function Page() {
               <h2 className={sectionHeading}>A little about me.</h2>
             </header>
             <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/portrait.png"
                 alt="Shaik Mohammed Suhaib"
+                width={200}
+                height={250}
                 className="aspect-[4/5] w-full max-w-[200px] rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] object-cover"
               />
               <div className="space-y-5">
                 <div className="space-y-4 text-base leading-relaxed text-foreground/75 md:text-lg">
                   {siteConfig.bio.map((p, i) => (
-                    <p key={i}>{highlightTerms(p, BIO_HIGHLIGHTS)}</p>
+                    <p key={i}>{p}</p>
                   ))}
                 </div>
                 <dl className="grid grid-cols-[110px_1fr] gap-y-2 pt-4 text-sm">
