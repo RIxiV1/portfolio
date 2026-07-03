@@ -313,14 +313,18 @@ export default function Page() {
       </section>
 
       {/* FOOTER */}
-      <footer className="mt-12 border-t border-foreground/[0.05]">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-8">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} — {siteConfig.name}
+      <footer className="mt-12 border-t border-foreground/[0.06]">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-2.5 px-6 py-14 text-center">
+          <p className="text-sm text-muted-foreground">
+            Built &amp; designed by{" "}
+            <span className="font-display text-foreground">Shaik Suhaib</span>.
+          </p>
+          <p className="text-xs text-muted-foreground/70">
+            All rights reserved. © {new Date().getFullYear()}
           </p>
           <a
             href="#home"
-            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="mt-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 transition-colors hover:text-accent"
           >
             Back to top ↑
           </a>

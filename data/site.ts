@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
@@ -31,7 +31,6 @@ export const siteConfig = {
       label: 'LinkedIn',
       handle: 'in/shaiksuhaib',
     },
-    { icon: Twitter, href: 'https://x.com/suhaibX0', label: 'Twitter', handle: '@suhaibX0' },
   ],
 
   navLinks: [
@@ -217,6 +216,5 @@ export const siteConfig = {
     title: 'Shaik Suhaib — software engineer',
     description:
       'I like building software that takes something confusing and makes it make sense — most recently an AI tool at ForMen Digital Clinic that explains blood reports in plain English.',
-    twitterHandle: '@suhaibX0',
   },
 };
