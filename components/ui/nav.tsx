@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { siteConfig } from "@/data/site"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/ui/logo"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 
 export function Nav() {
   const [active, setActive] = useState<string>("")
@@ -77,39 +78,43 @@ export function Nav() {
           </span>
         </a>
 
-        {/* Desktop pill nav */}
-        <ul className="hidden items-center gap-1 rounded-full border border-foreground/[0.06] bg-foreground/[0.02] p-1 md:flex">
-          {siteConfig.navLinks.map((l) => {
-            const isActive = active === l.href
-            return (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className={cn(
-                    "block rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors",
-                    isActive
-                      ? "bg-foreground text-background"
-                      : "text-muted-foreground hover:bg-foreground/[0.05] hover:text-foreground",
-                  )}
-                >
-                  {l.name}
-                </a>
-              </li>
-            )
-          })}
-        </ul>
+        <div className="flex items-center gap-2">
+          {/* Desktop pill nav */}
+          <ul className="hidden items-center gap-1 rounded-full border border-foreground/[0.06] bg-foreground/[0.02] p-1 md:flex">
+            {siteConfig.navLinks.map((l) => {
+              const isActive = active === l.href
+              return (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className={cn(
+                      "block rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors",
+                      isActive
+                        ? "bg-foreground text-background"
+                        : "text-muted-foreground hover:bg-foreground/[0.05] hover:text-foreground",
+                    )}
+                  >
+                    {l.name}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 text-foreground transition-colors hover:border-accent/40 hover:text-accent"
-        >
-          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
+          <ThemeToggle />
+
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 text-foreground transition-colors hover:border-accent/40 hover:text-accent"
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile sheet */}

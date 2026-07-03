@@ -34,6 +34,10 @@ export const metadata: Metadata = {
   },
 }
 
+// Runs before first paint: apply the stored theme, or fall back to the
+// visitor's system preference. Keeps light-vs-dark from flashing on load.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -42,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <div className="fixed inset-0 -z-50 bg-background" />
         <div className="pointer-events-none fixed inset-0 -z-40 grid-bg" />
         <Nav />
