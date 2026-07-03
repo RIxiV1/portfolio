@@ -2,16 +2,16 @@
 
 Personal site at **[shaikuhaibdev.vercel.app](https://shaikuhaibdev.vercel.app)**.
 
-Single-page scroll with deeper case studies for each project. Tech-minimalist on a warm-amber-on-charcoal palette. Dark-mode only by design.
+Single-page scroll with deeper case studies for each project. Warm editorial palette (paper + walnut) with a light/dark toggle — serif for display moments, sans for reading.
 
 ---
 
 ## What's in it
 
-- **One-page scroll**: hero, about, work, stack, journey, writing, contact — each section carries an indexed `/ name` monospace label, with right-aligned jump links where they help ("All on GitHub", "Read on Medium").
-- **Case study pages** at `/projects/[slug]` — statically generated. Each lays out problem, approach, three to four keyed decisions with rationale, outcome, and takeaways.
-- **Stack ↔ Work cross-link** — hover any tech in the Stack section to highlight where it's shipped on the project cards (and vice versa). Keyboard-reachable, `aria-pressed` for screen readers.
-- **Magnetic CTAs** — "Hire me" and "Download résumé" track the cursor with spring physics.
+- **Narrative arc, not a résumé dump**: hero → approach (how I think) → work → experience → writing → about → contact. Belief and principles come first, so the projects below read as evidence. Each section carries an indexed `/ name` monospace label, with right-aligned jump links where they help ("All on GitHub", "Read on Medium").
+- **Case study pages** at `/projects/[slug]` — statically generated. Each lays out problem, approach, keyed decisions with rationale, and outcome (structure varies per project — no forced "lessons" list).
+- **Editorial system** — warm paper/walnut palette, subtle printed-paper grain, Fraunces serif reserved for display moments, and semantic color roles (walnut = interaction, moss = positive). Light/dark toggle with no-flash init.
+- **Magnetic CTAs** — "Get in touch" and "Download résumé" track the cursor with spring physics.
 - **Scramble text** on the hero name, trailed by a blinking terminal caret (paused under `prefers-reduced-motion`).
 - **Hardened contact form**: Zod-validated, Resend-delivered, Upstash-rate-limited (in-memory fallback for local dev), honeypot anti-spam, control-character stripping to defend against header injection, strict CORS validation.
 - **Accessibility**: keyboard-navigable interactive SVG, `prefers-reduced-motion` respected, focus-visible outlines, semantic HTML.

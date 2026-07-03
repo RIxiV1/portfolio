@@ -6,11 +6,7 @@ import { ExperienceTabs } from "@/components/ui/experience-tabs"
 import { ScrambleText } from "@/components/ui/scramble-text"
 import { StatusPill } from "@/components/ui/status-pill"
 import { CtaButton } from "@/components/ui/cta-button"
-import {
-  CrossLinkProvider,
-  ProjectsList,
-  StackList,
-} from "@/components/ui/work-stack-link"
+import { ProjectsList } from "@/components/ui/work-stack-link"
 
 const sectionHeading = "font-display text-3xl font-semibold tracking-tight md:text-4xl"
 const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
@@ -117,78 +113,21 @@ export default function Page() {
         </div>
       </section>
 
-      {/* STATEMENT — the one loud moment. No label, no card, just the through-line. */}
-      <section className="mx-auto max-w-4xl px-6 py-40">
-        <FadeUp>
-          <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
-            <span className="text-muted-foreground">
-              If someone&apos;s confused,{" "}
-            </span>
-            the software failed.
-          </p>
-        </FadeUp>
-      </section>
-
-      <CrossLinkProvider>
-        {/* WORK */}
-        <section
-          id="work"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-        >
-          <FadeUp>
-            <div className="space-y-10">
-              <header className="space-y-3">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
-                  <div className="space-y-2">
-                    <SectionLabel>work</SectionLabel>
-                    <h2 className={sectionHeading}>Things I&apos;ve built.</h2>
-                  </div>
-                  <SectionAction href={GITHUB_URL}>All on GitHub</SectionAction>
-                </div>
-                <p className={sectionIntro}>
-                  Each one started with something that annoyed me. Click a card
-                  for the whole story.
-                </p>
-              </header>
-              <ProjectsList projects={siteConfig.projects} />
-            </div>
-          </FadeUp>
-        </section>
-
-        {/* STACK */}
-        <section
-          id="stack"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-        >
-          <FadeUp>
-            <div className="space-y-8">
-              <header className="space-y-2">
-                <SectionLabel>stack</SectionLabel>
-                <h2 className={sectionHeading}>What I work with.</h2>
-              </header>
-              <StackList
-                stack={siteConfig.stack}
-                projects={siteConfig.projects}
-              />
-            </div>
-          </FadeUp>
-        </section>
-      </CrossLinkProvider>
-
-      {/* APPROACH — how I think, not what I install */}
+      {/* HOW I THINK — the belief, then what it means in practice. Placed high,
+          so the projects below read as evidence rather than a list. */}
       <section
         id="approach"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
       >
         <FadeUp>
-          <div className="space-y-8">
-            <header className="space-y-2">
-              <SectionLabel>approach</SectionLabel>
-              <h2 className={sectionHeading}>
-                A few things I keep coming back to.
-              </h2>
-            </header>
-            <ul className="space-y-5 border-t border-foreground/[0.06] pt-6">
+          <div className="space-y-10">
+            <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
+              <span className="text-muted-foreground">
+                If someone&apos;s confused,{" "}
+              </span>
+              the software failed.
+            </p>
+            <ul className="space-y-5 border-t border-foreground/[0.06] pt-8">
               {siteConfig.principles.map((p) => (
                 <li
                   key={p}
@@ -204,6 +143,31 @@ export default function Page() {
                 </li>
               ))}
             </ul>
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* WORK */}
+      <section
+        id="work"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+      >
+        <FadeUp>
+          <div className="space-y-10">
+            <header className="space-y-3">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+                <div className="space-y-2">
+                  <SectionLabel>work</SectionLabel>
+                  <h2 className={sectionHeading}>Things I&apos;ve built.</h2>
+                </div>
+                <SectionAction href={GITHUB_URL}>All on GitHub</SectionAction>
+              </div>
+              <p className={sectionIntro}>
+                Each one started with something that annoyed me. Click a card
+                for the whole story.
+              </p>
+            </header>
+            <ProjectsList projects={siteConfig.projects} />
           </div>
         </FadeUp>
       </section>
@@ -348,6 +312,10 @@ export default function Page() {
               </div>
             </header>
             <ContactForm />
+            <p className="pt-2 text-sm text-muted-foreground">
+              Or just say what you&apos;re working on — if it&apos;s an
+              interesting problem, I&apos;ll want to hear about it.
+            </p>
           </div>
         </FadeUp>
       </section>
