@@ -10,6 +10,7 @@ type Project = {
   year: string
   slug: string
   description: string
+  hook?: string
   tech: string[]
   href: string
   liveUrl?: string
@@ -102,6 +103,14 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
                 <p className="max-w-xl leading-relaxed text-muted-foreground">
                   {p.description}
                 </p>
+                {p.hook && (
+                  <p className="max-w-xl text-sm leading-relaxed text-foreground/55">
+                    <span className="text-[color:var(--project-accent)]/70">
+                      →{" "}
+                    </span>
+                    {p.hook}
+                  </p>
+                )}
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-2">
                   <ul className="flex flex-wrap gap-2">
                     {p.tech.map((t) => {

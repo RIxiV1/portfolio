@@ -54,6 +54,7 @@ export const siteConfig = {
       title: 'ResumeScreen',
       year: '2025',
       slug: 'resumescreen',
+      hook: 'My first version just asked the AI to "summarise the candidate." Useless.',
       description:
         "I wanted to see if I could hand the boring first pass of resume screening to an agent. Drop in a resume and a job description, get back a clear interview-or-reject with reasons, and the email sends itself. Built for the IIT Patna PM & Agentic AI cert.",
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
@@ -85,6 +86,7 @@ export const siteConfig = {
       title: 'InfoBlend',
       year: '2026',
       slug: 'infoblend',
+      hook: 'I built "Chat with the Page," then ripped it out before shipping.',
       description:
         "I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.",
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
@@ -119,6 +121,7 @@ export const siteConfig = {
       title: 'SubSentry',
       year: '2025',
       slug: 'subsentry',
+      hook: "The hard part was never the code — it was making a money app that doesn't scold you.",
       description:
         "A subscription tracker that never asks for your bank login — I didn't want to hand mine over, so it doesn't ask for yours. It also celebrates when you cancel something instead of nagging you about it.",
       tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod', 'shadcn/ui'],
