@@ -320,7 +320,7 @@ export default function Page() {
             <span className="font-display text-foreground">Shaik Suhaib</span>.
           </p>
           <p className="text-xs text-muted-foreground/70">
-            All rights reserved. © {new Date().getFullYear()}
+            All rights reserved. ©
           </p>
           <a
             href="#home"
