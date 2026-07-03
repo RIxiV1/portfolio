@@ -36,8 +36,8 @@ function SectionAction({ href, children }: { href: string; children: string }) {
 const GITHUB_URL = "https://github.com/RIxiV1"
 const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
 
-// Lead with the live, clickable, real full-stack app; lightest (no-code) last.
-const PROJECT_ORDER = ["subsentry", "infoblend", "resumescreen"]
+// Feature the strongest, most on-identity build (InfoBlend); lightest last.
+const PROJECT_ORDER = ["infoblend", "subsentry", "resumescreen"]
 const orderedProjects = [...siteConfig.projects].sort(
   (a, b) => PROJECT_ORDER.indexOf(a.slug) - PROJECT_ORDER.indexOf(b.slug),
 )
@@ -124,30 +124,12 @@ export default function Page() {
         className="mx-auto max-w-3xl scroll-mt-24 px-6 py-24"
       >
         <FadeUp>
-          <div className="space-y-10">
-            <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
-              <span className="text-muted-foreground">
-                If someone&apos;s confused,{" "}
-              </span>
-              the software failed.
-            </p>
-            <ul className="space-y-5 border-t border-foreground/[0.06] pt-8">
-              {siteConfig.principles.map((p) => (
-                <li
-                  key={p}
-                  className="flex gap-4 text-lg leading-relaxed md:text-xl"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="select-none pt-1 font-mono text-sm text-accent/60"
-                  >
-                    →
-                  </span>
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
+            <span className="text-muted-foreground">
+              If someone&apos;s confused,{" "}
+            </span>
+            the software failed.
+          </p>
         </FadeUp>
       </section>
 
@@ -215,26 +197,29 @@ export default function Page() {
                 keep circling back to.
               </p>
             </header>
-            <ul className="border-t border-foreground/[0.05]">
+            <ul className="divide-y divide-foreground/[0.06] border-t border-foreground/[0.06]">
               {siteConfig.writing.map((w) => (
-                <li key={w.title} className="border-b border-foreground/[0.05]">
+                <li key={w.title}>
                   <a
                     href={w.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col gap-2 py-6"
+                    className="group grid gap-3 py-8 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
                   >
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <span className="rounded-full bg-foreground/[0.04] px-2 py-0.5">{w.tag}</span>
-                      <span>{w.date}</span>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                        <span>{w.tag}</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{w.date}</span>
+                      </div>
+                      <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight transition-colors group-hover:text-accent md:text-3xl">
+                        {w.title}
+                      </h3>
+                      <p className="max-w-2xl leading-relaxed text-muted-foreground">
+                        {w.description}
+                      </p>
                     </div>
-                    <h3 className="flex items-center gap-2 text-xl font-semibold tracking-tight transition-colors group-hover:text-accent">
-                      {w.title}
-                      <ArrowUpRight className="h-4 w-4 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-60" />
-                    </h3>
-                    <p className="max-w-xl leading-relaxed text-muted-foreground">
-                      {w.description}
-                    </p>
+                    <ArrowUpRight className="hidden h-5 w-5 shrink-0 translate-y-1 text-muted-foreground/40 transition group-hover:text-accent md:block" />
                   </a>
                 </li>
               ))}

@@ -42,12 +42,6 @@ export const siteConfig = {
     { name: 'Contact', href: '#contact' },
   ],
 
-  principles: [
-    "Kill the feature you're proudest of if it isn't pulling its weight.",
-    'Sometimes the tone is the feature, not the polish.',
-    'Good defaults beat more settings.',
-  ],
-
   projects: [
     {
       title: 'ResumeScreen',
