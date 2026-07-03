@@ -117,44 +117,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section
-        id="about"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-      >
-        <FadeUp>
-          <div className="space-y-10">
-            <header className="space-y-2">
-              <SectionLabel>about</SectionLabel>
-              <h2 className={sectionHeading}>A little about me.</h2>
-            </header>
-            <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/portrait.png"
-                alt="Shaik Mohammed Suhaib"
-                className="aspect-[4/5] w-full max-w-[200px] rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] object-cover"
-              />
-              <div className="space-y-5">
-                <div className="space-y-4 text-base leading-relaxed text-foreground/75 md:text-lg">
-                  {siteConfig.bio.map((p, i) => (
-                    <p key={i}>{highlightTerms(p, BIO_HIGHLIGHTS)}</p>
-                  ))}
-                </div>
-                <dl className="grid grid-cols-[110px_1fr] gap-y-2 pt-4 text-sm">
-                  <dt className="text-muted-foreground">Location</dt>
-                  <dd>{siteConfig.location}</dd>
-                  <dt className="text-muted-foreground">Focus</dt>
-                  <dd>{siteConfig.focus}</dd>
-                  <dt className="text-muted-foreground">Status</dt>
-                  <dd className="text-positive">{siteConfig.status}</dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </FadeUp>
-      </section>
-
       {/* STATEMENT — the one loud moment. No label, no card, just the through-line. */}
       <section className="mx-auto max-w-4xl px-6 py-40">
         <FadeUp>
@@ -212,6 +174,39 @@ export default function Page() {
           </FadeUp>
         </section>
       </CrossLinkProvider>
+
+      {/* APPROACH — how I think, not what I install */}
+      <section
+        id="approach"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+      >
+        <FadeUp>
+          <div className="space-y-8">
+            <header className="space-y-2">
+              <SectionLabel>approach</SectionLabel>
+              <h2 className={sectionHeading}>
+                A few things I keep coming back to.
+              </h2>
+            </header>
+            <ul className="space-y-5 border-t border-foreground/[0.06] pt-6">
+              {siteConfig.principles.map((p) => (
+                <li
+                  key={p}
+                  className="flex gap-4 text-lg leading-relaxed md:text-xl"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="select-none pt-1 font-mono text-sm text-accent/60"
+                  >
+                    →
+                  </span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FadeUp>
+      </section>
 
       {/* JOURNEY */}
       <section
@@ -273,6 +268,44 @@ export default function Page() {
                 </li>
               ))}
             </ul>
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* ABOUT — late, once you've decided you like the work */}
+      <section
+        id="about"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+      >
+        <FadeUp>
+          <div className="space-y-10">
+            <header className="space-y-2">
+              <SectionLabel>about</SectionLabel>
+              <h2 className={sectionHeading}>A little about me.</h2>
+            </header>
+            <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-10">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/portrait.png"
+                alt="Shaik Mohammed Suhaib"
+                className="aspect-[4/5] w-full max-w-[200px] rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] object-cover"
+              />
+              <div className="space-y-5">
+                <div className="space-y-4 text-base leading-relaxed text-foreground/75 md:text-lg">
+                  {siteConfig.bio.map((p, i) => (
+                    <p key={i}>{highlightTerms(p, BIO_HIGHLIGHTS)}</p>
+                  ))}
+                </div>
+                <dl className="grid grid-cols-[110px_1fr] gap-y-2 pt-4 text-sm">
+                  <dt className="text-muted-foreground">Location</dt>
+                  <dd>{siteConfig.location}</dd>
+                  <dt className="text-muted-foreground">Focus</dt>
+                  <dd>{siteConfig.focus}</dd>
+                  <dt className="text-muted-foreground">Status</dt>
+                  <dd className="text-positive">{siteConfig.status}</dd>
+                </dl>
+              </div>
+            </div>
           </div>
         </FadeUp>
       </section>

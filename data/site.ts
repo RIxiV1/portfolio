@@ -36,11 +36,18 @@ export const siteConfig = {
   ],
 
   navLinks: [
-    { name: 'About', href: '#about' },
     { name: 'Work', href: '#work' },
-    { name: 'Stack', href: '#stack' },
+    { name: 'Approach', href: '#approach' },
     { name: 'Writing', href: '#writing' },
+    { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
+  ],
+
+  principles: [
+    'An interface should explain itself.',
+    'Good defaults beat more settings.',
+    'If someone needs a tutorial, I probably missed something.',
+    'Prototype first, optimize later.',
   ],
 
   projects: [
