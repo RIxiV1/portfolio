@@ -167,27 +167,6 @@ export default async function ProjectCaseStudyPage({
           <p>{cs.outcome}</p>
         </Section>
 
-        {cs.learnings && cs.learnings.length > 0 && (
-          <Section title="What I took away">
-            <ul className="space-y-3">
-              {cs.learnings.map((l) => (
-                <li
-                  key={l}
-                  className="grid grid-cols-[12px_1fr] gap-x-3 leading-relaxed text-muted-foreground"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="pt-2 text-[color:var(--project-accent)]/70"
-                  >
-                    →
-                  </span>
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </Section>
-        )}
-
         <div className="mt-20 flex items-center justify-between border-t border-foreground/[0.05] pt-10">
           <Link
             href="/#work"

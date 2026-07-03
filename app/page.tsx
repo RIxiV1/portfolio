@@ -77,24 +77,25 @@ export default function Page() {
             </span>
           </h1>
 
-          <div className="max-w-2xl space-y-4">
-            <p className="text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
-              Building software that makes complicated things easier to
-              understand.
+          <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="text-foreground">
+              I like building software that takes something confusing and makes
+              it make sense.
             </p>
-            <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              I just wrapped a product &amp; development internship where I
-              helped build an AI lab-report explainer at{" "}
-              <span className="text-foreground">ForMen Digital Clinic</span>.
-              Outside of that, I enjoy building tools that solve real problems
-              and feel simple to use.
+            <p>
+              Lately that&apos;s an AI tool that reads a blood report and
+              explains it in plain English — most people open one, see a wall of
+              numbers, and just want to know if they&apos;re okay. Before that:
+              browser tools, a recommendation system, and whatever else felt
+              more complicated than it needed to be.
             </p>
+            <p>I care about how software feels as much as how it works.</p>
           </div>
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
             <CtaButton href="#contact" variant="primary">
               <Sparkles className="h-3.5 w-3.5" />
-              Hire me
+              Get in touch
             </CtaButton>
             <CtaButton href={siteConfig.resumeUrl} variant="secondary" external>
               <FileText className="h-3.5 w-3.5" />
@@ -169,12 +170,13 @@ export default function Page() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                   <div className="space-y-2">
                     <SectionLabel>work</SectionLabel>
-                    <h2 className={sectionHeading}>Selected projects.</h2>
+                    <h2 className={sectionHeading}>Things I&apos;ve built.</h2>
                   </div>
                   <SectionAction href={GITHUB_URL}>All on GitHub</SectionAction>
                 </div>
                 <p className={sectionIntro}>
-                  Stuff I&apos;ve built. Click a card for the case study.
+                  Each one started with something that annoyed me. Click a card
+                  for the whole story.
                 </p>
               </header>
               <ProjectsList projects={siteConfig.projects} />
@@ -195,9 +197,9 @@ export default function Page() {
                   <h2 className={sectionHeading}>A small lab.</h2>
                 </div>
                 <p className={sectionIntro}>
-                  Twelve items, three domains, cosine-similarity edges.
-                  Hover a node to see its neighborhood. Not a real product
-                  — a picture of the mechanic.
+                  A tiny recommendation graph — twelve things, hover one and it
+                  shows you what it thinks is related. Not a real product, just
+                  the idea you can poke at.
                 </p>
               </header>
               <RecommendationLab />
@@ -252,12 +254,13 @@ export default function Page() {
               <div className="flex items-end justify-between gap-4">
                 <div className="space-y-2">
                   <SectionLabel>writing</SectionLabel>
-                  <h2 className={sectionHeading}>Notes & research.</h2>
+                  <h2 className={sectionHeading}>Things I&apos;ve written.</h2>
                 </div>
                 <SectionAction href={MEDIUM_URL}>Read on Medium</SectionAction>
               </div>
               <p className={sectionIntro}>
-                Essays on the math I keep coming back to.
+                Usually I write something to understand it myself. Mostly math I
+                keep circling back to.
               </p>
             </header>
             <ul className="border-t border-foreground/[0.05]">
@@ -297,10 +300,11 @@ export default function Page() {
           <div className="space-y-8">
             <header className="space-y-4">
               <SectionLabel>contact</SectionLabel>
-              <h2 className={sectionHeading}>Let&apos;s build something.</h2>
+              <h2 className={sectionHeading}>Say hi.</h2>
               <p className={sectionIntro}>
-                Open to internships, freelance, and research collaborations. Drop a
-                line — I read every email.
+                I&apos;m looking for internships, and I&apos;m always up for a
+                good problem. Email&apos;s the best way to reach me — I actually
+                read them.
               </p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-sm">
                 <a

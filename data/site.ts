@@ -19,8 +19,9 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "I just wrapped an internship at ForMen Digital Clinic, where I spent a few months building an AI tool that explains lab reports in plain English. Most of my time goes into products that take something complicated and make it easier to understand.",
-    "Outside coding I'm usually reading about space, messing with browser extensions, or losing at Souls games.",
+    "I'm 20, doing IT at Vel Tech in Chennai. I mostly build things because something annoyed me and I wanted it to stop.",
+    "Right now that's health stuff. I just finished an internship at ForMen Digital Clinic building an AI tool that reads a blood report and explains it in plain English — because most people open one, see a wall of numbers, and have no idea if they're okay. The part I care about isn't the AI, it's the not-panicking.",
+    "Outside that I'm usually reading about space, messing with browser extensions, or losing at Souls games.",
   ],
 
   socials: [
@@ -49,7 +50,7 @@ export const siteConfig = {
       year: '2025',
       slug: 'resumescreen',
       description:
-        'A live AI screener built for the IIT Patna PM + Agentic AI cert. Resume PDF + JD in, a typed verdict out (score, matched skills, interview/reject), follow-up email fired automatically.',
+        "I wanted to see if I could hand the boring first pass of resume screening to an agent. Drop in a resume and a job description, get back a clear interview-or-reject with reasons, and the email sends itself. Built for the IIT Patna PM & Agentic AI cert.",
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       liveUrl: 'https://talent-spotter-flow.lovable.app',
@@ -58,7 +59,7 @@ export const siteConfig = {
         tagline:
           'Drop in a resume and a job description, get back a typed verdict — score, matched skills, interview or reject — and an email that sends itself. My project for the IIT Patna PM & Agentic AI cert.',
         problem:
-          'Recruiters check the same few things first: does this person have the skills, the experience, and does the resume actually match the role. That first pass is repetitive and mostly mechanical. I wanted to automate just that part — not the hiring decision, only the triage in front of it.',
+          "The first pass of screening a resume is the same three checks every time: does this person have the skills, the years, and does the resume even match the role. It's repetitive and mechanical — exactly the kind of thing I'd rather not do by hand. So I tried handing just that part to an agent. Not the hiring call, just the triage in front of it.",
         approach:
           'A form in Lovable (name, email, JD, resume PDF) posts to an n8n webhook. n8n pulls the text out of the PDF, hands it to a Gemini agent, and routes the result. My first version just asked Gemini to "summarise the candidate". That was useless — the answer came back different every run and the workflow had nothing to branch on. So I forced one fixed JSON shape: score, matched skills, years of experience, interview or reject, a short reason. Once the output was predictable, the IF + Gmail nodes could fire the interview or the rejection email on their own.',
         decisions: [
@@ -80,7 +81,7 @@ export const siteConfig = {
       year: '2026',
       slug: 'infoblend',
       description:
-        "A reading toolkit I built for myself. Manifest V3 extension for Chrome, Edge, and Firefox — double-click to define, right-click to translate, Ctrl+K to summarise. Zero deps, BYOK AI.",
+        "I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.",
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
       href: 'https://github.com/RIxiV1/InfoBlend',
       accent: 'oklch(0.72 0.18 280)', // indigo
@@ -107,10 +108,6 @@ export const siteConfig = {
         ],
         outcome:
           "At v3.1.1, installable from source on Chrome, Edge, Brave, and Firefox. Five-source definitions, 17 translation languages, a 500-item vault. Not on a store yet — I'm still grinding through the submission checklist: privacy policy, validator fixes, proper icons, killing every last innerHTML. 35+ commits in the last cycle.",
-        learnings: [
-          '"Zero dependencies" started as a constraint and became the best part — every byte is auditable and nothing can break from under me.',
-          "A store submission is its own little project. I didn't know that going in.",
-        ],
       },
     },
     {
@@ -118,7 +115,7 @@ export const siteConfig = {
       year: '2025',
       slug: 'subsentry',
       description:
-        "A subscription tracker that doesn't ask for your bank credentials. Swipe-gesture cards on mobile, confetti every time you cancel a sub.",
+        "A subscription tracker that never asks for your bank login — I didn't want to hand mine over, so it doesn't ask for yours. It also celebrates when you cancel something instead of nagging you about it.",
       tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod', 'shadcn/ui'],
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
@@ -146,9 +143,6 @@ export const siteConfig = {
         ],
         outcome:
           'Live at ssubsentry.lovable.app. Solo build over about three weeks (Nov 11 – Dec 4, 2025), 20-odd commits. Auth, add/edit/delete subs, budgets with caps, spending by category, swipe gestures on mobile, and the confetti moment all work.',
-        learnings: [
-          "If I could tell past-me one thing: personal-finance UX is a tone problem wearing a math problem's clothes. Fix the tone first.",
-        ],
       },
     },
   ],
@@ -159,14 +153,14 @@ export const siteConfig = {
       org: 'ForMen Digital Clinic — Remote',
       period: 'Mar 2026 — Jun 2026',
       description:
-        "Built an AI tool that turns men's-health lab reports into plain English. Owned it end to end — PRD, research, UI, and the build.",
+        "Built an AI tool that reads a men's-health blood report and explains it in plain English — so someone can open it, see what's going on, and not panic. Did it end to end: research, PRD, UI, and the build.",
     },
     {
       role: 'Certificate Program — Product Management & Agentic AI',
       org: 'IIT Patna × Masai (Vishlesan i-Hub Foundation) — Online / Hybrid',
       period: 'Apr 2025 — Oct 2025',
       description:
-        'Full product lifecycle — market research, MVP scoping, iterative launches. Built agentic automation in n8n + LLMs.',
+        'Six months on the full product loop — research, scoping an MVP, shipping, iterating. The hands-on part was building the agent workflows in n8n + LLMs.',
     },
     {
       role: 'NPTEL Elite Certification — Big Data Computing',
@@ -180,7 +174,7 @@ export const siteConfig = {
       org: 'Vel Tech High Tech Engineering College, Chennai',
       period: 'Jun 2024 — May 2028 (Expected)',
       description:
-        'Full-stack, AI agents, intelligent systems. Five public GitHub repos across web, browser extensions, and AI automation.',
+        "Where I'm doing my degree. Honestly most of what I've learned is in the projects — five public repos across web apps, browser extensions, and AI automation.",
     },
   ],
 
@@ -221,7 +215,7 @@ export const siteConfig = {
   metadata: {
     title: 'Shaik Suhaib — software engineer',
     description:
-      'I build software that makes complicated things easier to understand — most recently an AI tool at ForMen Digital Clinic that explains lab reports in plain English.',
+      'I like building software that takes something confusing and makes it make sense — most recently an AI tool at ForMen Digital Clinic that explains blood reports in plain English.',
     twitterHandle: '@suhaibX0',
   },
 };
