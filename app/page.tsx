@@ -4,7 +4,6 @@ import { FadeUp } from "@/components/ui/fade-up"
 import { ContactForm } from "@/components/ui/contact-form"
 import { ExperienceTabs } from "@/components/ui/experience-tabs"
 import { ScrambleText } from "@/components/ui/scramble-text"
-import { RecommendationLab } from "@/components/ui/recommendation-lab"
 import { StatusPill } from "@/components/ui/status-pill"
 import { CtaButton } from "@/components/ui/cta-button"
 import {
@@ -150,11 +149,23 @@ export default function Page() {
                   <dt className="text-muted-foreground">Focus</dt>
                   <dd>{siteConfig.focus}</dd>
                   <dt className="text-muted-foreground">Status</dt>
-                  <dd className="text-accent">{siteConfig.status}</dd>
+                  <dd className="text-positive">{siteConfig.status}</dd>
                 </dl>
               </div>
             </div>
           </div>
+        </FadeUp>
+      </section>
+
+      {/* STATEMENT — the one loud moment. No label, no card, just the through-line. */}
+      <section className="mx-auto max-w-4xl px-6 py-40">
+        <FadeUp>
+          <p className="text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
+            <span className="text-muted-foreground">
+              If someone&apos;s confused,{" "}
+            </span>
+            the software failed.
+          </p>
         </FadeUp>
       </section>
 
@@ -180,29 +191,6 @@ export default function Page() {
                 </p>
               </header>
               <ProjectsList projects={siteConfig.projects} />
-            </div>
-          </FadeUp>
-        </section>
-
-        {/* LAB */}
-        <section
-          id="lab"
-          className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
-        >
-          <FadeUp>
-            <div className="space-y-8">
-              <header className="space-y-3">
-                <div className="space-y-2">
-                  <SectionLabel>lab</SectionLabel>
-                  <h2 className={sectionHeading}>A small lab.</h2>
-                </div>
-                <p className={sectionIntro}>
-                  A tiny recommendation graph — twelve things, hover one and it
-                  shows you what it thinks is related. Not a real product, just
-                  the idea you can poke at.
-                </p>
-              </header>
-              <RecommendationLab />
             </div>
           </FadeUp>
         </section>

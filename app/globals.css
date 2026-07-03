@@ -13,6 +13,7 @@
   --radius: 0.625rem;
   --accent: #8c6a43;
   --accent-secondary: #5f6f52;
+  --positive: #5f6f52;
   --grid-line: rgba(29, 27, 24, 0.045);
   --selection: rgba(140, 106, 67, 0.22);
 }
@@ -27,6 +28,7 @@
   --ring: #c49a63;
   --accent: #c49a63;
   --accent-secondary: #8c6844;
+  --positive: #8a9a76;
   --grid-line: rgba(243, 241, 236, 0.035);
   --selection: rgba(196, 154, 99, 0.24);
 }
@@ -42,6 +44,7 @@
   --color-ring: var(--ring);
   --color-accent: var(--accent);
   --color-accent-secondary: var(--accent-secondary);
+  --color-positive: var(--positive);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

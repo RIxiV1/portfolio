@@ -8,10 +8,9 @@ Single-page scroll with deeper case studies for each project. Tech-minimalist on
 
 ## What's in it
 
-- **One-page scroll**: hero, about, work, lab, stack, journey, writing, contact — each section carries an indexed `/ name` monospace label, with right-aligned jump links where they help ("All on GitHub", "Read on Medium").
+- **One-page scroll**: hero, about, work, stack, journey, writing, contact — each section carries an indexed `/ name` monospace label, with right-aligned jump links where they help ("All on GitHub", "Read on Medium").
 - **Case study pages** at `/projects/[slug]` — statically generated. Each lays out problem, approach, three to four keyed decisions with rationale, outcome, and takeaways.
 - **Stack ↔ Work cross-link** — hover any tech in the Stack section to highlight where it's shipped on the project cards (and vice versa). Keyboard-reachable, `aria-pressed` for screen readers.
-- **Recommendation Lab** — a 12-node similarity graph with N-body physics and `requestAnimationFrame` energy-gating to park the simulation when it settles. Custom-built, no D3 or Sigma. Nodes are keyboard-navigable.
 - **Magnetic CTAs** — "Hire me" and "Download résumé" track the cursor with spring physics.
 - **Scramble text** on the hero name, trailed by a blinking terminal caret (paused under `prefers-reduced-motion`).
 - **Hardened contact form**: Zod-validated, Resend-delivered, Upstash-rate-limited (in-memory fallback for local dev), honeypot anti-spam, control-character stripping to defend against header injection, strict CORS validation.
@@ -44,8 +43,8 @@ app/
 └── page.tsx              The one-page scroll
 components/ui/
 ├── work-stack-link.tsx   Cross-link provider, ProjectsList, StackList
-├── recommendation-lab.tsx  Custom physics graph
 ├── magnetic-link.tsx     Cursor-following springs
+├── theme-toggle.tsx      Light/dark editorial toggle (no-flash init)
 ├── nav.tsx, contact-form.tsx, status-pill.tsx, ...
 data/site.ts              Single source of truth for all content
 ```

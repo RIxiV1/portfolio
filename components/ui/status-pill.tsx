@@ -14,8 +14,8 @@ export function StatusPill({ children, className }: StatusPillProps) {
       )}
     >
       <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
-        <span className="absolute inset-0 animate-ping rounded-full bg-accent/60" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+        <span className="absolute inset-0 animate-ping rounded-full bg-positive/60" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-positive" />
       </span>
       {children}
     </span>
