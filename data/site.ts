@@ -43,10 +43,9 @@ export const siteConfig = {
   ],
 
   principles: [
-    'An interface should explain itself.',
+    "Kill the feature you're proudest of if it isn't pulling its weight.",
+    'Sometimes the tone is the feature, not the polish.',
     'Good defaults beat more settings.',
-    'If someone needs a tutorial, I probably missed something.',
-    'Prototype first, optimize later.',
   ],
 
   projects: [

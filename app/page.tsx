@@ -121,7 +121,7 @@ export default function Page() {
           so the projects below read as evidence rather than a list. */}
       <section
         id="approach"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-32"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-24"
       >
         <FadeUp>
           <div className="space-y-10">
@@ -154,7 +154,7 @@ export default function Page() {
       {/* WORK */}
       <section
         id="work"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
       >
         <FadeUp>
           <div className="space-y-10">
@@ -179,7 +179,7 @@ export default function Page() {
       {/* JOURNEY */}
       <section
         id="journey"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
       >
         <FadeUp>
           <div className="space-y-8">
@@ -195,7 +195,7 @@ export default function Page() {
       {/* WRITING */}
       <section
         id="writing"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
       >
         <FadeUp>
           <div className="space-y-8">
@@ -243,7 +243,7 @@ export default function Page() {
       {/* ABOUT — late, once you've decided you like the work */}
       <section
         id="about"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
       >
         <FadeUp>
           <div className="space-y-10">
@@ -281,7 +281,7 @@ export default function Page() {
       {/* CONTACT */}
       <section
         id="contact"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
       >
         <FadeUp>
           <div className="space-y-8">
