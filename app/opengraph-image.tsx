@@ -17,8 +17,8 @@ export default async function OpengraphImage() {
           justifyContent: 'space-between',
           padding: '72px',
           background:
-            'radial-gradient(ellipse at top left, rgba(34,211,238,0.22), transparent 55%), radial-gradient(ellipse at bottom right, rgba(34,211,238,0.10), transparent 55%), #030712',
-          color: '#fff',
+            'radial-gradient(ellipse at top left, rgba(140,106,67,0.10), transparent 55%), #f5f1ea',
+          color: '#1d1b18',
           fontFamily: 'sans-serif',
         }}
       >
@@ -30,7 +30,7 @@ export default async function OpengraphImage() {
             fontSize: 22,
             letterSpacing: '0.25em',
             textTransform: 'uppercase',
-            color: '#22d3ee',
+            color: '#8c6a43',
           }}
         >
           <div
@@ -38,11 +38,10 @@ export default async function OpengraphImage() {
               width: 12,
               height: 12,
               borderRadius: 999,
-              background: '#22d3ee',
-              boxShadow: '0 0 16px rgba(34,211,238,0.8)',
+              background: '#8c6a43',
             }}
           />
-          Available for work
+          Available for internships
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -61,7 +60,7 @@ export default async function OpengraphImage() {
             style={{
               fontSize: 44,
               fontWeight: 300,
-              color: '#a1a1aa',
+              color: '#6b665e',
               letterSpacing: '-0.01em',
             }}
           >
@@ -75,7 +74,7 @@ export default async function OpengraphImage() {
             justifyContent: 'space-between',
             alignItems: 'center',
             fontSize: 22,
-            color: '#71717a',
+            color: '#8a857c',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
           }}

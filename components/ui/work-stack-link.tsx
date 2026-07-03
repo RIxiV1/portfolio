@@ -119,7 +119,7 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
                           style={{
                             borderColor: chipMatch
                               ? p.accent
-                              : 'rgba(255,240,220,0.08)',
+                              : 'var(--border)',
                             color: chipMatch ? p.accent : 'var(--muted-foreground)',
                           }}
                         >

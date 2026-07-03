@@ -9,7 +9,7 @@ export function StatusPill({ children, className }: StatusPillProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-foreground/[0.08] bg-foreground/[0.02] px-3 py-1 text-xs text-muted-foreground shadow-[0_0_30px_-10px_oklch(0.78_0.16_75/0.35)]",
+        "inline-flex items-center gap-2 rounded-full border border-foreground/[0.08] bg-foreground/[0.03] px-3 py-1 text-xs text-muted-foreground",
         className,
       )}
     >

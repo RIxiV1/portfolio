@@ -54,7 +54,7 @@ export const siteConfig = {
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       liveUrl: 'https://talent-spotter-flow.lovable.app',
-      accent: 'oklch(0.8 0.16 75)', // amber
+      accent: '#b0803f', // brass
       caseStudy: {
         tagline:
           'Drop in a resume and a job description, get back a typed verdict — score, matched skills, interview or reject — and an email that sends itself. My project for the IIT Patna PM & Agentic AI cert.',
@@ -84,7 +84,7 @@ export const siteConfig = {
         "I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.",
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
       href: 'https://github.com/RIxiV1/InfoBlend',
-      accent: 'oklch(0.72 0.18 280)', // indigo
+      accent: '#59624b', // olive
       caseStudy: {
         tagline:
           "A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Not on a store yet; you install it from source.",
@@ -119,7 +119,7 @@ export const siteConfig = {
       tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod', 'shadcn/ui'],
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
-      accent: 'oklch(0.74 0.18 15)', // rose
+      accent: '#a45a3a', // rust
       caseStudy: {
         tagline:
           "A subscription tracker that never asks for your bank login. Per-user isolation in the database, warm copy instead of scolding, and a confetti burst every time you cancel a sub.",

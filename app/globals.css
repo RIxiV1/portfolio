@@ -2,27 +2,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Editorial (light) — warm paper, walnut, moss. The default. */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --border: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --background: #f5f1ea;
+  --foreground: #1d1b18;
+  --muted: #ece5da;
+  --muted-foreground: #6b665e;
+  --border: #d7cdbf;
+  --ring: #8c6a43;
   --radius: 0.625rem;
-  --accent: oklch(0.78 0.16 75);
-  --accent-secondary: oklch(0.75 0.15 200);
+  --accent: #8c6a43;
+  --accent-secondary: #5f6f52;
+  --grid-line: rgba(29, 27, 24, 0.045);
+  --selection: rgba(140, 106, 67, 0.22);
 }
 
+/* Dark editorial — Leica charcoal, brass. Opt-in via `.dark`. */
 .dark {
-  --background: oklch(0.13 0.018 50);
-  --foreground: oklch(0.96 0.01 80);
-  --muted: oklch(0.18 0.018 50);
-  --muted-foreground: oklch(0.62 0.02 60);
-  --border: rgba(255, 240, 220, 0.06);
-  --ring: oklch(0.78 0.16 75 / 0.4);
-  --accent: oklch(0.78 0.16 75);
-  --accent-secondary: oklch(0.75 0.15 200);
+  --background: #111111;
+  --foreground: #f3f1ec;
+  --muted: #181818;
+  --muted-foreground: #b4ada3;
+  --border: #2d2d2d;
+  --ring: #c49a63;
+  --accent: #c49a63;
+  --accent-secondary: #8c6844;
+  --grid-line: rgba(243, 241, 236, 0.035);
+  --selection: rgba(196, 154, 99, 0.24);
 }
 
 @theme inline {
@@ -58,8 +64,8 @@
   }
 
   ::selection {
-    background-color: oklch(0.78 0.16 75 / 0.28);
-    color: oklch(0.96 0.01 80);
+    background-color: var(--selection);
+    color: var(--foreground);
   }
 
   ::-webkit-scrollbar {
@@ -72,12 +78,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.4 0.04 60 / 0.4);
+    background: color-mix(in srgb, var(--foreground) 22%, transparent);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.5 0.05 60 / 0.6);
+    background: color-mix(in srgb, var(--foreground) 38%, transparent);
   }
 }
 
@@ -105,8 +111,8 @@
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(255, 240, 220, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 240, 220, 0.025) 1px, transparent 1px);
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
