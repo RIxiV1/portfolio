@@ -12,7 +12,7 @@ import {
   StackList,
 } from "@/components/ui/work-stack-link"
 
-const sectionHeading = "text-3xl font-semibold tracking-tight md:text-4xl"
+const sectionHeading = "font-display text-3xl font-semibold tracking-tight md:text-4xl"
 const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
 
 function SectionLabel({ children }: { children: string }) {
@@ -78,15 +78,13 @@ export default function Page() {
 
           <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
             <p className="text-foreground">
-              I like building software that takes something confusing and makes
-              it make sense.
+              Most of what I&apos;ve built lately started the same way — someone
+              staring at a screen full of stuff they didn&apos;t understand.
             </p>
             <p>
-              Lately that&apos;s an AI tool that reads a blood report and
-              explains it in plain English — most people open one, see a wall of
-              numbers, and just want to know if they&apos;re okay. Before that:
-              browser tools, a recommendation system, and whatever else felt
-              more complicated than it needed to be.
+              A blood report. A page in a language they don&apos;t read. A wall
+              of subscriptions they forgot they were paying for. I build the
+              thing that makes it click.
             </p>
             <p>I care about how software feels as much as how it works.</p>
           </div>
@@ -160,7 +158,7 @@ export default function Page() {
       {/* STATEMENT — the one loud moment. No label, no card, just the through-line. */}
       <section className="mx-auto max-w-4xl px-6 py-40">
         <FadeUp>
-          <p className="text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
+          <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
             <span className="text-muted-foreground">
               If someone&apos;s confused,{" "}
             </span>

@@ -77,7 +77,7 @@ export default async function ProjectCaseStudyPage({
             </div>
 
             <div className="relative">
-              <h1 className="text-5xl font-semibold tracking-tight md:text-6xl">
+              <h1 className="font-display text-5xl font-semibold tracking-tight md:text-6xl">
                 {project.title}
                 <span className="text-[color:var(--project-accent)]">.</span>
               </h1>
