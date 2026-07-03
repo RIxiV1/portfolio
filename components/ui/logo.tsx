@@ -18,11 +18,11 @@ export function Logo({
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={{
-        filter: 'drop-shadow(0 4px 12px rgba(251, 191, 36, 0.45))',
+        filter: 'drop-shadow(0 3px 8px rgba(29, 27, 24, 0.18))',
       }}
     >
       {/* Optional rounded dark background — used for favicon / app icon contexts */}
-      {showBackground && <rect width="100" height="100" rx="20" fill="#0a0a0a" />}
+      {showBackground && <rect width="100" height="100" rx="20" fill="#1d1b18" />}
 
       {/*
         Isometric cube — three faces of a 3D module.
@@ -30,17 +30,17 @@ export function Logo({
         Light from upper-front-left: top face brightest, left mid, right shadow.
       */}
       <g style={{ transformOrigin: '50px 50px' }}>
-        {/* Left face (mid amber) */}
-        <path d="M 22 34 L 50 50 L 50 82 L 22 66 Z" fill="#d97706" />
+        {/* Left face (walnut, mid) */}
+        <path d="M 22 34 L 50 50 L 50 82 L 22 66 Z" fill="#8c6a43" />
 
-        {/* Right face (deep shadow amber) */}
-        <path d="M 78 34 L 50 50 L 50 82 L 78 66 Z" fill="#92400e" />
+        {/* Right face (dark walnut, in shadow) */}
+        <path d="M 78 34 L 50 50 L 50 82 L 78 66 Z" fill="#5c4527" />
 
-        {/* Top face (bright amber) — catches the light */}
-        <path d="M 50 18 L 78 34 L 50 50 L 22 34 Z" fill="#fbd457" />
+        {/* Top face (brass) — catches the light */}
+        <path d="M 50 18 L 78 34 L 50 50 L 22 34 Z" fill="#c79a5b" />
 
         {/* Subtle highlight on the top vertex for premium depth */}
-        <circle cx="50" cy="18" r="2" fill="#fef3c7" opacity="0.9" />
+        <circle cx="50" cy="18" r="2" fill="#f2e6ce" opacity="0.9" />
 
         {!hideAnimation && (
           <animateTransform

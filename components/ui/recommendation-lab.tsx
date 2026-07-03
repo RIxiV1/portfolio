@@ -13,9 +13,9 @@ type LabNode = {
 }
 
 const CLUSTERS = [
-  { hue: 75, label: "agents" },    // amber — primary
-  { hue: 25, label: "rec.sys" },   // coral
-  { hue: 145, label: "infra" },    // warm sage
+  { color: "#b0803f", label: "agents" },   // brass
+  { color: "#a45a3a", label: "rec.sys" },  // rust
+  { color: "#5f6f52", label: "infra" },    // moss
 ]
 
 const NODES_DATA: Array<{ label: string; cluster: number }> = [
@@ -174,7 +174,7 @@ export function RecommendationLab() {
                 <span
                   aria-hidden="true"
                   className="h-1.5 w-1.5 rounded-full"
-                  style={{ background: `oklch(0.75 0.17 ${c.hue})` }}
+                  style={{ background: c.color }}
                 />
                 {c.label}
               </span>
@@ -205,8 +205,7 @@ export function RecommendationLab() {
             const isHover = focused === n.id
             const isNeighbor = neighbors.has(n.id)
             const dimmed = focused !== null && !isHover && !isNeighbor
-            const hue = CLUSTERS[n.cluster].hue
-            const color = `oklch(0.78 0.17 ${hue})`
+            const color = CLUSTERS[n.cluster].color
             return (
               <g
                 key={n.id}
