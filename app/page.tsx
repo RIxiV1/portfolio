@@ -6,7 +6,7 @@ import { ExperienceTabs } from "@/components/ui/experience-tabs"
 import { ScrambleText } from "@/components/ui/scramble-text"
 import { StatusPill } from "@/components/ui/status-pill"
 import { CtaButton } from "@/components/ui/cta-button"
-import { ProjectsList } from "@/components/ui/work-stack-link"
+import { FeaturedProject, ProjectsList } from "@/components/ui/work-stack-link"
 
 const sectionHeading = "font-display text-3xl font-semibold tracking-tight md:text-4xl"
 const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
@@ -171,7 +171,10 @@ export default function Page() {
                 for the whole story.
               </p>
             </header>
-            <ProjectsList projects={orderedProjects} />
+            <div className="space-y-8">
+              <FeaturedProject project={orderedProjects[0]} />
+              <ProjectsList projects={orderedProjects.slice(1)} />
+            </div>
           </div>
         </FadeUp>
       </section>
