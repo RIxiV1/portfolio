@@ -1,4 +1,5 @@
 import { Github, Linkedin } from 'lucide-react';
+import { Medium } from '@/components/ui/medium-icon';
 
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
@@ -30,6 +31,12 @@ export const siteConfig = {
       href: 'https://www.linkedin.com/in/shaiksuhaib',
       label: 'LinkedIn',
       handle: 'in/shaiksuhaib',
+    },
+    {
+      icon: Medium,
+      href: 'https://medium.com/@shaiksuhaib360',
+      label: 'Medium',
+      handle: '@shaiksuhaib360',
     },
   ],
 
