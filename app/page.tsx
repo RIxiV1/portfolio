@@ -36,7 +36,7 @@ function SectionAction({ href, children }: { href: string; children: string }) {
 const GITHUB_URL = "https://github.com/RIxiV1"
 const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
 
-const BIO_HIGHLIGHTS = ["ForMen Digital Clinic"]
+const BIO_HIGHLIGHTS: string[] = []
 
 function highlightTerms(text: string, terms: string[]) {
   if (!terms.length) return text
@@ -74,15 +74,13 @@ export default function Page() {
 
           <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
             <p className="text-foreground">
-              Most of what I&apos;ve built lately started the same way — someone
-              staring at a screen full of stuff they didn&apos;t understand.
+              I&apos;m a software engineer who likes making confusing things
+              easy to understand.
             </p>
             <p>
-              A blood report. A page in a language they don&apos;t read. A wall
-              of subscriptions they forgot they were paying for. I build the
-              thing that makes it click.
+              Lately that&apos;s health tools — most recently an app that turns
+              a blood report into plain English.
             </p>
-            <p>I care about how software feels as much as how it works.</p>
           </div>
 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">

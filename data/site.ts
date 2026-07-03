@@ -19,9 +19,8 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "I'm 20, doing IT at Vel Tech in Chennai. I mostly build things because something annoyed me and I wanted it to stop.",
-    "Right now that's health stuff. I just finished an internship at ForMen Digital Clinic building an AI tool that reads a blood report and explains it in plain English — because most people open one, see a wall of numbers, and have no idea if they're okay. The part I care about isn't the AI, it's the not-panicking.",
-    "Outside that I'm usually reading about space, messing with browser extensions, or losing at Souls games.",
+    "I'm 20, studying IT at Vel Tech in Chennai. I mostly build things because something annoyed me and I wanted it to stop.",
+    "Outside that I'm reading about space, tinkering with browser extensions, or losing at Souls games.",
   ],
 
   socials: [
