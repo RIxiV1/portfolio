@@ -2,7 +2,7 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
-  role: 'Product-minded software engineer',
+  role: 'Software engineer',
   focus: 'Full-stack · AI products · n8n automation',
   location: 'Chennai, India',
   email: 'shaiksuhaib360@gmail.com',
@@ -19,9 +19,8 @@ export const siteConfig = {
   resumeUrl: '/resume.pdf',
 
   bio: [
-    "Wrapping a Product & Development internship this month at ForMen Digital Clinic, where I built a consumer-facing AI tool that turns men's-health lab reports into something you'd actually want to read. IT undergrad at Vel Tech Chennai. Picked up a Product Management & Agentic AI cert from IIT Patna × Masai last year.",
-    "Stack I keep coming back to: TypeScript, React, Supabase, n8n, and Gemini for the agentic stuff.",
-    "Outside work: falling down quantum physics and space rabbit holes. Oh, and I play too many Souls games and suck at chess.",
+    "I just wrapped an internship at ForMen Digital Clinic, where I spent a few months building an AI tool that explains lab reports in plain English. Most of my time goes into products that take something complicated and make it easier to understand.",
+    "Outside coding I'm usually reading about space, messing with browser extensions, or losing at Souls games.",
   ],
 
   socials: [
@@ -57,32 +56,23 @@ export const siteConfig = {
       accent: 'oklch(0.8 0.16 75)', // amber
       caseStudy: {
         tagline:
-          'A live AI screener that reads a resume against a JD and returns a typed JSON verdict — score, matched skills, years of experience, interview or reject, and an auto-sent email. Built for the IIT Patna PM & Agentic AI cert.',
+          'Drop in a resume and a job description, get back a typed verdict — score, matched skills, interview or reject — and an email that sends itself. My project for the IIT Patna PM & Agentic AI cert.',
         problem:
-          'First-pass resume screening is mostly the same loop: open PDF, scan for must-have skills, check years of experience, decide if this is a callback or a no. Most resumes are clearly off-fit. The decision is structured enough that an LLM can do the first pass reliably — if you commit to a typed contract instead of asking it to "summarise the candidate", and let an orchestrator handle the side effects.',
+          'Recruiters check the same few things first: does this person have the skills, the experience, and does the resume actually match the role. That first pass is repetitive and mostly mechanical. I wanted to automate just that part — not the hiring decision, only the triage in front of it.',
         approach:
-          'The form is built in Lovable (full name, email, JD text, resume PDF). On submit it posts to an n8n webhook. The workflow moves the binary, extracts text from the PDF, merges it with the JD, and hands the whole thing to an AI Agent node running Gemini. The agent returns a fixed JSON shape: overall_score, confidence, summary, strengths, matched_skills, years_relevant_experience, recommendation (interview | reject), short_reason, recommended_next_steps. n8n returns the JSON to Lovable. If the recommendation is "interview", an IF + Gmail node fires the invite; if "reject", the polite version.',
+          'A form in Lovable (name, email, JD, resume PDF) posts to an n8n webhook. n8n pulls the text out of the PDF, hands it to a Gemini agent, and routes the result. My first version just asked Gemini to "summarise the candidate". That was useless — the answer came back different every run and the workflow had nothing to branch on. So I forced one fixed JSON shape: score, matched skills, years of experience, interview or reject, a short reason. Once the output was predictable, the IF + Gmail nodes could fire the interview or the rejection email on their own.',
         decisions: [
           {
-            title: 'Lovable for the UI, real engineering for everything else',
-            body: 'A 6-day window meant I had to pick where to spend the days. Hand-coding a form + results page that mostly just shuffles JSON would have eaten half of it. Lovable gave me both in an afternoon. The time that bought back went into the prompt design, the n8n flow, and getting the typed contract right — which is what the project actually demonstrates.',
+            title: 'Lovable for the form, real work on the pipeline',
+            body: 'I had about a week. Hand-coding a form and a results page that mostly shuffle JSON around would have eaten half of it, so I built the UI in Lovable in an afternoon and put the rest into the prompt and the n8n flow — the part that actually proves something.',
           },
           {
-            title: 'A typed JSON contract beats a "summary"',
-            body: 'My first prompt asked Gemini to "summarise the candidate". Useless — the downstream IF node has nothing to branch on when the answer is prose. Rewriting it to demand a fixed shape (overall_score, recommendation, short_reason, matched_skills…) turned the LLM into a callable function. The iteration loop went from "read paragraphs, judge vibes" to "does this JSON validate". Much tighter.',
-          },
-          {
-            title: 'Email branching lives in n8n, not in the prompt',
-            body: "Tempting to ask the LLM to write the email too. I didn't. Interview vs rejection routing sits in the n8n IF + Gmail nodes with templated copy. Keeps the model focused on the judgment, keeps the side effects visible in the workflow log, and means a recruiter can edit the templates without anyone touching the prompt.",
+            title: 'Email routing stays out of the prompt',
+            body: "I could have let the model write the emails too. I didn't. Interview-vs-rejection routing sits in the n8n nodes with plain templates, so the model only makes the call and a recruiter can edit the wording without touching a prompt.",
           },
         ],
         outcome:
-          'Live at talent-spotter-flow.lovable.app — anyone can drop in a PDF and a JD. The workflow runs 7 nodes (webhook → text extraction → Gemini agent → optional Gmail). The agent returns 9 fields. The n8n JSON is in the repo so the whole pipeline is reproducible. Submitted as the course project for the IIT Patna PM & Agentic AI cert.',
-        learnings: [
-          'Demand a typed JSON contract from the LLM before you start tuning the prompt. Iterating on prose is slow; iterating on a schema is mechanical.',
-          "No-code where it doesn't matter, real code where it does. The form was throwaway — the prompt + workflow is what proves the engineering.",
-          "n8n's execution log is the prompt debugger. Every input, intermediate, and output is right there without spelunking server logs.",
-        ],
+          'Live at talent-spotter-flow.lovable.app — drop in a PDF and a JD and it runs end to end. Seven nodes, nine fields back from the agent, and the n8n JSON is in the repo if you want to see the wiring.',
       },
     },
     {
@@ -96,35 +86,30 @@ export const siteConfig = {
       accent: 'oklch(0.72 0.18 280)', // indigo
       caseStudy: {
         tagline:
-          "A cross-browser reading toolkit I built for myself — definitions, translation, summaries, knowledge vault. Fully usable without an API key, smarter with one. Not on any store yet; you install it from source.",
+          "A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Not on a store yet; you install it from source.",
         problem:
-          'My reading setup used to be four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. Half require an API key on first launch and die at the install screen if you don\'t have one. None of them treated "no key" as a real path, so the free experience was always the degraded one.',
+          "My reading setup was four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. The other half demand an API key on first launch and just die at the install screen if you don't have one. Nobody treated \"no key\" as a real path, so the free version was always the worst version. I wanted one tool that didn't do either.",
         approach:
-          "One Manifest V3 extension, zero runtime dependencies, Chrome + Edge + Firefox. Every overlay renders inside a Shadow DOM so the host page can't reach in and the extension can't leak out. Definitions try five sources in order until one resolves. Local TF-IDF summarisation runs offline. Translation routes through whatever AI key you've set, or MyMemory's free tier if you haven't. The Knowledge Vault keeps the last 500 things you saved in local storage with CSV/Markdown export. The API key is AES-GCM-encrypted before it touches storage.",
+          "One extension, no runtime dependencies, Chrome + Edge + Firefox. Definitions try five sources in order until one resolves. Summarising runs offline; translation uses your AI key if you've set one, or a free tier if you haven't. Everything you save lands in a local vault you can export. The whole thing had to survive the MV3 service worker, which found new ways to bite the entire build — stale callbacks, sendResponse races, the audio context dying whenever the worker went to sleep.",
         decisions: [
           {
-            title: 'BYOK — but the free path has to actually work',
-            body: "Most LLM extensions demand a key on first launch and die at the install screen. Felt wrong. InfoBlend works completely without one — local summariser, the five-source dictionary chain, MyMemory translation. The key only unlocks the smarter stuff (context-aware lookups, idiom-preserving translation, prose summaries). Users opt in once they understand what they're paying for, not before.",
+            title: 'BYOK, but the free path has to actually work',
+            body: "Most AI extensions demand a key on first launch and die at the install screen if you don't have one. That always felt backwards. InfoBlend works completely without a key — offline summariser, the five-source dictionary, free-tier translation. The key only buys the smarter stuff. You opt in once you know what it's for, not before.",
           },
           {
-            title: 'Shadow DOM around every UI element',
-            body: "Inject a div and `!important` your way through and you still lose to specific selectors on hostile pages. Shadow DOM is a full style boundary in both directions — the page can't reach into the extension, the extension can't leak out. The learning curve (CSS variables, slot composition, focus traversal) is real, but it pays back the first time you ship to a real browser on a real site and it just works.",
+            title: 'Shadow DOM, after normal CSS lost',
+            body: "I tried injecting a normal styled div first. It broke on too many sites — the page's own CSS reached in and wrecked the overlay. Shadow DOM was the boring fix that actually worked: a real style boundary both ways, so the page can't touch the extension and the extension can't leak onto the page. The focus and slot handling took a while to get right, but it held everywhere I shipped it.",
           },
           {
-            title: 'Five definition sources, one cascade',
-            body: 'No one source covers everything. Dictionary handles common English with phonetics and audio. Datamuse fills in tech terms and CEFR difficulty. Wiktionary covers rare and multilingual. Wikipedia catches proper nouns with a thumbnail. Urban Dictionary is the universal slang catch-all. They\'re tried in order; the user never hits a "no results" page on a word that exists somewhere.',
-          },
-          {
-            title: '"Chat with the Page" — built it, killed it',
-            body: 'Spent days on it. Ripped it out before the v3.1.1 ship. It needed an API key, was single-turn, and didn\'t pull its weight against the simpler Summarize and Define flows. Two commits, three days apart: "deepen Chat with the Page" → "rip out Chat with the Page (low value, single-turn, AI-key-only, weak workflow)". Cost ego, saved engineering time.',
+            title: 'Built "Chat with the Page", then killed it',
+            body: 'Spent a few days on it and ripped it out right before the v3.1.1 ship. It needed an API key, was single-turn, and didn\'t earn its place next to the simpler Define and Summarise flows. Two commits three days apart: "deepen Chat with the Page" → "rip out Chat with the Page". Bruised the ego, saved the time.',
           },
         ],
         outcome:
-          'Currently at v3.1.1. Installable from source on Chrome, Edge, Brave, and Firefox today. Five-source definition chain. 17 translation languages. 500-item Knowledge Vault. Not on any store yet — currently doing the submission-readiness work (PRIVACY.md, AMO validator fixes, CWS metadata, square icons, no innerHTML). 35+ commits in the most recent ship cycle.',
+          "At v3.1.1, installable from source on Chrome, Edge, Brave, and Firefox. Five-source definitions, 17 translation languages, a 500-item vault. Not on a store yet — I'm still grinding through the submission checklist: privacy policy, validator fixes, proper icons, killing every last innerHTML. 35+ commits in the last cycle.",
         learnings: [
-          'The MV3 service-worker lifecycle finds creative ways to bite you — stale callbacks, sendResponse races, audio context dying on suspend. Designing for it from day one is way cheaper than retrofitting.',
-          '"Zero dependencies" sounded like a constraint and became a feature. Every byte is auditable for store reviewers, and a single dep going sideways can\'t take you down.',
-          "A store submission is its own little project. PRIVACY.md, AMO validator rules, data_collection_permissions, square icons, no innerHTML. Worth knowing the checklist upfront — I didn't the first time.",
+          '"Zero dependencies" started as a constraint and became the best part — every byte is auditable and nothing can break from under me.',
+          "A store submission is its own little project. I didn't know that going in.",
         ],
       },
     },
@@ -140,35 +125,29 @@ export const siteConfig = {
       accent: 'oklch(0.74 0.18 15)', // rose
       caseStudy: {
         tagline:
-          'A subscription tracker that never asks for your bank credentials. RLS-isolated at the database layer, GenZ-tone copy, and a confetti burst every time you cancel a sub.',
+          "A subscription tracker that never asks for your bank login. Per-user isolation in the database, warm copy instead of scolding, and a confetti burst every time you cancel a sub.",
         problem:
-          'The existing subscription trackers (Rocket Money, Truebill) want bank access so they can scrape transactions. That works, but it\'s a steep ask for what is fundamentally a "remember what I\'m paying for" tool. The manual-entry alternatives mostly feel like accusations — red bars, budget warnings, copy that reads like your bank statement is yelling at you. Wrong tone for someone trying to take control. I wanted to build the kind version.',
+          "The trackers everyone uses — Rocket Money, Truebill — want bank access so they can scrape your transactions. That's a big ask for what's really just a \"remember what I'm paying for\" tool. And the manual ones feel like they're scolding you: red bars, budget warnings, copy that reads like your bank statement is yelling. I wanted the version that does neither — no bank login, and a tone that doesn't make you feel bad for opening it.",
         approach:
-          'React + Vite on the front, Supabase Postgres on the back. Per-user isolation lives in the database via Row Level Security — even buggy app code can\'t return another user\'s rows. Forms validated with Zod. shadcn/ui + Tailwind, palette and copy tuned to feel encouraging instead of accusing. Swipe gestures on mobile cards. A canvas-confetti burst plus a "you just saved money" toast every time you cancel a sub — the "Slay moment". Spending Insights breaks monthly cost down by category; the Budgeting Tool lets you set caps with inline validation.',
+          "React + Vite, Supabase Postgres. Every user's rows are isolated in the database with Row Level Security, so even a buggy query can't hand back someone else's data. Forms validate with Zod. The part I spent the most time on wasn't the code — it was the tone: warm palette, encouraging copy, swipe gestures on mobile, and a confetti burst plus a \"you just saved money\" toast every time you cancel a sub.",
         decisions: [
           {
-            title: 'Tone is the feature',
-            body: "The hardest part of personal-finance UX isn't the math — it's making someone feel safe enough to open the app. Red bars and budget warnings don't make people pay attention; they make people close the tab. The GenZ-first copy, the confetti on cancellations, the warm palette — that wasn't a polish pass. It was the actual strategy. Two of my early commits are literally \"Amplify Gen Z Vibe\". The tone work is in version control.",
+            title: 'Tone is the feature, not a polish pass',
+            body: "The hard part of a money app isn't the math — it's getting someone to feel okay opening it. Red bars and warnings don't make people pay attention; they make people close the tab. So the warm copy and the confetti weren't decoration, they were the plan. Two of my early commits are literally \"Amplify Gen Z Vibe\" — the tone work is right there in the history.",
           },
           {
-            title: 'Supabase RLS, not app-layer checks',
-            body: "App-layer checks fail open the moment you forget a `WHERE user_id = ?` on one endpoint. RLS pushes the rule into the database — even a buggy or compromised query physically can't return someone else's rows. Costs almost nothing if you design the schema with it in mind from day one, and it's the right default for any consumer app with sensitive data.",
+            title: 'Isolation in the database, not the app',
+            body: "App-layer checks fail open the second you forget a `WHERE user_id = ?` on one endpoint. Row Level Security pushes the rule down into Postgres — even a buggy or compromised query physically can't return another person's rows. It costs almost nothing if you build the schema around it from the start.",
           },
           {
-            title: 'No bank linking. Ever.',
-            body: "Plaid-style aggregators are a huge privacy ask for a small convenience win. The user worth competing for here is the one who'd rather type subs in than hand off credentials to an aggregator they've never heard of. Saying no to the \"industry-standard\" feature is the wedge — and the only way every other privacy claim on the site stays honest.",
-          },
-          {
-            title: 'Zod as the single source of shape',
-            body: 'One schema, two consumers — react-hook-form on the client, the API on the server. Both parse the same Zod object. No drift between client and server validation, types fall out for free. Kills a whole bug class — "the form said valid, the API disagreed" — at the type level.',
+            title: 'No bank linking, ever',
+            body: "Plaid-style aggregators are a huge privacy ask for a small convenience win. The person worth building for is the one who'd rather just type their subs in than hand bank credentials to an app they've never heard of. Saying no to the \"industry-standard\" feature is the whole point — it's what keeps every other privacy claim honest.",
           },
         ],
         outcome:
-          'Live at ssubsentry.lovable.app. Solo build over roughly three weeks (Nov 11 → Dec 4 2025), 20+ commits across UI/UX, validation, the budgeting tool, and the GenZ-tone pass. Working flows: auth, add/edit/delete subscriptions, budgeting with caps and inline validation, spending insights by category, swipe-gesture mobile controls, and the confetti "Slay" moment.',
+          'Live at ssubsentry.lovable.app. Solo build over about three weeks (Nov 11 – Dec 4, 2025), 20-odd commits. Auth, add/edit/delete subs, budgets with caps, spending by category, swipe gestures on mobile, and the confetti moment all work.',
         learnings: [
-          'Personal finance UX is mostly a tone problem dressed up as a math problem. Fix the tone and people will actually look at the numbers.',
-          "Supabase RLS is the right default for any multi-tenant consumer app. Design the schema with policies in mind from day one; it's much cheaper than bolting them on.",
-          'Zod-as-source-of-truth eliminates a whole bug class at the type level, not at runtime. The small upfront cost of sharing one schema between the form and the API is worth it.',
+          "If I could tell past-me one thing: personal-finance UX is a tone problem wearing a math problem's clothes. Fix the tone first.",
         ],
       },
     },
@@ -180,7 +159,7 @@ export const siteConfig = {
       org: 'ForMen Digital Clinic — Remote',
       period: 'Mar 2026 — Jun 2026',
       description:
-        "Built a consumer-facing AI tool that turns men's-health lab reports into plain-language, interactive explanations. Owned it PRD to working product — research, requirements, UI, implementation.",
+        "Built an AI tool that turns men's-health lab reports into plain English. Owned it end to end — PRD, research, UI, and the build.",
     },
     {
       role: 'Certificate Program — Product Management & Agentic AI',
@@ -240,9 +219,9 @@ export const siteConfig = {
   ],
 
   metadata: {
-    title: 'shaik suhaib — product-minded software engineer',
+    title: 'Shaik Suhaib — software engineer',
     description:
-      'IT undergrad in Chennai building product-shaped AI things. ForMen Digital Clinic + Vel Tech + IIT Patna.',
+      'I build software that makes complicated things easier to understand — most recently an AI tool at ForMen Digital Clinic that explains lab reports in plain English.',
     twitterHandle: '@suhaibX0',
   },
 };

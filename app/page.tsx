@@ -41,13 +41,7 @@ function SectionAction({ href, children }: { href: string; children: string }) {
 const GITHUB_URL = "https://github.com/RIxiV1"
 const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
 
-const BIO_HIGHLIGHTS = [
-  "ForMen Digital Clinic",
-  "Product Management & Agentic AI",
-  "Supabase",
-  "n8n",
-  "Gemini",
-]
+const BIO_HIGHLIGHTS = ["ForMen Digital Clinic"]
 
 function highlightTerms(text: string, terms: string[]) {
   if (!terms.length) return text
