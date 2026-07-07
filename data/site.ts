@@ -10,7 +10,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shaikuhaibdev.vercel.app',
   status: 'Open to internships & freelance',
 
-  resumeUrl: '/resume.pdf',
+  resumeUrl: '/Shaik_Mohammed_Suhaib_Resume.pdf',
 
   bio: [
     "I'm 20, studying IT at Vel Tech in Chennai. I mostly build things because something annoyed me and I wanted it to stop.",
