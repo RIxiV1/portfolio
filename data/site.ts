@@ -89,11 +89,11 @@ export const siteConfig = {
         problem:
           "My reading setup was four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. The other half demand an API key on first launch and just die at the install screen if you don't have one. Nobody treated \"no key\" as a real path, so the free version was always the worst version. I wanted one tool that didn't do either.",
         approach:
-          "One extension, no runtime dependencies, Chrome + Edge + Firefox. Definitions try five sources in order until one resolves. Summarising runs offline; translation uses your AI key if you've set one, or a free tier if you haven't. Everything you save lands in a local vault you can export. The whole thing had to survive the MV3 service worker, which found new ways to bite the entire build — stale callbacks, sendResponse races, the audio context dying whenever the worker went to sleep.",
+          "One extension, no runtime dependencies, Chrome + Edge + Firefox. Definitions try six sources in order until one resolves. Summarising runs offline; translation uses your AI key if you've set one, or a free tier if you haven't. Everything you save lands in a local vault you can export. The whole thing had to survive the MV3 service worker, which found new ways to bite the entire build — stale callbacks, sendResponse races, the audio context dying whenever the worker went to sleep.",
         decisions: [
           {
             title: 'BYOK, but the free path has to actually work',
-            body: "Most AI extensions demand a key on first launch and die at the install screen if you don't have one. That always felt backwards. InfoBlend works completely without a key — offline summariser, the five-source dictionary, free-tier translation. The key only buys the smarter stuff. You opt in once you know what it's for, not before.",
+            body: "Most AI extensions demand a key on first launch and die at the install screen if you don't have one. That always felt backwards. InfoBlend works completely without a key — offline summariser, the six-source dictionary, free-tier translation. The key only buys the smarter stuff. You opt in once you know what it's for, not before.",
           },
           {
             title: 'Shadow DOM, after normal CSS lost',
@@ -105,7 +105,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          "At v3.1.1, installable from source on Chrome, Edge, Brave, and Firefox. Five-source definitions, 17 translation languages, a 500-item vault. Not on a store yet — I'm still grinding through the submission checklist: privacy policy, validator fixes, proper icons, killing every last innerHTML. 35+ commits in the last cycle.",
+          "At v3.1.1, installable from source on Chrome, Edge, Brave, and Firefox. Six-source definitions, 17 translation languages, a 500-item vault. Not on a store yet — I'm still grinding through the submission checklist: privacy policy, validator fixes, proper icons, killing every last innerHTML. 35+ commits in the last cycle.",
       },
     },
     {
