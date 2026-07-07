@@ -150,7 +150,7 @@ export const siteConfig = {
     {
       role: 'Product & Development Intern',
       org: 'ForMen Digital Clinic — Remote',
-      period: 'Mar 2026 — Jun 2026',
+      period: 'Mar 2026 — Jul 2026',
       description:
         "Built an AI tool that reads a men's-health blood report and explains it in plain English — so someone can open it, see what's going on, and not panic. Did it end to end: research, PRD, UI, and the build.",
     },
