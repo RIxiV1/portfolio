@@ -92,27 +92,6 @@
 }
 
 @layer utilities {
-  @keyframes caret-blink {
-    0%,
-    49% {
-      opacity: 1;
-    }
-    50%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .caret-blink {
-    animation: caret-blink 1.06s steps(1) infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .caret-blink {
-      animation: none;
-    }
-  }
-
   /* Printed-paper grain — you only notice it after a while. */
   .paper-grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");

@@ -4,7 +4,6 @@ import { siteConfig } from "@/data/site"
 import { FadeUp } from "@/components/ui/fade-up"
 import { ContactForm } from "@/components/ui/contact-form"
 import { ExperienceTabs } from "@/components/ui/experience-tabs"
-import { ScrambleText } from "@/components/ui/scramble-text"
 import { StatusPill } from "@/components/ui/status-pill"
 import { CtaButton } from "@/components/ui/cta-button"
 import { FeaturedProject, ProjectsList } from "@/components/ui/work-stack-link"
@@ -54,11 +53,8 @@ export default function Page() {
         <div className="space-y-8">
           <StatusPill>Available for internships · Chennai</StatusPill>
 
-          <h1 className="text-6xl font-semibold leading-[0.92] tracking-tight md:text-8xl lg:text-[10rem]">
-            <ScrambleText autoStart delay={150}>Shaik Suhaib</ScrambleText>
-            <span aria-hidden className="caret-blink ml-1 font-light text-accent">
-              |
-            </span>
+          <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-[9rem]">
+            Shaik Suhaib
           </h1>
 
           <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
