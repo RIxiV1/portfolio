@@ -54,7 +54,24 @@ export default function Page() {
           <StatusPill>Available for internships · Chennai</StatusPill>
 
           <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-[9rem]">
-            Shaik Suhaib
+            Shaik{" "}
+            <span className="relative inline-block">
+              Suhaib
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 18"
+                preserveAspectRatio="none"
+                className="pointer-events-none absolute -bottom-2 left-0 h-[0.15em] w-full text-accent md:-bottom-4"
+              >
+                <path
+                  d="M4 12 C 84 3, 214 3, 296 10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
           </h1>
 
           <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
