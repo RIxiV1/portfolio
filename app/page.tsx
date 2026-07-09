@@ -78,7 +78,7 @@ export default function Page() {
             </CtaButton>
             <CtaButton href={siteConfig.resumeUrl} variant="secondary" external>
               <FileText className="h-3.5 w-3.5" />
-              Download résumé
+              Résumé
             </CtaButton>
           </div>
 
