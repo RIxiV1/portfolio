@@ -143,15 +143,15 @@ export default function Page() {
         </FadeUp>
       </section>
 
-      {/* JOURNEY */}
+      {/* EXPERIENCE */}
       <section
-        id="journey"
+        id="experience"
         className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
       >
         <FadeUp>
           <div className="space-y-8">
             <header className="space-y-2">
-              <SectionLabel>journey</SectionLabel>
+              <SectionLabel>experience</SectionLabel>
               <h2 className={sectionHeading}>Where I&apos;ve been.</h2>
             </header>
             <ExperienceTabs items={siteConfig.experience} />
