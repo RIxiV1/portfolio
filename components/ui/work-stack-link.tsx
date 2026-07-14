@@ -162,7 +162,7 @@ export function FeaturedProject({ project: p }: { project: Project }) {
                 <span className="absolute inset-0 animate-ping rounded-full bg-[color:var(--project-accent)]/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--project-accent)]" />
               </span>
-              Live demo
+              Live
               <ArrowUpRight className="h-3 w-3" />
             </a>
           )}

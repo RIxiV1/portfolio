@@ -34,7 +34,6 @@ export const siteConfig = {
   ],
 
   navLinks: [
-    { name: 'Approach', href: '#approach' },
     { name: 'Work', href: '#work' },
     { name: 'Experience', href: '#experience' },
     { name: 'Writing', href: '#writing' },
@@ -83,10 +82,11 @@ export const siteConfig = {
         "I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.",
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
       href: 'https://github.com/RIxiV1/InfoBlend',
+      liveUrl: 'https://addons.mozilla.org/en-US/firefox/addon/infoblend/',
       accent: '#59624b', // olive
       caseStudy: {
         tagline:
-          "A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Not on a store yet; you install it from source.",
+          "A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Published on Firefox Add-ons; source is on GitHub.",
         problem:
           "My reading setup was four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. The other half demand an API key on first launch and just die at the install screen if you don't have one. Nobody treated \"no key\" as a real path, so the free version was always the worst version. I wanted one tool that didn't do either.",
         approach:
@@ -106,7 +106,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          "At v3.1.1, installable from source on Chrome, Edge, Brave, and Firefox. Six-source definitions, 17 translation languages, a 500-item vault. Not on a store yet — I'm still grinding through the submission checklist: privacy policy, validator fixes, proper icons, killing every last innerHTML. 35+ commits in the last cycle.",
+          "Published on Firefox Add-ons (MIT, zero-dependency), and installable from source on Chrome, Edge, and Brave. Six-source definitions, 17 translation languages, a 500-item vault. 35+ commits in the last cycle.",
       },
     },
     {
