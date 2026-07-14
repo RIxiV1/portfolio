@@ -300,7 +300,7 @@ export default function Page() {
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-2.5 px-6 py-14 text-center">
           <p className="text-sm text-muted-foreground">
             Built &amp; designed by{" "}
-            <span className="font-display text-foreground">Shaik Suhaib</span>.
+            <span className="font-display text-foreground">Suhaib</span>.
           </p>
           <p className="text-xs text-muted-foreground/70">
             All rights reserved. ©
