@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
 
 type Node = { x: number; y: number; r: number; primary: boolean }
 
@@ -83,7 +83,7 @@ export function ProjectArt({ seed, className }: ProjectArtProps) {
       viewBox="0 0 100 100"
       aria-hidden="true"
       className={cn(
-        "text-[color:var(--project-accent)] transition-opacity duration-500",
+        'text-[color:var(--project-accent)] transition-opacity duration-500',
         className,
       )}
     >
@@ -112,7 +112,7 @@ export function ProjectArt({ seed, className }: ProjectArtProps) {
             cx={n.x}
             cy={n.y}
             r={n.r}
-            fill={n.primary ? "currentColor" : "transparent"}
+            fill={n.primary ? 'currentColor' : 'transparent'}
             stroke="currentColor"
             strokeWidth={0.5}
           >

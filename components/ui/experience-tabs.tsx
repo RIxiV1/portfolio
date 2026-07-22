@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { useRef, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { cn } from "@/lib/utils"
+import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
+import { cn } from '@/lib/utils'
 
 type Item = {
   role: string
@@ -21,18 +21,18 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
     const last = items.length - 1
     let next = active
     switch (e.key) {
-      case "ArrowRight":
-      case "ArrowDown":
+      case 'ArrowRight':
+      case 'ArrowDown':
         next = active === last ? 0 : active + 1
         break
-      case "ArrowLeft":
-      case "ArrowUp":
+      case 'ArrowLeft':
+      case 'ArrowUp':
         next = active === 0 ? last : active - 1
         break
-      case "Home":
+      case 'Home':
         next = 0
         break
-      case "End":
+      case 'End':
         next = last
         break
       default:
@@ -52,8 +52,8 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
         aria-orientation="vertical"
         onKeyDown={onKeyDown}
         className={cn(
-          "flex snap-x snap-mandatory gap-2 overflow-x-auto border-b border-foreground/[0.08] pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          "md:flex-col md:gap-0 md:overflow-visible md:border-b-0 md:border-l md:border-foreground/[0.08] md:pb-0"
+          'flex snap-x snap-mandatory gap-2 overflow-x-auto border-b border-foreground/[0.08] pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+          'md:flex-col md:gap-0 md:overflow-visible md:border-b-0 md:border-l md:border-foreground/[0.08] md:pb-0',
         )}
       >
         {items.map((item, i) => {
@@ -71,17 +71,17 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "block w-full whitespace-nowrap border-b px-3 py-2 text-left transition-colors -mb-px",
-                  "md:whitespace-normal md:border-b-0 md:border-l md:py-3 md:pl-4 md:pr-0 md:-ml-px md:mb-0",
+                  'block w-full whitespace-nowrap border-b px-3 py-2 text-left transition-colors -mb-px',
+                  'md:whitespace-normal md:border-b-0 md:border-l md:py-3 md:pl-4 md:pr-0 md:-ml-px md:mb-0',
                   isActive
-                    ? "border-accent"
-                    : "border-transparent hover:border-foreground/30"
+                    ? 'border-accent'
+                    : 'border-transparent hover:border-foreground/30',
                 )}
               >
                 <span
                   className={cn(
-                    "block font-mono text-[10px] uppercase tracking-[0.18em] transition-colors",
-                    isActive ? "text-accent" : "text-muted-foreground"
+                    'block font-mono text-[10px] uppercase tracking-[0.18em] transition-colors',
+                    isActive ? 'text-accent' : 'text-muted-foreground',
                   )}
                 >
                   {item.org.split(',')[0].split('—')[0].trim()}
@@ -113,13 +113,15 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
             className="space-y-3"
           >
             <h3 className="text-xl font-medium tracking-tight">
-              {current.role} <span className="text-accent">@</span>{" "}
+              {current.role} <span className="text-accent">@</span>{' '}
               <span className="text-muted-foreground">{current.org}</span>
             </h3>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
               {current.period}
             </p>
-            <p className="pt-1 leading-relaxed text-foreground/80">{current.description}</p>
+            <p className="pt-1 leading-relaxed text-foreground/80">
+              {current.description}
+            </p>
           </motion.div>
         </AnimatePresence>
       </div>

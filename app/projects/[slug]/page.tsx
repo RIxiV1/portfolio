@@ -109,7 +109,8 @@ export default async function ProjectCaseStudyPage({
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-widest transition-colors"
                   style={{
-                    borderColor: 'color-mix(in oklch, var(--project-accent) 40%, transparent)',
+                    borderColor:
+                      'color-mix(in oklch, var(--project-accent) 40%, transparent)',
                     color: 'var(--project-accent)',
                   }}
                 >

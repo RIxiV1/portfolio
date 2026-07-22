@@ -32,7 +32,11 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
         const hasCaseStudy = !!p.caseStudy
         const linkProps = hasCaseStudy
           ? { href: `/projects/${p.slug}` as const }
-          : { href: p.href, target: '_blank' as const, rel: 'noopener noreferrer' }
+          : {
+              href: p.href,
+              target: '_blank' as const,
+              rel: 'noopener noreferrer',
+            }
         const LinkComp = hasCaseStudy ? Link : 'a'
         const domain = projectDomain(p.href)
 
@@ -41,7 +45,9 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
             key={p.title}
             className="border-b border-foreground/[0.05] transition-colors duration-300 hover:border-[color:var(--project-accent)]/30"
             style={
-              { ['--project-accent' as string]: p.accent } as React.CSSProperties
+              {
+                ['--project-accent' as string]: p.accent,
+              } as React.CSSProperties
             }
           >
             <LinkComp
@@ -70,7 +76,9 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
                 </p>
                 {p.hook && (
                   <p className="max-w-xl text-sm leading-relaxed text-foreground/55">
-                    <span className="text-[color:var(--project-accent)]/70">→ </span>
+                    <span className="text-[color:var(--project-accent)]/70">
+                      →{' '}
+                    </span>
                     {p.hook}
                   </p>
                 )}

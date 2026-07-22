@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import { motion, useInView } from "motion/react"
-import { useRef, ReactNode } from "react"
+import { motion, useInView } from 'motion/react'
+import { useRef, ReactNode } from 'react'
 
 interface FadeUpProps {
   children: ReactNode
@@ -11,7 +11,7 @@ interface FadeUpProps {
 
 export function FadeUp({ children, delay = 0, className }: FadeUpProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-10%" })
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   return (
     <motion.div
@@ -24,7 +24,7 @@ export function FadeUp({ children, delay = 0, className }: FadeUpProps) {
         ease: [0.21, 0.47, 0.32, 0.98], // Custom quint ease for premium feel
       }}
       className={className}
-      style={{ willChange: "transform, opacity" }}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>

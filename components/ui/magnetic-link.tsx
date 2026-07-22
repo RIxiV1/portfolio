@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import { useRef, type ReactNode } from "react"
+import { useRef, type ReactNode } from 'react'
 import {
   motion,
   useMotionValue,
   useSpring,
   type HTMLMotionProps,
-} from "motion/react"
+} from 'motion/react'
 
-type MagneticLinkProps = Omit<HTMLMotionProps<"a">, "children"> & {
+type MagneticLinkProps = Omit<HTMLMotionProps<'a'>, 'children'> & {
   children: ReactNode
   /** How strongly the button tracks the cursor (0–1). Default 0.22. */
   strength?: number
@@ -62,7 +62,15 @@ export function MagneticLink({
       className={className}
       {...rest}
     >
-      <motion.span style={{ x: isx, y: isy, display: "inline-flex", alignItems: "center", gap: "inherit" }}>
+      <motion.span
+        style={{
+          x: isx,
+          y: isy,
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 'inherit',
+        }}
+      >
         {children}
       </motion.span>
     </motion.a>

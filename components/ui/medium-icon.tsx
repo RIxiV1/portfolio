@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from 'react'
 
 // Medium isn't in lucide, so this is a hand-rolled mark: the classic
 // three-circle "M". Uses fill=currentColor so it tints like the other socials.

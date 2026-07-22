@@ -1,5 +1,5 @@
-import { Github, Linkedin } from 'lucide-react';
-import { Medium } from '@/components/ui/medium-icon';
+import { Github, Linkedin } from 'lucide-react'
+import { Medium } from '@/components/ui/medium-icon'
 
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
@@ -18,7 +18,12 @@ export const siteConfig = {
   ],
 
   socials: [
-    { icon: Github, href: 'https://github.com/RIxiV1', label: 'GitHub', handle: '@RIxiV1' },
+    {
+      icon: Github,
+      href: 'https://github.com/RIxiV1',
+      label: 'GitHub',
+      handle: '@RIxiV1',
+    },
     {
       icon: Linkedin,
       href: 'https://www.linkedin.com/in/shaiksuhaib',
@@ -48,7 +53,7 @@ export const siteConfig = {
       slug: 'resumescreen',
       hook: 'Asked the AI to "summarise the candidate." Got an essay. I needed a decision.',
       description:
-        "I wanted to see if I could hand the boring first pass of resume screening to an agent. Drop in a resume and a job description, get back a clear interview-or-reject with reasons, and the email sends itself. Built for the IIT Patna PM & Agentic AI cert.",
+        'I wanted to see if I could hand the boring first pass of resume screening to an agent. Drop in a resume and a job description, get back a clear interview-or-reject with reasons, and the email sends itself. Built for the IIT Patna PM & Agentic AI cert.',
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
       accent: '#b0803f', // brass
@@ -70,7 +75,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          "Built for the IIT Patna PM & Agentic AI cert. It ran end to end during the course — webhook, PDF text extraction, Gemini agent, optional Gmail. The hosted n8n agent has since expired, but the full workflow JSON is in the repo, so the whole pipeline is reproducible.",
+          'Built for the IIT Patna PM & Agentic AI cert. It ran end to end during the course — webhook, PDF text extraction, Gemini agent, optional Gmail. The hosted n8n agent has since expired, but the full workflow JSON is in the repo, so the whole pipeline is reproducible.',
       },
     },
     {
@@ -79,16 +84,16 @@ export const siteConfig = {
       slug: 'infoblend',
       hook: 'The best call I made on InfoBlend was killing a feature I loved.',
       description:
-        "I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.",
+        'I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.',
       tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
       href: 'https://github.com/RIxiV1/InfoBlend',
       liveUrl: 'https://addons.mozilla.org/en-US/firefox/addon/infoblend/',
       accent: '#59624b', // olive
       caseStudy: {
         tagline:
-          "A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Published on Firefox Add-ons; source is on GitHub.",
+          'A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Published on Firefox Add-ons; source is on GitHub.',
         problem:
-          "My reading setup was four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. The other half demand an API key on first launch and just die at the install screen if you don't have one. Nobody treated \"no key\" as a real path, so the free version was always the worst version. I wanted one tool that didn't do either.",
+          'My reading setup was four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. The other half demand an API key on first launch and just die at the install screen if you don\'t have one. Nobody treated "no key" as a real path, so the free version was always the worst version. I wanted one tool that didn\'t do either.',
         approach:
           "One extension, no runtime dependencies, Chrome + Edge + Firefox. Definitions try six sources in order until one resolves. Summarising runs offline; translation uses your AI key if you've set one, or a free tier if you haven't. Everything you save lands in a local vault you can export. The whole thing had to survive the MV3 service worker, which found new ways to bite the entire build — stale callbacks, sendResponse races, the audio context dying whenever the worker went to sleep.",
         decisions: [
@@ -106,7 +111,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          "Published on Firefox Add-ons (MIT, zero-dependency), and installable from source on Chrome, Edge, and Brave. Six-source definitions, 17 translation languages, a 500-item vault. 35+ commits in the last cycle.",
+          'Published on Firefox Add-ons (MIT, zero-dependency), and installable from source on Chrome, Edge, and Brave. Six-source definitions, 17 translation languages, a 500-item vault. 35+ commits in the last cycle.',
       },
     },
     {
@@ -116,13 +121,21 @@ export const siteConfig = {
       hook: "The hardest part wasn't the database — it was the confetti.",
       description:
         "A subscription tracker that never asks for your bank login — I didn't want to hand mine over, so it doesn't ask for yours. It also celebrates when you cancel something instead of nagging you about it.",
-      tech: ['React', 'Vite', 'TypeScript', 'Supabase', 'Tailwind', 'Zod', 'shadcn/ui'],
+      tech: [
+        'React',
+        'Vite',
+        'TypeScript',
+        'Supabase',
+        'Tailwind',
+        'Zod',
+        'shadcn/ui',
+      ],
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
       accent: '#a45a3a', // rust
       caseStudy: {
         tagline:
-          "A subscription tracker that never asks for your bank login. Per-user isolation in the database, warm copy instead of scolding, and a confetti burst every time you cancel a sub.",
+          'A subscription tracker that never asks for your bank login. Per-user isolation in the database, warm copy instead of scolding, and a confetti burst every time you cancel a sub.',
         problem:
           "The trackers everyone uses — Rocket Money, Truebill — want bank access so they can scrape your transactions. That's a big ask for what's really just a \"remember what I'm paying for\" tool. And the manual ones feel like they're scolding you: red bars, budget warnings, copy that reads like your bank statement is yelling. I wanted the version that does neither — no bank login, and a tone that doesn't make you feel bad for opening it.",
         approach:
@@ -209,4 +222,4 @@ export const siteConfig = {
     description:
       'I like building software that takes something confusing and makes it make sense — most recently an AI tool at ForMen Digital Clinic that explains blood reports in plain English.',
   },
-};
+}

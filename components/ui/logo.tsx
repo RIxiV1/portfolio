@@ -22,7 +22,9 @@ export function Logo({
       }}
     >
       {/* Optional rounded dark background — used for favicon / app icon contexts */}
-      {showBackground && <rect width="100" height="100" rx="20" fill="#1d1b18" />}
+      {showBackground && (
+        <rect width="100" height="100" rx="20" fill="#1d1b18" />
+      )}
 
       {/*
         Isometric cube — three faces of a 3D module.

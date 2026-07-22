@@ -1,36 +1,36 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { ArrowUpRight, AlertCircle, Check, Loader2, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
+import { ArrowUpRight, AlertCircle, Check, Loader2, X } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 type FormState =
-  | { kind: "idle" }
-  | { kind: "submitting" }
-  | { kind: "success" }
-  | { kind: "error"; reason: string }
+  | { kind: 'idle' }
+  | { kind: 'submitting' }
+  | { kind: 'success' }
+  | { kind: 'error'; reason: string }
 
 const fieldClass =
-  "w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+  'w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
 const labelClass =
-  "block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2"
+  'block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2'
 
 export function ContactForm() {
-  const [state, setState] = useState<FormState>({ kind: "idle" })
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
-  const [honeypot, setHoneypot] = useState("")
+  const [state, setState] = useState<FormState>({ kind: 'idle' })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [honeypot, setHoneypot] = useState('')
 
-  const submitting = state.kind === "submitting"
+  const submitting = state.kind === 'submitting'
 
   const send = async () => {
     // Belt-and-suspenders: ignore additional submits while one is in flight.
     if (submitting) return
-    setState({ kind: "submitting" })
+    setState({ kind: 'submitting' })
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, hp_field: honeypot }),
       })
 
@@ -38,35 +38,35 @@ export function ContactForm() {
         let reason = `Failed to send (HTTP ${response.status}).`
         try {
           const body = await response.json()
-          if (body && typeof body.error === "string") reason = body.error
+          if (body && typeof body.error === 'string') reason = body.error
         } catch {
           // response wasn't JSON — keep the HTTP fallback message
         }
-        setState({ kind: "error", reason })
+        setState({ kind: 'error', reason })
         return
       }
 
-      setState({ kind: "success" })
+      setState({ kind: 'success' })
     } catch (err) {
       const message =
         err instanceof Error && err.message
           ? err.message
-          : "Network error — check your connection and try again."
-      setState({ kind: "error", reason: `Network error: ${message}` })
+          : 'Network error — check your connection and try again.'
+      setState({ kind: 'error', reason: `Network error: ${message}` })
     }
   }
 
   const acknowledgeSuccess = () => {
-    setFormData({ name: "", email: "", message: "" })
-    setState({ kind: "idle" })
+    setFormData({ name: '', email: '', message: '' })
+    setState({ kind: 'idle' })
   }
 
-  const dismissError = () => setState({ kind: "idle" })
+  const dismissError = () => setState({ kind: 'idle' })
 
   // Success replaces the form entirely — persistent until user acknowledges.
   // Form data is preserved underneath so a user who wants to copy/edit can
   // hit "Send another" and start clean.
-  if (state.kind === "success") {
+  if (state.kind === 'success') {
     return (
       <motion.div
         initial={{ opacity: 0, y: 8 }}
@@ -81,7 +81,8 @@ export function ContactForm() {
           Message sent
         </div>
         <p className="leading-relaxed text-foreground/90">
-          Thanks for reaching out — I&apos;ll get back to you within a couple of days.
+          Thanks for reaching out — I&apos;ll get back to you within a couple of
+          days.
         </p>
         <button
           type="button"
@@ -106,7 +107,10 @@ export function ContactForm() {
     >
       {/* Honeypot — hidden from humans, filled by bots. Field name is
           deliberately non-semantic so browser autofill never fills it. */}
-      <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
+      >
         <label htmlFor="hp_field">Leave this field empty</label>
         <input
           id="hp_field"
@@ -132,7 +136,9 @@ export function ContactForm() {
             autoComplete="name"
             disabled={submitting}
             value={formData.name}
-            onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+            onChange={(e) =>
+              setFormData((p) => ({ ...p, name: e.target.value }))
+            }
             placeholder="Your name"
             className={fieldClass}
           />
@@ -149,7 +155,9 @@ export function ContactForm() {
             autoComplete="email"
             disabled={submitting}
             value={formData.email}
-            onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+            onChange={(e) =>
+              setFormData((p) => ({ ...p, email: e.target.value }))
+            }
             placeholder="you@example.com"
             className={fieldClass}
           />
@@ -167,15 +175,17 @@ export function ContactForm() {
           rows={4}
           disabled={submitting}
           value={formData.message}
-          onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
+          onChange={(e) =>
+            setFormData((p) => ({ ...p, message: e.target.value }))
+          }
           placeholder="What's on your mind?"
-          className={cn(fieldClass, "resize-none")}
+          className={cn(fieldClass, 'resize-none')}
         />
       </div>
 
       {/* Persistent error — stays until the user dismisses or fixes & resubmits. */}
       <AnimatePresence>
-        {state.kind === "error" && (
+        {state.kind === 'error' && (
           <motion.div
             key="err"
             initial={{ opacity: 0, y: 6 }}
@@ -209,10 +219,10 @@ export function ContactForm() {
         disabled={submitting}
         aria-busy={submitting}
         className={cn(
-          "group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors",
+          'group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors',
           submitting
-            ? "text-muted-foreground cursor-not-allowed"
-            : "text-foreground hover:text-accent"
+            ? 'text-muted-foreground cursor-not-allowed'
+            : 'text-foreground hover:text-accent',
         )}
       >
         {submitting ? (

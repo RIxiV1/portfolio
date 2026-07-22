@@ -1,15 +1,16 @@
-import Image from "next/image"
-import { ArrowUpRight, FileText, Sparkles } from "lucide-react"
-import { siteConfig } from "@/data/site"
-import { FadeUp } from "@/components/ui/fade-up"
-import { ContactForm } from "@/components/ui/contact-form"
-import { ExperienceTabs } from "@/components/ui/experience-tabs"
-import { StatusPill } from "@/components/ui/status-pill"
-import { CtaButton } from "@/components/ui/cta-button"
-import { FeaturedProject, ProjectsList } from "@/components/ui/work-stack-link"
+import Image from 'next/image'
+import { ArrowUpRight, FileText, Sparkles } from 'lucide-react'
+import { siteConfig } from '@/data/site'
+import { FadeUp } from '@/components/ui/fade-up'
+import { ContactForm } from '@/components/ui/contact-form'
+import { ExperienceTabs } from '@/components/ui/experience-tabs'
+import { StatusPill } from '@/components/ui/status-pill'
+import { CtaButton } from '@/components/ui/cta-button'
+import { FeaturedProject, ProjectsList } from '@/components/ui/work-stack-link'
 
-const sectionHeading = "font-display text-3xl font-semibold tracking-tight md:text-4xl"
-const sectionIntro = "max-w-xl leading-relaxed text-muted-foreground"
+const sectionHeading =
+  'font-display text-3xl font-semibold tracking-tight md:text-4xl'
+const sectionIntro = 'max-w-xl leading-relaxed text-muted-foreground'
 
 function SectionLabel({ children }: { children: string }) {
   return (
@@ -33,11 +34,11 @@ function SectionAction({ href, children }: { href: string; children: string }) {
   )
 }
 
-const GITHUB_URL = "https://github.com/RIxiV1"
-const MEDIUM_URL = "https://medium.com/@shaiksuhaib360"
+const GITHUB_URL = 'https://github.com/RIxiV1'
+const MEDIUM_URL = 'https://medium.com/@shaiksuhaib360'
 
 // Feature the strongest, most on-identity build (InfoBlend); lightest last.
-const PROJECT_ORDER = ["infoblend", "subsentry", "resumescreen"]
+const PROJECT_ORDER = ['infoblend', 'subsentry', 'resumescreen']
 const orderedProjects = [...siteConfig.projects].sort(
   (a, b) => PROJECT_ORDER.indexOf(a.slug) - PROJECT_ORDER.indexOf(b.slug),
 )
@@ -108,7 +109,7 @@ export default function Page() {
         <FadeUp>
           <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
             <span className="text-muted-foreground">
-              If someone&apos;s confused,{" "}
+              If someone&apos;s confused,{' '}
             </span>
             the software failed.
           </p>
@@ -116,10 +117,7 @@ export default function Page() {
       </section>
 
       {/* WORK */}
-      <section
-        id="work"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
-      >
+      <section id="work" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20">
         <FadeUp>
           <div className="space-y-10">
             <header className="space-y-3">
@@ -211,10 +209,7 @@ export default function Page() {
       </section>
 
       {/* ABOUT — late, once you've decided you like the work */}
-      <section
-        id="about"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
-      >
+      <section id="about" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20">
         <FadeUp>
           <div className="space-y-10">
             <header className="space-y-2">
@@ -271,19 +266,21 @@ export default function Page() {
                 >
                   {siteConfig.email}
                 </a>
-                {siteConfig.socials.map(({ icon: Icon, href, label, handle }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                    {handle}
-                  </a>
-                ))}
+                {siteConfig.socials.map(
+                  ({ icon: Icon, href, label, handle }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      {handle}
+                    </a>
+                  ),
+                )}
               </div>
             </header>
             <ContactForm />
@@ -299,7 +296,7 @@ export default function Page() {
       <footer className="mt-12 border-t border-foreground/[0.06]">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-2.5 px-6 py-14 text-center">
           <p className="text-sm text-muted-foreground">
-            Built &amp; designed by{" "}
+            Built &amp; designed by{' '}
             <span className="font-display text-foreground">Suhaib</span>.
           </p>
           <p className="text-xs text-muted-foreground/70">
