@@ -10,6 +10,10 @@ export function ThemeToggle() {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
+    // Read the theme the pre-hydration inline script already applied to <html>
+    // and sync it in. This is a deliberate external-system read on mount, not a
+    // render-driven state update — hence the rule suppression.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDark(document.documentElement.classList.contains("dark"))
     setMounted(true)
   }, [])
