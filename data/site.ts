@@ -51,11 +51,11 @@ export const siteConfig = {
       title: 'ResumeScreen',
       year: '2025',
       slug: 'resumescreen',
-      hook: 'Asked the AI to "summarise the candidate." Got an essay. I needed a decision.',
       description:
         'I wanted to see if I could hand the boring first pass of resume screening to an agent. Drop in a resume and a job description, get back a clear interview-or-reject with reasons, and the email sends itself. Built for the IIT Patna PM & Agentic AI cert.',
       tech: ['n8n', 'Lovable', 'Gemini', 'Gmail API'],
       href: 'https://github.com/RIxiV1/Resume-Screening-Agent',
+      liveUrl: 'https://talent-spotter-flow.lovable.app/',
       accent: '#b0803f', // brass
       caseStudy: {
         tagline:
@@ -75,7 +75,7 @@ export const siteConfig = {
           },
         ],
         outcome:
-          'Built for the IIT Patna PM & Agentic AI cert. It ran end to end during the course — webhook, PDF text extraction, Gemini agent, optional Gmail. The hosted n8n agent has since expired, but the full workflow JSON is in the repo, so the whole pipeline is reproducible.',
+          'Built for the IIT Patna PM & Agentic AI cert. It ran end to end during the course — webhook, PDF text extraction, Gemini agent, optional Gmail. The interface is live to click through; the n8n agent behind it expired with the course, but the full workflow JSON is checked in, so the pipeline rebuilds from a fresh install.',
       },
     },
     {
@@ -111,14 +111,13 @@ export const siteConfig = {
           },
         ],
         outcome:
-          'Published on Firefox Add-ons (MIT, zero-dependency), and installable from source on Chrome, Edge, and Brave. Six-source definitions, 17 translation languages, a 500-item vault. 35+ commits in the last cycle.',
+          'Published on Firefox Add-ons (MIT, zero-dependency), installable from source on Chrome, Edge, and Brave. 17 translation languages, six-source definitions, a 500-item local vault, and a full no-API-key path — the optional AI key is stored AES-GCM-encrypted, on-device.',
       },
     },
     {
       title: 'SubSentry',
       year: '2025',
       slug: 'subsentry',
-      hook: "The hardest part wasn't the database — it was the confetti.",
       description:
         "A subscription tracker that never asks for your bank login — I didn't want to hand mine over, so it doesn't ask for yours. It also celebrates when you cancel something instead of nagging you about it.",
       tech: [
