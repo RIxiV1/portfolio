@@ -41,7 +41,6 @@ export const siteConfig = {
   navLinks: [
     { name: 'Work', href: '#work' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Writing', href: '#writing' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ],
@@ -138,7 +137,7 @@ export const siteConfig = {
         problem:
           "The trackers everyone uses — Rocket Money, Truebill — want bank access so they can scrape your transactions. That's a big ask for what's really just a \"remember what I'm paying for\" tool. And the manual ones feel like they're scolding you: red bars, budget warnings, copy that reads like your bank statement is yelling. I wanted the version that does neither — no bank login, and a tone that doesn't make you feel bad for opening it.",
         approach:
-          "React + Vite, Supabase Postgres. Every user's rows are isolated in the database with Row Level Security, so even a buggy query can't hand back someone else's data. Forms validate with Zod. The part I spent the most time on wasn't the code — it was the tone: warm palette, encouraging copy, swipe gestures on mobile, and a confetti burst plus a \"you just saved money\" toast every time you cancel a sub.",
+          'I scaffolded the first version in Lovable to get moving, then went back and hardened the parts that actually matter — the auth flow and the data model. React + Vite on Supabase Postgres. Row Level Security keeps each user\'s rows isolated in the database — it\'s the standard Supabase pattern, but you still have to build the schema around it for it to mean anything. Forms validate with Zod. After that, most of my time went into tone: warm palette, encouraging copy, swipe gestures on mobile, and a confetti burst plus a "you just saved money" toast every time you cancel a sub.',
         decisions: [
           {
             title: 'Tone is the feature, not a polish pass',
@@ -146,7 +145,7 @@ export const siteConfig = {
           },
           {
             title: 'Isolation in the database, not the app',
-            body: "App-layer checks fail open the second you forget a `WHERE user_id = ?` on one endpoint. Row Level Security pushes the rule down into Postgres — even a buggy or compromised query physically can't return another person's rows. It costs almost nothing if you build the schema around it from the start.",
+            body: "App-layer checks fail open the second you forget a `WHERE user_id = ?` on one endpoint. RLS is the pattern Supabase recommends anyway — the call was just to actually lean on it instead of scattering checks through the app, so even a buggy query physically can't return another person's rows. Cheap if you build the schema around it from the start.",
           },
           {
             title: 'No bank linking, ever',
@@ -187,33 +186,6 @@ export const siteConfig = {
       period: 'Jun 2024 — May 2028 (Expected)',
       description:
         "Where I'm doing my degree. Honestly most of what I've learned is in the projects — five public repos across web apps, browser extensions, and AI automation.",
-    },
-  ],
-
-  writing: [
-    {
-      title: 'Recommendation Systems: The Math Behind Discovery',
-      description:
-        'How Netflix, Spotify, and your feed decide what to show you next. The math without the notation.',
-      date: 'Published',
-      tag: 'AI/ML',
-      url: 'https://medium.com/@shaiksuhaib360/recommendation-systems-the-math-behind-netflix-spotify-and-social-media-feeds-d61cfd501ba0',
-    },
-    {
-      title: 'Network Theory: The Science of Connections',
-      description:
-        'Six degrees of Kevin Bacon, why diseases spread, and the equations that explain both.',
-      date: 'Published',
-      tag: 'Math',
-      url: 'https://medium.com/@shaiksuhaib360/network-theory-how-everything-connects-56a54ee1265a',
-    },
-    {
-      title: 'Chaos Theory & The Butterfly Effect',
-      description:
-        'Why a butterfly in Tokyo can shift weather in New York — and what that means for anything we try to predict.',
-      date: 'Published',
-      tag: 'Science',
-      url: 'https://medium.com/@shaiksuhaib360/why-chaos-theory-explains-science-of-the-butterfly-effect-368dd5f34b7f',
     },
   ],
 

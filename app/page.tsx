@@ -167,57 +167,6 @@ export default function Page() {
         </FadeUp>
       </section>
 
-      {/* WRITING */}
-      <section
-        id="writing"
-        className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20"
-      >
-        <FadeUp>
-          <div className="space-y-8">
-            <header className="space-y-3">
-              <div className="flex items-end justify-between gap-4">
-                <div className="space-y-2">
-                  <SectionLabel>writing</SectionLabel>
-                  <h2 className={sectionHeading}>Things I&apos;ve written.</h2>
-                </div>
-                <SectionAction href={MEDIUM_URL}>Read on Medium</SectionAction>
-              </div>
-              <p className={sectionIntro}>
-                Usually I write something to understand it myself. Mostly math I
-                keep circling back to.
-              </p>
-            </header>
-            <ul className="divide-y divide-foreground/[0.06] border-t border-foreground/[0.06]">
-              {siteConfig.writing.map((w) => (
-                <li key={w.title}>
-                  <a
-                    href={w.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group grid gap-3 py-8 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
-                  >
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                        <span>{w.tag}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>{w.date}</span>
-                      </div>
-                      <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight transition-colors group-hover:text-accent md:text-3xl">
-                        {w.title}
-                      </h3>
-                      <p className="max-w-2xl leading-relaxed text-muted-foreground">
-                        {w.description}
-                      </p>
-                    </div>
-                    <ArrowUpRight className="hidden h-5 w-5 shrink-0 translate-y-1 text-muted-foreground/40 transition group-hover:text-accent md:block" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </FadeUp>
-      </section>
-
       {/* ABOUT — late, once you've decided you like the work */}
       <section id="about" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20">
         <FadeUp>
@@ -240,6 +189,18 @@ export default function Page() {
                     <p key={i}>{p}</p>
                   ))}
                 </div>
+                <p className="text-sm text-muted-foreground">
+                  I also write the odd thing on{' '}
+                  <a
+                    href={MEDIUM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground underline decoration-foreground/20 underline-offset-4 transition-colors hover:text-accent"
+                  >
+                    Medium
+                  </a>{' '}
+                  — usually maths I keep circling back to.
+                </p>
                 <dl className="grid grid-cols-[110px_1fr] gap-y-2 pt-4 text-sm">
                   <dt className="text-muted-foreground">Location</dt>
                   <dd>{siteConfig.location}</dd>
