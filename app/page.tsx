@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ArrowUpRight, FileText, Sparkles } from 'lucide-react'
+import { ArrowUpRight, ChevronDown, FileText, Sparkles } from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 import { ContactForm } from '@/components/ui/contact-form'
@@ -93,11 +93,21 @@ export default function Page() {
                 aria-label={label}
                 className="transition-colors hover:text-accent"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-5 w-5" />
               </a>
             ))}
           </div>
         </div>
+
+        {/* Quiet scroll cue — a whisper, not a shout; still under reduced motion. */}
+        <a
+          href="#work"
+          aria-label="Scroll to work"
+          className="absolute inset-x-0 bottom-8 mx-auto flex w-fit flex-col items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40 transition-colors hover:text-accent"
+        >
+          Scroll
+          <ChevronDown className="h-3.5 w-3.5 motion-safe:animate-bounce" />
+        </a>
       </section>
 
       {/* HOW I THINK — the belief, then what it means in practice. Placed high,
