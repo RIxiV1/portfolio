@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'motion/react'
+import { motion, useInView, useReducedMotion } from 'motion/react'
 import { useRef, ReactNode } from 'react'
 
 interface FadeUpProps {
@@ -12,6 +12,17 @@ interface FadeUpProps {
 export function FadeUp({ children, delay = 0, className }: FadeUpProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const reduceMotion = useReducedMotion()
+
+  // Reduced motion (or no scroll-reveal wanted): render fully visible with no
+  // transform — content must never depend on the animation to be readable.
+  if (reduceMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
+  }
 
   return (
     <motion.div

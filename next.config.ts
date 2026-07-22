@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Allow loading the dev server over the LAN (e.g. testing on a phone).
+  // Without this, Next blocks cross-origin HMR and client hydration stalls,
+  // leaving scroll-reveal sections stuck invisible. Dev-only; no prod effect.
+  allowedDevOrigins: ['172.16.0.2'],
   async headers() {
     return [
       {
