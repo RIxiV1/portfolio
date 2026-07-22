@@ -12,7 +12,10 @@ const ContactSchema = z.object({
   name: z.string().trim().min(2, 'Name must be 2–80 characters').max(80, 'Name must be 2–80 characters'),
   email: z.string().trim().max(120, 'Valid email required').email('Valid email required'),
   message: z.string().trim().min(10, 'Message must be 10–4000 characters').max(4000, 'Message must be 10–4000 characters'),
-  company: z.string().optional(),
+  // Honeypot. Named so browser autofill won't touch it (a field called
+  // "company"/"organization" gets filled from saved contact profiles, which
+  // would silently drop a real message).
+  hp_field: z.string().optional(),
 });
 
 // Distributed limiter for production. Falls back to per-worker in-memory
@@ -137,10 +140,10 @@ export async function POST(req: Request) {
       { status: 400, headers: cors },
     );
   }
-  const { name, email, message, company } = parsed.data;
+  const { name, email, message, hp_field } = parsed.data;
 
   // Honeypot: real users never fill this; bots fill every field.
-  if (company && company.length > 0) {
+  if (hp_field && hp_field.length > 0) {
     return NextResponse.json({ ok: true }, { headers: cors });
   }
 

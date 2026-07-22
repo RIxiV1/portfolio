@@ -2,22 +2,22 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-6 px-6 text-center bg-black text-white">
-      <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
+    <main className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background px-6 text-center text-foreground">
+      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
         404 — Not found
       </span>
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+      <h1 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
         This page is off the map.
       </h1>
-      <p className="text-neutral-400 max-w-md">
+      <p className="max-w-md leading-relaxed text-muted-foreground">
         The link you followed is broken, or the page was moved.
       </p>
       <Link
         href="/"
-        className="px-6 py-3 rounded-full bg-white text-black font-bold text-sm font-mono uppercase tracking-wider transition-transform hover:scale-[1.02] active:scale-[0.98]"
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-background shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-colors duration-300 hover:bg-accent/90"
       >
         Back home
       </Link>
-    </div>
+    </main>
   );
 }

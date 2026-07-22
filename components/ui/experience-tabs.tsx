@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { cn } from "@/lib/utils"
 
@@ -14,6 +14,34 @@ type Item = {
 export function ExperienceTabs({ items }: { items: Item[] }) {
   const [active, setActive] = useState(0)
   const current = items[active]
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  // Roving-tabindex arrow-key navigation, per the WAI-ARIA tabs pattern.
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    const last = items.length - 1
+    let next = active
+    switch (e.key) {
+      case "ArrowRight":
+      case "ArrowDown":
+        next = active === last ? 0 : active + 1
+        break
+      case "ArrowLeft":
+      case "ArrowUp":
+        next = active === 0 ? last : active - 1
+        break
+      case "Home":
+        next = 0
+        break
+      case "End":
+        next = last
+        break
+      default:
+        return
+    }
+    e.preventDefault()
+    setActive(next)
+    tabRefs.current[next]?.focus()
+  }
 
   return (
     <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-12">
@@ -21,6 +49,8 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
       <ul
         role="tablist"
         aria-label="Experience"
+        aria-orientation="vertical"
+        onKeyDown={onKeyDown}
         className={cn(
           "flex snap-x snap-mandatory gap-2 overflow-x-auto border-b border-foreground/[0.08] pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           "md:flex-col md:gap-0 md:overflow-visible md:border-b-0 md:border-l md:border-foreground/[0.08] md:pb-0"
@@ -31,8 +61,14 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
           return (
             <li key={i} className="snap-start shrink-0 md:shrink">
               <button
+                ref={(el) => {
+                  tabRefs.current[i] = el
+                }}
                 role="tab"
+                id={`exp-tab-${i}`}
                 aria-selected={isActive}
+                aria-controls="exp-panel"
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => setActive(i)}
                 className={cn(
                   "block w-full whitespace-nowrap border-b px-3 py-2 text-left transition-colors -mb-px",
@@ -60,7 +96,13 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
       </ul>
 
       {/* Panel */}
-      <div className="relative min-h-[180px]">
+      <div
+        id="exp-panel"
+        role="tabpanel"
+        aria-labelledby={`exp-tab-${active}`}
+        tabIndex={0}
+        className="relative min-h-[180px] focus:outline-none"
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={active}

@@ -31,7 +31,7 @@ export function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, company: honeypot }),
+        body: JSON.stringify({ ...formData, hp_field: honeypot }),
       })
 
       if (!response.ok) {
@@ -104,12 +104,13 @@ export function ContactForm() {
       className="space-y-10"
       noValidate
     >
-      {/* Honeypot — hidden from humans, filled by bots */}
+      {/* Honeypot — hidden from humans, filled by bots. Field name is
+          deliberately non-semantic so browser autofill never fills it. */}
       <div aria-hidden="true" className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="company">Company</label>
+        <label htmlFor="hp_field">Leave this field empty</label>
         <input
-          id="company"
-          name="company"
+          id="hp_field"
+          name="hp_field"
           type="text"
           tabIndex={-1}
           autoComplete="off"
