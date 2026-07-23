@@ -83,7 +83,7 @@ export function ProjectArt({ seed, className }: ProjectArtProps) {
       viewBox="0 0 100 100"
       aria-hidden="true"
       className={cn(
-        'text-[color:var(--project-accent)] transition-opacity duration-500',
+        'text-[color:var(--project-accent)] transition-[opacity,transform] duration-500',
         className,
       )}
     >

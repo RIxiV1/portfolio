@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { cn } from '@/lib/utils'
 
 type Item = {
@@ -12,6 +12,7 @@ type Item = {
 }
 
 export function ExperienceTabs({ items }: { items: Item[] }) {
+  const reduceMotion = useReducedMotion()
   const [active, setActive] = useState(0)
   const current = items[active]
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
@@ -71,22 +72,33 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActive(i)}
                 className={cn(
-                  'block w-full whitespace-nowrap border-b px-3 py-2 text-left transition-colors -mb-px',
+                  'relative block w-full whitespace-nowrap rounded-md border-b px-3 py-2 text-left transition-colors -mb-px',
                   'md:whitespace-normal md:border-b-0 md:border-l md:py-3 md:pl-4 md:pr-0 md:-ml-px md:mb-0',
                   isActive
-                    ? 'border-accent'
+                    ? 'border-transparent'
                     : 'border-transparent hover:border-foreground/30',
                 )}
               >
+                {isActive && (
+                  <motion.span
+                    layoutId="expActivePill"
+                    className="absolute inset-0 rounded-md bg-accent/10"
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { type: 'spring', stiffness: 400, damping: 32 }
+                    }
+                  />
+                )}
                 <span
                   className={cn(
-                    'block font-mono text-[10px] uppercase tracking-[0.18em] transition-colors',
+                    'relative z-10 block font-mono text-[10px] uppercase tracking-[0.18em] transition-colors',
                     isActive ? 'text-accent' : 'text-muted-foreground',
                   )}
                 >
                   {item.org.split(',')[0].split('—')[0].trim()}
                 </span>
-                <span className="mt-1 block font-mono text-[10px] tabular-nums tracking-wider text-muted-foreground/70">
+                <span className="relative z-10 mt-1 block font-mono text-[10px] tabular-nums tracking-wider text-muted-foreground/70">
                   {item.period}
                 </span>
               </button>
@@ -106,10 +118,10 @@ export function ExperienceTabs({ items }: { items: Item[] }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -12 }}
-            transition={{ duration: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
+            initial={{ opacity: 0, x: 12, scale: 0.98 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -12, scale: 0.98 }}
+            transition={{ duration: 0.26, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="space-y-3"
           >
             <h3 className="text-xl font-medium tracking-tight">

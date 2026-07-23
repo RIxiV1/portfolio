@@ -12,7 +12,7 @@ type FormState =
   | { kind: 'error'; reason: string }
 
 const fieldClass =
-  'w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+  'w-full bg-transparent border-b border-foreground/15 px-0 py-3 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent focus:shadow-[0_8px_18px_-12px_var(--accent)] transition-[color,border-color,box-shadow] duration-300 disabled:opacity-50 disabled:cursor-not-allowed'
 const labelClass =
   'block font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2'
 

@@ -52,11 +52,11 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
           >
             <LinkComp
               {...linkProps}
-              className="group relative grid grid-cols-[36px_1fr] gap-x-4 gap-y-2 py-8"
+              className="group relative -mx-4 grid grid-cols-[36px_1fr] gap-x-4 gap-y-2 rounded-xl px-4 py-8 transition-colors hover:bg-[color:var(--project-accent)]/[0.04]"
             >
               <ProjectArt
                 seed={p.title}
-                className="pointer-events-none absolute right-0 top-6 hidden h-20 w-20 md:block"
+                className="pointer-events-none absolute right-4 top-6 hidden h-20 w-20 md:block group-hover:scale-110"
               />
               <span className="pt-2 font-mono text-[10px] uppercase tracking-widest tabular-nums text-muted-foreground/50 transition-colors group-hover:text-[color:var(--project-accent)]">
                 P{String(i + 1).padStart(2, '0')}

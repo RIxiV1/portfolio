@@ -16,6 +16,10 @@
   --positive: #5f6f52;
   --grain-opacity: 0.05;
   --selection: rgba(122, 90, 54, 0.22);
+  /* Gilt masthead — darker on paper so the name reads against it. */
+  --gilt-lo: #6f5330;
+  --gilt-mid: #8a6a3e;
+  --gilt-hi: #b89152;
 }
 
 /* Dark editorial — Leica charcoal, brass. Opt-in via `.dark`. */
@@ -31,6 +35,10 @@
   --positive: #8a9a76;
   --grain-opacity: 0.08;
   --selection: rgba(196, 154, 99, 0.24);
+  /* Gilt masthead — lighter, warmer on charcoal. */
+  --gilt-lo: #a97c3e;
+  --gilt-mid: #c49a63;
+  --gilt-hi: #f0d8ac;
 }
 
 @theme inline {
@@ -116,5 +124,20 @@
     .link-underline {
       transition: none;
     }
+  }
+
+  /* Gold-leaf masthead: a warm vertical gradient fill (per-letter safe) —
+     reads like foil-stamped print, not a hollow neon outline. */
+  .name-gilt {
+    background-image: linear-gradient(
+      180deg,
+      var(--gilt-hi) 0%,
+      var(--gilt-mid) 48%,
+      var(--gilt-lo) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 }

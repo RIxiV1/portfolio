@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { ArrowUpRight, ChevronDown, FileText, Sparkles } from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
+import { Stagger, StaggerItem, WordReveal } from '@/components/ui/reveal'
+import { KineticName } from '@/components/ui/kinetic-name'
 import { ContactForm } from '@/components/ui/contact-form'
 import { ExperienceTabs } from '@/components/ui/experience-tabs'
 import { StatusPill } from '@/components/ui/status-pill'
@@ -51,17 +53,16 @@ export default function Page() {
         id="home"
         className="relative mx-auto flex min-h-svh max-w-3xl flex-col justify-center px-6 pt-32 pb-16"
       >
-        <div className="space-y-8">
-          <StatusPill>Available for internships · Chennai</StatusPill>
+        <Stagger className="space-y-8">
+          <StaggerItem>
+            <StatusPill>Available for internships · Chennai</StatusPill>
+          </StaggerItem>
 
-          <h1 className="font-display text-7xl font-semibold leading-[0.86] tracking-tight md:text-8xl lg:text-[9.5rem]">
-            <span className="block">Shaik</span>
-            <span className="block text-accent [-webkit-text-fill-color:transparent] [-webkit-text-stroke:2.5px_currentColor]">
-              Suhaib
-            </span>
-          </h1>
+          <StaggerItem>
+            <KineticName />
+          </StaggerItem>
 
-          <div className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <StaggerItem className="max-w-xl space-y-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
             <p className="text-foreground">
               I&apos;m a software engineer who likes making confusing things
               easy to understand.
@@ -70,9 +71,9 @@ export default function Page() {
               Lately that&apos;s health tools — most recently an app that turns
               a blood report into plain English.
             </p>
-          </div>
+          </StaggerItem>
 
-          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
+          <StaggerItem className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
             <CtaButton href="#contact" variant="primary">
               <Sparkles className="h-3.5 w-3.5" />
               Get in touch
@@ -81,9 +82,9 @@ export default function Page() {
               <FileText className="h-3.5 w-3.5" />
               Résumé
             </CtaButton>
-          </div>
+          </StaggerItem>
 
-          <div className="flex items-center gap-5 pt-2 text-muted-foreground">
+          <StaggerItem className="flex items-center gap-5 pt-2 text-muted-foreground">
             {siteConfig.socials.map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
@@ -96,8 +97,8 @@ export default function Page() {
                 <Icon className="h-5 w-5" />
               </a>
             ))}
-          </div>
-        </div>
+          </StaggerItem>
+        </Stagger>
 
         {/* Quiet scroll cue — a whisper, not a shout; still under reduced motion. */}
         <a
@@ -116,14 +117,16 @@ export default function Page() {
         id="approach"
         className="mx-auto max-w-3xl scroll-mt-24 px-6 py-24"
       >
-        <FadeUp>
-          <p className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">
-            <span className="text-muted-foreground">
-              If someone&apos;s confused,{' '}
-            </span>
-            the software failed.
-          </p>
-        </FadeUp>
+        <WordReveal
+          className="font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl"
+          segments={[
+            {
+              text: 'If someone’s confused,',
+              className: 'text-muted-foreground',
+            },
+            { text: 'the software failed.' },
+          ]}
+        />
       </section>
 
       {/* WORK */}
