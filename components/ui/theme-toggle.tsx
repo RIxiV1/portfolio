@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Moon, Sun } from 'lucide-react'
 
 export function ThemeToggle() {
@@ -8,6 +9,7 @@ export function ThemeToggle() {
   // resolved theme) doesn't mismatch the client.
   const [mounted, setMounted] = useState(false)
   const [dark, setDark] = useState(false)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     // Read the theme the pre-hydration inline script already applied to <html>
@@ -32,10 +34,30 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 text-foreground transition-colors hover:border-accent/40 hover:text-accent"
+      className="inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-foreground/10 text-foreground transition-colors hover:border-accent/40 hover:text-accent"
     >
-      {mounted &&
-        (dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />)}
+      <AnimatePresence mode="wait" initial={false}>
+        {mounted && (
+          <motion.span
+            key={dark ? 'sun' : 'moon'}
+            initial={
+              reduceMotion
+                ? { opacity: 0 }
+                : { rotate: -90, scale: 0, opacity: 0 }
+            }
+            animate={{ rotate: 0, scale: 1, opacity: 1 }}
+            exit={
+              reduceMotion
+                ? { opacity: 0 }
+                : { rotate: 90, scale: 0, opacity: 0 }
+            }
+            transition={{ duration: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="inline-flex"
+          >
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </motion.span>
+        )}
+      </AnimatePresence>
     </button>
   )
 }

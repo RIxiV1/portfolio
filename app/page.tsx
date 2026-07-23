@@ -195,7 +195,7 @@ export default function Page() {
                     href={MEDIUM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground underline decoration-foreground/20 underline-offset-4 transition-colors hover:text-accent"
+                    className="link-underline text-foreground transition-colors hover:text-accent"
                   >
                     Medium
                   </a>{' '}
@@ -233,7 +233,7 @@ export default function Page() {
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-sm">
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-foreground transition-colors hover:text-accent"
+                  className="link-underline text-foreground transition-colors hover:text-accent"
                 >
                   {siteConfig.email}
                 </a>
@@ -275,9 +275,12 @@ export default function Page() {
           </p>
           <a
             href="#home"
-            className="mt-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 transition-colors hover:text-accent"
+            className="group mt-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 transition-colors hover:text-accent"
           >
-            Back to top ↑
+            Back to top{' '}
+            <span className="inline-block transition-transform group-hover:-translate-y-0.5">
+              ↑
+            </span>
           </a>
         </div>
       </footer>

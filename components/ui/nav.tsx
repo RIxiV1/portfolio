@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { siteConfig } from '@/data/site'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/ui/logo'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export function Nav() {
+  const reduceMotion = useReducedMotion()
   const [active, setActive] = useState<string>('')
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -89,13 +90,24 @@ export function Nav() {
                   <a
                     href={l.href}
                     className={cn(
-                      'block rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors',
+                      'relative block rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors',
                       isActive
-                        ? 'bg-foreground text-background'
+                        ? 'text-background'
                         : 'text-muted-foreground hover:bg-foreground/[0.05] hover:text-foreground',
                     )}
                   >
-                    {l.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="navActivePill"
+                        className="absolute inset-0 rounded-full bg-foreground"
+                        transition={
+                          reduceMotion
+                            ? { duration: 0 }
+                            : { type: 'spring', stiffness: 400, damping: 32 }
+                        }
+                      />
+                    )}
+                    <span className="relative z-10">{l.name}</span>
                   </a>
                 </li>
               )

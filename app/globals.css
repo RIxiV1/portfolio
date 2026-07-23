@@ -98,4 +98,23 @@
     background-size: 140px 140px;
     opacity: var(--grain-opacity, 0.05);
   }
+
+  /* A hairline underline that wipes in from the left on hover/focus. */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-underline {
+      transition: none;
+    }
+  }
 }

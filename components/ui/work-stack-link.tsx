@@ -87,7 +87,7 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
                     {p.tech.map((t) => (
                       <li
                         key={t}
-                        className="rounded-full border border-[color:var(--border)] px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground"
+                        className="rounded-full border border-[color:var(--border)] px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground transition-colors duration-200 hover:border-[color:var(--project-accent)]/40 hover:text-foreground"
                       >
                         {t}
                       </li>
@@ -152,7 +152,7 @@ export function FeaturedProject({ project: p }: { project: Project }) {
           {p.tech.map((t) => (
             <li
               key={t}
-              className="rounded-full border border-foreground/[0.08] px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground"
+              className="rounded-full border border-foreground/[0.08] px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground transition-colors duration-200 hover:border-[color:var(--project-accent)]/40 hover:text-foreground"
             >
               {t}
             </li>
