@@ -12,7 +12,7 @@ type FormState =
   | { kind: 'error'; reason: string; input: boolean }
 
 const fieldClass =
-  'w-full rounded-lg border border-border bg-elevated px-3.5 py-2.5 text-[15px] text-foreground placeholder:text-muted-foreground/50 transition-[border-color,box-shadow] duration-200 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15 disabled:cursor-not-allowed disabled:opacity-50'
+  'w-full rounded-xl border border-border/80 bg-elevated/80 px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/50 transition-[border-color,box-shadow] duration-200 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15 disabled:cursor-not-allowed disabled:opacity-50'
 const labelClass = 'eyebrow mb-2 block text-muted-foreground'
 
 const FIELDS = ['name', 'email', 'message'] as const

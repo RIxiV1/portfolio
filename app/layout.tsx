@@ -1,14 +1,24 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Nav } from '@/components/ui/nav'
 import { siteConfig } from '@/data/site'
 import './globals.css'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
-const geistMono = Geist_Mono({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-geist-mono',
+  variable: '--font-playfair',
+  display: 'swap',
+})
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
+  display: 'swap',
 })
 
 const title = `${siteConfig.name} — ${siteConfig.role}`
@@ -41,13 +51,13 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
+    { media: '(prefers-color-scheme: light)', color: '#FBF7F4' },
+    { media: '(prefers-color-scheme: dark)', color: '#111110' },
   ],
 }
 
 // Person schema — lets Google associate the site, name, and social profiles
-// with one entity (knowledge panel, "shaik mohammed suhaib" searches).
+// with one entity (knowledge panel, searches).
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -74,7 +84,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${playfair.variable} ${inter.variable} ${jetbrains.variable} font-sans antialiased`}
       >
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
@@ -88,9 +98,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <div className="fixed inset-0 -z-50 bg-background" />
-        <div className="dot-grid pointer-events-none fixed inset-0 -z-40 opacity-[0.05] dark:opacity-[0.13]" />
+        <div className="dot-grid pointer-events-none fixed inset-0 -z-40 opacity-[0.04] dark:opacity-[0.08]" />
         <div className="spotlight pointer-events-none fixed inset-x-0 top-0 -z-40 h-[70vh]" />
-        <div className="grain pointer-events-none fixed inset-0 -z-30 opacity-[0.05] mix-blend-soft-light dark:opacity-[0.06]" />
+        <div className="grain pointer-events-none fixed inset-0 -z-30 opacity-[0.04] mix-blend-soft-light dark:opacity-[0.05]" />
         <Nav />
         {children}
         <Analytics />

@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og'
-import { Logo } from '@/components/ui/logo'
 
 export const size = { width: 180, height: 180 }
 export const contentType = 'image/png'
@@ -13,11 +12,15 @@ export default function AppleIcon() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#09090b',
+        background: '#111110',
         borderRadius: 40,
+        color: '#F5EDE6',
+        fontSize: 110,
+        fontWeight: 700,
+        fontFamily: 'sans-serif',
       }}
     >
-      <Logo size={120} color="#f5f5f7" accent="#818cf8" />
+      s<span style={{ color: '#E8885A' }}>.</span>
     </div>,
     { ...size },
   )

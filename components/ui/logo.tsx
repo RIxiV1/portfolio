@@ -1,10 +1,9 @@
-// The mascot: a friendly little robot. Outline in the foreground colour, the
-// indigo signal accent living in his eyes + antenna dot. Reads down to 16px.
-// Path uses only M/H/V/Q/Z + circles so it renders under Satori (favicon/OG).
-export const ROBOT_HEAD =
-  'M40 28 H60 Q78 28 78 46 V64 Q78 82 60 82 H40 Q22 82 22 64 V46 Q22 28 40 28 Z'
-export const ROBOT_ANTENNA = 'M50 28 V14'
-export const ROBOT_SMILE = 'M43 70 Q50 75 57 70'
+// Typographic Monogram "S" for Shaik Suhaib.
+// Sleek, modern editorial lettermark with warm accent gem.
+// Compatible with Satori (ImageResponse for favicon and OpenGraph) and inline SVG.
+
+export const MONOGRAM_S =
+  'M 70 28 C 65 20 57 16 48 16 C 34 16 26 25 26 38 C 26 50 36 55 52 59 C 67 63 74 69 74 80 C 74 91 65 98 49 98 C 35 98 26 91 22 80'
 
 export function Logo({
   size = 28,
@@ -16,7 +15,7 @@ export function Logo({
   size?: number
   /** Outline / stroke colour. Defaults to currentColor. */
   color?: string
-  /** Eyes + antenna dot. Defaults to the accent token. */
+  /** Accent dot. Defaults to the accent token. */
   accent?: string
   /** Optional rounded background tile (favicon / app-icon contexts). */
   plate?: string
@@ -32,24 +31,16 @@ export function Logo({
       aria-hidden="true"
     >
       {plate && (
-        <rect x="3" y="3" width="94" height="94" rx="24" fill={plate} />
+        <rect x="4" y="4" width="92" height="92" rx="24" fill={plate} />
       )}
       <path
-        d={ROBOT_ANTENNA}
+        d={MONOGRAM_S}
         stroke={color}
-        strokeWidth="5"
+        strokeWidth="10"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <circle cx="50" cy="10" r="4.5" fill={accent} />
-      <path d={ROBOT_HEAD} stroke={color} strokeWidth="6" />
-      <circle cx="41" cy="52" r="7.5" fill={accent} />
-      <circle cx="59" cy="52" r="7.5" fill={accent} />
-      <path
-        d={ROBOT_SMILE}
-        stroke={color}
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
+      <circle cx="76" cy="22" r="6" fill={accent} />
     </svg>
   )
 }

@@ -7,12 +7,10 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { siteConfig } from '@/data/site'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import { Logo } from '@/components/ui/logo'
 
 export function Nav() {
   const reduceMotion = useReducedMotion()
   const pathname = usePathname()
-  // On subpages the in-page sections don't exist, so hash links must route home.
   const onHome = pathname === '/'
   const to = (hash: string) => (onHome ? hash : `/${hash}`)
   const [active, setActive] = useState<string>('')
@@ -20,7 +18,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
+    const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -49,7 +47,6 @@ export function Nav() {
     return () => observer.disconnect()
   }, [])
 
-  // Close menu on Escape; lock body scroll while open.
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
@@ -65,29 +62,28 @@ export function Nav() {
   }, [open])
 
   return (
-    <nav
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
-        (scrolled || open) &&
-          'border-b border-foreground/5 bg-background/70 backdrop-blur-xl',
-      )}
-    >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <header className="fixed inset-x-0 top-3 md:top-5 z-50 flex justify-center px-4 pointer-events-none">
+      <nav
+        aria-label="Main Navigation"
+        className={cn(
+          'pointer-events-auto flex items-center justify-between gap-4 sm:gap-8 rounded-full border border-border/80 bg-background/85 px-4 py-2 sm:px-5 sm:py-2 backdrop-blur-xl shadow-lg shadow-foreground/[0.04] transition-all duration-300 dark:shadow-[0_12px_36px_-10px_rgba(0,0,0,0.7)]',
+          scrolled && 'border-border bg-background/95 shadow-xl',
+        )}
+      >
+        {/* Typographic wordmark — sharp and minimalist */}
         <a
           href={onHome ? '#home' : '/'}
           onClick={() => setOpen(false)}
-          className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight text-foreground"
-          aria-label="Home"
+          className="group flex items-center gap-2 pr-2 font-mono text-xs font-semibold tracking-wider uppercase text-foreground transition-colors hover:text-accent"
+          aria-label="Suhaib Dev Home"
         >
-          <span className="logo-glow text-foreground">
-            <Logo size={26} />
-          </span>
-          <span>Shaik Suhaib</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform group-hover:scale-125" />
+          <span>suhaib<span className="text-accent">.dev</span></span>
         </a>
 
-        <div className="flex items-center gap-2">
-          {/* Desktop pill nav */}
-          <ul className="hidden items-center gap-1 rounded-full border border-foreground/[0.06] bg-foreground/[0.02] p-1 md:flex">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Desktop links */}
+          <ul className="hidden items-center gap-0.5 md:flex">
             {siteConfig.navLinks.map((l) => {
               const isActive = active === l.href
               return (
@@ -95,20 +91,20 @@ export function Nav() {
                   <a
                     href={to(l.href)}
                     className={cn(
-                      'relative block rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors',
+                      'relative rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors',
                       isActive
-                        ? 'text-background'
-                        : 'text-muted-foreground hover:bg-foreground/[0.05] hover:text-foreground',
+                        ? 'text-foreground'
+                        : 'text-muted-foreground hover:text-foreground',
                     )}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="navActivePill"
-                        className="absolute inset-0 rounded-full bg-foreground"
+                        className="absolute inset-0 rounded-full bg-foreground/[0.08] dark:bg-foreground/[0.12]"
                         transition={
                           reduceMotion
                             ? { duration: 0 }
-                            : { type: 'spring', stiffness: 400, damping: 32 }
+                            : { type: 'spring', stiffness: 450, damping: 35 }
                         }
                       />
                     )}
@@ -119,6 +115,8 @@ export function Nav() {
             })}
           </ul>
 
+          <div className="h-4 w-px bg-border/80 mx-1 hidden md:block" aria-hidden="true" />
+
           <ThemeToggle />
 
           {/* Mobile toggle */}
@@ -128,28 +126,25 @@ export function Nav() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 text-foreground transition-colors hover:border-accent/40 hover:text-accent"
+            className="md:hidden inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/80 text-foreground transition-colors hover:border-accent hover:text-accent"
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {open ? <X className="h-3.5 w-3.5" /> : <Menu className="h-3.5 w-3.5" />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile sheet */}
+      {/* Mobile dropdown sheet */}
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-nav"
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            transition={{
-              duration: reduceMotion ? 0.12 : 0.18,
-              ease: 'easeOut',
-            }}
-            className="md:hidden border-t border-foreground/[0.08] bg-background/95 backdrop-blur-xl"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="pointer-events-auto absolute top-14 inset-x-4 max-w-sm mx-auto overflow-hidden rounded-2xl border border-border/80 bg-background/95 p-3 backdrop-blur-2xl shadow-2xl md:hidden"
           >
-            <ul className="mx-auto flex max-w-5xl flex-col px-6 py-3">
+            <ul className="flex flex-col gap-1">
               {siteConfig.navLinks.map((l) => {
                 const isActive = active === l.href
                 return (
@@ -158,13 +153,14 @@ export function Nav() {
                       href={to(l.href)}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        'flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium transition-colors',
+                        'flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-colors',
                         isActive
-                          ? 'bg-foreground/[0.06] text-foreground'
-                          : 'text-muted-foreground hover:bg-foreground/[0.03] hover:text-foreground',
+                          ? 'bg-accent/15 text-accent font-semibold'
+                          : 'text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground',
                       )}
                     >
-                      {l.name}
+                      <span>{l.name}</span>
+                      {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
                     </a>
                   </li>
                 )
@@ -173,6 +169,6 @@ export function Nav() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   )
 }

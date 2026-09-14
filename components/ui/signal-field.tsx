@@ -3,70 +3,46 @@
 import { useEffect, useRef } from 'react'
 import { useReducedMotion } from 'motion/react'
 
-// Draw a stylised WALL·E (binocular eyes, boxy body, treads) and sample his
-// outline as particle targets — so the noise resolves into him, in white dots.
-function walleEdges(): [number, number][] {
-  const W = 220
-  const H = 260
+/**
+ * Sample a clean typographic 'S' outline as particle targets.
+ * The drifting ambient warm ember noise coalesces into a luminous monogram on hover.
+ */
+function monogramEdges(): [number, number][] {
+  const W = 240
+  const H = 280
   const oc = document.createElement('canvas')
   oc.width = W
   oc.height = H
   const g = oc.getContext('2d')
   if (!g) return []
-  g.fillStyle = '#fff'
-  const rr = (x: number, y: number, w: number, h: number, r: number) => {
-    g.beginPath()
-    g.moveTo(x + r, y)
-    g.arcTo(x + w, y, x + w, y + h, r)
-    g.arcTo(x + w, y + h, x, y + h, r)
-    g.arcTo(x, y + h, x, y, r)
-    g.arcTo(x, y, x + w, y, r)
-    g.closePath()
-    g.fill()
-  }
-  const circle = (x: number, y: number, r: number) => {
-    g.beginPath()
-    g.arc(x, y, r, 0, 7)
-    g.fill()
-  }
-  rr(40, 196, 60, 44, 20) // left tread
-  rr(120, 196, 60, 44, 20) // right tread
-  g.beginPath() // body / compactor cube
-  g.moveTo(66, 96)
-  g.lineTo(154, 96)
-  g.lineTo(166, 196)
-  g.lineTo(54, 196)
-  g.closePath()
-  g.fill()
-  rr(38, 110, 16, 74, 8) // left arm
-  rr(166, 110, 16, 74, 8) // right arm
-  circle(46, 190, 10) // left hand
-  circle(174, 190, 10) // right hand
-  rr(96, 80, 28, 20, 6) // neck
-  rr(58, 34, 104, 34, 17) // eye bar
-  circle(84, 50, 28) // left eye
-  circle(136, 50, 28) // right eye
+
+  g.fillStyle = '#ffffff'
+  g.font = '700 240px "Playfair Display", Georgia, serif'
+  g.textAlign = 'center'
+  g.textBaseline = 'middle'
+  g.fillText('S', W / 2, H / 2 + 10)
 
   const img = g.getImageData(0, 0, W, H).data
   const on = (x: number, y: number) =>
-    x >= 0 && x < W && y >= 0 && y < H && img[(y * W + x) * 4 + 3] > 128
+    x >= 0 && x < W && y >= 0 && y < H && img[(y * W + x) * 4 + 3] > 140
+
   const edges: [number, number][] = []
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
+  for (let y = 0; y < H; y += 2) {
+    for (let x = 0; x < W; x += 2) {
       if (
         on(x, y) &&
-        (!on(x - 1, y) || !on(x + 1, y) || !on(x, y - 1) || !on(x, y + 1))
-      )
+        (!on(x - 2, y) || !on(x + 2, y) || !on(x, y - 2) || !on(x, y + 2))
+      ) {
         edges.push([x, y])
+      }
     }
   }
   return edges
 }
 
 /**
- * WALL·E, alive: a drifting field of grey noise that resolves into a dotted,
- * glowing WALL·E — and tightens when you hover him. Decorative; hidden from
- * assistive tech. Static under reduced-motion.
+ * Ambient ember particle field: warm drifting particles that gently coalesce
+ * into the 'S' monogram on interaction.
  */
 export function SignalField({
   size = 420,
@@ -90,43 +66,53 @@ export function SignalField({
     if (!ctx) return
     ctx.scale(dpr, dpr)
 
-    const col = { fg: [250, 250, 250], noise: [113, 113, 122] }
+    const col = {
+      accent: [196, 93, 44],
+      fg: [44, 24, 16],
+      noise: [139, 115, 85],
+    }
+
     const hexRgb = (h: string): number[] => {
       h = h.trim().replace('#', '')
-      if (h.length === 3)
+      if (h.length === 3) {
         h = h
           .split('')
           .map((c) => c + c)
           .join('')
+      }
       return [
-        parseInt(h.slice(0, 2), 16),
-        parseInt(h.slice(2, 4), 16),
-        parseInt(h.slice(4, 6), 16),
+        parseInt(h.slice(0, 2), 16) || 196,
+        parseInt(h.slice(2, 4), 16) || 93,
+        parseInt(h.slice(4, 6), 16) || 44,
       ]
     }
+
     const readColors = () => {
       const s = getComputedStyle(document.documentElement)
+      const a = s.getPropertyValue('--accent').trim()
       const f = s.getPropertyValue('--foreground').trim()
-      const n = s.getPropertyValue('--subtle-foreground').trim()
-      if (f) col.fg = hexRgb(f)
-      if (n) col.noise = hexRgb(n)
+      const n = s.getPropertyValue('--muted-foreground').trim()
+      if (a && a.startsWith('#')) col.accent = hexRgb(a)
+      if (f && f.startsWith('#')) col.fg = hexRgb(f)
+      if (n && n.startsWith('#')) col.noise = hexRgb(n)
     }
     readColors()
+
     const rgba = (c: number[], a: number) =>
       `rgba(${c[0]},${c[1]},${c[2]},${a})`
 
-    // build WALL·E targets, scaled to fit the square canvas (he's portrait)
-    const edges = walleEdges()
-    const scale = (size * 0.92) / 260
-    const ox = (size - 220 * scale) / 2
-    const oy = (size - 260 * scale) / 2
-    const N = 300
+    const edges = monogramEdges()
+    const scale = (size * 0.88) / 280
+    const ox = (size - 240 * scale) / 2
+    const oy = (size - 280 * scale) / 2
+    const N = 260
     const rnd = (a: number, b: number) => a + Math.random() * (b - a)
-    const dot = size / 240 + 1
+    const dot = size / 260 + 1.2
+
     const core = Array.from({ length: N }, (_, i) => {
       const e = edges.length
         ? edges[Math.floor((i * edges.length) / N)]
-        : [110, 130]
+        : [120, 140]
       return {
         x: rnd(0, size),
         y: rnd(0, size),
@@ -138,7 +124,7 @@ export function SignalField({
 
     if (reduce) {
       ctx.clearRect(0, 0, size, size)
-      ctx.fillStyle = rgba(col.fg, 1)
+      ctx.fillStyle = rgba(col.accent, 0.9)
       for (const p of core) {
         ctx.beginPath()
         ctx.arc(p.tx, p.ty, dot, 0, 6.283)
@@ -147,17 +133,17 @@ export function SignalField({
       return
     }
 
-    const noiseN = Math.round(size / 5.5)
+    const noiseN = Math.round(size / 6)
     const noise = Array.from({ length: noiseN }, () => ({
       x: rnd(0, size),
       y: rnd(0, size),
-      vx: rnd(-0.26, 0.26),
-      vy: rnd(-0.26, 0.26),
-      a: rnd(0.12, 0.45),
-      rr: rnd(size / 180, size / 95),
+      vx: rnd(-0.2, 0.2),
+      vy: rnd(-0.2, 0.2),
+      a: rnd(0.15, 0.45),
+      rr: rnd(size / 220, size / 110),
     }))
-    const base = 0.32
 
+    const base = 0.28
     let hoverV = 0
     let hoverT = 0
     let inView = true
@@ -195,6 +181,7 @@ export function SignalField({
       const coh = Math.min(1, base + hoverV * (1 - base))
       g.clearRect(0, 0, size, size)
 
+      // Ambient warm drifting noise
       for (const p of noise) {
         p.x += p.vx
         p.y += p.vy
@@ -202,7 +189,7 @@ export function SignalField({
         if (p.x > size) p.x -= size
         if (p.y < 0) p.y += size
         if (p.y > size) p.y -= size
-        g.globalAlpha = p.a * (1 - hoverV * 0.85)
+        g.globalAlpha = p.a * (1 - hoverV * 0.8)
         g.fillStyle = rgba(col.noise, 1)
         g.beginPath()
         g.arc(p.x, p.y, p.rr, 0, 6.283)
@@ -210,14 +197,16 @@ export function SignalField({
       }
       g.globalAlpha = 1
 
-      const k = 0.05 + coh * 0.16
-      const jit = (1 - coh) * 8
-      g.fillStyle = rgba(col.fg, 1)
-      g.shadowColor = rgba(col.fg, 1)
-      g.shadowBlur = 4 + hoverV * 10
+      // Monogram targets
+      const k = 0.05 + coh * 0.15
+      const jit = (1 - coh) * 7
+      g.fillStyle = rgba(col.accent, 0.9)
+      g.shadowColor = rgba(col.accent, 0.6)
+      g.shadowBlur = 4 + hoverV * 12
+
       for (const p of core) {
-        p.x += (p.tx - p.x) * k + Math.cos(t * 1.6 + p.ph) * jit * 0.05
-        p.y += (p.ty - p.y) * k + Math.sin(t * 1.6 + p.ph) * jit * 0.05
+        p.x += (p.tx - p.x) * k + Math.cos(t * 1.5 + p.ph) * jit * 0.05
+        p.y += (p.ty - p.y) * k + Math.sin(t * 1.5 + p.ph) * jit * 0.05
         g.beginPath()
         g.arc(p.x, p.y, dot, 0, 6.283)
         g.fill()
