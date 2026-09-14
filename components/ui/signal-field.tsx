@@ -67,9 +67,9 @@ export function SignalField({
     ctx.scale(dpr, dpr)
 
     const col = {
-      accent: [196, 93, 44],
-      fg: [44, 24, 16],
-      noise: [139, 115, 85],
+      accent: [129, 140, 248],
+      fg: [243, 241, 248],
+      noise: [155, 148, 176],
     }
 
     const hexRgb = (h: string): number[] => {

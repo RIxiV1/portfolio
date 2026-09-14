@@ -3,53 +3,53 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ── Design system ───────────────────────────────────────────────────────
-   Café Mocha light · Ember Night dark.
-   Warm, editorial, premium. */
+   Royal Iris light · Midnight Obsidian Violet dark.
+   High-end, electric, luxury software aesthetic. */
 
-/* Light — Café Mocha */
+/* Light — Royal Iris */
 :root {
-  --background: #FBF7F4;
-  --elevated: #F5EDE6;
-  --muted: #EDE4DA;
-  --muted-foreground: #8B7355;
-  --subtle-foreground: #A89279;
-  --border: #DDD0C2;
-  --foreground: #2C1810;
-  --ring: #C45D2C;
-  --accent: #C45D2C;
-  --accent-strong: #A84820;
-  --accent-foreground: #FBF7F4;
-  --accent-secondary: #8B7355;
-  --positive: #3D8B5B;
-  --success: #3D8B5B;
-  --warning: #B45309;
-  --error: #C44040;
+  --background: #FAF9FC;
+  --elevated: #F2EFF8;
+  --muted: #E7E3F0;
+  --muted-foreground: #6B6282;
+  --subtle-foreground: #968DAA;
+  --border: #DBD4EA;
+  --foreground: #151221;
+  --ring: #6366F1;
+  --accent: #6366F1;
+  --accent-strong: #4F46E5;
+  --accent-foreground: #FAF9FC;
+  --accent-secondary: #6B6282;
+  --positive: #10B981;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
   --radius: 0.75rem;
-  --selection: rgba(196, 93, 44, 0.14);
-  --card-shadow: 0 24px 60px -20px rgba(44, 24, 16, 0.12);
+  --selection: rgba(99, 102, 241, 0.16);
+  --card-shadow: 0 24px 60px -20px rgba(21, 18, 33, 0.08);
 }
 
-/* Dark — Ember Night */
+/* Dark — Midnight Obsidian Violet */
 .dark {
-  --background: #111110;
-  --elevated: #1A1918;
-  --muted: #252321;
-  --muted-foreground: #9C8B7A;
-  --subtle-foreground: #7A6E60;
-  --border: #332E29;
-  --foreground: #F5EDE6;
-  --ring: #E8885A;
-  --accent: #E8885A;
-  --accent-strong: #D4734A;
-  --accent-foreground: #111110;
-  --accent-secondary: #9C8B7A;
-  --positive: #5CB87A;
-  --success: #5CB87A;
+  --background: #09080E;
+  --elevated: #12101B;
+  --muted: #1B1728;
+  --muted-foreground: #9B94B0;
+  --subtle-foreground: #6D6684;
+  --border: #252136;
+  --foreground: #F3F1F8;
+  --ring: #818CF8;
+  --accent: #818CF8;
+  --accent-strong: #A5B4FC;
+  --accent-foreground: #09080E;
+  --accent-secondary: #9B94B0;
+  --positive: #34D399;
+  --success: #34D399;
   --warning: #FBBF24;
   --error: #F87171;
   --radius: 0.75rem;
-  --selection: rgba(232, 136, 90, 0.22);
-  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.65);
+  --selection: rgba(129, 140, 248, 0.22);
+  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {

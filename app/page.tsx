@@ -362,7 +362,7 @@ export default function Page() {
             © {new Date().getFullYear()} Shaik Suhaib · All rights reserved
           </p>
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
-            Crafted in Chennai · Café Mocha edition
+            Crafted in Chennai
           </p>
           <a
             href="#home"
