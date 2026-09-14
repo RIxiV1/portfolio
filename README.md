@@ -4,7 +4,7 @@ Personal site at **[shaikuhaibdev.vercel.app](https://shaikuhaibdev.vercel.app)*
 
 A single-page scroll with deeper case studies for each project. Clean and premium — near-monochrome with one indigo signal, in light and dark.
 
-![Portfolio home page](public/screenshot.png)
+![Portfolio home page](public/screenshot.jpg)
 
 ---
 
