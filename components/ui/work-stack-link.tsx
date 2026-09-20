@@ -1,14 +1,19 @@
-import { ArrowUpRight, Sparkles } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-type Project = {
+export type Project = {
   title: string
   year: string
   slug: string
   description: string
-  hook?: string
+  status?: string
+  builtBecause?: string
+  heroMetric?: {
+    value: string
+    label: string
+  }
   metric?: string
   image?: string
   imagePosition?: string
@@ -28,7 +33,7 @@ function Preview({
   sizes: string
 }) {
   return (
-    <div className={cn('relative overflow-hidden bg-muted/70', className)}>
+    <div className={cn('relative overflow-hidden bg-muted/70 group/preview', className)}>
       {p.image && (
         <Image
           src={p.image}
@@ -36,152 +41,94 @@ function Preview({
           fill
           sizes={sizes}
           style={{ objectPosition: p.imagePosition ?? 'top' }}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-700 ease-out group-hover/preview:scale-[1.03]"
         />
       )}
-      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-foreground/5" />
+      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-foreground/10" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-60" />
+      
+      {/* Subtle hover overlay */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100 bg-background/10 backdrop-blur-[2px]">
+        <Link href={`/projects/${p.slug}`} className="absolute inset-0 z-10">
+          <span className="sr-only">View project</span>
+        </Link>
+        <span className="flex items-center gap-2 font-mono text-[11px] font-semibold tracking-widest uppercase text-foreground bg-background/95 px-5 py-2.5 rounded-full shadow-xl">
+           OPEN <ArrowUpRight className="h-3.5 w-3.5" />
+        </span>
+      </div>
     </div>
-  )
-}
-
-function TechChips({ tech }: { tech: string[] }) {
-  return (
-    <ul className="flex flex-wrap gap-1.5">
-      {tech.map((t) => (
-        <li
-          key={t}
-          className="rounded-full border border-border/70 bg-muted/60 px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground transition-colors group-hover:border-border"
-        >
-          {t}
-        </li>
-      ))}
-    </ul>
   )
 }
 
 function Actions({ p }: { p: Project }) {
-  const hasCaseStudy = !!p.caseStudy
   return (
-    <div className="relative z-10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs">
-      {hasCaseStudy && (
-        <Link
-          href={`/projects/${p.slug}`}
-          className="inline-flex items-center gap-1 rounded-full bg-foreground/[0.04] px-3 py-1 font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-        >
-          Case study <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
-      )}
-      {p.liveUrl && (
-        <a
-          href={p.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-accent"
-        >
-          Live <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
-      )}
-      <a
-        href={p.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+    <div className="relative z-10 mt-6 font-mono text-[11px] font-semibold tracking-widest uppercase">
+      <Link
+        href={`/projects/${p.slug}`}
+        className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-accent"
       >
-        Source <ArrowUpRight className="h-3.5 w-3.5" />
-      </a>
+        View Project <ArrowUpRight className="h-3.5 w-3.5" />
+      </Link>
     </div>
   )
 }
 
-const cardBase =
-  'group relative overflow-hidden rounded-2xl border border-border/80 bg-elevated/70 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[var(--card-shadow)] has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-accent has-[a:focus-visible]:ring-offset-2 has-[a:focus-visible]:ring-offset-background'
-
-// Featured project with widescreen split layout and editorial flair
 export function FeaturedProject({ project: p }: { project: Project }) {
   return (
-    <article className={cardBase}>
-      <div className="grid md:grid-cols-12">
-        <Preview
-          p={p}
-          className="aspect-[16/10] border-b border-border/80 md:col-span-7 md:aspect-auto md:border-b-0 md:border-r"
-          sizes="(max-width: 768px) 100vw, 60vw"
-        />
-        <div className="flex flex-col gap-4 p-7 md:col-span-5 md:p-8">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-wider uppercase text-accent">
-              <Sparkles className="h-3 w-3" />
-              Featured
-            </span>
-            <span className="font-mono text-xs text-subtle-foreground">{p.year}</span>
-          </div>
+    <article className="group relative overflow-hidden rounded-none border-b border-border/40 pb-16">
+      {/* Header */}
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-sm tracking-wider text-muted-foreground">01</span>
+          <span className="h-px w-12 bg-accent/50" />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-semibold">
+            FEATURED
+          </span>
+        </div>
+        {p.status && (
+          <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent/70" /> {p.status}
+          </span>
+        )}
+      </div>
 
-          <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent md:text-3xl">
-            <Link
-              href={`/projects/${p.slug}`}
-              className="after:absolute after:inset-0"
-            >
-              {p.title}
-            </Link>
+      <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
+        <div className="md:col-span-7">
+          <Preview
+            p={p}
+            className="aspect-[4/3] md:aspect-auto md:h-[500px] rounded-sm"
+            sizes="(max-width: 768px) 100vw, 60vw"
+          />
+        </div>
+
+        <div className="flex flex-col gap-8 md:col-span-5 md:pt-4">
+          <h3 className="font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl uppercase">
+            {p.title}
           </h3>
 
-          <p className="leading-relaxed text-muted-foreground">
-            {p.description}
-          </p>
-
-          {p.metric && (
-            <div className="rounded-lg border border-border/60 bg-muted/30 px-3 py-1.5 font-mono text-xs text-foreground/80">
-              {p.metric}
+          {p.builtBecause && (
+            <div className="space-y-3">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Built because</span>
+              <p className="text-xl leading-relaxed text-foreground/90">
+                {p.builtBecause}
+              </p>
             </div>
           )}
 
-          <TechChips tech={p.tech} />
+          {p.heroMetric && (
+            <div className="pt-2">
+              <div className="font-display text-6xl font-light tracking-tight text-foreground">{p.heroMetric.value}</div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-3">{p.heroMetric.label}</div>
+            </div>
+          )}
 
-          <div className="mt-auto pt-4">
-            <Actions p={p} />
+          <div className="space-y-1">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-2">Built with</p>
+            <p className="font-mono text-xs text-foreground/80 leading-relaxed">
+              {p.tech.join(' · ')}
+            </p>
           </div>
-        </div>
-      </div>
-    </article>
-  )
-}
 
-function ProjectCard({ project: p }: { project: Project }) {
-  return (
-    <article className={cn(cardBase, 'flex flex-col')}>
-      <Preview
-        p={p}
-        className="aspect-[16/10] border-b border-border/80"
-        sizes="(max-width: 640px) 100vw, 50vw"
-      />
-      <div className="flex flex-1 flex-col gap-3.5 p-6 sm:p-7">
-        <div className="flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
-            <Link
-              href={`/projects/${p.slug}`}
-              className="after:absolute after:inset-0"
-            >
-              {p.title}
-            </Link>
-          </h3>
-          <span className="font-mono text-xs shrink-0 text-subtle-foreground">
-            {p.year}
-          </span>
-        </div>
-
-        <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-          {p.description}
-        </p>
-
-        {p.metric && (
-          <div className="rounded-md border border-border/50 bg-muted/20 px-2.5 py-1 font-mono text-[11px] text-foreground/75">
-            {p.metric}
-          </div>
-        )}
-
-        <TechChips tech={p.tech} />
-
-        <div className="mt-auto pt-4">
           <Actions p={p} />
         </div>
       </div>
@@ -189,11 +136,69 @@ function ProjectCard({ project: p }: { project: Project }) {
   )
 }
 
+function ProjectCard({ project: p, index }: { project: Project; index: number }) {
+  const num = (index + 2).toString().padStart(2, '0') // 02, 03...
+
+  return (
+    <article className="group relative flex flex-col rounded-none border-t border-border/40 pt-10">
+      {/* Header */}
+      <div className="mb-6 flex items-center justify-between">
+        <span className="font-mono text-sm tracking-wider text-muted-foreground">{num}</span>
+        {p.status && (
+          <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent/70" /> {p.status}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-6">
+        <h3 className="font-display text-3xl font-semibold tracking-tight text-foreground uppercase">
+          {p.title}
+        </h3>
+
+        {p.builtBecause ? (
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {p.builtBecause}
+          </p>
+        ) : (
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            {p.description}
+          </p>
+        )}
+
+        <Preview
+          p={p}
+          className="aspect-[16/10] w-full rounded-sm mt-2 mb-2"
+          sizes="(max-width: 640px) 100vw, 50vw"
+        />
+
+        {p.heroMetric && (
+          <div className="pt-2">
+            <div className="font-display text-5xl font-light tracking-tight text-foreground">{p.heroMetric.value}</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2">{p.heroMetric.label}</div>
+          </div>
+        )}
+
+        <div className="space-y-1 mt-auto pt-4">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-2">Built with</p>
+          <p className="font-mono text-xs text-foreground/80">
+            {p.tech.join(' · ')}
+          </p>
+        </div>
+
+        <Actions p={p} />
+      </div>
+    </article>
+  )
+}
+
 export function ProjectsList({ projects }: { projects: Project[] }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
-      {projects.map((p) => (
-        <ProjectCard key={p.title} project={p} />
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-x-16 gap-y-20 pt-8">
+      {projects.map((p, i) => (
+        <div key={p.title} className={i % 2 === 0 ? "md:col-span-7" : "md:col-span-5 md:mt-32"}>
+          <ProjectCard project={p} index={i} />
+        </div>
       ))}
     </div>
   )

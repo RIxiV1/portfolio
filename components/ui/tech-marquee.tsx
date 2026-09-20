@@ -2,21 +2,14 @@
 
 const TECH_ITEMS = [
   'TypeScript',
+  'React',
   'Next.js',
   'Python',
-  'PyTorch',
-  'React',
   'PostgreSQL',
+  'Supabase',
   'Tailwind CSS',
-  'Fastify',
-  'LangChain',
-  'Docker',
-  'Node.js',
-  'Redis',
-  'REST APIs',
-  'Machine Learning',
-  'Git',
-  'Full Stack Engineering',
+  'Linux',
+  'Bash',
 ]
 
 export function TechMarquee() {

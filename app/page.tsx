@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Dancing_Script } from 'next/font/google'
-import { ArrowUpRight, ArrowDown, Briefcase } from 'lucide-react'
+import { ArrowUpRight, ArrowDown, Briefcase, ChevronDown } from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 import { Stagger, StaggerItem } from '@/components/ui/reveal'
@@ -9,7 +9,6 @@ import { ContactForm } from '@/components/ui/contact-form'
 import { FeaturedProject, ProjectsList } from '@/components/ui/work-stack-link'
 import { SignalField } from '@/components/ui/signal-field'
 import { Signature } from '@/components/ui/signature'
-import { TechMarquee } from '@/components/ui/tech-marquee'
 
 // Script face for the hand-written sign-off in About.
 const signatureFont = Dancing_Script({ subsets: ['latin'], weight: '600' })
@@ -82,12 +81,7 @@ export default function Page() {
 
           <StaggerItem className="max-w-xl">
             <p className="text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Early in the journey — a software engineer building AI tools and web
-              applications that make complicated systems{' '}
-              <span className="italic font-display font-medium text-foreground">
-                feel effortless
-              </span>
-              .
+              I build stuff. Usually because something annoyed me.
             </p>
           </StaggerItem>
 
@@ -134,9 +128,6 @@ export default function Page() {
         </a>
       </section>
 
-      {/* TECH MARQUEE */}
-      <TechMarquee />
-
       {/* WORK */}
       <section id="work" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-28">
         <div className="space-y-12">
@@ -147,11 +138,12 @@ export default function Page() {
                   <SectionEyebrow index="01" label="Selected Work" />
                   <h2 className={sectionHeading}>Things I&apos;ve built.</h2>
                 </div>
-                <SectionAction href={GITHUB_URL}>Explore GitHub</SectionAction>
+                <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground pb-2">
+                  {siteConfig.projects.length} projects
+                </div>
               </div>
               <p className={sectionIntro}>
-                Each project tackles a real bottleneck — from multimodal video search
-                to AI-powered meeting digests. Click any card for the full breakdown.
+                Most started because something annoyed me.
               </p>
             </header>
           </FadeUp>
@@ -206,6 +198,28 @@ export default function Page() {
                     <p className="mt-3 leading-relaxed text-muted-foreground text-sm md:text-base">
                       {item.description}
                     </p>
+
+                    {(item as any).details && (
+                      <details className="group mt-4 border-t border-border/50 pt-4">
+                        <summary className="cursor-pointer text-sm font-medium text-accent hover:underline focus:outline-none flex items-center gap-1 list-none [&::-webkit-details-marker]:hidden">
+                          View details <ChevronDown className="h-3 w-3 transition-transform group-open:rotate-180" />
+                        </summary>
+                        <div className="mt-4 space-y-4 text-sm text-muted-foreground">
+                          <div className="space-y-2">
+                            <h4 className="font-medium text-foreground">What I actually did</h4>
+                            <ul className="list-inside list-disc space-y-1">
+                              {(item as any).details.actions.map((action: string, idx: number) => (
+                                <li key={idx}>{action}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="space-y-2">
+                            <h4 className="font-medium text-foreground">What I learned</h4>
+                            <p>{(item as any).details.learned}</p>
+                          </div>
+                        </div>
+                      </details>
+                    )}
                   </div>
                 </div>
               ))}
@@ -282,10 +296,9 @@ export default function Page() {
                   ))}
                 </div>
                 <div className="space-y-3 rounded-2xl border border-border/60 bg-elevated/40 p-6 backdrop-blur-sm">
-                  <p className="eyebrow text-accent">In my spare time</p>
+                  <p className="eyebrow text-accent">Currently</p>
                   <p className="leading-relaxed text-muted-foreground text-sm md:text-base">
-                    I&apos;m usually making tweaks to codebases or chatting with fellow builders.
-                    Beyond the keyboard, you&apos;ll find me playing football, gaming, or exploring new tech stacks.
+                    I&apos;m still figuring out exactly where I want to go professionally. Right now I&apos;m just learning, writing code, and seeing what breaks.
                   </p>
                   <p className="pt-2 text-foreground font-medium">
                     Thanks for stopping by.
@@ -312,8 +325,7 @@ export default function Page() {
               <SectionEyebrow index="04" label="Connect" />
               <h2 className={sectionHeading}>Say hi.</h2>
               <p className={sectionIntro}>
-                I&apos;m looking for internships and engineering roles, and I&apos;m always up for
-                a challenging problem. Send a note below or reach out directly.
+                I&apos;m looking for internships where I can actually build things, learn from people who know more than me, and probably break a few things along the way.
               </p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-sm">
                 <a
@@ -345,7 +357,7 @@ export default function Page() {
             </div>
 
             <p className="text-center text-sm text-muted-foreground">
-              Always glad to hear from fellow builders and discuss exciting projects.
+              Always down to talk about tech or random side projects.
             </p>
           </div>
         </FadeUp>

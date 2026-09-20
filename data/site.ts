@@ -3,17 +3,19 @@ import { Medium } from '@/components/ui/medium-icon'
 
 export const siteConfig = {
   name: 'Shaik Mohammed Suhaib',
-  role: 'Software engineer',
-  focus: 'Full-stack · AI products',
+  role: 'I build stuff',
+  focus: 'Web, AI, and figuring things out',
   location: 'Chennai, India',
   email: 'shaiksuhaib360@gmail.com',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shaikuhaibdev.vercel.app',
-  status: 'Open to internships & freelance',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shaiksuhaibdev.vercel.app',
+  status: 'Looking for an internship',
 
   resumeUrl: '/Shaik_Mohammed_Suhaib_Resume.pdf',
 
   bio: [
-    "I'm 20, studying IT at Vel Tech in Chennai. I mostly build things because something annoyed me and I wanted it to stop.",
+    "I'm an IT student in Chennai. I mostly build things because something annoyed me and I wanted it to stop.",
+    "I learn by making things. Usually I break them, spend a few hours figuring out why, and then fix them. I like messing with Linux, web dev, and AI.",
+    "I don't know everything, but I'm pretty good at figuring it out."
   ],
 
   socials: [
@@ -46,128 +48,76 @@ export const siteConfig = {
 
   projects: [
     {
-      title: 'Caliber',
-      year: '2026',
-      slug: 'caliber',
-      description:
-        'First-pass resume screening, handed to a model — upload a resume and a job description, get a scored verdict with the reasons, and review everyone in a live HR dashboard. It started on a course as an n8n flow; I rebuilt it as a self-contained full-stack app I actually own.',
-      tech: [
-        'React',
-        'Supabase',
-        'Postgres + RLS',
-        'Edge Functions',
-        'Gemini',
-        'Evals',
-      ],
-      href: 'https://github.com/RIxiV1/CVibe',
-      liveUrl: 'https://cvibe.lovable.app',
-      image: '/projects/caliber.png',
-      metric: 'Cohen’s κ 0.87 on a 12-resume eval',
-      caseStudy: {
-        tagline:
-          'Upload a resume and a job description; get a structured verdict — score, strengths, gaps, next steps — and review every candidate live in an HR dashboard. Self-contained: no n8n, no webhook, and an eval set that checks the model is actually right.',
-        problem:
-          "The first pass of screening is the same three checks every time — skills, years, does the resume even match the role. It's mechanical, exactly the kind of thing worth handing to a model. My first version was an n8n flow behind a form, built on a course. It worked, but a hosted webhook that expires isn't something I could stand behind — so I rebuilt it as one app I own end to end.",
-        approach:
-          'React + Vite on the front, everything else in Supabase. The public form calls one edge function that rate-limits by IP, runs a honeypot and input checks, extracts the real text from the PDF (unpdf), scores it against the JD with Gemini through a fixed tool-call schema, and writes the candidate row itself with the service role — so a screening is never lost even if the browser drops. Postgres streams new rows straight to a realtime HR dashboard. Sending the interview or rejection email is a separate, authenticated step: a human decides after seeing the score, it never fires on its own.',
-        decisions: [
-          {
-            title: 'Killed the n8n dependency',
-            body: 'The course version leaned on a hosted n8n webhook. The moment it expired the whole thing was dead, and I couldn’t hand anyone a link that might not resolve. Rebuilding it self-contained — edge function plus Postgres — was more work up front and nothing to expire later. The old workflow JSON is still in the repo; the running product doesn’t need it.',
-          },
-          {
-            title: 'The security is the actual product',
-            body: 'Anyone can hit a public form, so nothing public is trusted. The anon key can’t write candidate rows at all — only the edge function inserts, after validation and rate limiting. Row Level Security makes candidate data HR-admin-only, resumes sit in a private bucket opened through short-lived signed URLs, and the first sign-in claims admin while every later one is a no-op. It’s a demo, but it’s built like it holds real people’s resumes — and where a corner is cut (the rate limiter is in-memory, so per-instance rather than a hard global cap) it’s written down in the README, not hidden.',
-          },
-          {
-            title: 'Built an eval instead of trusting the vibe',
-            body: '“The AI seems good” isn’t a metric, so there’s a labelled set — twelve resumes against one JD, balanced across interview / hold / reject — scored on verdict agreement, Cohen’s kappa, and score separation. Two things matter more than the headline. First, the errors land the safe way: Reject recall and precision are both 100%, so nobody was wrongly filtered out — the single miss is a false positive, a wasted interview slot, not a person lost. Second, the sharper finding: two “hold” candidates scored identically at 75, but the model interviewed the one with *less* experience — it held the JD’s three-year bar against one and waived it for the other. So the verdict isn’t a stable function of the score; the boundary wobbles. The fix is to derive the verdict from the score with a fixed threshold instead of letting the model choose both.',
-          },
-        ],
-        outcome:
-          'Live and self-contained at cvibe.lovable.app — React + Supabase (edge functions, Postgres, RLS, realtime, private storage), Gemini scoring behind a tool-call schema, and human-in-the-loop email via Resend. On the twelve-resume eval it agrees with my labels on 11 (Cohen’s kappa 0.87) and separates the score bands cleanly (interview 92 / hold 65 / reject 25); every model rationale is in eval/results.md. It’s small, synthetic, and labelled by one person — a single flip swings it eight points — so I read 91.7% as an optimistic ceiling, not a promise.',
-      },
-    },
-    {
       title: 'InfoBlend',
       year: '2026',
       slug: 'infoblend',
-      hook: 'The best call I made on InfoBlend was killing a feature I loved.',
-      description:
-        'I was reading with four extensions open and got tired of it, so I built one. Define a word, translate a line, summarise a page — and it still works if you never add an API key. Chrome, Edge, Firefox.',
-      tech: ['Manifest V3', 'Shadow DOM', 'JavaScript', 'Zero deps', 'BYOK AI'],
+      status: 'LIVE',
+      builtBecause: 'I was reading with four extensions open and got tired of it.',
+      description: 'A browser extension to define, translate, and summarize text.',
+      tech: ['Manifest V3', 'Shadow DOM', 'JavaScript'],
+      heroMetric: { value: '17', label: 'languages' },
       href: 'https://github.com/RIxiV1/InfoBlend',
       liveUrl: 'https://addons.mozilla.org/en-US/firefox/addon/infoblend/',
       image: '/projects/infoblend-live.png',
       imagePosition: 'center',
-      metric: 'Published on Firefox Add-ons · 17 languages',
       caseStudy: {
-        tagline:
-          'A reading toolkit I built for myself — define, translate, summarise, save. Works without an API key, better with one. Published on Firefox Add-ons; source is on GitHub.',
-        problem:
-          'My reading setup was four extensions — dictionary, translator, summariser, flashcards. Half of them inject CSS that breaks on Medium and news sites. The other half demand an API key on first launch and just die at the install screen if you don\'t have one. Nobody treated "no key" as a real path, so the free version was always the worst version. I wanted one tool that didn\'t do either.',
-        approach:
-          "One extension, no runtime dependencies, Chrome + Edge + Firefox. Definitions try six sources in order until one resolves. Summarising runs offline; translation uses your AI key if you've set one, or a free tier if you haven't. Everything you save lands in a local vault you can export. The whole thing had to survive the MV3 service worker, which found new ways to bite the entire build — stale callbacks, sendResponse races, the audio context dying whenever the worker went to sleep.",
+        tagline: 'A reading toolkit. It defines, translates, and summarizes. It also actually works if you don’t have an API key.',
+        problem: "I was reading with four extensions open and got tired of it, so I built one. Half of the old ones injected CSS that broke websites, and the rest refused to work at all unless you gave them an API key right away.",
+        approach: "I built one extension that just works. If you don't plug in a key, it uses a free tier for translation and runs the summarizer offline. If you do add a key, it uses your AI. Figuring out Manifest V3 service workers was a headache, but I got it working.",
         decisions: [
-          {
-            title: 'BYOK, but the free path has to actually work',
-            body: "Most AI extensions demand a key on first launch and die at the install screen if you don't have one. That always felt backwards. InfoBlend works completely without a key — offline summariser, the six-source dictionary, free-tier translation. The key only buys the smarter stuff. You opt in once you know what it's for, not before.",
-          },
-          {
-            title: 'Shadow DOM, after normal CSS lost',
-            body: "I tried injecting a normal styled div first. It broke on too many sites — the page's own CSS reached in and wrecked the overlay. Shadow DOM was the boring fix that actually worked: a real style boundary both ways, so the page can't touch the extension and the extension can't leak onto the page. The focus and slot handling took a while to get right, but it held everywhere I shipped it.",
-          },
-          {
-            title: 'Built "Chat with the Page", then killed it',
-            body: 'Spent a few days on it and ripped it out right before the v3.1.1 ship. It needed an API key, was single-turn, and didn\'t earn its place next to the simpler Define and Summarise flows. Two commits three days apart: "deepen Chat with the Page" → "rip out Chat with the Page". Bruised the ego, saved the time.',
-          },
+          { title: 'Making it work for free', body: "It's annoying when extensions are dead weight until you add a key. InfoBlend works fine without one. You only add an API key if you want better translations." },
+          { title: 'Shadow DOM', body: "At first, every website's CSS would accidentally style my extension and break it. I learned about Shadow DOM and used it to completely wall off my extension's code from the rest of the page." },
+          { title: 'Deleting features', body: 'I built a "Chat with the Page" feature. It sounded cool, but it was slow and clunky. I ended up just deleting the whole thing before launch.' }
         ],
-        outcome:
-          'Published on Firefox Add-ons (MIT, zero-dependency), installable from source on Chrome, Edge, and Brave. 17 translation languages, six-source definitions, a 500-item local vault, and a full no-API-key path — the optional AI key is stored AES-GCM-encrypted, on-device.',
+        outcome: 'It’s published on Firefox Add-ons. It supports 17 languages and it doesn\'t break the websites you use it on.'
+      },
+    },
+    {
+      title: 'Caliber',
+      year: '2026',
+      slug: 'caliber',
+      status: 'EXPERIMENT',
+      builtBecause: 'I wanted to see if an LLM could actually screen resumes consistently.',
+      description: 'An AI resume screener. Upload a CV and job description, and it spits out a score with reasoning.',
+      tech: ['React', 'Supabase', 'Postgres', 'Gemini'],
+      heroMetric: { value: '0.87', label: "Cohen's κ" },
+      href: 'https://github.com/RIxiV1/CVibe',
+      liveUrl: 'https://cvibe.lovable.app',
+      image: '/projects/caliber.png',
+      caseStudy: {
+        tagline: 'Upload a resume and a job description, get a score and some reasoning back. I built it to see if an LLM could actually do a recruiter’s first pass without completely messing it up.',
+        problem: "The first pass of reading a resume is basically just checking boxes—skills, years of experience, etc. It's perfectly suited for an LLM. I tried building this with n8n first, but relying on a hosted webhook that kept expiring was annoying.",
+        approach: "I rebuilt it from scratch as a proper app. It uses React on the front end and Supabase on the back. It extracts text from a PDF, sends it to Gemini for scoring, and drops the result into a Postgres database. Nothing happens automatically unless a human actually hits 'send'.",
+        decisions: [
+          { title: 'Dropping n8n', body: "The original webhook kept expiring, which meant I couldn't even share a link to the project without worrying it would break. Rebuilding it with edge functions was more work, but now it actually stays alive." },
+          { title: 'Locking it down', body: "I didn't want random people submitting garbage to the database, so I locked the resumes behind Row Level Security in Postgres. Only 'admins' can see them." },
+          { title: '"Vibes" aren\'t a metric', body: 'At first I just eyeballed the AI\'s output and thought it looked fine. Then I ran a real test on 12 resumes and realized the LLM was wildly inconsistent at deciding who gets an interview. I had to hardcode the final decision based strictly on the raw score.' }
+        ],
+        outcome: 'It works and it\'s live. On my test set, it agreed with my own human labels 11 out of 12 times. Mostly I learned that getting the AI to work is easy, but making it reliable is the hard part.'
       },
     },
     {
       title: 'SubSentry',
       year: '2025',
       slug: 'subsentry',
-      description:
-        "A subscription tracker that never asks for your bank login — I didn't want to hand mine over, so it doesn't ask for yours. It also celebrates when you cancel something instead of nagging you about it.",
-      tech: [
-        'React',
-        'Vite',
-        'TypeScript',
-        'Supabase',
-        'Tailwind',
-        'Zod',
-        'shadcn/ui',
-      ],
+      status: 'LIVE',
+      builtBecause: "I didn't want to hand my bank login over to an app, so this one doesn't ask for yours.",
+      description: "A simple subscription tracker.",
+      tech: ['React', 'Supabase', 'Tailwind'],
+      heroMetric: { value: 'RLS', label: 'ISOLATION' },
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
       image: '/projects/subsentry.png',
-      metric: 'Live · per-user RLS isolation',
       caseStudy: {
-        tagline:
-          'A subscription tracker that never asks for your bank login. Per-user isolation in the database, warm copy instead of scolding, and a confetti burst every time you cancel a sub.',
-        problem:
-          "The trackers everyone uses — Rocket Money, Truebill — want bank access so they can scrape your transactions. That's a big ask for what's really just a \"remember what I'm paying for\" tool. And the manual ones feel like they're scolding you: red bars, budget warnings, copy that reads like your bank statement is yelling. I wanted the version that does neither — no bank login, and a tone that doesn't make you feel bad for opening it.",
-        approach:
-          'I scaffolded the first version in Lovable to get moving, then went back and hardened the parts that actually matter — the auth flow and the data model. React + Vite on Supabase Postgres. Row Level Security keeps each user\'s rows isolated in the database — it\'s the standard Supabase pattern, but you still have to build the schema around it for it to mean anything. Forms validate with Zod. After that, most of my time went into tone: warm palette, encouraging copy, swipe gestures on mobile, and a confetti burst plus a "you just saved money" toast every time you cancel a sub.',
+        tagline: 'A subscription tracker that never asks for your bank login. It also throws confetti when you cancel something.',
+        problem: "Every finance app wants your bank login to scrape your transactions. I didn't want to hand mine over, so I built a tracker that doesn't ask for yours. I also got tired of finance apps yelling at me with red budget warnings.",
+        approach: 'I put it together with React and Supabase. The main focus was making sure the data was securely isolated in the database, and making the app feel positive instead of stressful to use.',
         decisions: [
-          {
-            title: 'Tone is the feature, not a polish pass',
-            body: "The hard part of a money app isn't the math — it's getting someone to feel okay opening it. Red bars and warnings don't make people pay attention; they make people close the tab. So the warm copy and the confetti weren't decoration, they were the plan. Two of my early commits are literally \"Amplify Gen Z Vibe\" — the tone work is right there in the history.",
-          },
-          {
-            title: 'Isolation in the database, not the app',
-            body: "App-layer checks fail open the second you forget a `WHERE user_id = ?` on one endpoint. RLS is the pattern Supabase recommends anyway — the call was just to actually lean on it instead of scattering checks through the app, so even a buggy query physically can't return another person's rows. Cheap if you build the schema around it from the start.",
-          },
-          {
-            title: 'No bank linking, ever',
-            body: "Plaid-style aggregators are a huge privacy ask for a small convenience win. The person worth building for is the one who'd rather just type their subs in than hand bank credentials to an app they've never heard of. Saying no to the \"industry-standard\" feature is the whole point — it's what keeps every other privacy claim honest.",
-          },
+          { title: 'No bank logins', body: "I decided it would never link to a bank. It's for people who would rather spend 30 seconds typing in their Netflix subscription manually than hand over their credentials to a random app." },
+          { title: 'Database isolation', body: "I used Row Level Security in Postgres to isolate everyone's data. That way, even if I write a bad API call on the frontend, the database physically won't let one user see another user's stuff." },
+          { title: 'Confetti', body: "Money apps are stressful. I wanted this one to feel good, so I added swipe gestures and a confetti burst when you delete a subscription." }
         ],
-        outcome:
-          'Live at ssubsentry.lovable.app. Solo build over about three weeks (Nov 11 – Dec 4, 2025), 20-odd commits. Auth, add/edit/delete subs, budgets with caps, spending by category, swipe gestures on mobile, and the confetti moment all work.',
+        outcome: 'It’s live. You can add your subs, set budgets, and it works securely.'
       },
     },
   ],
@@ -178,21 +128,31 @@ export const siteConfig = {
       org: 'ForMen Digital Clinic — Remote',
       period: 'Mar 2026 — Jul 2026',
       description:
-        "Built an AI tool that reads a men's-health blood report and explains it in plain English — so someone can open it, see what's going on, and not panic. Did it end to end: research, PRD, UI, and the build.",
+        "I worked on a healthcare product from research through implementation. I built an AI tool that reads complicated men's health blood reports and explains them in plain English so patients don't panic.",
+      details: {
+        actions: [
+          "Talked through the core problem before writing any code",
+          "Worked on the PRD to figure out what actually mattered",
+          "Designed parts of the user experience",
+          "Built the actual product",
+          "Iterated based on what was (and wasn't) working"
+        ],
+        learned: "Building something is easy compared to deciding what should be built."
+      }
     },
     {
       role: 'Certificate Program — Product Management & Agentic AI',
-      org: 'IIT Patna × Masai (Vishlesan i-Hub Foundation) — Online / Hybrid',
+      org: 'IIT Patna × Masai (Vishlesan i-Hub Foundation)',
       period: 'Apr 2025 — Oct 2025',
       description:
-        'Six months on the full product loop — research, scoping an MVP, shipping, iterating. The hands-on part was building the agent workflows in n8n + LLMs.',
+        'A six-month program where we researched an idea and shipped an MVP. I spent most of my time setting up AI agent workflows with n8n and LLMs.',
     },
     {
       role: 'NPTEL Elite Certification — Big Data Computing',
-      org: 'SWAYAM–NPTEL · IIT Kanpur — Online',
+      org: 'SWAYAM–NPTEL · IIT Kanpur',
       period: 'Completed Oct 2025',
       description:
-        'Elite-track NPTEL course on distributed processing, Hadoop, and large-scale data systems.',
+        'A course where I learned the basics of distributed processing and how large-scale data systems actually work.',
     },
   ],
 
@@ -204,6 +164,6 @@ export const siteConfig = {
 
   metadata: {
     description:
-      'I like building software that takes something confusing and makes it make sense — most recently an AI tool at ForMen Digital Clinic that explains blood reports in plain English.',
+      'My personal site. I build stuff, try to figure things out, and occasionally write code that works.',
   },
 }
