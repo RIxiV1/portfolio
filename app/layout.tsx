@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Nav } from '@/components/ui/nav'
 import { siteConfig } from '@/data/site'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-jakarta',
   display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
 })
 const inter = Inter({
   subsets: ['latin'],
@@ -84,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${inter.variable} ${jetbrains.variable} font-sans antialiased`}
+        className={`${jakarta.variable} ${inter.variable} ${jetbrains.variable} font-sans antialiased`}
       >
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script

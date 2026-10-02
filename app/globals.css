@@ -3,59 +3,59 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ── Design system ───────────────────────────────────────────────────────
-   Royal Iris light · Midnight Obsidian Violet dark.
-   High-end, electric, luxury software aesthetic. */
+   Monochrome Stealth + Silver (Apple Pro & Arc style)
+   High-contrast, pure pitch black #000000, crisp metallic silver, and razor-sharp borders. */
 
-/* Light — Royal Iris */
+/* Light — Crisp Studio Slate */
 :root {
-  --background: #FAF9FC;
-  --elevated: #F2EFF8;
-  --muted: #E7E3F0;
-  --muted-foreground: #6B6282;
-  --subtle-foreground: #968DAA;
-  --border: #DBD4EA;
-  --foreground: #151221;
-  --ring: #6366F1;
-  --accent: #6366F1;
-  --accent-strong: #4F46E5;
-  --accent-foreground: #FAF9FC;
-  --accent-secondary: #6B6282;
-  --positive: #10B981;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --radius: 0.75rem;
-  --selection: rgba(99, 102, 241, 0.16);
-  --card-shadow: 0 24px 60px -20px rgba(21, 18, 33, 0.08);
+  --background: #FAFAFB;
+  --elevated: #FFFFFF;
+  --muted: #F1F1F4;
+  --muted-foreground: #52525B;
+  --subtle-foreground: #71717A;
+  --border: #E4E4E7;
+  --foreground: #09090B;
+  --ring: #18181B;
+  --accent: #18181B;
+  --accent-strong: #000000;
+  --accent-foreground: #FFFFFF;
+  --accent-secondary: #71717A;
+  --positive: #16A34A;
+  --success: #16A34A;
+  --warning: #D97706;
+  --error: #DC2626;
+  --radius: 0.875rem;
+  --selection: rgba(0, 0, 0, 0.12);
+  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
 }
 
-/* Dark — Midnight Obsidian Violet */
+/* Dark — Monochrome Stealth + Silver */
 .dark {
-  --background: #09080E;
-  --elevated: #12101B;
-  --muted: #1B1728;
-  --muted-foreground: #9B94B0;
-  --subtle-foreground: #6D6684;
-  --border: #252136;
-  --foreground: #F3F1F8;
-  --ring: #818CF8;
-  --accent: #818CF8;
-  --accent-strong: #A5B4FC;
-  --accent-foreground: #09080E;
-  --accent-secondary: #9B94B0;
-  --positive: #34D399;
-  --success: #34D399;
-  --warning: #FBBF24;
-  --error: #F87171;
-  --radius: 0.75rem;
-  --selection: rgba(129, 140, 248, 0.22);
-  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  --background: #000000;
+  --elevated: #0C0C0E;
+  --muted: #17171B;
+  --muted-foreground: #A1A1AA;
+  --subtle-foreground: #71717A;
+  --border: rgba(255, 255, 255, 0.1);
+  --foreground: #FFFFFF;
+  --ring: #FFFFFF;
+  --accent: #FFFFFF;
+  --accent-strong: #E4E4E7;
+  --accent-foreground: #000000;
+  --accent-secondary: #A1A1AA;
+  --positive: #22C55E;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --radius: 0.875rem;
+  --selection: rgba(255, 255, 255, 0.18);
+  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.95);
 }
 
 @theme inline {
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-  --font-display: var(--font-playfair), Georgia, serif;
+  --font-display: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
   --color-background: var(--background);
   --color-elevated: var(--elevated);
   --color-foreground: var(--foreground);
