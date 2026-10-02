@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { siteConfig } from '@/data/site'
@@ -11,9 +12,6 @@ import { ThemeToggle } from '@/components/ui/theme-toggle'
 export function Nav() {
   const reduceMotion = useReducedMotion()
   const pathname = usePathname()
-  const onHome = pathname === '/'
-  const to = (hash: string) => (onHome ? hash : `/${hash}`)
-  const [active, setActive] = useState<string>('')
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -22,29 +20,6 @@ export function Nav() {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    const sections = siteConfig.navLinks
-      .map((l) => document.querySelector(l.href))
-      .filter(Boolean) as Element[]
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting)
-        if (visible.length === 0) return
-        const top = visible.reduce((acc, e) =>
-          e.boundingClientRect.top < acc.boundingClientRect.top ? e : acc,
-        )
-        setActive(`#${(top.target as HTMLElement).id}`)
-      },
-      { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
-    )
-
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -66,34 +41,38 @@ export function Nav() {
       <nav
         aria-label="Main Navigation"
         className={cn(
-          'pointer-events-auto flex items-center justify-between gap-4 sm:gap-8 rounded-full border border-border/80 bg-background/85 px-4 py-2 sm:px-5 sm:py-2 backdrop-blur-xl shadow-lg shadow-foreground/[0.04] transition-all duration-300 dark:shadow-[0_12px_36px_-10px_rgba(0,0,0,0.7)]',
+          'pointer-events-auto flex items-center justify-between gap-3 sm:gap-6 rounded-full border border-border/80 bg-background/85 px-4 py-2 sm:px-5 sm:py-2 backdrop-blur-xl shadow-lg shadow-foreground/[0.04] transition-all duration-300 dark:shadow-[0_12px_36px_-10px_rgba(0,0,0,0.7)]',
           scrolled && 'border-border bg-background/95 shadow-xl',
         )}
       >
-        {/* Typographic wordmark — sharp and minimalist */}
-        <a
-          href={onHome ? '#home' : '/'}
+        {/* Typographic wordmark */}
+        <Link
+          href="/"
           onClick={() => setOpen(false)}
           className="group flex items-center gap-2 pr-2 font-mono text-xs font-semibold tracking-wider uppercase text-foreground transition-colors hover:text-accent"
           aria-label="Suhaib Dev Home"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform group-hover:scale-125" />
           <span>suhaib<span className="text-accent">.dev</span></span>
-        </a>
+        </Link>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Desktop links */}
           <ul className="hidden items-center gap-0.5 md:flex">
             {siteConfig.navLinks.map((l) => {
-              const isActive = active === l.href
+              const isActive =
+                l.href === '/'
+                  ? pathname === '/'
+                  : pathname.startsWith(l.href)
+
               return (
                 <li key={l.href}>
-                  <a
-                    href={to(l.href)}
+                  <Link
+                    href={l.href}
                     className={cn(
                       'relative rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors',
                       isActive
-                        ? 'text-foreground'
+                        ? 'text-foreground font-semibold'
                         : 'text-muted-foreground hover:text-foreground',
                     )}
                   >
@@ -109,7 +88,7 @@ export function Nav() {
                       />
                     )}
                     <span className="relative z-10">{l.name}</span>
-                  </a>
+                  </Link>
                 </li>
               )
             })}
@@ -146,11 +125,15 @@ export function Nav() {
           >
             <ul className="flex flex-col gap-1">
               {siteConfig.navLinks.map((l) => {
-                const isActive = active === l.href
+                const isActive =
+                  l.href === '/'
+                    ? pathname === '/'
+                    : pathname.startsWith(l.href)
+
                 return (
                   <li key={l.href}>
-                    <a
-                      href={to(l.href)}
+                    <Link
+                      href={l.href}
                       onClick={() => setOpen(false)}
                       className={cn(
                         'flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-colors',
@@ -161,7 +144,7 @@ export function Nav() {
                     >
                       <span>{l.name}</span>
                       {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
-                    </a>
+                    </Link>
                   </li>
                 )
               })}

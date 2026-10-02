@@ -6,7 +6,7 @@ import { FadeUp } from '@/components/ui/fade-up'
 import { Stagger, StaggerItem } from '@/components/ui/reveal'
 import { MagneticLink } from '@/components/ui/magnetic-link'
 import { ContactForm } from '@/components/ui/contact-form'
-import { FeaturedProject, ProjectsList } from '@/components/ui/work-stack-link'
+import { ProjectsGrid } from '@/components/ui/work-stack-link'
 import { SignalField } from '@/components/ui/signal-field'
 import { Signature } from '@/components/ui/signature'
 
@@ -42,12 +42,6 @@ function SectionAction({ href, children }: { href: string; children: string }) {
 }
 
 const GITHUB_URL = 'https://github.com/RIxiV1'
-
-// Feature the published product (InfoBlend); then the two strongest builds.
-const PROJECT_ORDER = ['infoblend', 'caliber', 'subsentry']
-const orderedProjects = [...siteConfig.projects].sort(
-  (a, b) => PROJECT_ORDER.indexOf(a.slug) - PROJECT_ORDER.indexOf(b.slug),
-)
 
 export default function Page() {
   return (
@@ -87,11 +81,17 @@ export default function Page() {
 
           <StaggerItem className="flex flex-wrap items-center gap-3.5 pt-2">
             <MagneticLink
-              href="#contact"
+              href="/projects"
               className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-sm transition-[background-color,box-shadow,transform] duration-300 hover:bg-accent-strong hover:shadow-[0_10px_30px_-10px_var(--accent)]"
             >
-              Get in touch
+              Explore Projects
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </MagneticLink>
+            <MagneticLink
+              href="/journey"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-elevated/40 px-5 py-2.5 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-muted"
+            >
+              My Journey
             </MagneticLink>
             <MagneticLink
               href={siteConfig.resumeUrl}
@@ -143,104 +143,89 @@ export default function Page() {
                 </div>
               </div>
               <p className={sectionIntro}>
-                Most started because something annoyed me.
+                Most started because something annoyed me and I wanted to build a cleaner solution.
               </p>
             </header>
           </FadeUp>
 
-          <div className="space-y-8">
-            <FadeUp>
-              <FeaturedProject project={orderedProjects[0]} />
-            </FadeUp>
-            <FadeUp delay={0.08}>
-              <ProjectsList projects={orderedProjects.slice(1)} />
-            </FadeUp>
-          </div>
+          <FadeUp delay={0.05}>
+            <ProjectsGrid projects={siteConfig.projects} />
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="flex justify-center pt-4">
+              <a
+                href="/projects"
+                className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-elevated/50 px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-foreground backdrop-blur-sm transition-all duration-300 hover:border-accent hover:bg-elevated hover:text-accent shadow-md"
+              >
+                View Full Projects Directory &amp; Filters
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
       {/* EXPERIENCE */}
       <section
         id="experience"
-        className="mx-auto max-w-4xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-5xl scroll-mt-24 px-6 py-28"
       >
         <FadeUp>
-          <div className="space-y-10">
-            <header className="space-y-2">
-              <SectionEyebrow index="02" label="Background" />
-              <h2 className={sectionHeading}>Where I&apos;ve been.</h2>
+          <div className="space-y-12">
+            <header className="space-y-3">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+                <div className="space-y-2">
+                  <SectionEyebrow index="02" label="Background" />
+                  <h2 className={sectionHeading}>Where I&apos;ve been.</h2>
+                </div>
+                <a
+                  href="/journey"
+                  className="font-mono text-xs uppercase tracking-widest text-accent hover:underline flex items-center gap-1 pb-2"
+                >
+                  Full Journey &amp; PRDs <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+              <p className={sectionIntro}>
+                From researching and building healthtech tools during my internship, to shipping agentic AI pipelines.
+              </p>
             </header>
 
-            {/* Visual Timeline */}
-            <div className="relative border-l border-border/80 pl-6 ml-2 space-y-10 md:pl-8">
-              {siteConfig.experience.map((item, i) => (
-                <div key={i} className="relative group">
-                  {/* Timeline node */}
-                  <div className="absolute -left-[31px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border border-border bg-background transition-colors group-hover:border-accent md:-left-[39px]">
-                    <div className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  </div>
+            {/* Featured Internship Spotlight */}
+            <div className="rounded-3xl border border-border/80 bg-elevated/50 p-6 md:p-8 backdrop-blur-md shadow-[var(--card-shadow)]">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between border-b border-border/50 pb-4">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-semibold">FEATURED INTERNSHIP</span>
+                  <h3 className="font-display text-2xl font-semibold text-foreground mt-1">
+                    Product &amp; Development Intern
+                  </h3>
+                  <p className="text-sm font-medium text-muted-foreground">ForMen Digital Clinic — Remote</p>
+                </div>
+                <span className="font-mono text-xs text-subtle-foreground">
+                  Mar 2026 — Jul 2026
+                </span>
+              </div>
 
-                  <div className="rounded-2xl border border-border/70 bg-elevated/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-accent/40 hover:shadow-[var(--card-shadow)] md:p-7">
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 className="font-display text-lg font-semibold text-foreground">
-                        {item.role}
-                      </h3>
-                      <span className="font-mono text-xs text-subtle-foreground">
-                        {item.period}
-                      </span>
-                    </div>
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <p className="leading-relaxed text-muted-foreground text-sm md:text-base">
+                  I worked on a healthcare product from research through implementation. I built an AI tool that reads complicated men&apos;s health blood reports and explains them in plain English so patients don&apos;t panic.
+                </p>
 
-                    <div className="mt-1 flex items-center gap-2 text-sm font-medium text-accent">
-                      <Briefcase className="h-3.5 w-3.5" />
-                      <span>{item.org}</span>
-                    </div>
-
-                    <p className="mt-3 leading-relaxed text-muted-foreground text-sm md:text-base">
-                      {item.description}
-                    </p>
-
-                    {(item as any).details && (
-                      <details className="group mt-4 border-t border-border/50 pt-4">
-                        <summary className="cursor-pointer text-sm font-medium text-accent hover:underline focus:outline-none flex items-center gap-1 list-none [&::-webkit-details-marker]:hidden">
-                          View details <ChevronDown className="h-3 w-3 transition-transform group-open:rotate-180" />
-                        </summary>
-                        <div className="mt-4 space-y-4 text-sm text-muted-foreground">
-                          <div className="space-y-2">
-                            <h4 className="font-medium text-foreground">What I actually did</h4>
-                            <ul className="list-inside list-disc space-y-1">
-                              {(item as any).details.actions.map((action: string, idx: number) => (
-                                <li key={idx}>{action}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="space-y-2">
-                            <h4 className="font-medium text-foreground">What I learned</h4>
-                            <p>{(item as any).details.learned}</p>
-                          </div>
-                        </div>
-                      </details>
-                    )}
+                <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 space-y-2">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">What I Learned</span>
+                  <p className="text-sm font-medium text-foreground/90">
+                    &ldquo;Building something is easy compared to deciding what should be built.&rdquo;
+                  </p>
+                  <div className="pt-2">
+                    <a
+                      href="/journey"
+                      className="inline-flex items-center gap-1 font-mono text-xs text-accent hover:underline"
+                    >
+                      Read the full story &amp; breakdown →
+                    </a>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Education Card */}
-            <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-1">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-                  Education
-                </span>
-                <p className="font-medium text-foreground">
-                  {siteConfig.education.degree}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {siteConfig.education.school}
-                </p>
               </div>
-              <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground">
-                {siteConfig.education.period}
-              </span>
             </div>
           </div>
         </FadeUp>
