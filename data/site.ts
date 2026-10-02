@@ -40,10 +40,66 @@ export const siteConfig = {
   ],
 
   navLinks: [
-    { name: 'Work', href: '#work' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Overview', href: '/' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Journey', href: '/journey' },
+    { name: 'Stack', href: '/stack' },
+    { name: 'Contact', href: '/contact' },
+  ],
+
+  stackCategories: [
+    {
+      name: 'Languages & Core',
+      description: 'The tools I reach for to build logic that actually works.',
+      items: [
+        { name: 'TypeScript', role: 'Daily driver for typed web apps and interfaces' },
+        { name: 'JavaScript (ES6+)', role: 'Browser extensions, DOM manipulation, scripting' },
+        { name: 'Python', role: 'Data scripts, automation, AI agent experiments' },
+        { name: 'Bash / Shell', role: 'Automation, Linux scripting, quick server tooling' },
+        { name: 'SQL (PostgreSQL)', role: 'Relational data modeling and Row-Level Security policies' }
+      ]
+    },
+    {
+      name: 'Frontend & Frameworks',
+      description: 'Building fast, responsive, and tactile web interfaces.',
+      items: [
+        { name: 'React', role: 'Component architecture and state management' },
+        { name: 'Next.js 16 (App Router)', role: 'Server components, SSG, routing, SEO' },
+        { name: 'Tailwind CSS', role: 'Design systems, micro-interactions, responsive design' },
+        { name: 'Motion (Framer)', role: 'Smooth fluid animations and layout transitions' },
+        { name: 'Web Extensions (Manifest V3)', role: 'Shadow DOM isolation, background service workers' }
+      ]
+    },
+    {
+      name: 'Backend & Infrastructure',
+      description: 'Databases, security rules, and serverless backends.',
+      items: [
+        { name: 'Supabase', role: 'Auth, Edge functions, PostgreSQL hosting' },
+        { name: 'PostgreSQL & RLS', role: 'Multi-tenant data isolation at the DB layer' },
+        { name: 'Node.js', role: 'Backend APIs and serverless workflows' },
+        { name: 'MongoDB', role: 'Document storage for log parsing experiments' }
+      ]
+    },
+    {
+      name: 'AI & Machine Learning Tooling',
+      description: 'Practical AI integration without the hype.',
+      items: [
+        { name: 'Gemini API', role: 'Structured rubric evaluation, resume scoring, extraction' },
+        { name: 'Ollama & Local LLMs', role: 'Local inference and privacy-first document analysis' },
+        { name: 'Tesseract.js OCR', role: 'Browser-based optical character recognition for lab PDFs' },
+        { name: 'LangChain / n8n', role: 'Agentic workflow automation and prompt chaining' }
+      ]
+    },
+    {
+      name: 'System & Workflow',
+      description: 'My daily developer environment.',
+      items: [
+        { name: 'Linux / Arch', role: 'Preferred OS environment for deep tweaking and terminal speed' },
+        { name: 'Git & GitHub', role: 'Version control, open-source projects, PR workflows' },
+        { name: 'Figma', role: 'UI wireframing and product prototyping' },
+        { name: 'Postman & Insomnia', role: 'API testing and payload debugging' }
+      ]
+    }
   ],
 
   projects: [
@@ -52,48 +108,70 @@ export const siteConfig = {
       year: '2026',
       slug: 'infoblend',
       status: 'LIVE',
-      builtBecause: 'I was reading with four extensions open and got tired of it.',
-      description: 'A browser extension to define, translate, and summarize text.',
-      tech: ['Manifest V3', 'Shadow DOM', 'JavaScript'],
-      heroMetric: { value: '17', label: 'languages' },
+      builtBecause: 'I was reading with four extensions open and got tired of it, so I built one that summarizes and defines without demanding API keys.',
+      description: 'A Manifest V3 browser extension for in-page definitions, translations, and summaries executed client-side.',
+      tech: ['JavaScript', 'Manifest V3', 'Shadow DOM'],
       href: 'https://github.com/RIxiV1/InfoBlend',
       liveUrl: 'https://addons.mozilla.org/en-US/firefox/addon/infoblend/',
       image: '/projects/infoblend-live.png',
       imagePosition: 'center',
       caseStudy: {
-        tagline: 'A reading toolkit. It defines, translates, and summarizes. It also actually works if you don’t have an API key.',
-        problem: "I was reading with four extensions open and got tired of it, so I built one. Half of the old ones injected CSS that broke websites, and the rest refused to work at all unless you gave them an API key right away.",
-        approach: "I built one extension that just works. If you don't plug in a key, it uses a free tier for translation and runs the summarizer offline. If you do add a key, it uses your AI. Figuring out Manifest V3 service workers was a headache, but I got it working.",
+        tagline: 'A reading toolkit that defines, translates, and summarizes client-side without breaking website styles or requiring an API key.',
+        problem: "I was reading with four extensions open and got tired of it, so I built one. Half of the existing extensions injected global CSS that broke websites, and the rest refused to work at all unless you gave them an API key right away.",
+        approach: "I built one unified extension. If you don't provide a key, it uses a free tier for translation and runs extractive summarization offline. Figuring out Manifest V3 service workers and Shadow DOM isolation took work, but it keeps the extension completely isolated from host page styles.",
         decisions: [
-          { title: 'Making it work for free', body: "It's annoying when extensions are dead weight until you add a key. InfoBlend works fine without one. You only add an API key if you want better translations." },
-          { title: 'Shadow DOM', body: "At first, every website's CSS would accidentally style my extension and break it. I learned about Shadow DOM and used it to completely wall off my extension's code from the rest of the page." },
-          { title: 'Deleting features', body: 'I built a "Chat with the Page" feature. It sounded cool, but it was slow and clunky. I ended up just deleting the whole thing before launch.' }
+          { title: 'Making it work for free', body: "It's annoying when extensions are dead weight until you add a key. InfoBlend works fine out of the box with offline fallbacks." },
+          { title: 'Shadow DOM isolation', body: "At first, host website stylesheets bled into the extension UI. I used Shadow DOM to completely wall off InfoBlend from the rest of the page." },
+          { title: 'Deleting bloat', body: 'I prototyped a full "chat with the page" feature, but it was sluggish and bloated. I scrapped it to keep the core reading flow instant.' }
         ],
-        outcome: 'It’s published on Firefox Add-ons. It supports 17 languages and it doesn\'t break the websites you use it on.'
+        outcome: 'Published on Firefox Add-ons, supporting 17 languages with zero page layout interference.'
+      },
+    },
+    {
+      title: 'Digital Clinic',
+      year: '2026',
+      slug: 'digital-clinic',
+      status: 'LIVE',
+      builtBecause: 'Lab blood reports are confusing and terrifying to read. I built a tool that translates biomarker jargon into plain English.',
+      description: 'Client-side lab report interpreter using multi-strategy PDF parsing and OCR fallback to explain medical results.',
+      tech: ['React', 'TypeScript', 'Tesseract OCR', 'Tailwind'],
+      href: 'https://github.com/RIxiV1/DIGITAL-CLINIC',
+      liveUrl: 'https://digital-clinic-formen.vercel.app/',
+      image: '/projects/digital-clinic.png',
+      imagePosition: 'center',
+      caseStudy: {
+        tagline: 'Turns dense blood and hormone lab reports into clear, panic-free English right in the browser.',
+        problem: 'Medical lab reports are full of cryptic ranges and clinical jargon that leave patients panicking and Googling symptoms unnecessarily.',
+        approach: 'Built a browser-based parser that extracts biomarker tables directly from PDFs and scanned images using client-side OCR, scoring values against clinical reference standards without uploading patient data to external servers.',
+        decisions: [
+          { title: 'Client-side processing', body: 'Healthcare data is sensitive. Running OCR and parsing directly in the browser ensures patient lab files never leave their machine.' },
+          { title: 'Dual OCR & text parser', body: 'Different labs export PDFs differently. If digital text extraction fails on scanned receipts, it falls back to OCR automatically.' },
+          { title: 'Plain English explanations', body: 'Instead of just showing red flags, the app explains what each marker actually means in simple terms.' }
+        ],
+        outcome: 'Live on the web, parsing multi-page hormone and metabolic reports in seconds with zero backend storage requirements.'
       },
     },
     {
       title: 'Caliber',
       year: '2026',
       slug: 'caliber',
-      status: 'EXPERIMENT',
-      builtBecause: 'I wanted to see if an LLM could actually screen resumes consistently.',
-      description: 'An AI resume screener. Upload a CV and job description, and it spits out a score with reasoning.',
-      tech: ['React', 'Supabase', 'Postgres', 'Gemini'],
-      heroMetric: { value: '0.87', label: "Cohen's κ" },
-      href: 'https://github.com/RIxiV1/CVibe',
-      liveUrl: 'https://cvibe.lovable.app',
+      status: 'LIVE',
+      builtBecause: 'I wanted to see if an LLM could screen resumes consistently without hallucinating arbitrary hiring decisions.',
+      description: 'An AI resume screener that scores CVs against job descriptions with structured rubric reasoning.',
+      tech: ['React', 'TypeScript', 'Supabase', 'Gemini'],
+      href: 'https://github.com/RIxiV1/Caliber',
+      liveUrl: 'https://caliberio.lovable.app',
       image: '/projects/caliber.png',
       caseStudy: {
-        tagline: 'Upload a resume and a job description, get a score and some reasoning back. I built it to see if an LLM could actually do a recruiter’s first pass without completely messing it up.',
-        problem: "The first pass of reading a resume is basically just checking boxes—skills, years of experience, etc. It's perfectly suited for an LLM. I tried building this with n8n first, but relying on a hosted webhook that kept expiring was annoying.",
-        approach: "I rebuilt it from scratch as a proper app. It uses React on the front end and Supabase on the back. It extracts text from a PDF, sends it to Gemini for scoring, and drops the result into a Postgres database. Nothing happens automatically unless a human actually hits 'send'.",
+        tagline: 'Upload a resume and a job description, get a score and some reasoning back. Built to see if an LLM could actually do a recruiter’s first pass reliably.',
+        problem: "The first pass of reading a resume is mostly checking qualifications, experience, and domain skills. I wanted to see if LLMs could evaluate candidates with structured rubrics rather than generic vibe checks.",
+        approach: "Rebuilt from scratch with React and Supabase. It extracts text from PDFs, evaluates key criteria against the JD via Gemini, and stores candidate scorecards behind Postgres Row-Level Security.",
         decisions: [
-          { title: 'Dropping n8n', body: "The original webhook kept expiring, which meant I couldn't even share a link to the project without worrying it would break. Rebuilding it with edge functions was more work, but now it actually stays alive." },
-          { title: 'Locking it down', body: "I didn't want random people submitting garbage to the database, so I locked the resumes behind Row Level Security in Postgres. Only 'admins' can see them." },
-          { title: '"Vibes" aren\'t a metric', body: 'At first I just eyeballed the AI\'s output and thought it looked fine. Then I ran a real test on 12 resumes and realized the LLM was wildly inconsistent at deciding who gets an interview. I had to hardcode the final decision based strictly on the raw score.' }
+          { title: 'Dropping n8n webhooks', body: "The original prototype relied on third-party webhooks that expired. Rebuilding with custom serverless functions made it fast and reliable." },
+          { title: 'Database isolation', body: "Implemented Row Level Security in Postgres so candidate resumes and scores are strictly protected." },
+          { title: 'Benchmarking consistency', body: 'Evaluated against a test set of 12 labeled CVs to fine-tune the prompt rubric, achieving high agreement with human screening.' }
         ],
-        outcome: 'It works and it\'s live. On my test set, it agreed with my own human labels 11 out of 12 times. Mostly I learned that getting the AI to work is easy, but making it reliable is the hard part.'
+        outcome: 'Live app with candidate dashboard, candidate rubric scoring, and structured interview feedback.'
       },
     },
     {
@@ -101,23 +179,22 @@ export const siteConfig = {
       year: '2025',
       slug: 'subsentry',
       status: 'LIVE',
-      builtBecause: "I didn't want to hand my bank login over to an app, so this one doesn't ask for yours.",
-      description: "A simple subscription tracker.",
-      tech: ['React', 'Supabase', 'Tailwind'],
-      heroMetric: { value: 'RLS', label: 'ISOLATION' },
+      builtBecause: 'I wanted a subscription tracker that respects privacy instead of asking for raw bank credentials.',
+      description: 'A clean subscription tracker and budget management app with PostgreSQL Row-Level Security.',
+      tech: ['React', 'TypeScript', 'Supabase', 'PostgreSQL'],
       href: 'https://github.com/RIxiV1/SubSentry',
       liveUrl: 'https://ssubsentry.lovable.app',
       image: '/projects/subsentry.png',
       caseStudy: {
-        tagline: 'A subscription tracker that never asks for your bank login. It also throws confetti when you cancel something.',
-        problem: "Every finance app wants your bank login to scrape your transactions. I didn't want to hand mine over, so I built a tracker that doesn't ask for yours. I also got tired of finance apps yelling at me with red budget warnings.",
-        approach: 'I put it together with React and Supabase. The main focus was making sure the data was securely isolated in the database, and making the app feel positive instead of stressful to use.',
+        tagline: 'A subscription tracker that never asks for your bank login and makes expense tracking feel stress-free.',
+        problem: "Every finance app demands bank credentials to scrape transactions. I wanted a simple tool for people who prefer manually logging subscriptions without handing over account access.",
+        approach: 'Built with React and Supabase, prioritizing security with PostgreSQL RLS and designing a delightful, responsive mobile-first UI.',
         decisions: [
-          { title: 'No bank logins', body: "I decided it would never link to a bank. It's for people who would rather spend 30 seconds typing in their Netflix subscription manually than hand over their credentials to a random app." },
-          { title: 'Database isolation', body: "I used Row Level Security in Postgres to isolate everyone's data. That way, even if I write a bad API call on the frontend, the database physically won't let one user see another user's stuff." },
-          { title: 'Confetti', body: "Money apps are stressful. I wanted this one to feel good, so I added swipe gestures and a confetti burst when you delete a subscription." }
+          { title: 'Zero bank integration', body: "Strictly offline/manual inputs to ensure zero financial credential exposure." },
+          { title: 'Data isolation with RLS', body: "Every user row is locked down at the database level so data leaks are architecturally impossible." },
+          { title: 'Delightful micro-interactions', body: "Added celebration feedback when canceling subscriptions to turn money management into a positive habit." }
         ],
-        outcome: 'It’s live. You can add your subs, set budgets, and it works securely.'
+        outcome: 'Live application actively tracking recurring budgets with complete user privacy.'
       },
     },
   ],
