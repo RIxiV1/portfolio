@@ -73,9 +73,9 @@ const personJsonLd = {
   sameAs: siteConfig.socials.map((s) => s.href),
 }
 
-// Runs before first paint: apply the stored theme, or fall back to the
+// Runs before first paint: apply the stored theme & preset, or fall back to
 // visitor's system preference. Keeps light-vs-dark from flashing on load.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':true;document.documentElement.classList.toggle('dark',d);var p=localStorage.getItem('theme-preset')||'obsidian';document.documentElement.setAttribute('data-theme',p);}catch(e){}})();`
 
 export default function RootLayout({
   children,
