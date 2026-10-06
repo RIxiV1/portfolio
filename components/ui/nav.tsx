@@ -37,113 +37,106 @@ export function Nav() {
   }, [open])
 
   return (
-    <header className="fixed inset-x-0 top-3 md:top-5 z-50 flex justify-center px-4 pointer-events-none">
+    <header
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
+        scrolled
+          ? 'border-b border-border/60 bg-background/95 backdrop-blur-xl'
+          : 'bg-transparent',
+      )}
+    >
       <nav
         aria-label="Main Navigation"
-        className={cn(
-          'pointer-events-auto flex items-center justify-between gap-3 sm:gap-6 rounded-full border border-border/80 bg-background/85 px-4 py-2 sm:px-5 sm:py-2 backdrop-blur-xl shadow-lg shadow-foreground/[0.04] transition-all duration-300 dark:shadow-[0_12px_36px_-10px_rgba(0,0,0,0.7)]',
-          scrolled && 'border-border bg-background/95 shadow-xl',
-        )}
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
       >
-        {/* Typographic wordmark */}
+        {/* Wordmark */}
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="group flex items-center gap-2 pr-2 font-mono text-xs font-semibold tracking-wider uppercase text-foreground transition-colors hover:text-accent"
+          className="font-mono text-xs font-semibold uppercase tracking-widest text-foreground transition-colors hover:text-muted-foreground"
           aria-label="Suhaib Dev Home"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-accent transition-transform group-hover:scale-125" />
-          <span>suhaib<span className="text-accent">.dev</span></span>
+          suhaib<span className="text-muted-foreground">.dev</span>
         </Link>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Desktop links */}
-          <ul className="hidden items-center gap-0.5 md:flex">
+        {/* Desktop links — right-aligned, clean text links (no pill) */}
+        <div className="hidden items-center gap-6 md:flex">
+          <ul className="flex items-center gap-6">
             {siteConfig.navLinks.map((l) => {
               const isActive =
                 l.href === '/'
                   ? pathname === '/'
                   : pathname.startsWith(l.href)
-
               return (
                 <li key={l.href}>
                   <Link
                     href={l.href}
                     className={cn(
-                      'relative rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors',
+                      'font-mono text-xs uppercase tracking-widest transition-colors',
                       isActive
                         ? 'text-foreground font-semibold'
                         : 'text-muted-foreground hover:text-foreground',
                     )}
                   >
-                    {isActive && (
-                      <motion.span
-                        layoutId="navActivePill"
-                        className="absolute inset-0 rounded-full bg-foreground/[0.08] dark:bg-foreground/[0.12]"
-                        transition={
-                          reduceMotion
-                            ? { duration: 0 }
-                            : { type: 'spring', stiffness: 450, damping: 35 }
-                        }
-                      />
-                    )}
-                    <span className="relative z-10">{l.name}</span>
+                    {l.name}
                   </Link>
                 </li>
               )
             })}
           </ul>
 
-          <div className="h-4 w-px bg-border/80 mx-1 hidden md:block" aria-hidden="true" />
-
           <ThemeToggle />
+        </div>
 
-          {/* Mobile toggle */}
+        {/* Mobile: theme + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="md:hidden inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/80 text-foreground transition-colors hover:border-accent hover:text-accent"
+            className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-colors hover:text-muted-foreground"
           >
-            {open ? <X className="h-3.5 w-3.5" /> : <Menu className="h-3.5 w-3.5" />}
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile dropdown sheet */}
+      {/* Mobile dropdown */}
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-nav"
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="pointer-events-auto absolute top-14 inset-x-4 max-w-sm mx-auto overflow-hidden rounded-2xl border border-border/80 bg-background/95 p-3 backdrop-blur-2xl shadow-2xl md:hidden"
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+            transition={{ duration: 0.16, ease: 'easeOut' }}
+            className="border-b border-border/60 bg-background/98 backdrop-blur-xl md:hidden"
           >
-            <ul className="flex flex-col gap-1">
+            <ul className="mx-auto flex max-w-6xl flex-col px-6 pb-4">
               {siteConfig.navLinks.map((l) => {
                 const isActive =
                   l.href === '/'
                     ? pathname === '/'
                     : pathname.startsWith(l.href)
-
                 return (
                   <li key={l.href}>
                     <Link
                       href={l.href}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        'flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-colors',
+                        'flex items-center justify-between py-3 font-mono text-xs uppercase tracking-widest transition-colors border-b border-border/40 last:border-0',
                         isActive
-                          ? 'bg-accent/15 text-accent font-semibold'
-                          : 'text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground',
+                          ? 'text-foreground font-semibold'
+                          : 'text-muted-foreground hover:text-foreground',
                       )}
                     >
                       <span>{l.name}</span>
-                      {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
+                      {isActive && (
+                        <span className="h-1 w-4 bg-foreground" />
+                      )}
                     </Link>
                   </li>
                 )

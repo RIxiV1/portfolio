@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import { Dancing_Script } from 'next/font/google'
-import { ArrowUpRight, ArrowDown, Briefcase, ChevronDown } from 'lucide-react'
+import { ArrowUpRight, ArrowDown } from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 import { Stagger, StaggerItem } from '@/components/ui/reveal'
 import { MagneticLink } from '@/components/ui/magnetic-link'
 import { ContactForm } from '@/components/ui/contact-form'
 import { ProjectsGrid } from '@/components/ui/work-stack-link'
-import { SignalField } from '@/components/ui/signal-field'
 import { Signature } from '@/components/ui/signature'
+
 
 // Script face for the hand-written sign-off in About.
 const signatureFont = Dancing_Script({ subsets: ['latin'], weight: '600' })
@@ -46,62 +46,59 @@ const GITHUB_URL = 'https://github.com/RIxiV1'
 export default function Page() {
   return (
     <main id="main" tabIndex={-1} className="relative outline-none">
-      {/* HERO */}
+      {/* ── HERO — editorial, Meow-inspired ──────────────────── */}
       <section
         id="home"
-        className="relative mx-auto flex min-h-svh max-w-5xl flex-col justify-center px-6 pt-32 pb-24"
+        className="relative mx-auto flex min-h-svh max-w-6xl items-center px-6 pt-24 pb-16"
       >
-        {/* Interactive warm ember particle mark — ambient on the right, coalesces on hover */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center justify-end pr-2 lg:flex">
-          <SignalField size={440} className="pointer-events-auto opacity-85 transition-opacity hover:opacity-100" />
-        </div>
-
-        <Stagger className="relative z-10 max-w-2xl space-y-7">
+        {/* Left column — typography */}
+        <Stagger className="relative z-10 flex-1 space-y-8 pr-4">
+          {/* Availability badge */}
           <StaggerItem>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-elevated/70 px-3.5 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inset-0 rounded-full bg-positive/60 motion-safe:animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-positive" />
+            <span className="inline-flex items-center gap-2 border border-border/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inset-0 rounded-full bg-positive/70 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-positive" />
               </span>
               Available for internships
             </span>
           </StaggerItem>
 
+          {/* Big display heading */}
           <StaggerItem>
-            <h1 className="font-display text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-foreground sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-              Shaik Suhaib
+            <h1 className="hero-display">
+              <span className="block">SHAIK</span>
+              <span className="block">SUHAIB</span>
             </h1>
           </StaggerItem>
 
-          <StaggerItem className="max-w-xl">
-            <p className="text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-              I build stuff. Usually because something annoyed me.
+          {/* Tagline */}
+          <StaggerItem className="max-w-sm">
+            <p className="text-base leading-relaxed text-muted-foreground">
+              I build stuff. Usually because something annoyed me — and I wanted
+              a cleaner solution.
             </p>
           </StaggerItem>
 
-          <StaggerItem className="flex flex-wrap items-center gap-3.5 pt-2">
+          {/* CTAs */}
+          <StaggerItem className="flex flex-wrap items-center gap-4">
             <MagneticLink
               href="/projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-sm transition-[background-color,box-shadow,transform] duration-300 hover:bg-accent-strong hover:shadow-[0_10px_30px_-10px_var(--accent)]"
+              className="inline-flex items-center gap-2 border border-foreground bg-foreground px-6 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-background transition-all duration-200 hover:bg-foreground/90"
             >
-              Explore Projects
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              View Work
             </MagneticLink>
-            <MagneticLink
-              href="/journey"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-elevated/40 px-5 py-2.5 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-muted"
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-1 font-mono text-sm uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
             >
-              My Journey
-            </MagneticLink>
-            <MagneticLink
-              href={siteConfig.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-elevated/40 px-5 py-2.5 text-sm font-medium text-foreground transition-colors duration-300 hover:bg-muted"
-            >
-              Résumé
-            </MagneticLink>
-            <span className="ml-1 flex items-center gap-4 border-l border-border/70 pl-4 text-muted-foreground">
+              Say Hi <span className="ml-1 transition-transform group-hover:translate-x-1">›</span>
+            </a>
+          </StaggerItem>
+
+          {/* Social links */}
+          <StaggerItem>
+            <span className="flex items-center gap-5 pt-1">
               {siteConfig.socials.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -109,19 +106,43 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="transition-colors hover:text-accent"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Icon className="h-[18px] w-[18px]" />
+                  <Icon className="h-[17px] w-[17px]" />
                 </a>
               ))}
             </span>
           </StaggerItem>
         </Stagger>
 
+        {/* Right column — scanline cat, blends into bg in both light & dark */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center lg:flex" aria-hidden="true">
+          <Image
+            src="/hero-image.jpg"
+            alt=""
+            width={560}
+            height={560}
+            className="h-[80vh] max-h-[620px] w-auto object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
+            priority
+          />
+        </div>
+
+        {/* Mobile cat */}
+        <div className="absolute bottom-4 right-0 w-44 opacity-40 lg:hidden" aria-hidden="true">
+          <Image
+            src="/hero-image.jpg"
+            alt=""
+            width={176}
+            height={176}
+            className="w-full object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
+          />
+        </div>
+
+        {/* Scroll cue */}
         <a
           href="#work"
           aria-label="Scroll to work"
-          className="eyebrow absolute inset-x-6 bottom-8 mx-auto flex w-fit items-center gap-2 text-subtle-foreground transition-colors hover:text-accent"
+          className="eyebrow absolute inset-x-6 bottom-7 mx-auto flex w-fit items-center gap-2 text-subtle-foreground transition-colors hover:text-foreground"
         >
           Scroll
           <ArrowDown className="h-3.5 w-3.5 animate-float" />
@@ -348,27 +369,25 @@ export default function Page() {
         </FadeUp>
       </section>
 
-      {/* FOOTER */}
-      <footer className="mt-12 border-t border-border/60 bg-elevated/30">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-6 py-14 text-center">
-          <p className="text-sm text-muted-foreground">
-            Designed &amp; built by{' '}
-            <span className="font-display font-medium text-foreground">Shaik Suhaib</span>.
+      {/* ── FOOTER — editorial ─────────────────────────────── */}
+      <footer className="border-t border-border/60">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8">
+          {/* Wordmark */}
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-foreground">
+            suhaib<span className="text-muted-foreground">.dev</span>
+          </span>
+
+          {/* Center — copyright */}
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
+            © {new Date().getFullYear()} · Crafted in Chennai
           </p>
-          <p className="font-mono text-xs text-muted-foreground/70">
-            © {new Date().getFullYear()} Shaik Suhaib · All rights reserved
-          </p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
-            Crafted in Chennai
-          </p>
+
+          {/* Back to top */}
           <a
             href="#home"
-            className="group mt-3 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
+            className="group font-mono text-[11px] uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
           >
-            Back to top{' '}
-            <span className="inline-block transition-transform group-hover:-translate-y-1">
-              ↑
-            </span>
+            ↑ Top
           </a>
         </div>
       </footer>

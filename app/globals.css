@@ -28,31 +28,8 @@
   --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
 }
 
-/* Dark: Preset 1 — Obsidian Iris (Linear & Raycast Standard - Default) */
-.dark, :root[data-theme='obsidian'], .dark[data-theme='obsidian'] {
-  --background: #08070B;
-  --elevated: #0F0E14;
-  --muted: #181622;
-  --muted-foreground: #9D98AF;
-  --subtle-foreground: #635F75;
-  --border: rgba(255, 255, 255, 0.08);
-  --foreground: #F3F2F8;
-  --ring: #7170FF;
-  --accent: #7170FF;
-  --accent-strong: #9392FF;
-  --accent-foreground: #08070B;
-  --accent-secondary: #9D98AF;
-  --positive: #10B981;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --radius: 0.875rem;
-  --selection: rgba(113, 112, 255, 0.22);
-  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
-}
-
-/* Dark: Preset 2 — Monochrome Stealth + Silver (Apple Pro / Arc) */
-:root[data-theme='stealth'], .dark[data-theme='stealth'] {
+/* Dark — Monochrome Stealth (Apple Pro / Arc) */
+.dark {
   --background: #000000;
   --elevated: #0C0C0E;
   --muted: #17171B;
@@ -72,52 +49,6 @@
   --radius: 0.875rem;
   --selection: rgba(255, 255, 255, 0.18);
   --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.95);
-}
-
-/* Dark: Preset 3 — Aurora Emerald (Supabase / Cyber Graphite) */
-:root[data-theme='emerald'], .dark[data-theme='emerald'] {
-  --background: #070908;
-  --elevated: #0E1210;
-  --muted: #141A17;
-  --muted-foreground: #8FA69B;
-  --subtle-foreground: #566960;
-  --border: rgba(255, 255, 255, 0.08);
-  --foreground: #F0FDF4;
-  --ring: #10B981;
-  --accent: #10B981;
-  --accent-strong: #34D399;
-  --accent-foreground: #070908;
-  --accent-secondary: #8FA69B;
-  --positive: #10B981;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --radius: 0.875rem;
-  --selection: rgba(16, 185, 129, 0.2);
-  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
-}
-
-/* Dark: Preset 4 — Midnight Sapphire (Deep Ocean & Electric Cobalt) */
-:root[data-theme='sapphire'], .dark[data-theme='sapphire'] {
-  --background: #05080E;
-  --elevated: #0B101B;
-  --muted: #121929;
-  --muted-foreground: #8DA1BA;
-  --subtle-foreground: #52637A;
-  --border: rgba(255, 255, 255, 0.08);
-  --foreground: #F0F6FC;
-  --ring: #38BDF8;
-  --accent: #38BDF8;
-  --accent-strong: #60A5FA;
-  --accent-foreground: #05080E;
-  --accent-secondary: #8DA1BA;
-  --positive: #10B981;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --radius: 0.875rem;
-  --selection: rgba(56, 189, 248, 0.2);
-  --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
 }
 
 @theme inline {
@@ -198,6 +129,17 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Hero display heading — massive monospace uppercase, Meow-style. */
+  .hero-display {
+    font-family: var(--font-mono);
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 700;
+    line-height: 0.96;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--foreground);
   }
 
   /* Underline that wipes in from the left on hover/focus. */
