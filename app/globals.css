@@ -171,29 +171,13 @@
     border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
   }
 
-  /* Ambient spotlight behind the hero — warm amber glow. */
+  /* Ambient spotlight behind the hero — clean neutral monochrome */
   .spotlight {
     background: radial-gradient(
       55% 45% at 50% -5%,
-      color-mix(in srgb, var(--accent) 12%, transparent),
+      color-mix(in srgb, var(--accent) 8%, transparent),
       transparent 72%
     );
-  }
-
-  /* Logo mark glow on hover. */
-  .logo-glow {
-    display: inline-flex;
-    transition: filter 0.3s ease;
-  }
-  .group:hover .logo-glow {
-    filter: drop-shadow(
-      0 0 7px color-mix(in srgb, var(--accent) 55%, transparent)
-    );
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .logo-glow {
-      transition: none;
-    }
   }
 
   /* Gentle float for the scroll cue. */
@@ -215,7 +199,7 @@
     }
   }
 
-  /* Dotted grid — warm subtle texture. */
+  /* Dotted grid — subtle texture. */
   .dot-grid {
     background-image: radial-gradient(
       color-mix(in srgb, var(--foreground) 40%, transparent) 1px,
@@ -224,50 +208,10 @@
     background-size: 26px 26px;
   }
 
-  /* Fine film grain — kills flat banding, adds premium texture. */
+  /* Fine film grain — adds tactile surface texture. */
   .grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
-  }
-
-  /* Infinite scroll marquee — used by tech stack ticker. */
-  .marquee {
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    gap: 2rem;
-  }
-  .marquee-content {
-    display: flex;
-    gap: 2rem;
-    flex-shrink: 0;
-    min-width: 100%;
-    animation: scroll-x 30s linear infinite;
-  }
-  .marquee-content-reverse {
-    display: flex;
-    gap: 2rem;
-    flex-shrink: 0;
-    min-width: 100%;
-    animation: scroll-x-reverse 30s linear infinite;
-  }
-  .marquee:hover .marquee-content,
-  .marquee:hover .marquee-content-reverse {
-    animation-play-state: paused;
-  }
-  @keyframes scroll-x {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 2rem)); }
-  }
-  @keyframes scroll-x-reverse {
-    from { transform: translateX(calc(-100% - 2rem)); }
-    to { transform: translateX(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-content,
-    .marquee-content-reverse {
-      animation: none;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
