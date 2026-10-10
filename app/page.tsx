@@ -115,26 +115,26 @@ export default function Page() {
           </StaggerItem>
         </Stagger>
 
-        {/* Right column — scanline cat, blends into bg in both light & dark */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center lg:flex" aria-hidden="true">
+        {/* Right column — scanline cat mascot */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-6 lg:flex" aria-hidden="true">
           <Image
-            src="/hero-image.jpg"
+            src="/hero-cat.png"
             alt=""
-            width={560}
-            height={560}
-            className="h-[80vh] max-h-[620px] w-auto object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
+            width={440}
+            height={360}
+            className="w-[360px] xl:w-[420px] h-auto object-contain dark:invert select-none"
             priority
           />
         </div>
 
         {/* Mobile cat */}
-        <div className="absolute bottom-4 right-0 w-44 opacity-40 lg:hidden" aria-hidden="true">
+        <div className="pointer-events-none absolute bottom-4 right-0 w-36 opacity-30 lg:hidden select-none" aria-hidden="true">
           <Image
-            src="/hero-image.jpg"
+            src="/hero-cat.png"
             alt=""
-            width={176}
-            height={176}
-            className="w-full object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
+            width={160}
+            height={130}
+            className="w-full h-auto object-contain dark:invert"
           />
         </div>
 
