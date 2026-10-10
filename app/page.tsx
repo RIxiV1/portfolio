@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Dancing_Script } from 'next/font/google'
 import { ArrowUpRight, ArrowDown } from 'lucide-react'
 import { siteConfig } from '@/data/site'
@@ -9,13 +10,13 @@ import { ContactForm } from '@/components/ui/contact-form'
 import { ProjectsGrid } from '@/components/ui/work-stack-link'
 import { Signature } from '@/components/ui/signature'
 
-
 // Script face for the hand-written sign-off in About.
 const signatureFont = Dancing_Script({ subsets: ['latin'], weight: '600' })
 
 const sectionHeading =
   'font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl'
-const sectionIntro = 'max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg'
+const sectionIntro =
+  'max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg'
 
 function SectionEyebrow({ index, label }: { index: string; label: string }) {
   return (
@@ -92,7 +93,10 @@ export default function Page() {
               href="#contact"
               className="group inline-flex items-center gap-1 font-mono text-sm uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
             >
-              Say Hi <span className="ml-1 transition-transform group-hover:translate-x-1">›</span>
+              Say Hi{' '}
+              <span className="ml-1 transition-transform group-hover:translate-x-1">
+                ›
+              </span>
             </a>
           </StaggerItem>
 
@@ -116,7 +120,10 @@ export default function Page() {
         </Stagger>
 
         {/* Right column — scanline cat mascot */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-6 lg:flex" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-6 lg:flex"
+          aria-hidden="true"
+        >
           <Image
             src="/hero-cat.png"
             alt=""
@@ -128,7 +135,10 @@ export default function Page() {
         </div>
 
         {/* Mobile cat */}
-        <div className="pointer-events-none absolute bottom-4 right-0 w-36 opacity-30 lg:hidden select-none" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute bottom-4 right-0 w-36 opacity-30 lg:hidden select-none"
+          aria-hidden="true"
+        >
           <Image
             src="/hero-cat.png"
             alt=""
@@ -164,7 +174,8 @@ export default function Page() {
                 </div>
               </div>
               <p className={sectionIntro}>
-                Most started because something annoyed me and I wanted to build a cleaner solution.
+                Most started because something annoyed me and I wanted to build
+                a cleaner solution.
               </p>
             </header>
           </FadeUp>
@@ -175,13 +186,13 @@ export default function Page() {
 
           <FadeUp delay={0.1}>
             <div className="flex justify-center pt-4">
-              <a
+              <Link
                 href="/projects"
                 className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-elevated/50 px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-foreground backdrop-blur-sm transition-all duration-300 hover:border-accent hover:bg-elevated hover:text-accent shadow-md"
               >
                 View Full Projects Directory &amp; Filters
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              </Link>
             </div>
           </FadeUp>
         </div>
@@ -200,15 +211,17 @@ export default function Page() {
                   <SectionEyebrow index="02" label="Background" />
                   <h2 className={sectionHeading}>Where I&apos;ve been.</h2>
                 </div>
-                <a
+                <Link
                   href="/journey"
                   className="font-mono text-xs uppercase tracking-widest text-accent hover:underline flex items-center gap-1 pb-2"
                 >
-                  Full Journey &amp; PRDs <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
+                  Full Journey &amp; PRDs{' '}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
               <p className={sectionIntro}>
-                From researching and building healthtech tools during my internship, to shipping agentic AI pipelines.
+                From researching and building healthtech tools during my
+                internship, to shipping agentic AI pipelines.
               </p>
             </header>
 
@@ -216,11 +229,15 @@ export default function Page() {
             <div className="rounded-3xl border border-border/80 bg-elevated/50 p-6 md:p-8 backdrop-blur-md shadow-[var(--card-shadow)]">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between border-b border-border/50 pb-4">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-semibold">FEATURED INTERNSHIP</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-semibold">
+                    FEATURED INTERNSHIP
+                  </span>
                   <h3 className="font-display text-2xl font-semibold text-foreground mt-1">
                     Product &amp; Development Intern
                   </h3>
-                  <p className="text-sm font-medium text-muted-foreground">ForMen Digital Clinic — Remote</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    ForMen Digital Clinic — Remote
+                  </p>
                 </div>
                 <span className="font-mono text-xs text-subtle-foreground">
                   Mar 2026 — Jul 2026
@@ -229,21 +246,27 @@ export default function Page() {
 
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 <p className="leading-relaxed text-muted-foreground text-sm md:text-base">
-                  I worked on a healthcare product from research through implementation. I built an AI tool that reads complicated men&apos;s health blood reports and explains them in plain English so patients don&apos;t panic.
+                  I worked on a healthcare product from research through
+                  implementation. I built an AI tool that reads complicated
+                  men&apos;s health blood reports and explains them in plain
+                  English so patients don&apos;t panic.
                 </p>
 
                 <div className="rounded-2xl border border-border/60 bg-muted/30 p-5 space-y-2">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">What I Learned</span>
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">
+                    What I Learned
+                  </span>
                   <p className="text-sm font-medium text-foreground/90">
-                    &ldquo;Building something is easy compared to deciding what should be built.&rdquo;
+                    &ldquo;Building something is easy compared to deciding what
+                    should be built.&rdquo;
                   </p>
                   <div className="pt-2">
-                    <a
+                    <Link
                       href="/journey"
                       className="inline-flex items-center gap-1 font-mono text-xs text-accent hover:underline"
                     >
                       Read the full story &amp; breakdown →
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -288,9 +311,7 @@ export default function Page() {
                   </div>
                   <div className="col-span-2 border-t border-border/50 pt-3">
                     <dt className="eyebrow text-subtle-foreground">Focus</dt>
-                    <dd className="mt-1 text-foreground">
-                      {siteConfig.focus}
-                    </dd>
+                    <dd className="mt-1 text-foreground">{siteConfig.focus}</dd>
                   </div>
                 </dl>
               </div>
@@ -304,7 +325,9 @@ export default function Page() {
                 <div className="space-y-3 rounded-2xl border border-border/60 bg-elevated/40 p-6 backdrop-blur-sm">
                   <p className="eyebrow text-accent">Currently</p>
                   <p className="leading-relaxed text-muted-foreground text-sm md:text-base">
-                    I&apos;m still figuring out exactly where I want to go professionally. Right now I&apos;m just learning, writing code, and seeing what breaks.
+                    I&apos;m still figuring out exactly where I want to go
+                    professionally. Right now I&apos;m just learning, writing
+                    code, and seeing what breaks.
                   </p>
                   <p className="pt-2 text-foreground font-medium">
                     Thanks for stopping by.
@@ -331,7 +354,9 @@ export default function Page() {
               <SectionEyebrow index="04" label="Connect" />
               <h2 className={sectionHeading}>Say hi.</h2>
               <p className={sectionIntro}>
-                I&apos;m looking for internships where I can actually build things, learn from people who know more than me, and probably break a few things along the way.
+                I&apos;m looking for internships where I can actually build
+                things, learn from people who know more than me, and probably
+                break a few things along the way.
               </p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-sm">
                 <a
