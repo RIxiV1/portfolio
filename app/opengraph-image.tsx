@@ -15,8 +15,8 @@ export default function OpengraphImage() {
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '68px 72px',
-        background: 'linear-gradient(135deg, #12101B 0%, #09080E 60%, #0E0C16 100%)',
-        color: '#F3F1F8',
+        background: '#000000',
+        color: '#FFFFFF',
         fontFamily: 'sans-serif',
       }}
     >
@@ -33,7 +33,7 @@ export default function OpengraphImage() {
               width: 10,
               height: 10,
               borderRadius: 999,
-              background: '#818CF8',
+              background: '#FFFFFF',
             }}
           />
           <span
@@ -41,12 +41,12 @@ export default function OpengraphImage() {
               fontSize: 24,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              color: '#F3F1F8',
+              color: '#FFFFFF',
               fontWeight: 700,
               fontFamily: 'monospace',
             }}
           >
-            suhaib<span style={{ color: '#818CF8' }}>.dev</span>
+            suhaib<span style={{ color: '#71717A' }}>.dev</span>
           </span>
         </div>
         <div
@@ -57,7 +57,7 @@ export default function OpengraphImage() {
             fontSize: 18,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: '#818CF8',
+            color: '#A1A1AA',
           }}
         >
           <div
@@ -65,7 +65,7 @@ export default function OpengraphImage() {
               width: 10,
               height: 10,
               borderRadius: 999,
-              background: '#34D399',
+              background: '#22C55E',
             }}
           />
           Available for internships
@@ -79,7 +79,7 @@ export default function OpengraphImage() {
             fontWeight: 800,
             letterSpacing: '-0.04em',
             lineHeight: 1,
-            color: '#F3F1F8',
+            color: '#FFFFFF',
           }}
         >
           Shaik Suhaib
@@ -88,7 +88,7 @@ export default function OpengraphImage() {
           style={{
             fontSize: 34,
             fontWeight: 400,
-            color: '#9B94B0',
+            color: '#A1A1AA',
             letterSpacing: '-0.01em',
           }}
         >
@@ -102,7 +102,7 @@ export default function OpengraphImage() {
           justifyContent: 'space-between',
           alignItems: 'center',
           fontSize: 20,
-          color: '#6D6684',
+          color: '#71717A',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
         }}
