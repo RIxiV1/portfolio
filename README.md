@@ -2,9 +2,7 @@
 
 Welcome to my slice of the internet: **[shaiksuhaibdev.vercel.app](https://shaiksuhaibdev.vercel.app)**.
 
-This isn't just another generic template. It's a hand-crafted, single-page experience that dives deep into case studies for my favorite projects. The vibe? Clean, premium, and distraction-free. Think near-monochrome aesthetics with a single, unapologetic indigo signal cutting through the noise (in both light and dark modes, naturally).
-
-![Portfolio home page](public/Screenshot.jpg)
+This isn't just another generic template. It's an editorial, high-contrast portfolio inspired by minimalist developer aesthetics. The vibe? Clean, premium, and distraction-free: pure Monochrome Stealth in dark mode, crisp typography, and an interactive scanline mascot.
 
 ---
 
