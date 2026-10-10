@@ -1,7 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, ArrowUpRight, Code2, Database, Cpu, Layout, Terminal, Wrench, ShieldCheck, Sparkles } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Code2,
+  Database,
+  Cpu,
+  Layout,
+  Terminal,
+  Wrench,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 
@@ -30,9 +41,13 @@ export default function StackPage() {
         <FadeUp>
           <div className="space-y-4 max-w-3xl">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">03 / Workbench</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                03 / Workbench
+              </span>
               <span className="h-px w-8 bg-border" aria-hidden="true" />
-              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Tech Stack &amp; Tools</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Tech Stack &amp; Tools
+              </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground">
@@ -40,7 +55,8 @@ export default function StackPage() {
             </h1>
 
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-              Here is the stack of languages, frameworks, cloud services, and developer tooling I rely on daily to ship reliable software.
+              Here is the stack of languages, frameworks, cloud services, and
+              developer tooling I rely on daily to ship reliable software.
             </p>
           </div>
         </FadeUp>
@@ -59,8 +75,12 @@ export default function StackPage() {
                       <IconComponent className="h-4 w-4" />
                     </div>
                     <div>
-                      <h2 className="font-display text-xl font-semibold text-foreground">{cat.name}</h2>
-                      <p className="text-xs text-muted-foreground">{cat.description}</p>
+                      <h2 className="font-display text-xl font-semibold text-foreground">
+                        {cat.name}
+                      </h2>
+                      <p className="text-xs text-muted-foreground">
+                        {cat.description}
+                      </p>
                     </div>
                   </div>
 
@@ -90,8 +110,12 @@ export default function StackPage() {
         <div className="mt-20 space-y-6">
           <FadeUp>
             <div className="space-y-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">Tech Opinions</span>
-              <h2 className="font-display text-2xl font-semibold text-foreground">Stack Choices &amp; Opinions</h2>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                Tech Opinions
+              </span>
+              <h2 className="font-display text-2xl font-semibold text-foreground">
+                Stack Choices &amp; Opinions
+              </h2>
             </div>
           </FadeUp>
 
@@ -99,9 +123,13 @@ export default function StackPage() {
             <FadeUp delay={0.05}>
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-2 h-full">
                 <ShieldCheck className="h-5 w-5 text-accent mb-2" />
-                <h3 className="font-display text-base font-semibold text-foreground">Postgres RLS &gt; App Logic</h3>
+                <h3 className="font-display text-base font-semibold text-foreground">
+                  Postgres RLS &gt; App Logic
+                </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Securing data at the database layer means accidental buggy frontend queries physically cannot leak another user&apos;s data.
+                  Securing data at the database layer means accidental buggy
+                  frontend queries physically cannot leak another user&apos;s
+                  data.
                 </p>
               </div>
             </FadeUp>
@@ -109,9 +137,12 @@ export default function StackPage() {
             <FadeUp delay={0.1}>
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-2 h-full">
                 <Cpu className="h-5 w-5 text-accent mb-2" />
-                <h3 className="font-display text-base font-semibold text-foreground">Client-side OCR for Health</h3>
+                <h3 className="font-display text-base font-semibold text-foreground">
+                  Client-side OCR for Health
+                </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  In Digital Clinic, parsing lab PDFs in the browser guarantees patient documents never touch a remote third-party server.
+                  In Digital Clinic, parsing lab PDFs in the browser guarantees
+                  patient documents never touch a remote third-party server.
                 </p>
               </div>
             </FadeUp>
@@ -119,9 +150,12 @@ export default function StackPage() {
             <FadeUp delay={0.15}>
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-2 h-full">
                 <Sparkles className="h-5 w-5 text-accent mb-2" />
-                <h3 className="font-display text-base font-semibold text-foreground">Shadow DOM for Extensions</h3>
+                <h3 className="font-display text-base font-semibold text-foreground">
+                  Shadow DOM for Extensions
+                </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  In InfoBlend, using Shadow DOM walls off the UI so website CSS never breaks the extension and vice versa.
+                  In InfoBlend, using Shadow DOM walls off the UI so website CSS
+                  never breaks the extension and vice versa.
                 </p>
               </div>
             </FadeUp>
@@ -132,8 +166,13 @@ export default function StackPage() {
         <FadeUp delay={0.2}>
           <div className="mt-20 flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-border/80 bg-elevated/50 p-8 backdrop-blur-md">
             <div className="space-y-1">
-              <h3 className="font-display text-lg font-semibold text-foreground">Want to talk tech or build something?</h3>
-              <p className="text-xs text-muted-foreground">Always happy to talk about Linux, AI pipelines, or software architecture.</p>
+              <h3 className="font-display text-lg font-semibold text-foreground">
+                Want to talk tech or build something?
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Always happy to talk about Linux, AI pipelines, or software
+                architecture.
+              </p>
             </div>
             <Link
               href="/contact"

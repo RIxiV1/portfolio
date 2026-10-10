@@ -1,7 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, ArrowUpRight, Briefcase, GraduationCap, Lightbulb, Terminal, ChevronDown, CheckCircle2 } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Briefcase,
+  GraduationCap,
+  Lightbulb,
+  Terminal,
+  ChevronDown,
+  CheckCircle2,
+} from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 
@@ -22,9 +31,13 @@ export default function JourneyPage() {
         <FadeUp>
           <div className="space-y-4 max-w-3xl">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">02 / Journey</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                02 / Journey
+              </span>
               <span className="h-px w-8 bg-border" aria-hidden="true" />
-              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Background &amp; Philosophy</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Background &amp; Philosophy
+              </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground">
@@ -32,7 +45,9 @@ export default function JourneyPage() {
             </h1>
 
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-              I&apos;m an Information Technology undergraduate in Chennai who likes building software, experimenting with AI workflows, and figuring out what makes products actually useful.
+              I&apos;m an Information Technology undergraduate in Chennai who
+              likes building software, experimenting with AI workflows, and
+              figuring out what makes products actually useful.
             </p>
           </div>
         </FadeUp>
@@ -41,8 +56,12 @@ export default function JourneyPage() {
         <div className="mt-16 space-y-12">
           <FadeUp delay={0.05}>
             <div className="space-y-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">Timeline</span>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">Experience &amp; Education</h2>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                Timeline
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">
+                Experience &amp; Education
+              </h2>
             </div>
           </FadeUp>
 
@@ -75,25 +94,42 @@ export default function JourneyPage() {
                     </p>
 
                     {(item as any).details && (
-                      <details className="group/details mt-5 border-t border-border/50 pt-4" open>
+                      <details
+                        className="group/details mt-5 border-t border-border/50 pt-4"
+                        open
+                      >
                         <summary className="cursor-pointer text-xs font-mono uppercase tracking-widest text-accent hover:underline focus:outline-none flex items-center gap-1 list-none [&::-webkit-details-marker]:hidden font-semibold">
-                          Breakdown &amp; Key Learnings <ChevronDown className="h-3.5 w-3.5 transition-transform group-open/details:rotate-180" />
+                          Breakdown &amp; Key Learnings{' '}
+                          <ChevronDown className="h-3.5 w-3.5 transition-transform group-open/details:rotate-180" />
                         </summary>
                         <div className="mt-4 space-y-4 text-sm text-muted-foreground">
                           <div className="space-y-2">
-                            <h4 className="font-medium text-foreground text-xs uppercase font-mono tracking-wider">What I actually did</h4>
+                            <h4 className="font-medium text-foreground text-xs uppercase font-mono tracking-wider">
+                              What I actually did
+                            </h4>
                             <ul className="space-y-2">
-                              {(item as any).details.actions.map((action: string, idx: number) => (
-                                <li key={idx} className="flex items-start gap-2">
-                                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                                  <span className="text-foreground/90">{action}</span>
-                                </li>
-                              ))}
+                              {(item as any).details.actions.map(
+                                (action: string, idx: number) => (
+                                  <li
+                                    key={idx}
+                                    className="flex items-start gap-2"
+                                  >
+                                    <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                                    <span className="text-foreground/90">
+                                      {action}
+                                    </span>
+                                  </li>
+                                ),
+                              )}
                             </ul>
                           </div>
                           <div className="rounded-xl border border-border/60 bg-muted/30 p-4 space-y-1">
-                            <h4 className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">Biggest Takeaway</h4>
-                            <p className="text-foreground/90 font-medium">{(item as any).details.learned}</p>
+                            <h4 className="font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">
+                              Biggest Takeaway
+                            </h4>
+                            <p className="text-foreground/90 font-medium">
+                              {(item as any).details.learned}
+                            </p>
                           </div>
                         </div>
                       </details>
@@ -135,8 +171,12 @@ export default function JourneyPage() {
         <div className="mt-24 space-y-10">
           <FadeUp>
             <div className="space-y-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">Principles</span>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">How I Approach Building Things</h2>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                Principles
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">
+                How I Approach Building Things
+              </h2>
             </div>
           </FadeUp>
 
@@ -145,9 +185,13 @@ export default function JourneyPage() {
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-3 h-full flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="font-mono text-xs text-accent">01</span>
-                  <h3 className="font-display text-lg font-semibold text-foreground">Talk through the problem first</h3>
+                  <h3 className="font-display text-lg font-semibold text-foreground">
+                    Talk through the problem first
+                  </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Building something is easy compared to deciding what should be built. I prefer sketching out user flows and talking through edge cases before jumping straight to code.
+                    Building something is easy compared to deciding what should
+                    be built. I prefer sketching out user flows and talking
+                    through edge cases before jumping straight to code.
                   </p>
                 </div>
               </div>
@@ -157,9 +201,13 @@ export default function JourneyPage() {
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-3 h-full flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="font-mono text-xs text-accent">02</span>
-                  <h3 className="font-display text-lg font-semibold text-foreground">Make it work out of the box</h3>
+                  <h3 className="font-display text-lg font-semibold text-foreground">
+                    Make it work out of the box
+                  </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Tools shouldn&apos;t be dead weight until you hand over an API key or credit card. Products should offer immediate value for free, with advanced options as optional upgrades.
+                    Tools shouldn&apos;t be dead weight until you hand over an
+                    API key or credit card. Products should offer immediate
+                    value for free, with advanced options as optional upgrades.
                   </p>
                 </div>
               </div>
@@ -169,9 +217,13 @@ export default function JourneyPage() {
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-3 h-full flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="font-mono text-xs text-accent">03</span>
-                  <h3 className="font-display text-lg font-semibold text-foreground">Security by architecture, not trust</h3>
+                  <h3 className="font-display text-lg font-semibold text-foreground">
+                    Security by architecture, not trust
+                  </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Whether it&apos;s isolating user tables with PostgreSQL Row-Level Security or processing health reports client-side with OCR, privacy should be structurally enforced.
+                    Whether it&apos;s isolating user tables with PostgreSQL
+                    Row-Level Security or processing health reports client-side
+                    with OCR, privacy should be structurally enforced.
                   </p>
                 </div>
               </div>
@@ -181,9 +233,13 @@ export default function JourneyPage() {
               <div className="rounded-2xl border border-border/70 bg-elevated/40 p-6 backdrop-blur-sm space-y-3 h-full flex flex-col justify-between">
                 <div className="space-y-2">
                   <span className="font-mono text-xs text-accent">04</span>
-                  <h3 className="font-display text-lg font-semibold text-foreground">Learn by breaking things</h3>
+                  <h3 className="font-display text-lg font-semibold text-foreground">
+                    Learn by breaking things
+                  </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    I don&apos;t pretend to know everything upfront. I prototype quickly, see where the system bottlenecks or crashes, and iterate until it runs smoothly and reliably.
+                    I don&apos;t pretend to know everything upfront. I prototype
+                    quickly, see where the system bottlenecks or crashes, and
+                    iterate until it runs smoothly and reliably.
                   </p>
                 </div>
               </div>
@@ -195,8 +251,13 @@ export default function JourneyPage() {
         <FadeUp delay={0.25}>
           <div className="mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-2xl border border-border/80 bg-elevated/50 p-8 backdrop-blur-md">
             <div className="space-y-1">
-              <h3 className="font-display text-xl font-semibold text-foreground">Looking for a Product / Dev Intern?</h3>
-              <p className="text-sm text-muted-foreground">I&apos;m available for Summer 2026 internships where I can ship real software.</p>
+              <h3 className="font-display text-xl font-semibold text-foreground">
+                Looking for a Product / Dev Intern?
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                I&apos;m available for Summer 2026 internships where I can ship
+                real software.
+              </p>
             </div>
             <Link
               href="/contact"

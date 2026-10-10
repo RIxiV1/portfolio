@@ -3,12 +3,23 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowUpRight, ExternalLink, Sparkles, Terminal } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  ExternalLink,
+  Sparkles,
+  Terminal,
+} from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 import { cn } from '@/lib/utils'
 
-const CATEGORIES = ['All', 'AI & Healthcare', 'Extensions & Web', 'FinTech & Security'] as const
+const CATEGORIES = [
+  'All',
+  'AI & Healthcare',
+  'Extensions & Web',
+  'FinTech & Security',
+] as const
 type Category = (typeof CATEGORIES)[number]
 
 function getProjectCategory(slug: string): Category {
@@ -49,9 +60,13 @@ export default function ProjectsPage() {
         <FadeUp>
           <div className="space-y-4 max-w-3xl">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">01 / Directory</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                01 / Directory
+              </span>
               <span className="h-px w-8 bg-border" aria-hidden="true" />
-              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Curated Index</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Curated Index
+              </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground">
@@ -59,8 +74,9 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-              A collection of tools, browser extensions, and full-stack systems I&apos;ve designed and shipped.
-              Most started because something annoyed me and I wanted to build a cleaner solution.
+              A collection of tools, browser extensions, and full-stack systems
+              I&apos;ve designed and shipped. Most started because something
+              annoyed me and I wanted to build a cleaner solution.
             </p>
           </div>
         </FadeUp>
@@ -73,7 +89,9 @@ export default function ProjectsPage() {
               const count =
                 cat === 'All'
                   ? siteConfig.projects.length
-                  : siteConfig.projects.filter((p) => getProjectCategory(p.slug) === cat).length
+                  : siteConfig.projects.filter(
+                      (p) => getProjectCategory(p.slug) === cat,
+                    ).length
 
               return (
                 <button
@@ -83,11 +101,16 @@ export default function ProjectsPage() {
                     'inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs transition-all duration-200',
                     isSelected
                       ? 'bg-foreground text-background font-semibold shadow-md'
-                      : 'border border-border/80 bg-elevated/40 text-muted-foreground hover:bg-elevated hover:text-foreground'
+                      : 'border border-border/80 bg-elevated/40 text-muted-foreground hover:bg-elevated hover:text-foreground',
                   )}
                 >
                   <span>{cat}</span>
-                  <span className={cn('text-[10px] tabular-nums', isSelected ? 'opacity-80' : 'text-subtle-foreground')}>
+                  <span
+                    className={cn(
+                      'text-[10px] tabular-nums',
+                      isSelected ? 'opacity-80' : 'text-subtle-foreground',
+                    )}
+                  >
                     ({count})
                   </span>
                 </button>
@@ -129,7 +152,9 @@ export default function ProjectsPage() {
 
                   {/* Header info */}
                   <div className="flex items-center justify-between pt-1">
-                    <span className="font-mono text-xs text-muted-foreground">{p.year}</span>
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {p.year}
+                    </span>
                     {p.status && (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-positive/30 bg-positive/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-positive font-semibold">
                         <span className="relative flex h-1.5 w-1.5">
@@ -206,9 +231,12 @@ export default function ProjectsPage() {
             <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-accent mx-auto">
               <Sparkles className="h-5 w-5" />
             </div>
-            <h3 className="font-display text-2xl font-semibold text-foreground">Want to see how these were engineered?</h3>
+            <h3 className="font-display text-2xl font-semibold text-foreground">
+              Want to see how these were engineered?
+            </h3>
             <p className="max-w-md mx-auto text-sm text-muted-foreground">
-              Every project has a complete writeup covering the actual problem, architectural decisions, and what broke along the way.
+              Every project has a complete writeup covering the actual problem,
+              architectural decisions, and what broke along the way.
             </p>
             <div className="pt-2">
               <Link

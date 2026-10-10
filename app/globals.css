@@ -7,22 +7,22 @@
 
 /* Light — Studio Slate */
 :root {
-  --background: #FAFAFB;
-  --elevated: #FFFFFF;
-  --muted: #F1F1F4;
-  --muted-foreground: #52525B;
-  --subtle-foreground: #71717A;
-  --border: #E4E4E7;
-  --foreground: #09090B;
-  --ring: #18181B;
-  --accent: #18181B;
+  --background: #fafafb;
+  --elevated: #ffffff;
+  --muted: #f1f1f4;
+  --muted-foreground: #52525b;
+  --subtle-foreground: #71717a;
+  --border: #e4e4e7;
+  --foreground: #09090b;
+  --ring: #18181b;
+  --accent: #18181b;
   --accent-strong: #000000;
-  --accent-foreground: #FFFFFF;
-  --accent-secondary: #71717A;
-  --positive: #16A34A;
-  --success: #16A34A;
-  --warning: #D97706;
-  --error: #DC2626;
+  --accent-foreground: #ffffff;
+  --accent-secondary: #71717a;
+  --positive: #16a34a;
+  --success: #16a34a;
+  --warning: #d97706;
+  --error: #dc2626;
   --radius: 0.875rem;
   --selection: rgba(0, 0, 0, 0.12);
   --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
@@ -31,21 +31,21 @@
 /* Dark — Monochrome Stealth (Apple Pro / Arc) */
 .dark {
   --background: #000000;
-  --elevated: #0C0C0E;
-  --muted: #17171B;
-  --muted-foreground: #A1A1AA;
-  --subtle-foreground: #71717A;
+  --elevated: #0c0c0e;
+  --muted: #17171b;
+  --muted-foreground: #a1a1aa;
+  --subtle-foreground: #71717a;
   --border: rgba(255, 255, 255, 0.1);
-  --foreground: #FFFFFF;
-  --ring: #FFFFFF;
-  --accent: #FFFFFF;
-  --accent-strong: #E4E4E7;
+  --foreground: #ffffff;
+  --ring: #ffffff;
+  --accent: #ffffff;
+  --accent-strong: #e4e4e7;
   --accent-foreground: #000000;
-  --accent-secondary: #A1A1AA;
-  --positive: #22C55E;
-  --success: #22C55E;
-  --warning: #F59E0B;
-  --error: #EF4444;
+  --accent-secondary: #a1a1aa;
+  --positive: #22c55e;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
   --radius: 0.875rem;
   --selection: rgba(255, 255, 255, 0.18);
   --card-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.95);
@@ -157,7 +157,11 @@
 
   /* Warm gradient text — used on accent words. */
   .text-gradient {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--accent) 0%,
+      var(--accent-strong) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

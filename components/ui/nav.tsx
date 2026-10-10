@@ -64,9 +64,7 @@ export function Nav() {
           <ul className="flex items-center gap-6">
             {siteConfig.navLinks.map((l) => {
               const isActive =
-                l.href === '/'
-                  ? pathname === '/'
-                  : pathname.startsWith(l.href)
+                l.href === '/' ? pathname === '/' : pathname.startsWith(l.href)
               return (
                 <li key={l.href}>
                   <Link
@@ -134,9 +132,7 @@ export function Nav() {
                       )}
                     >
                       <span>{l.name}</span>
-                      {isActive && (
-                        <span className="h-1 w-4 bg-foreground" />
-                      )}
+                      {isActive && <span className="h-1 w-4 bg-foreground" />}
                     </Link>
                   </li>
                 )

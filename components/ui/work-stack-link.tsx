@@ -51,7 +51,9 @@ export function ProjectCard({ project: p }: { project: Project }) {
 
         {/* Metadata Header */}
         <div className="flex items-center justify-between pt-1">
-          <span className="font-mono text-xs tracking-wider text-muted-foreground">{p.year}</span>
+          <span className="font-mono text-xs tracking-wider text-muted-foreground">
+            {p.year}
+          </span>
           {p.status && (
             <span className="inline-flex items-center gap-1.5 rounded-full border border-positive/30 bg-positive/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-positive font-semibold">
               <span className="relative flex h-1.5 w-1.5">

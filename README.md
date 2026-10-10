@@ -13,8 +13,8 @@ I built this to be fast, accessible, and an absolute joy to interact with. Here'
 - **The Flow**: It's a journey. Hero → Work → Experience → About → Contact, indexed neatly (`01 —— Work`). Clicking into a case study? You'll get a buttery smooth fade-up transition. No jarring page reloads here.
 - **The Look**: Restrained but powerful. Geist typography, medium radius corners, a subtle dotted-grid layered with film-grain, and a soft spotlight effect in the hero. Oh, and the light/dark toggle doesn't flashbang you on load.
 - **The Work**: I let the products speak for themselves with image-led cards. Each project gets a punchy results line, tech stack chips, and all the relevant links. Hover over them and feel the depth.
-- **Deep Dives**: Case studies at `/projects/[slug]` aren't just fluff. They're statically generated breakdowns of the *Problem*, *Approach*, *Key Decisions* (and why I made them), and the final *Outcome*.
-- **Spring Physics**: The hero buttons are magnetic. They track your cursor. Go ahead, play with them. 
+- **Deep Dives**: Case studies at `/projects/[slug]` aren't just fluff. They're statically generated breakdowns of the _Problem_, _Approach_, _Key Decisions_ (and why I made them), and the final _Outcome_.
+- **Spring Physics**: The hero buttons are magnetic. They track your cursor. Go ahead, play with them.
 - **Bulletproof Contact Form**: I don't mess around with spam. It's Zod-validated, delivered via Resend, and rate-limited at the edge with Upstash (with an in-memory fallback for local dev). Add in a honeypot, control-character stripping (bye, header injection), and strict CORS. Good luck, bots.
 - **Accessibility as a Standard**: Skip-to-content links, `prefers-reduced-motion` honored across the board, semantic HTML, rich JSON-LD `Person` schema, and proper focus states. It works for everyone.
 
@@ -30,15 +30,15 @@ I chose tools that get out of my way and let me build fast:
 
 ## 🚀 Run It Locally
 
-Wanna see how the sausage is made? 
+Wanna see how the sausage is made?
 
 ```bash
 npm install
 npm run dev
 ```
 
-To test the contact form, copy `.env.example` to `.env.local` and drop in your `RESEND_API_KEY`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN`. 
-*Pro-tip: Even without them, the form still runs locally. Resend will gracefully 503 and the rate limiter will just use memory instead of Redis.*
+To test the contact form, copy `.env.example` to `.env.local` and drop in your `RESEND_API_KEY`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN`.
+_Pro-tip: Even without them, the form still runs locally. Resend will gracefully 503 and the rate limiter will just use memory instead of Redis._
 
 ## 🗺️ Architecture
 
@@ -72,4 +72,5 @@ I'm always open to talking about tech, design, or new opportunities.
 - **Medium**: [@shaiksuhaib360](https://medium.com/@shaiksuhaib360)
 
 ---
-*Built with intent. MIT © Shaik Mohammed Suhaib*
+
+_Built with intent. MIT © Shaik Mohammed Suhaib_
