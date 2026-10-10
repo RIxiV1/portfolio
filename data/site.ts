@@ -8,7 +8,7 @@ export const siteConfig = {
   location: 'Chennai, India',
   email: 'shaiksuhaib360@gmail.com',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://shaiksuhaibdev.vercel.app',
-  status: 'Looking for an internship',
+  status: 'Open to internships & job opportunities',
 
   resumeUrl: '/Shaik_Mohammed_Suhaib_Resume.pdf',
 

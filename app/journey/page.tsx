@@ -252,11 +252,10 @@ export default function JourneyPage() {
           <div className="mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-2xl border border-border/80 bg-elevated/50 p-8 backdrop-blur-md">
             <div className="space-y-1">
               <h3 className="font-display text-xl font-semibold text-foreground">
-                Looking for a Product / Dev Intern?
+                Interested in working together?
               </h3>
               <p className="text-sm text-muted-foreground">
-                I&apos;m available for Summer 2026 internships where I can ship
-                real software.
+                I am available for internships and new job opportunities.
               </p>
             </div>
             <Link

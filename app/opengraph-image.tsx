@@ -68,7 +68,7 @@ export default function OpengraphImage() {
               background: '#22C55E',
             }}
           />
-          Available for internships
+          Available for opportunities
         </div>
       </div>
 

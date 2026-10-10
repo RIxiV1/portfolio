@@ -61,7 +61,7 @@ export default function Page() {
                 <span className="absolute inset-0 rounded-full bg-positive/70 motion-safe:animate-ping" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-positive" />
               </span>
-              Available for internships
+              Available for internships &amp; opportunities
             </span>
           </StaggerItem>
 
