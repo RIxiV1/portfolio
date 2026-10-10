@@ -12,9 +12,11 @@ export function ThemeToggle() {
   useEffect(() => {
     const stored = localStorage.getItem('theme')
     const isDark = stored ? stored === 'dark' : true
-    setDark(isDark)
     document.documentElement.classList.toggle('dark', isDark)
-    setMounted(true)
+    queueMicrotask(() => {
+      setDark(isDark)
+      setMounted(true)
+    })
   }, [])
 
   const toggle = () => {
@@ -51,7 +53,11 @@ export function ThemeToggle() {
             transition={{ duration: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="inline-flex"
           >
-            {dark ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+            {dark ? (
+              <Sun className="h-3.5 w-3.5" />
+            ) : (
+              <Moon className="h-3.5 w-3.5" />
+            )}
           </motion.span>
         )}
       </AnimatePresence>
