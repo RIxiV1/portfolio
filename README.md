@@ -1,76 +1,124 @@
-# Shaik Mohammed Suhaib ✦ Portfolio
+# Shaik Mohammed Suhaib — Portfolio
 
-Welcome to my slice of the internet: **[shaiksuhaibdev.vercel.app](https://shaiksuhaibdev.vercel.app)**.
+Personal portfolio and engineering case studies: [shaiksuhaibdev.vercel.app](https://shaiksuhaibdev.vercel.app).
 
-This isn't just another generic template. It's an editorial, high-contrast portfolio inspired by minimalist developer aesthetics. The vibe? Clean, premium, and distraction-free: pure Monochrome Stealth in dark mode, crisp typography, and an interactive scanline mascot.
+An editorial, high-contrast developer portfolio inspired by technical publications and modern developer tools. Built with Next.js 16, React 19, Tailwind CSS v4, and Motion.
 
 ---
 
-## ⚡ The Good Stuff
+## Overview
 
-I built this to be fast, accessible, and an absolute joy to interact with. Here's what makes it tick:
+The site serves as a focused index of production projects, engineering journey breakdowns, and technical case studies:
 
-- **The Flow**: It's a journey. Hero → Work → Experience → About → Contact, indexed neatly (`01 —— Work`). Clicking into a case study? You'll get a buttery smooth fade-up transition. No jarring page reloads here.
-- **The Look**: Restrained but powerful. Geist typography, medium radius corners, a subtle dotted-grid layered with film-grain, and a soft spotlight effect in the hero. Oh, and the light/dark toggle doesn't flashbang you on load.
-- **The Work**: I let the products speak for themselves with image-led cards. Each project gets a punchy results line, tech stack chips, and all the relevant links. Hover over them and feel the depth.
-- **Deep Dives**: Case studies at `/projects/[slug]` aren't just fluff. They're statically generated breakdowns of the _Problem_, _Approach_, _Key Decisions_ (and why I made them), and the final _Outcome_.
-- **Spring Physics**: The hero buttons are magnetic. They track your cursor. Go ahead, play with them.
-- **Bulletproof Contact Form**: I don't mess around with spam. It's Zod-validated, delivered via Resend, and rate-limited at the edge with Upstash (with an in-memory fallback for local dev). Add in a honeypot, control-character stripping (bye, header injection), and strict CORS. Good luck, bots.
-- **Accessibility as a Standard**: Skip-to-content links, `prefers-reduced-motion` honored across the board, semantic HTML, rich JSON-LD `Person` schema, and proper focus states. It works for everyone.
+- **Editorial Monospace Aesthetic**: High-contrast typography with a dedicated Monochrome Stealth dark mode (`#000000` base) and clean light mode.
+- **Deep-Dive Case Studies**: Dynamic routes under `/projects/[slug]` statically generated at build time (`SSG`), breaking down problem statements, architecture decisions, and measured outcomes.
+- **Interactive Directory & Stack**: Dedicated routes for `/projects`, `/journey`, and `/stack` with filtering and deep-linked PRDs.
+- **Hardened Contact Pipeline**: Edge rate-limiting via Upstash Redis with local in-memory fallback, Zod schema validation, honeypot spam protection, header injection sanitation, and transactional delivery via Resend.
+- **Accessibility & SEO**: WCAG-compliant contrast ratios, `prefers-reduced-motion` compliance across all animation primitives, skip-to-content bypass, and Schema.org `Person` JSON-LD structured data.
 
-## 🛠️ The Stack
+---
 
-I chose tools that get out of my way and let me build fast:
+## Tech Stack
 
-- **Framework**: Next.js 16 App Router (running on Turbopack because speed matters)
-- **UI Engine**: React 19, Tailwind CSS v4 for design tokens, and `motion` for the buttery animations.
-- **Backend Muscle**: Resend (email), Upstash Redis (rate limiting), Zod (because we don't trust user input).
-- **Hosting**: Vercel. Push to main and relax.
-- **Typography**: Geist Sans + Geist Mono (served optimally via `next/font/google`).
+| Layer             | Technology                                             |
+| :---------------- | :----------------------------------------------------- |
+| **Framework**     | Next.js 16 (App Router, Turbopack)                     |
+| **Runtime & UI**  | React 19, TypeScript                                   |
+| **Styling**       | Tailwind CSS v4, CSS Variables                         |
+| **Motion**        | Motion (`motion/react`)                                |
+| **Validation**    | Zod                                                    |
+| **Rate Limiting** | Upstash Redis (`@upstash/ratelimit`, `@upstash/redis`) |
+| **Email Service** | Resend                                                 |
+| **Icons**         | Lucide React                                           |
+| **Deployment**    | Vercel                                                 |
 
-## 🚀 Run It Locally
+---
 
-Wanna see how the sausage is made?
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+
+### Installation
 
 ```bash
+git clone https://github.com/RIxiV1/portfolio.git
+cd portfolio
 npm install
+```
+
+### Environment Configuration
+
+Create a `.env.local` file in the project root:
+
+```bash
+cp .env.example .env.local
+```
+
+Required keys for live email forwarding and distributed rate limiting:
+
+```env
+RESEND_API_KEY=re_...
+CONTACT_TO_EMAIL=your-email@example.com
+UPSTASH_REDIS_REST_URL=https://...
+UPSTASH_REDIS_REST_TOKEN=...
+```
+
+_Note: In development, missing Upstash credentials automatically fall back to an in-memory sliding window rate limiter, and missing Resend keys return a simulated 503 response without breaking the UI._
+
+### Development
+
+```bash
 npm run dev
 ```
 
-To test the contact form, copy `.env.example` to `.env.local` and drop in your `RESEND_API_KEY`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN`.
-_Pro-tip: Even without them, the form still runs locally. Resend will gracefully 503 and the rate limiter will just use memory instead of Redis._
+The application will be available at `http://localhost:3000`.
 
-## 🗺️ Architecture
+### Production Build & Verification
 
-Here's the map. The codebase is organized to make sense immediately:
-
-```text
-app/
-├── api/contact/          POST endpoint: Validated, rate-limited, and sent.
-├── projects/[slug]/      SSG case studies.
-├── layout.tsx            The shell: Fonts, metadata, JSON-LD, and that sweet grid background.
-├── template.tsx          The magic behind the page transitions.
-└── page.tsx              The main event. One page to rule them all.
-
-components/ui/
-├── work-stack-link.tsx   The image-led project cards.
-├── magnetic-link.tsx     Those springy, cursor-following buttons.
-├── reveal.tsx            Staggered entrance animations.
-├── nav.tsx, contact-form.tsx, theme-toggle.tsx, ...
-
-data/
-└── site.ts               The brain. A single source of truth for all content. Change it here, it updates everywhere.
+```bash
+npm run lint          # Run ESLint rules
+npm run format:check  # Verify Prettier formatting
+npx tsc --noEmit      # Run TypeScript typecheck
+npm run build         # Generate static production build
 ```
-
-## 📬 Let's Talk
-
-I'm always open to talking about tech, design, or new opportunities.
-
-- **Email**: [shaiksuhaib360@gmail.com](mailto:shaiksuhaib360@gmail.com)
-- **GitHub**: [@RIxiV1](https://github.com/RIxiV1)
-- **LinkedIn**: [in/shaiksuhaib](https://www.linkedin.com/in/shaiksuhaib)
-- **Medium**: [@shaiksuhaib360](https://medium.com/@shaiksuhaib360)
 
 ---
 
-_Built with intent. MIT © Shaik Mohammed Suhaib_
+## Project Structure
+
+```text
+portfolio/
+├── app/
+│   ├── api/contact/route.ts       # Validated edge API handler
+│   ├── projects/[slug]/page.tsx   # Statically generated case studies
+│   ├── projects/page.tsx          # Filterable projects directory
+│   ├── journey/page.tsx           # Career timeline & documentation
+│   ├── stack/page.tsx             # Technologies & tools index
+│   ├── contact/page.tsx           # Contact form page
+│   ├── layout.tsx                 # Root layout, theme script, JSON-LD
+│   ├── globals.css                # Tailwind v4 theme definitions
+│   └── page.tsx                   # Index page
+├── components/
+│   └── ui/                        # Reusable primitives (nav, cards, forms)
+├── data/
+│   └── site.ts                    # Centralized project data & site configuration
+└── public/                        # Static assets (favicons, project media)
+```
+
+---
+
+## Contact
+
+- **Website**: [shaiksuhaibdev.vercel.app](https://shaiksuhaibdev.vercel.app)
+- **GitHub**: [@RIxiV1](https://github.com/RIxiV1)
+- **LinkedIn**: [in/shaiksuhaib](https://www.linkedin.com/in/shaiksuhaib)
+- **Email**: [shaiksuhaib360@gmail.com](mailto:shaiksuhaib360@gmail.com)
+
+---
+
+## License
+
+MIT © Shaik Mohammed Suhaib
