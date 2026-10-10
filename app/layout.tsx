@@ -52,8 +52,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FAF9FC' },
-    { media: '(prefers-color-scheme: dark)', color: '#09080E' },
+    { media: '(prefers-color-scheme: light)', color: '#FAFAFB' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
   ],
 }
 
@@ -75,7 +75,7 @@ const personJsonLd = {
 
 // Runs before first paint: apply the stored theme & preset, or fall back to
 // visitor's system preference. Keeps light-vs-dark from flashing on load.
-const themeScript = `(function(){try{localStorage.removeItem('theme-preset');var t=localStorage.getItem('theme');var d=t?t==='dark':true;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`
+const themeScript = `(function(){try{localStorage.removeItem('theme-preset');document.documentElement.removeAttribute('data-theme');var t=localStorage.getItem('theme');var d=t?t==='dark':true;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`
 
 export default function RootLayout({
   children,
