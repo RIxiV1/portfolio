@@ -1,23 +1,25 @@
 'use client'
 
 import { useRef, type ReactNode } from 'react'
+import Link from 'next/link'
 import {
   motion,
   useMotionValue,
   useReducedMotion,
   useSpring,
-  type HTMLMotionProps,
 } from 'motion/react'
 
-type MagneticLinkProps = Omit<HTMLMotionProps<'a'>, 'children'> & {
+type MagneticLinkProps = {
+  href: string
   children: ReactNode
-  /** How strongly the button tracks the cursor (0–1). Default 0.22. */
+  className?: string
   strength?: number
-  /** Inner content gets a softer pull for a layered, liquid feel. Default 0.12. */
   innerStrength?: number
+  [key: string]: unknown
 }
 
 export function MagneticLink({
+  href,
   children,
   className,
   strength = 0.22,
@@ -37,6 +39,11 @@ export function MagneticLink({
 
   const onMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (reduceMotion) return
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(pointer: coarse)').matches
+    )
+      return
     const r = ref.current?.getBoundingClientRect()
     if (!r) return
     const cx = r.left + r.width / 2
@@ -56,26 +63,58 @@ export function MagneticLink({
     iy.set(0)
   }
 
-  return (
-    <motion.a
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ x: sx, y: sy }}
-      className={className}
-      {...rest}
+  const isExternal =
+    href.startsWith('http') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('//')
+
+  const innerContent = (
+    <motion.span
+      style={{
+        x: isx,
+        y: isy,
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 'inherit',
+      }}
     >
-      <motion.span
-        style={{
-          x: isx,
-          y: isy,
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 'inherit',
-        }}
+      {children}
+    </motion.span>
+  )
+
+  if (isExternal) {
+    return (
+      <motion.a
+        ref={ref}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{ x: sx, y: sy }}
+        className={className}
+        {...rest}
       >
-        {children}
-      </motion.span>
-    </motion.a>
+        {innerContent}
+      </motion.a>
+    )
+  }
+
+  return (
+    <motion.div
+      style={{ x: sx, y: sy, display: 'inline-block' }}
+      className="inline-block"
+    >
+      <Link
+        ref={ref}
+        href={href}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        className={className}
+        {...rest}
+      >
+        {innerContent}
+      </Link>
+    </motion.div>
   )
 }

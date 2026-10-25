@@ -96,11 +96,45 @@ function allowedOriginsFor(req: Request): Set<string> {
       host ? `https://${host}` : null,
       host ? `http://${host}` : null,
       siteConfig.url,
+      siteConfig.url ? siteConfig.url.replace(/\/$/, '') : null,
     ].filter((v): v is string => v !== null),
   )
 }
 
-function corsHeaders(origin: string): HeadersInit {
+function isOriginAllowed(req: Request): boolean {
+  const origin = req.headers.get('origin')
+  const host = req.headers.get('host')
+  const referer = req.headers.get('referer')
+  const secFetchSite = req.headers.get('sec-fetch-site')
+
+  // Standard same-origin header in modern browsers
+  if (secFetchSite === 'same-origin') return true
+
+  // If referer is present and matches the host, it's same-origin
+  if (referer && host) {
+    try {
+      const refererUrl = new URL(referer)
+      if (refererUrl.host === host) return true
+    } catch {}
+  }
+
+  // If origin is present, check against allowed list
+  if (origin) {
+    const allowed = allowedOriginsFor(req)
+    if (allowed.has(origin)) return true
+    try {
+      const originUrl = new URL(origin)
+      if (host && originUrl.host === host) return true
+    } catch {}
+    return false
+  }
+
+  // If origin is omitted in same-origin browser context
+  return !!host
+}
+
+function corsHeaders(origin: string | null): HeadersInit {
+  if (!origin) return {}
   return {
     'Access-Control-Allow-Origin': origin,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -112,8 +146,7 @@ function corsHeaders(origin: string): HeadersInit {
 
 export async function OPTIONS(req: Request) {
   const origin = req.headers.get('origin')
-  const allowed = allowedOriginsFor(req)
-  if (!origin || !allowed.has(origin)) {
+  if (!origin || !isOriginAllowed(req)) {
     return new NextResponse(null, { status: 403 })
   }
   return new NextResponse(null, { status: 204, headers: corsHeaders(origin) })
@@ -121,8 +154,7 @@ export async function OPTIONS(req: Request) {
 
 export async function POST(req: Request) {
   const origin = req.headers.get('origin')
-  const allowedOrigins = allowedOriginsFor(req)
-  if (!origin || !allowedOrigins.has(origin)) {
+  if (!isOriginAllowed(req)) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
   const cors = corsHeaders(origin)

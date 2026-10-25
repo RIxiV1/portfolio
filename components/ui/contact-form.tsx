@@ -12,7 +12,7 @@ type FormState =
   | { kind: 'error'; reason: string; input: boolean }
 
 const fieldClass =
-  'w-full rounded-xl border border-border/80 bg-elevated/80 px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/50 transition-[border-color,box-shadow] duration-200 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15 disabled:cursor-not-allowed disabled:opacity-50'
+  'w-full rounded-xl border border-border/80 bg-elevated/80 px-4 py-3 text-base sm:text-[15px] text-foreground placeholder:text-muted-foreground/50 transition-[border-color,box-shadow] duration-200 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15 disabled:cursor-not-allowed disabled:opacity-50'
 const labelClass = 'eyebrow mb-2 block text-muted-foreground'
 
 const FIELDS = ['name', 'email', 'message'] as const
@@ -140,7 +140,7 @@ export function ContactForm() {
           deliberately non-semantic so browser autofill never fills it. */}
       <div
         aria-hidden="true"
-        className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden"
+        className="sr-only opacity-0 pointer-events-none absolute h-0 w-0 -z-50 overflow-hidden"
       >
         <label htmlFor="hp_field">Leave this field empty</label>
         <input

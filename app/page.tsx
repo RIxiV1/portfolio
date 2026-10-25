@@ -56,12 +56,14 @@ export default function Page() {
         <Stagger className="relative z-10 flex-1 space-y-8 pr-4">
           {/* Availability badge */}
           <StaggerItem>
-            <span className="inline-flex items-center gap-2 border border-border/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-              <span className="relative flex h-1.5 w-1.5">
+            <span className="inline-flex items-center gap-2 border border-border/60 px-3 py-1 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.1em] sm:tracking-[0.14em] text-muted-foreground max-w-full">
+              <span className="relative flex h-1.5 w-1.5 shrink-0">
                 <span className="absolute inset-0 rounded-full bg-positive/70 motion-safe:animate-ping" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-positive" />
               </span>
-              Available for internships &amp; opportunities
+              <span className="truncate sm:overflow-visible">
+                Available for internships &amp; opportunities
+              </span>
             </span>
           </StaggerItem>
 
@@ -91,7 +93,7 @@ export default function Page() {
             </MagneticLink>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-1 font-mono text-sm uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+              className="group inline-flex items-center gap-1 py-3 px-1 font-mono text-sm uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
             >
               Say Hi{' '}
               <span className="ml-1 transition-transform group-hover:translate-x-1">
@@ -136,7 +138,7 @@ export default function Page() {
 
         {/* Mobile cat */}
         <div
-          className="pointer-events-none absolute bottom-4 right-0 w-36 opacity-30 lg:hidden select-none"
+          className="pointer-events-none absolute bottom-16 right-0 w-28 sm:w-32 opacity-20 sm:opacity-30 lg:hidden select-none"
           aria-hidden="true"
         >
           <Image
@@ -145,6 +147,7 @@ export default function Page() {
             width={160}
             height={130}
             className="w-full h-auto object-contain dark:invert"
+            loading="eager"
           />
         </div>
 
@@ -285,7 +288,7 @@ export default function Page() {
             </header>
             <div className="grid gap-10 md:grid-cols-[280px_1fr] md:gap-14">
               <div className="space-y-6">
-                <div className="group relative overflow-hidden rounded-2xl border border-border/80 bg-elevated/80 shadow-[var(--card-shadow)]">
+                <div className="group relative overflow-hidden rounded-2xl border border-border/80 bg-elevated/80 shadow-[var(--card-shadow)] max-w-[260px] sm:max-w-[280px] mx-auto md:max-w-none">
                   <Image
                     src="/portrait.png"
                     alt="Shaik Mohammed Suhaib"
@@ -396,7 +399,7 @@ export default function Page() {
 
       {/* ── FOOTER — editorial ─────────────────────────────── */}
       <footer className="border-t border-border/60">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8">
+        <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 px-6 py-8 text-center sm:text-left">
           {/* Wordmark */}
           <span className="font-mono text-xs font-semibold uppercase tracking-widest text-foreground">
             suhaib<span className="text-muted-foreground">.dev</span>

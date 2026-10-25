@@ -22,6 +22,21 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
+    setOpen(false)
+  }
+
+  // Auto-close mobile menu on screen resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setOpen(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
@@ -40,7 +55,7 @@ export function Nav() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        scrolled
+        scrolled || open
           ? 'border-b border-border/60 bg-background/95 backdrop-blur-xl'
           : 'bg-transparent',
       )}
@@ -95,50 +110,61 @@ export function Nav() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-colors hover:text-muted-foreground"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/70 text-foreground transition-colors hover:bg-muted/50"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile dropdown */}
+      {/* Mobile backdrop overlay & dropdown */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            id="mobile-nav"
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.16, ease: 'easeOut' }}
-            className="border-b border-border/60 bg-background/98 backdrop-blur-xl md:hidden"
-          >
-            <ul className="mx-auto flex max-w-6xl flex-col px-6 pb-4">
-              {siteConfig.navLinks.map((l) => {
-                const isActive =
-                  l.href === '/'
-                    ? pathname === '/'
-                    : pathname.startsWith(l.href)
-                return (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        'flex items-center justify-between py-3 font-mono text-xs uppercase tracking-widest transition-colors border-b border-border/40 last:border-0',
-                        isActive
-                          ? 'text-foreground font-semibold'
-                          : 'text-muted-foreground hover:text-foreground',
-                      )}
-                    >
-                      <span>{l.name}</span>
-                      {isActive && <span className="h-1 w-4 bg-foreground" />}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 top-[65px] bg-background/60 backdrop-blur-sm z-40 md:hidden"
+              aria-hidden="true"
+            />
+            <motion.div
+              id="mobile-nav"
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.16, ease: 'easeOut' }}
+              className="relative z-50 border-b border-border/60 bg-background/98 backdrop-blur-xl md:hidden"
+            >
+              <ul className="mx-auto flex max-w-6xl flex-col px-6 pb-4">
+                {siteConfig.navLinks.map((l) => {
+                  const isActive =
+                    l.href === '/'
+                      ? pathname === '/'
+                      : pathname.startsWith(l.href)
+                  return (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          'flex items-center justify-between py-3.5 font-mono text-xs uppercase tracking-widest transition-colors border-b border-border/40 last:border-0',
+                          isActive
+                            ? 'text-foreground font-semibold'
+                            : 'text-muted-foreground hover:text-foreground',
+                        )}
+                      >
+                        <span>{l.name}</span>
+                        {isActive && <span className="h-1 w-4 bg-foreground" />}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

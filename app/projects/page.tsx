@@ -193,18 +193,18 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between pt-1">
                     <Link
                       href={`/projects/${p.slug}`}
-                      className="group/link inline-flex items-center gap-1 text-xs font-medium text-foreground transition-colors hover:text-accent"
+                      className="group/link inline-flex items-center gap-1 py-1.5 text-xs font-medium text-foreground transition-colors hover:text-accent"
                     >
                       Read Case Study
                       <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                     </Link>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       {p.liveUrl && (
                         <a
                           href={p.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+                          className="flex items-center gap-1 rounded-md px-2 py-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
                         >
                           Live <ExternalLink className="h-3 w-3" />
                         </a>
@@ -213,7 +213,7 @@ export default function ProjectsPage() {
                         href={p.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+                        className="rounded-md px-2 py-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
                       >
                         Code
                       </a>

@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-12%' } as const
+const VIEWPORT = { once: true, margin: '0px 0px -40px 0px' } as const
 const EASE = [0.22, 0.61, 0.36, 1] as const
 
 // A pen-flourish underline that sits under the signature at any width.

@@ -51,6 +51,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#FAFAFB' },
     { media: '(prefers-color-scheme: dark)', color: '#000000' },
@@ -83,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         className={`${jakarta.variable} ${inter.variable} ${jetbrains.variable} font-sans antialiased`}
       >

@@ -33,10 +33,14 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-border/80 text-foreground transition-all hover:border-foreground/40 hover:text-foreground hover:shadow-md"
+      className="inline-flex h-9 w-9 sm:h-8 sm:w-8 items-center justify-center overflow-hidden rounded-full border border-border/80 text-foreground transition-all hover:border-foreground/40 hover:text-foreground hover:shadow-md"
     >
-      <AnimatePresence mode="wait" initial={false}>
-        {mounted && (
+      {!mounted ? (
+        <span className="inline-flex">
+          <Sun className="h-3.5 w-3.5" />
+        </span>
+      ) : (
+        <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={dark ? 'sun' : 'moon'}
             initial={
@@ -59,8 +63,8 @@ export function ThemeToggle() {
               <Moon className="h-3.5 w-3.5" />
             )}
           </motion.span>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </button>
   )
 }

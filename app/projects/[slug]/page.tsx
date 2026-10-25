@@ -60,11 +60,11 @@ export default async function ProjectCaseStudyPage({
     <main id="main" tabIndex={-1} className="relative outline-none">
       <article className="mx-auto max-w-4xl px-6 pt-32 pb-24">
         <Link
-          href="/#work"
+          href="/projects"
           className="eyebrow group inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
-          Back to work
+          Back to projects
         </Link>
 
         <FadeUp>

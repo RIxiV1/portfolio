@@ -95,12 +95,12 @@ export default function JourneyPage() {
 
                     {(item as any).details && (
                       <details
-                        className="group/details mt-5 border-t border-border/50 pt-4"
+                        className="group mt-5 border-t border-border/50 pt-4"
                         open
                       >
                         <summary className="cursor-pointer text-xs font-mono uppercase tracking-widest text-accent hover:underline focus:outline-none flex items-center gap-1 list-none [&::-webkit-details-marker]:hidden font-semibold">
                           Breakdown &amp; Key Learnings{' '}
-                          <ChevronDown className="h-3.5 w-3.5 transition-transform group-open/details:rotate-180" />
+                          <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" />
                         </summary>
                         <div className="mt-4 space-y-4 text-sm text-muted-foreground">
                           <div className="space-y-2">
