@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Dancing_Script } from 'next/font/google'
-import { ArrowUpRight, ArrowDown } from 'lucide-react'
+import { ArrowUpRight, ArrowDown, Download } from 'lucide-react'
 import { siteConfig } from '@/data/site'
 import { FadeUp } from '@/components/ui/fade-up'
 import { Stagger, StaggerItem } from '@/components/ui/reveal'
@@ -91,6 +91,14 @@ export default function Page() {
             >
               View Work
             </MagneticLink>
+            <a
+              href={siteConfig.resumeUrl}
+              download
+              className="inline-flex items-center gap-2 border border-border bg-elevated/70 px-5 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-foreground transition-colors hover:border-foreground hover:bg-muted"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Resume
+            </a>
             <a
               href="#contact"
               className="group inline-flex items-center gap-1 py-3 px-1 font-mono text-sm uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"

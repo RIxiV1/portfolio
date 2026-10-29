@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Download, Menu, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { siteConfig } from '@/data/site'
 import { cn } from '@/lib/utils'
@@ -98,11 +98,28 @@ export function Nav() {
             })}
           </ul>
 
+          <a
+            href={siteConfig.resumeUrl}
+            download
+            className="inline-flex items-center gap-2 border border-foreground bg-foreground px-3.5 py-2 font-mono text-[11px] font-semibold uppercase tracking-widest text-background transition-colors hover:bg-foreground/85"
+          >
+            <Download className="h-3.5 w-3.5" aria-hidden="true" />
+            Resume
+          </a>
+
           <ThemeToggle />
         </div>
 
-        {/* Mobile: theme + hamburger */}
+        {/* Mobile: resume, theme + hamburger */}
         <div className="flex items-center gap-2 md:hidden">
+          <a
+            href={siteConfig.resumeUrl}
+            download
+            className="inline-flex h-9 items-center gap-1.5 border border-foreground bg-foreground px-3 font-mono text-[10px] font-semibold uppercase tracking-wider text-background"
+          >
+            <Download className="h-3.5 w-3.5" aria-hidden="true" />
+            Resume
+          </a>
           <ThemeToggle />
           <button
             type="button"
